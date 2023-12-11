@@ -14,6 +14,13 @@ export default function Games() {
     }
     getGames();
   }, []);
+  function showTime(iso) {
+    const obj = new Date(iso);
+    return obj.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+    });
+  }
   return (
     <>
       <div className="hero h-[700px] w-full trapezoid-score-div relative z-0">
@@ -24,20 +31,32 @@ export default function Games() {
           </div>
         </div>
       </div>
-      <div className="game-area flex-1 mx-24">
+      <div className="game-area flex-1 mx-24 px-12 flex flex-col gap-6 mb-10">
         {games.map((game, index) => {
           return (
             <NavLink
               key={index}
               to={`/game/${game._id}`}
               state={{ game }}
-              className="bg-white p-3 rounded-lg flex justify-between font-saira_bold text-xl hover:bg-gray-100 shadow-md shadow-gray-300"
+              className="bg-white p-3 px-6 rounded-md flex font-saira_bold text-lg hover:bg-gray-100 shadow-md shadow-gray-400 select-none"
             >
-              <div>{game.awayTeam.toUpperCase()}</div>
-              <div>@</div>
-              <div>{game.homeTeam.toUpperCase()}</div>
-              <div>O/U - {game.overUnder}</div>
-              <div>{game.startTime}</div>
+              <div className="w-1/4">
+                {game.awayTeam} (
+                {game.awayTeamWinOdds > 0
+                  ? `+${game.awayTeamWinOdds}`
+                  : game.awayTeamWinOdds}
+                )
+              </div>
+              <div className="px-3 text-center">@</div>
+              <div className="flex-1 px-16">
+                {game.homeTeam} (
+                {game.homeTeamWinOdds > 0
+                  ? `+${game.homeTeamWinOdds}`
+                  : game.homeTeamWinOdds}
+                ){' '}
+              </div>
+              <div className="w-1/6">Over/Under {game.overUnder}</div>
+              <div className="w-1/6 text-right">{showTime(game.startTime)}</div>
             </NavLink>
           );
         })}
