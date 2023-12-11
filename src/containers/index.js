@@ -1,0 +1,9 @@
+export { default as Home } from './Home.jsx';
+export { default as Game } from './Game.jsx';
+export { default as AllGames } from './AllGames.jsx';
+export { default as NotFound } from './NotFound.jsx';
+export { default as Pricing } from './Pricing.jsx';
+export { default as About } from './About.jsx';
+export { default as LoadingPage } from './LoadingPage.jsx';
+export { default as PrivacyPolicy } from './PrivacyPolicy.jsx';
+export { default as TermsOfService } from './TermsOfService.jsx';

@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'inter';
+  src: url('./fonts/Inter-Medium.ttf');
+}
+@font-face {
+  font-family: 'inter_bold';
+  src: url('./fonts/Inter-Bold.ttf');
+}
+@font-face {
+  font-family: 'seira';
+  src: url('./fonts/SairaCondensed-Medium.ttf');
+}
+@font-face {
+  font-family: 'saira_bold';
+  src: url('./fonts/SairaCondensed-Bold.ttf');
+}
+.trapezoid-home-div {
+  /* height: 300px; Adjust as needed */
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+  background-image: url('./assets/court-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.trapezoid-score-div {
+  /* height: 300px; Adjust as needed */
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+  background-image: url('./assets/score-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.trapezoid-hoop-div {
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+  background-image: url('./assets/hoop-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
