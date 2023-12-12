@@ -1,16 +1,31 @@
 import { useEffect, useState } from 'react';
+import { API_ROUTES } from '../utils/constants';
+import LoadingAiModal from './sub-components/LoadingAiModal';
 import slugify from 'slugify';
+import { useNavigate } from 'react-router-dom';
 
 export default function GameInfo({ game }) {
-  const examplePlayers = ['Tyrese Haliburton', 'Myles Turner', 'Buddy Hield'];
-  const [playersHome, setplayersHome] = useState([]);
-  const [playersAway, setplayersAway] = useState([]);
+  const [loadingAi, setLoadingAi] = useState(false);
+  const [teamHome, setTeamHome] = useState({ players: [] });
+  const [teamAway, setTeamAway] = useState({ players: [] });
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedStat, setSelectedStat] = useState();
   const [line, setLine] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
-    //fetch players for each team
-  });
+    async function fetchPlayers() {
+      const homeTeamSlug = slugify(game.homeTeam, { lower: true });
+      const awayTeamSlug = slugify(game.awayTeam, { lower: true });
+      const response = await fetch(
+        `${API_ROUTES.players}?home_team=${homeTeamSlug}&away_team=${awayTeamSlug}`,
+      );
+      const data = await response.json();
+      const [team_home, team_away] = data;
+      setTeamHome(team_home);
+      setTeamAway(team_away);
+    }
+    fetchPlayers();
+  }, []);
   const options = [];
   for (let i = 0.5; i <= 50; i += 0.5) {
     options.push({ value: i, label: i.toString() });
@@ -25,128 +40,173 @@ export default function GameInfo({ game }) {
       ? setSelectedStat(null)
       : setSelectedStat(e.target.id);
   }
-  function handleAnalyze() {
-    if (selectedPlayer && selectedStat && line) {
-      confirm(`Please confirm your selections to analyze`);
+  async function handleAnalyze() {
+    if (selectedPlayer && selectedStat && line && line !== 'Select...') {
+      console.log(selectedPlayer, selectedStat, line);
+      if (confirm(`Please confirm your selections to analyze`)) {
+        setLoadingAi(true);
+        const response = await fetch(
+          `${API_ROUTES.base}/${selectedStat}?player=${selectedPlayer}&line=${line}&game=${game._id}&home_team=${teamHome.slug_team_name}&away_team=${teamAway.slug_team_name}`,
+        );
+        const data = await response.json();
+        navigate(`/response/${data.dateOfGame}-${data.id}`);
+        setLoadingAi(false);
+      }
     } else {
       alert('Please ensure you have selected a player, stat, and line.');
     }
   }
   return (
     <>
-      <div className="game-area flex-1 mx-24 flex">
-        <div className="AWAY flex-1 flex flex-col items-center gap-20">
-          <div className="font-saira_bold text-2xl tracking-wide">
+      {loadingAi && (
+        <LoadingAiModal
+          player={selectedPlayer}
+          stat={selectedStat}
+          line={line}
+        />
+      )}
+      <div className="game-area mx-16 flex h-[800px]">
+        <div className="AWAY flex-1 flex flex-col items-start gap-20 border-r-2 border-black border-dotted">
+          <div className="font-saira_bold text-2xl tracking-wide w-full text-center">
             {game.awayTeam}
           </div>
-          <div className="players flex flex-col gap-8">
-            {examplePlayers.map((player, index) => {
-              return (
-                <button
-                  key={index}
-                  id={slugify(player, { lower: true })}
-                  onClick={e => handlePlayerClick(e)}
-                  className={`font-saira_bold text-xl px-3 py-1 rounded-lg hover:bg-gray-300 text-center ${
-                    selectedPlayer == slugify(player, { lower: true })
-                      ? 'bg-gray-300'
-                      : `bg-white`
-                  }`}
-                >
-                  {player}
-                </button>
-              );
-            })}
+          <div className="players flex flex-col gap-8 flex-wrap h-4/5 items-center justify-center w-full">
+            {teamAway.players
+              .sort((a, b) => a.full_name.localeCompare(b.full_name))
+              .map((player, index) => {
+                return (
+                  <div key={index} className="w-1/3 flex flex-col">
+                    <button
+                      id={slugify(player.full_name, { lower: true })}
+                      onClick={e => handlePlayerClick(e)}
+                      className={`font-saira_bold text-lg py-1 px-3 rounded-lg hover:bg-gray-300 text-center ${
+                        selectedPlayer ==
+                        slugify(player.full_name, { lower: true })
+                          ? 'bg-gray-300'
+                          : `bg-white`
+                      }`}
+                    >
+                      {player.full_name}
+                    </button>
+                  </div>
+                );
+              })}
           </div>
         </div>
-        <div className="STATS flex flex-col gap-5 mt-36 mb-12">
-          <button
-            id="points"
-            onClick={e => {
-              handleStatClick(e);
-            }}
-            className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-gray-300 ${
-              selectedStat == 'points' ? 'bg-gray-300' : `bg-white`
-            }`}
-          >
-            POINTS
-          </button>
-          <button
-            id="rebounds"
-            onClick={e => {
-              handleStatClick(e);
-            }}
-            className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-gray-300 ${
-              selectedStat == 'rebounds' ? 'bg-gray-300' : `bg-white`
-            }`}
-          >
-            REBOUNDS
-          </button>
-          <button
-            id="assists"
-            onClick={e => {
-              handleStatClick(e);
-            }}
-            className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-gray-300 ${
-              selectedStat == 'assists' ? 'bg-gray-300' : `bg-white`
-            }`}
-          >
-            ASSISTS
-          </button>
-          <button
-            id="3pm"
-            className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
-          >
-            3 POINT FG
-          </button>
-          <button
-            id="steals"
-            className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
-          >
-            STEALS
-          </button>
-          <button
-            id="blocks"
-            className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
-          >
-            BLOCKS
-          </button>
-          <button
-            id="turnovers"
-            className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
-          >
-            TURNOVERS
-          </button>
-        </div>
-        <div className="HOME flex-1 flex flex-col items-center">
-          <div className="font-saira_bold text-2xl tracking-wide">
+        <div className="HOME flex-1 flex flex-col items-start gap-20">
+          <div className="font-saira_bold text-2xl tracking-wide w-full text-center">
             {game.homeTeam}
+          </div>
+          <div className="players flex flex-col gap-8 flex-wrap h-4/5 justify-center items-center w-full">
+            {teamHome.players
+              .sort((a, b) => a.full_name.localeCompare(b.full_name))
+              .map((player, index) => {
+                return (
+                  <div key={index} className="w-1/3 flex flex-col">
+                    <button
+                      id={slugify(player.full_name, { lower: true })}
+                      onClick={e => handlePlayerClick(e)}
+                      className={`font-saira_bold text-lg py-1 px-3 rounded-lg hover:bg-gray-300 text-center ${
+                        selectedPlayer ==
+                        slugify(player.full_name, { lower: true })
+                          ? 'bg-gray-300'
+                          : `bg-white`
+                      }`}
+                    >
+                      {player.full_name}
+                    </button>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
+      <div className="font-saira_bold text-3xl mt-12 w-full text-center mb-12">
+        Stats
+      </div>
+      <div className="STATS flex gap-5 justify-center">
+        <button
+          id="points"
+          onClick={e => {
+            handleStatClick(e);
+          }}
+          className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-gray-300 ${
+            selectedStat == 'points' ? 'bg-gray-300' : `bg-white`
+          }`}
+        >
+          POINTS
+        </button>
+        <button
+          id="rebounds"
+          onClick={e => {
+            handleStatClick(e);
+          }}
+          className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-gray-300 ${
+            selectedStat == 'rebounds' ? 'bg-gray-300' : `bg-white`
+          }`}
+        >
+          REBOUNDS
+        </button>
+        <button
+          id="assists"
+          onClick={e => {
+            handleStatClick(e);
+          }}
+          className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-gray-300 ${
+            selectedStat == 'assists' ? 'bg-gray-300' : `bg-white`
+          }`}
+        >
+          ASSISTS
+        </button>
+        <button
+          id="3pm"
+          className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
+        >
+          3 POINT FG
+        </button>
+        <button
+          id="steals"
+          className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
+        >
+          STEALS
+        </button>
+        <button
+          id="blocks"
+          className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
+        >
+          BLOCKS
+        </button>
+        <button
+          id="turnovers"
+          className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
+        >
+          TURNOVERS
+        </button>
+      </div>
       <div className="ANALYZE w-full flex justify-center mt-12 mb-12 flex-col gap-8 items-center">
         <div className="flex flex-col gap-2 items-center">
-          <label className="font-saira_bold text-2xl">Line</label>
-          <select
-            name="line"
-            id="line"
-            value={line}
-            onChange={e => setLine(e.target.value)}
-            className="w-[100px] font-inter"
-          >
-            <option selected disabled>
-              Select
-            </option>
-            {options.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <label className="font-saira_bold text-3xl mb-6">Line</label>
+          <div className="custom-select flex justify-center">
+            <select
+              name="line"
+              id="line"
+              value={line}
+              onChange={e => setLine(e.target.value)}
+              className="w-[100px] font-inter_bold text-base"
+            >
+              <option selected>Select...</option>
+              {options.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <button
           id="analyze"
           onClick={handleAnalyze}
-          className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-gray-300 bg-white`}
+          className={`font-saira_bold text-2xl px-5 py-3 rounded-lg mt-6 hover:bg-gray-300 bg-white`}
         >
           ANALYZE
         </button>

@@ -37,7 +37,14 @@
 
 .trapezoid-hoop-div {
   clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
-  background-image: url('./assets/hoop-bg.jpg');
+  background-image: url('./assets/announcer-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.trapezoid-ball-div {
+  background-image: url('./assets/ball-bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -50,4 +57,22 @@
   to {
     width: 100%;
   }
+}
+
+.custom-select {
+  min-width: 350px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  border: 1px solid #caced1;
+  border-radius: 0.25rem;
+  color: #000;
+  cursor: pointer;
+  height: 30px;
+  width: 50px;
 }

@@ -2,6 +2,7 @@ import {
   Home,
   Game,
   AllGames,
+  AiResponse,
   NotFound,
   About,
   Pricing,
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<AllGames />} />
         <Route path="/game/:_id" element={<Game />} />
+        <Route path="/response/:path" element={<AiResponse />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />

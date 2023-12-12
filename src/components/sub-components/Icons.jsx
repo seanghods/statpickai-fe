@@ -155,3 +155,91 @@ export function LoadingIcon({ width = '100px', height = '100px' }) {
     </svg>
   );
 }
+
+export function LoadingAiIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        margin: 'auto',
+        background: '',
+        display: 'block',
+        shapeRendering: 'auto',
+      }}
+      width="120px"
+      height="120px"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="xMidYMid"
+    >
+      <g transform="translate(50 50)">
+        <g transform="scale(0.76)">
+          <g transform="translate(-50 -50)">
+            <g>
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                repeatCount="indefinite"
+                values="0 50 50;360 50 50"
+                keyTimes="0;1"
+                dur="0.5952380952380952s"
+              ></animateTransform>
+              <path
+                fillOpacity="1"
+                fill="#292664"
+                d="M50 50L50 0A50 50 0 0 1 100 50Z"
+              ></path>
+            </g>
+            <g>
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                repeatCount="indefinite"
+                values="0 50 50;360 50 50"
+                keyTimes="0;1"
+                dur="0.7936507936507935s"
+              ></animateTransform>
+              <path
+                fillOpacity="1"
+                fill="#667395"
+                d="M50 50L50 0A50 50 0 0 1 100 50Z"
+                transform="rotate(90 50 50)"
+              ></path>
+            </g>
+            <g>
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                repeatCount="indefinite"
+                values="0 50 50;360 50 50"
+                keyTimes="0;1"
+                dur="1.1904761904761905s"
+              ></animateTransform>
+              <path
+                fillOpacity="1"
+                fill="#0e429c"
+                d="M50 50L50 0A50 50 0 0 1 100 50Z"
+                transform="rotate(180 50 50)"
+              ></path>
+            </g>
+            <g>
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                repeatCount="indefinite"
+                values="0 50 50;360 50 50"
+                keyTimes="0;1"
+                dur="2.380952380952381s"
+              ></animateTransform>
+              <path
+                fillOpacity="1"
+                fill="#e5efff"
+                d="M50 50L50 0A50 50 0 0 1 100 50Z"
+                transform="rotate(270 50 50)"
+              ></path>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  );
+}

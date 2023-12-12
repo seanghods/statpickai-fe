@@ -9,7 +9,6 @@ export default function Games() {
     async function getGames() {
       const response = await fetch(API_ROUTES.games);
       const data = await response.json();
-      console.log(data);
       setGames(data);
     }
     getGames();
@@ -38,25 +37,60 @@ export default function Games() {
               key={index}
               to={`/game/${game._id}`}
               state={{ game }}
-              className="bg-white p-3 px-6 rounded-md flex font-saira_bold text-lg hover:bg-gray-100 shadow-md shadow-gray-400 select-none"
+              className="bg-white p-2 px-6 rounded-md flex font-saira_bold text-lg hover:bg-gray-100 shadow-md shadow-gray-400 select-none"
             >
               <div className="w-1/4">
-                {game.awayTeam} (
-                {game.awayTeamWinOdds > 0
-                  ? `+${game.awayTeamWinOdds}`
-                  : game.awayTeamWinOdds}
-                )
+                <div>
+                  {game.awayTeam} (
+                  {game.awayTeamWinOdds > 0
+                    ? `+${game.awayTeamWinOdds}`
+                    : game.awayTeamWinOdds}
+                  )
+                </div>
+                <div className="text-center text-sm text-gray-700 pr-12">
+                  {game.awayTeamWinOdds < game.homeTeamWinOdds ? '-' : '+'}
+                  {Math.abs(game.teamSpread)} (
+                  {game.awayTeamSpreadOdds > 0
+                    ? `+${game.awayTeamSpreadOdds}`
+                    : game.awayTeamSpreadOdds}
+                  )
+                </div>
               </div>
-              <div className="px-3 text-center">@</div>
-              <div className="flex-1 px-16">
-                {game.homeTeam} (
-                {game.homeTeamWinOdds > 0
-                  ? `+${game.homeTeamWinOdds}`
-                  : game.homeTeamWinOdds}
-                ){' '}
+              <div className="px-3 text-center flex items-center">AT</div>
+              <div className="flex-1 px-16 flex flex-col">
+                <div>
+                  {game.homeTeam} (
+                  {game.homeTeamWinOdds > 0
+                    ? `+${game.homeTeamWinOdds}`
+                    : game.homeTeamWinOdds}
+                  ){' '}
+                </div>
+                <div>
+                  {' '}
+                  <div className="text-center text-sm pr-12 text-gray-700">
+                    {game.homeTeamWinOdds < game.awayTeamWinOdds ? '-' : '+'}
+                    {Math.abs(game.teamSpread)} (
+                    {game.homeTeamSpreadOdds > 0
+                      ? `+${game.homeTeamSpreadOdds}`
+                      : game.homeTeamSpreadOdds}
+                    )
+                  </div>
+                </div>
               </div>
-              <div className="w-1/6">Over/Under {game.overUnder}</div>
-              <div className="w-1/6 text-right">{showTime(game.startTime)}</div>
+              <div className="w-1/6 text-gray-700 flex items-center">
+                o/u {game.overUnder.toFixed(1)}
+                {/* <div>
+                  o{game.overUnder} (
+                  {game.overOdds > 0 ? `+${game.overOdds}` : game.overOdds})
+                </div>
+                <div>
+                  u{game.overUnder} (
+                  {game.underOdds > 0 ? `+${game.underOdds}` : game.underOdds})
+                </div> */}
+              </div>
+              <div className="w-1/6 justify-end flex items-center pr-4 text-gray-700">
+                {showTime(game.startTime)}
+              </div>
             </NavLink>
           );
         })}
