@@ -1,20 +1,91 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { LoadingAiIcon } from './Icons';
+import { LoadingAiIcon, Xmark } from './Icons';
 import { Fragment } from 'react';
+import useResponse from '../../context/useResponse';
 
 export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
+  const { setLoadingAi, responseFailed, setResponseFailed } = useResponse();
   const statName = stat.charAt(0).toUpperCase() + stat.slice(1);
   const playerName = player
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+  function GeneratingModal() {
+    return (
+      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+        <Dialog.Title
+          as="h3"
+          className="text-lg font-inter_bold leading-6 text-gray-900 flex justify-center items-center border-b-2 pb-3"
+        >
+          Generating AI Analysis...
+        </Dialog.Title>
+        <div className="mt-4 flex justify-center flex-col items-center font-inter italic gap-5">
+          <div>
+            <LoadingAiIcon />
+          </div>
+          {player ? (
+            <>
+              <div>This may take up to a minute...</div>
+              <div>Player: {playerName}...</div>
+              <div>Stat: {statName}...</div>
+              <div>Line: {line}...</div>{' '}
+              <div className="flex flex-col items-center gap-2 mt-2">
+                <button
+                  onClick={() => setLoadingAi(false)}
+                  className="bg-gray-200 text-sm px-3 py-1 rounded-lg font-inter_bold hover:bg-gray-300"
+                >
+                  Close
+                </button>
+                <div className="text-xs px-16 text-center">
+                  You will receive a notification when your analysis is ready if
+                  you close this window.
+                </div>
+              </div>
+            </>
+          ) : (
+            <div>Retrieving final analysis...</div>
+          )}
+        </div>
+      </Dialog.Panel>
+    );
+  }
+  function ErrorModal() {
+    return (
+      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+        <Dialog.Title
+          as="h3"
+          className="text-lg font-inter_bold leading-6 text-gray-900 flex justify-center items-center border-b-2 pb-3"
+        >
+          Error...
+        </Dialog.Title>
+        <div className="mt-4 flex justify-center flex-col items-center font-inter italic gap-5">
+          <div>
+            <Xmark />
+          </div>
+          <div>Unfortunately, our AI hit a snag.</div>
+          <div className="text-center">
+            The error has been reported and your credit has been refunded.
+          </div>
+          <div>Please try another option.</div>
+          <div>Sorry for the inconvenience</div>{' '}
+          <button
+            onClick={() => setLoadingAi(false)}
+            className="bg-gray-200 text-sm px-3 py-1 rounded-lg font-inter_bold hover:bg-gray-300"
+          >
+            Close
+          </button>
+        </div>
+      </Dialog.Panel>
+    );
+  }
   return (
     <Transition appear show={true} as={Fragment}>
       <Dialog
         as="div"
         className="relative z-10"
         onClose={() => {
-          return;
+          setLoadingAi(false);
+          setResponseFailed(false);
         }}
       >
         <Transition.Child
@@ -40,29 +111,7 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-inter_bold leading-6 text-gray-900 flex justify-center items-center border-b-2 pb-3"
-                >
-                  Generating AI Analysis...
-                </Dialog.Title>
-                <div className="mt-4 flex justify-center flex-col items-center font-inter italic gap-5">
-                  <div>
-                    <LoadingAiIcon />
-                  </div>
-                  {player ? (
-                    <>
-                      <div>This may take up to a minute...</div>
-                      <div>Player: {playerName}...</div>
-                      <div>Stat: {statName}...</div>
-                      <div>Line: {line}...</div>{' '}
-                    </>
-                  ) : (
-                    <div>Retrieving final analysis...</div>
-                  )}
-                </div>
-              </Dialog.Panel>
+              {responseFailed ? ErrorModal() : GeneratingModal()}
             </Transition.Child>
           </div>
         </div>

@@ -58,17 +58,19 @@ export default function Home() {
             <div className="bg-[#4DE234] w-[8px] h-full"></div>HOW DOES IT WORK?
           </h3>
           <p className="font-inter text-gray-600">
-            We feed our state-of-the-art AI hand-chosen statistics specific to
-            your prop. These include first and foremost averages across last 5
-            games, last 10 games, the season, and against that particular
-            opponent. We also include advanced statistics such as team &
-            opponent pace, opponent effective field goal percentage, assist
-            ratios, offensive & defensive rebounds, and more. <br /> <br />
-            We have found that the more contextual statistics we can provide the
-            AI, the more confident it is in its decision. Along with it&apos;s
-            decision, the AI will also articulate the statistics it emphasized
-            in it&apos;s decision for your knowledge and ultimately final
-            decision.
+            This state-of-the-art AI processes hand-selected statistics tailored
+            to each prop, focusing on key player metrics such as averages from
+            the last 5 and 10 games, season-long performance, and specific
+            opponent histories. Additionally, a suite of advanced statistics is
+            incorporated in the analysis, including team and opponent pace,
+            opponent effective field goal percentage, assist ratios, and more.{' '}
+            <br /> <br /> The integration of comprehensive, contextual
+            statistics empowers the AI to deliver more precise predictions. Each
+            analysis is accompanied by a detailed breakdown of the key
+            statistics that influenced the decision, enhancing user
+            understanding and supporting informed decision-making. Discover a
+            smarter way to approach NBA prop picks, informed by cutting-edge AI
+            analysis.
           </p>
         </div>
       </div>

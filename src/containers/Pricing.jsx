@@ -1,4 +1,5 @@
 import { Footer, Header } from '../components';
+import { NavLink } from 'react-router-dom';
 
 export default function Pricing() {
   const plans = [
@@ -87,9 +88,12 @@ export default function Pricing() {
                   ))}
                 </ul>
                 <div className="flex-1 flex items-end">
-                  <button className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-[#4DE234] hover:bg-[#379c26] active:bg-indigo-700">
+                  <NavLink
+                    to="/sign-up"
+                    className="text-center px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-[#4DE234] hover:bg-[#379c26] active:bg-green-700"
+                  >
                     Get Started
-                  </button>
+                  </NavLink>
                 </div>
               </div>
             ))}

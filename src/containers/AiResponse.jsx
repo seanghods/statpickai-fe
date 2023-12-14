@@ -3,13 +3,12 @@ import { useParams } from 'react-router-dom';
 import { Header, Footer } from '../components';
 import { API_ROUTES } from '../utils/constants';
 import LoadingAiModal from '../components/sub-components/LoadingAiModal';
+import { ScrollToTop } from '../utils/helpers';
 // import Typewriter from 'typewriter-effect';
 
 export default function AiResponse() {
   const [loadingAi, setLoadingAi] = useState(false);
   const [response, setResponse] = useState({ message: '' });
-  // const sampleResponse =
-  //   "To make an informed decision, let's analyze each piece of data provided about Jimmy Butler:/n1. **Jimmy Butler Season Average (21.95 points per game)**: This season, Butler averages below the line, which initially suggests a tendency towards the under.";
   const { path } = useParams();
   const date = path.substring(0, 10);
   const id = path.substring(11);
@@ -24,12 +23,13 @@ export default function AiResponse() {
       setLoadingAi(false);
     }
     fetchMessage();
-  }, []);
+  }, [id]);
   const finalMessage = response.message
     .split('\n')
     .map((line, index) => <div key={index}>{line}</div>);
   return (
     <>
+      <ScrollToTop />
       {loadingAi && <LoadingAiModal />}
       <div className="hero h-[700px] w-full trapezoid-ball-div relative z-0">
         <Header />

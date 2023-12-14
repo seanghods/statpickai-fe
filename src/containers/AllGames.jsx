@@ -37,7 +37,7 @@ export default function Games() {
               key={index}
               to={`/game/${game._id}`}
               state={{ game }}
-              className="bg-white p-2 px-6 rounded-md flex font-saira_bold text-lg hover:bg-gray-100 shadow-md shadow-gray-400 select-none"
+              className="bg-white p-2 px-6 rounded-md flex font-saira_bold text-lg hover:bg-gray-300 shadow-sm shadow-gray-600 select-none"
             >
               <div className="w-1/4">
                 <div>
@@ -56,7 +56,9 @@ export default function Games() {
                   )
                 </div>
               </div>
-              <div className="px-3 text-center flex items-center">AT</div>
+              <div className="px-3 text-center flex items-center text-blue-600">
+                AT
+              </div>
               <div className="flex-1 px-16 flex flex-col">
                 <div>
                   {game.homeTeam} (
@@ -77,16 +79,8 @@ export default function Games() {
                   </div>
                 </div>
               </div>
-              <div className="w-1/6 text-gray-700 flex items-center">
+              <div className="w-1/6 text-gray-700 justify-center flex items-center">
                 o/u {game.overUnder.toFixed(1)}
-                {/* <div>
-                  o{game.overUnder} (
-                  {game.overOdds > 0 ? `+${game.overOdds}` : game.overOdds})
-                </div>
-                <div>
-                  u{game.overUnder} (
-                  {game.underOdds > 0 ? `+${game.underOdds}` : game.underOdds})
-                </div> */}
               </div>
               <div className="w-1/6 justify-end flex items-center pr-4 text-gray-700">
                 {showTime(game.startTime)}

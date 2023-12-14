@@ -11,4 +11,8 @@ export const API_ROUTES = {
   games: `${BASE_URL}/games`,
   players: `${BASE_URL}/players`,
   message: `${BASE_URL}/message`,
+  logIn: `${BASE_URL}/log-in`,
+  logOut: `${BASE_URL}/log-out`,
+  signUp: `${BASE_URL}/sign-up`,
+  checkSession: `${BASE_URL}/check-session`,
 };
