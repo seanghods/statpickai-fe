@@ -77,7 +77,16 @@ export default function Profile() {
             {user.plan.price == 0 ? (
               <PaymentForm />
             ) : (
-              'Update your subscription plan or billing information here via Stripe.'
+              <div>
+                Update your subscription plan or billing information{' '}
+                <a
+                  href="https://billing.stripe.com/p/login/5kAbJd1PW5bi1OMfYY"
+                  alt="Stripe Link"
+                  className="font-bold text-blue-800"
+                >
+                  here via Stripe.
+                </a>
+              </div>
             )}
           </div>
         ) : (
