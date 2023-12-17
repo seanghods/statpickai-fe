@@ -6,8 +6,8 @@ export function ResponseProvider({ children }) {
   const [analysisData, setAnalysisData] = useState({});
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [responseFailed, setResponseFailed] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [showLogInModal, setShowLogInModal] = useState(false);
+  const [user, setUser] = useState({ user: '' });
 
   return (
     <ResponseContext.Provider
@@ -20,10 +20,10 @@ export function ResponseProvider({ children }) {
         setAnalysisComplete,
         responseFailed,
         setResponseFailed,
-        loggedIn,
-        setLoggedIn,
         showLogInModal,
         setShowLogInModal,
+        user,
+        setUser,
       }}
     >
       {children}

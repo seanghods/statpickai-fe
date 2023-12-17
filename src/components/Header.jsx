@@ -4,7 +4,8 @@ import { API_ROUTES } from '../utils/constants';
 
 export default function Header() {
   const navigate = useNavigate();
-  const { setShowLogInModal, loggedIn, setLoggedIn } = useResponse();
+  const { setShowLogInModal, user, setUser } = useResponse();
+
   async function handleLogOut() {
     const response = await fetch(API_ROUTES.logOut, {
       withCredentials: true,
@@ -14,7 +15,7 @@ export default function Header() {
     const data = await response.json();
 
     if (response.ok && data.success) {
-      setLoggedIn(false);
+      setUser({ user: '' });
       navigate('/');
     } else {
       console.log(data.message);
@@ -59,12 +60,24 @@ export default function Header() {
   function loggedInHeader() {
     return (
       <>
-        <NavLink
+        <div
           className="hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/all-responses"
         >
-          RESPONSES
-        </NavLink>
+          TODAY&apos;S PICKS:{' '}
+          <span
+            className={`${
+              user.picksPerDay - user.picksUsed == 0
+                ? `text-red-200`
+                : 'text-green-200'
+            }`}
+          >
+            {user.picksUsed
+              ? user.picksPerDay - user.picksUsed
+              : user.picksPerDay}
+          </span>
+          /{user.picksPerDay}
+        </div>
         <NavLink
           className="hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/games"
@@ -72,10 +85,16 @@ export default function Header() {
           GAMES
         </NavLink>
         <NavLink
-          className="hover:scale-105 transform transition duration-250 font-saira_bold text-white tracking-wide"
+          className="hover:scale-105 transform transition duration-250 font-saira_bold text-white"
+          to="/all-responses"
+        >
+          RESPONSES
+        </NavLink>
+        <NavLink
+          className="hover:scale-105 text-green-200 transform transition duration-250 font-saira_bold tracking-wide"
           to="/profile"
         >
-          PROFILE
+          {user.username.toUpperCase()}
         </NavLink>
         <button
           className="hover:scale-105 transform transition duration-250 font-saira_bold text-white tracking-wide"
@@ -95,7 +114,7 @@ export default function Header() {
         STAT <span className="text-[#4DE234]">PICK</span> AI
       </NavLink>
       <div className="flex gap-6 font-saira items-center">
-        {loggedIn ? loggedInHeader() : notLoggedInHeader()}
+        {user.username ? loggedInHeader() : notLoggedInHeader()}
       </div>
     </div>
   );

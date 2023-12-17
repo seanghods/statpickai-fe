@@ -30,7 +30,7 @@ function App() {
     responseFailed,
     setResponseFailed,
     showLogInModal,
-    setLoggedIn,
+    setUser,
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(false);
   const navigate = useNavigate();
@@ -45,9 +45,9 @@ function App() {
         const data = await response.json();
 
         if (data.isAuthenticated) {
-          setLoggedIn(true);
+          setUser(data.user);
         } else {
-          setLoggedIn(false);
+          setUser({ username: '' });
         }
       } catch (error) {
         console.error('Failed to check authentication status:', error);
@@ -55,16 +55,16 @@ function App() {
       setFullLoadingPage(false);
     }
     checkAuthenticationStatus();
-  }, [setLoggedIn]);
+  }, [setUser]);
   useEffect(() => {
     if (analysisComplete) {
       if (loadingAi && !responseFailed) {
-        navigate(`/response/${analysisData.dateOfGame}-${analysisData.id}`);
+        navigate(`/response/${analysisData.dateOfGame}-${analysisData._id}`);
         setLoadingAi(false);
-      } else if (responseFailed) {
+      } else if (!loadingAi && responseFailed) {
         ToastErrorMsg();
-        setTimeout(() => setResponseFailed(false), 3000);
-      } else {
+        setResponseFailed(false);
+      } else if (!responseFailed) {
         ToastSuccessMsg();
       }
       setAnalysisComplete(false);
@@ -87,7 +87,7 @@ function App() {
       <div
         className="cursor-pointer flex items-center font-saira_bold"
         onClick={() =>
-          navigate(`/response/${analysisData.dateOfGame}-${analysisData.id}`)
+          navigate(`/response/${analysisData.dateOfGame}-${analysisData._id}`)
         }
       >
         <Checkmark />
@@ -112,7 +112,7 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/sign-up/*" element={<SignUpPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="*" element={<NotFound />} />

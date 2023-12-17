@@ -30,7 +30,7 @@ export default function Games() {
           </div>
         </div>
       </div>
-      <div className="game-area flex-1 mx-24 px-12 flex flex-col gap-6 mb-10">
+      <div className="game-area flex-1 mx-24 px-12 flex flex-col gap-6 mb-10 bg-gradient-to-r from-gray-200 via-gray-700 to-gray-200">
         {games.map((game, index) => {
           return (
             <NavLink

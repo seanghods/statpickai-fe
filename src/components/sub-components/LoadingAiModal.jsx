@@ -17,7 +17,7 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
           as="h3"
           className="text-lg font-inter_bold leading-6 text-gray-900 flex justify-center items-center border-b-2 pb-3"
         >
-          Generating AI Analysis...
+          {player ? 'Generating AI Analysis...' : 'Retrieving AI Analysis...'}
         </Dialog.Title>
         <div className="mt-4 flex justify-center flex-col items-center font-inter italic gap-5">
           <div>

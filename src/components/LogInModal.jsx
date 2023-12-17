@@ -1,4 +1,5 @@
 // import { useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { API_ROUTES } from '../utils/constants';
@@ -8,7 +9,7 @@ import useResponse from '../context/useResponse';
 export default function LogInModal() {
   const navigate = useNavigate();
   const { setShowLogInModal } = useResponse();
-  const { setLoggedIn } = useResponse();
+  const { setUser } = useResponse();
   const [formErrors, setFormErrors] = useState({
     username: '',
     password: '',
@@ -47,16 +48,14 @@ export default function LogInModal() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setLoggedIn(true);
+        setUser(data.user);
+        toast.success('Successfully logged in.');
         setShowLogInModal(false);
       } else {
         const newErrors = {
-          logIn: {
-            username: '',
-            password: '',
-            message: 'Incorrect Username / Password',
-          },
-          signUp: {},
+          username: '',
+          password: '',
+          message: 'Incorrect Username / Password',
         };
         setFormErrors(newErrors);
       }
