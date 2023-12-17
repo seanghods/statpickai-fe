@@ -45,7 +45,7 @@ export default function Header() {
           ABOUT
         </NavLink>
         <button
-          className="hover:scale-105 md:text-base text-sm transform transition duration-250 font-saira_bold text-white tracking-wide"
+          className="hover:scale-105 md:text-lg text-sm transform transition duration-250 font-saira_bold text-white tracking-wide"
           onClick={() => setShowLogInModal(true)}
         >
           LOG IN

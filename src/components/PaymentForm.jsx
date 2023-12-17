@@ -42,7 +42,7 @@ export default function PaymentForm({ accountInfo }) {
       setTimeout(() => {
         setLoadingTransition(false);
         setShowSuccessMsg(true);
-        accountInfo && setUser(accountInfo);
+        accountInfo.username ? setUser(accountInfo) : null;
       }, 350);
     } else {
       setProcessing(true);
