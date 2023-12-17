@@ -218,7 +218,7 @@ export default function GameInfo({ game }) {
             );
           })}
         </div>
-        <div className="ANALYZE w-full flex justify-center mt-12 mb-12 flex-col gap-8 items-center">
+        <div className="ANALYZE w-full flex justify-center my-4 md:my-12 flex-col gap-2 md:gap-8 items-center">
           <div className="flex flex-col gap-2 items-center">
             <label className="font-saira_bold text-3xl mb-6">Line</label>
             <div className="custom-select flex justify-center">
