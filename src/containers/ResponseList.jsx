@@ -62,7 +62,7 @@ export default function ResponseList() {
               <>
                 <div className="flex gap-3 text-sm mb-3 justify-between text-left">
                   <div className="md:w-[100px]">Date</div>
-                  <div className="flex-1 text-right">Player</div>
+                  <div className="flex-1 md:text-left text-right">Player</div>
                   <div className="flex-1">Team</div>
                   <div className="md:w-[100px]">Stat</div>
                   <div className="md:w-[75px]">Line</div>
