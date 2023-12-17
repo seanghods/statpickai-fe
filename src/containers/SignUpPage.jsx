@@ -47,6 +47,8 @@ export default function SignUpPage() {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
+          withCredentials: true,
           body: JSON.stringify({
             username: form.username.value,
             password: form.password.value,
@@ -81,9 +83,9 @@ export default function SignUpPage() {
   }
   return (
     <>
-      <div className="hero h-[700px] w-full trapezoid-home-div relative z-0">
+      <div className="hero h-[400px] md:h-[700px] w-full trapezoid-home-div relative z-0">
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-7xl text-center">
+        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-4xl md:text-7xl text-center">
           <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
             Sign Up
           </div>
@@ -91,7 +93,7 @@ export default function SignUpPage() {
       </div>
 
       <div className="w-full flex justify-center min-h-[650px]">
-        <div className="w-1/2 mb-12 transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle flex flex-col items-center gap-4 relative">
+        <div className="w-5/6 md:w-1/2 mb-12 transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle flex flex-col items-center gap-4 relative">
           <div className="text-lg w-full font-bold leading-6 text-gray-900 flex justify-center items-center border-b-2 pb-8">
             Sign Up
           </div>
@@ -113,7 +115,7 @@ export default function SignUpPage() {
                 <div
                   className={`${
                     loadingTransition ? 'animate-slide-out-left' : ''
-                  } flex w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-2`}
+                  } flex w-full md:w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-2`}
                 >
                   <form
                     className="flex flex-col px-4 pb-3 md:px-12 md:pb-3 gap-2"

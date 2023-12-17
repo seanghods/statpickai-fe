@@ -85,6 +85,8 @@ export default function PaymentForm({ accountInfo }) {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
+      withCredentials: true,
       body: JSON.stringify({
         paymentMethodId: paymentMethodId,
         priceId: selectedPlan.priceId,
@@ -99,6 +101,8 @@ export default function PaymentForm({ accountInfo }) {
   async function createSetupIntent() {
     const response = await fetch(API_ROUTES.createIntent, {
       method: 'POST',
+      credentials: 'include',
+      withCredentials: true,
     });
     const setupIntent = await response.json();
     return setupIntent.clientSecret;
@@ -203,7 +207,7 @@ export default function PaymentForm({ accountInfo }) {
         </div>
       ) : (
         <div
-          className={`flex w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-3 ${
+          className={`flex w-full md:w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-3 ${
             loadingTransition
               ? 'animate-slide-out-left'
               : 'animate-slide-in-right'

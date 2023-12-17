@@ -33,9 +33,9 @@ export default function Profile() {
   }, [user]);
   return (
     <>
-      <div className="hero h-[700px] w-full trapezoid-home-div relative z-0">
+      <div className="hero h-[400px] md:h-[700px] w-full trapezoid-home-div relative z-0">
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-7xl text-center">
+        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-4xl md:text-7xl text-center">
           <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
             {user.username ? user.username.toUpperCase() : 'PROFILE'}
           </div>
@@ -47,7 +47,7 @@ export default function Profile() {
             <LoadingIcon />
           </div>
         ) : loggedIn && user.username ? (
-          <div className="flex items-center w-1/2 flex-col gap-3">
+          <div className="flex items-center w-4/5 md:w-1/2 flex-col gap-3">
             <div className="text-4xl mb-5 font-bold">Profile Information</div>
             <div className="flex flex-col gap-3">
               <div>

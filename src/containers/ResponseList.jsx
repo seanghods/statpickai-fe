@@ -34,9 +34,9 @@ export default function ResponseList() {
   }, []);
   return (
     <>
-      <div className="hero h-[700px] w-full trapezoid-home-div relative z-0">
+      <div className="hero h-[400px] md:h-[700px] w-full trapezoid-home-div relative z-0">
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-7xl text-center">
+        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-3xl md:text-7xl text-center">
           <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
             RESPONSES
           </div>
@@ -44,7 +44,7 @@ export default function ResponseList() {
       </div>
       <div className="flex-1 flex justify-center w-full mb-12 flex-col items-center text-center ">
         {user.username ? (
-          <div className="flex flex-col font-inter_bold text-base gap-4 w-4/5">
+          <div className="flex flex-col font-inter_bold text-base gap-4 md:w-4/5">
             {loading ? (
               <div className="flex justify-center w-full">
                 <LoadingIcon />
@@ -61,11 +61,11 @@ export default function ResponseList() {
             ) : (
               <>
                 <div className="flex gap-3 text-sm mb-3 justify-between text-left">
-                  <div className="w-[100px]">Date</div>
-                  <div className="flex-1">Player</div>
+                  <div className="md:w-[100px]">Date</div>
+                  <div className="flex-1 text-right">Player</div>
                   <div className="flex-1">Team</div>
-                  <div className="w-[100px]">Stat</div>
-                  <div className="w-[75px]">Line</div>
+                  <div className="md:w-[100px]">Stat</div>
+                  <div className="md:w-[75px]">Line</div>
                   <div className="flex-1">Opponent</div>
                 </div>
                 {user.responses
@@ -83,16 +83,18 @@ export default function ResponseList() {
                       <NavLink
                         to={`../response/${response.dateOfGame}-${response._id}`}
                         state={{ response }}
-                        className="flex gap-3 hover:bg-gray-400 shadow-sm shadow-gray-500 p-2 py-3 rounded-xl flex-1 justify-between text-left bg-white"
+                        className="flex gap-3 text-sm md:text-base hover:bg-gray-400 shadow-sm shadow-gray-500 p-2 py-3 rounded-xl flex-1 justify-between text-left bg-white"
                         key={index}
                       >
-                        <div className="w-[100px]">{response.dateOfGame}</div>
+                        <div className="md:w-[100px]">
+                          {response.dateOfGame}
+                        </div>
                         <div className="flex-1">{response.player}</div>
                         <div className="flex-1">{response.playerTeam}</div>
-                        <div className="w-[100px]">
+                        <div className="md:w-[100px]">
                           {capitalize(response.stat)}
                         </div>
-                        <div className="w-[75px]">{response.line}</div>
+                        <div className="md:w-[75px]">{response.line}</div>
                         <div className="flex-1">{response.opponentTeam}</div>
                       </NavLink>
                     );

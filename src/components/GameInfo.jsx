@@ -75,10 +75,11 @@ export default function GameInfo({ game }) {
             setLoadingAi(true);
             try {
               const url = `${API_ROUTES.analysis}?stat=${selectedStat}&player=${selectedPlayer}&line=${line}&game=${game._id}&home_team=${teamHome.slug_team_name}&away_team=${teamAway.slug_team_name}`;
-              const response = await fetch(url);
+              const response = await fetch(url, {
+                credentials: 'include',
+                withCredentials: true,
+              });
               const data = await response.json();
-              console.log(data);
-              console.log(user);
               if (!data.success) {
                 setResponseFailed(true);
                 setUser(prevUser => ({
@@ -90,7 +91,6 @@ export default function GameInfo({ game }) {
                 ...prevUser,
                 responses: [...prevUser.responses, data],
               }));
-              console.log(data);
               setAnalysisData(data);
               setAnalysisComplete(true);
             } catch (error) {
@@ -120,25 +120,25 @@ export default function GameInfo({ game }) {
       )}
       <div className="" style={gradientStyle}>
         <div
-          className={`game-area mx-16 flex h-[700px] shadow-sm shadow-gray-300 rounded-lg p-5`}
+          className={`game-area md:mx-16 flex h-[800px] md:h-[700px] shadow-sm shadow-gray-300 rounded-lg p-5`}
         >
-          <div className="AWAY flex-1 flex flex-col items-start gap-20 border-r-2 border-black border-dotted">
+          <div className="AWAY flex-1 flex flex-col items-start gap-4 md:gap-20 border-r-2 border-black border-dotted">
             <div
               className="font-saira_bold text-4xl tracking-wide w-full text-center p-1 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
               style={{ color: teamAway.secondary_color_hex }}
             >
               {game.awayTeam}
             </div>
-            <div className="players flex flex-col gap-8 flex-wrap h-4/5 items-center justify-center w-full">
+            <div className="players flex flex-col gap-3 md:gap-8 flex-wrap md:h-4/5 items-center justify-center w-full">
               {teamAway.players
                 .sort((a, b) => a.full_name.localeCompare(b.full_name))
                 .map((player, index) => {
                   return (
-                    <div key={index} className="w-1/3 flex flex-col">
+                    <div key={index} className="md:w-1/3 flex flex-col">
                       <button
                         id={slugify(player.full_name, { lower: true })}
                         onClick={e => handlePlayerClick(e)}
-                        className={`font-saira_bold text-lg py-1 px-3 rounded-lg shadow-sm shadow-gray-700 saturate-200 hover:bg-[${
+                        className={`font-saira_bold text-lg md:py-1 px-3 rounded-lg shadow-sm shadow-gray-700 saturate-200 hover:bg-[${
                           teamAway.secondary_color_hex
                         }] hover:text-white text-center ${
                           selectedPlayer ==
@@ -154,23 +154,23 @@ export default function GameInfo({ game }) {
                 })}
             </div>
           </div>
-          <div className="HOME flex-1 flex flex-col items-start gap-20">
+          <div className="HOME flex-1 flex flex-col items-start gap-4 md:gap-20">
             <div
               className="font-saira_bold text-4xl tracking-wide w-full text-center p-1 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
               style={{ color: teamHome.secondary_color_hex }}
             >
               {game.homeTeam}
             </div>
-            <div className="players flex flex-col gap-8 flex-wrap h-4/5 justify-center items-center w-full">
+            <div className="players flex flex-col gap-3 md:gap-8 flex-wrap md:h-4/5 justify-center items-center w-full">
               {teamHome.players
                 .sort((a, b) => a.full_name.localeCompare(b.full_name))
                 .map((player, index) => {
                   return (
-                    <div key={index} className="w-1/3 flex flex-col">
+                    <div key={index} className="md:w-1/3 flex flex-col">
                       <button
                         id={slugify(player.full_name, { lower: true })}
                         onClick={e => handlePlayerClick(e)}
-                        className={`font-saira_bold text-lg py-1 px-3 shadow-sm shadow-gray-700 rounded-lg saturate-200 hover:bg-[${
+                        className={`font-saira_bold text-lg md:py-1 px-3 shadow-sm shadow-gray-700 rounded-lg saturate-200 hover:bg-[${
                           teamHome.secondary_color_hex
                         }] hover:text-white text-center ${
                           selectedPlayer ==
@@ -187,23 +187,23 @@ export default function GameInfo({ game }) {
             </div>
           </div>
         </div>
-        <div className="font-saira_bold text-3xl py-12 w-full text-center">
+        <div className="font-saira_bold text-3xl py-2 md:py-12 w-full text-center">
           Stats
         </div>
-        <div className="STATS flex gap-5 justify-center">
+        <div className="STATS flex flex-wrap gap-5 justify-center">
           {statButtons.map((stat, index) => {
             return stat.disabled ? (
               <button
                 key={index}
                 id={stat.id}
-                className="font-saira_bold text-2xl px-3 py-1 rounded-lg cursor-default"
+                className="font-saira_bold md:text-2xl px-3 py-1 rounded-lg cursor-default"
               >
                 {stat.name}
               </button>
             ) : (
               <button
                 key={index}
-                className={`font-saira_bold text-2xl px-3 py-1 rounded-lg hover:bg-black hover:text-white shadow-sm shadow-gray-700 ${
+                className={`font-saira_bold md:text-2xl px-3 py-1 rounded-lg hover:bg-black hover:text-white shadow-sm shadow-gray-700 ${
                   selectedStat == stat.id
                     ? 'bg-black text-white shadow-gray-500'
                     : `bg-gray-100`

@@ -6,15 +6,15 @@ import aiPic from '../assets/ai-gpu.jpg';
 export default function Home() {
   return (
     <>
-      <div className="hero h-[700px] w-full trapezoid-home-div relative z-0">
+      <div className="hero h-[400px] md:h-[700px] w-full trapezoid-home-div relative z-0">
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-7xl text-center cursor-default">
+        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-5xl md:text-7xl text-center cursor-default">
           <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
             STAT <span className="text-[#4DE234]">PICK</span> AI
           </div>
         </div>
       </div>
-      <div className="hook title flex items-center justify-center w-full font-inter_bold tracking-tighter text-white text-xl text-center absolute z-10 top-[560px] right-[0%]">
+      <div className="hook title flex items-center justify-center w-full font-inter_bold tracking-tighter text-white text-lg md:text-xl text-center absolute z-10 top-[325px] md:top-[560px] right-[0%]">
         <div className="bg-black bg-opacity-90 rounded-lg px-12 py-1 italic">
           <Typewriter
             options={{ delay: 45, cursor: '#' }}
@@ -31,30 +31,30 @@ export default function Home() {
       </div>
       <NavLink
         to="/games"
-        className="hook title flex items-center justify-center w-full font-saira_bold text-black text-4xl text-center absolute z-10 top-[645px] right-[0%]"
+        className="hook title flex items-center justify-center w-full font-saira_bold text-black text-3xl md:text-4xl text-center absolute z-10 top-[390px] md:top-[645px] right-[0%]"
       >
-        <span className="hover:text-green-800 underline hover:no-underline">
+        <span className="mt-7 md:mt-0 hover:text-green-800 underline hover:no-underline">
           SEE TODAY&apos;S GAMES{' '}
         </span>
       </NavLink>
-      <div className="hook title flex items-center justify-center w-full font-saira_bold text-white text-2xl text-center mt-4">
+      {/* <div className="hook title flex items-center justify-center w-full font-saira_bold text-white text-2xl text-center mt-4">
         <NavLink
           to="/games"
           className="bg-[#4DE234] hover:bg-[#55b644] bg-opacity-90 rounded-lg px-12 py-1"
         >
           TODAY&apos;S FREE ANALYSIS: LEBRON OVER 26.5 POINTS
         </NavLink>
-      </div>
-      <div className="flex w-full my-20">
-        <div className="about-pic w-1/2 flex justify-center pl-12">
+      </div> */}
+      <div className="flex flex-col md:flex-row w-full mt-24 md:mt-0 md:my-20 items-center">
+        <div className="about-pic w-5/6 md:w-1/2 flex justify-center md:pl-12">
           <img
             src={aiPic}
             alt="Pic of AI Chips"
-            className="w-[400px] h-[400px] rounded-lg"
+            className="w-[250px] md:w-[400px] h-[250px] mb-4 md:mb-0 md:h-[400px] rounded-lg"
           />
         </div>
-        <div className="about-msg w-1/2 flex flex-col items-center px-16 gap-3">
-          <h3 className="font-saira_bold text-4xl flex gap-3 justify-start w-full">
+        <div className="about-msg w-5/6 md:w-1/2 flex flex-col items-center md:px-16 gap-3">
+          <h3 className="font-saira_bold text-3xl md:text-4xl flex gap-3 justify-start w-full">
             <div className="bg-[#4DE234] w-[8px] h-full"></div>HOW DOES IT WORK?
           </h3>
           <p className="font-inter text-gray-600">
@@ -75,7 +75,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex w-full mt-10 mb-20 justify-center">
-        <div className="flex flex-col w-1/3 gap-3">
+        <div className="flex flex-col w-5/6 md:w-1/3 gap-3">
           <div className="font-saira_bold text-4xl flex gap-3 justify-center w-full">
             <div className="bg-[#3445e2] w-[8px] h-full"></div>WHY CHARGE?
           </div>

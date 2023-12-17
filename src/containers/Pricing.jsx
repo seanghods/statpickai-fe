@@ -19,9 +19,9 @@ export default function Pricing() {
   }, []);
   return (
     <>
-      <div className="hero h-[700px] w-full trapezoid-home-div relative z-0">
+      <div className="hero h-[400px] md:h-[700px] w-full trapezoid-home-div relative z-0">
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-7xl text-center">
+        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-3xl md:text-7xl text-center">
           <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
             PRICING
           </div>
@@ -30,7 +30,7 @@ export default function Pricing() {
       <section className="">
         <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
           <div className="relative max-w-xl mx-auto sm:text-center">
-            <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
+            <h3 className="text-gray-800 md:text-3xl font-semibold sm:text-4xl">
               Choose your Level
             </h3>
             <div className="mt-3 max-w-xl">
@@ -45,13 +45,13 @@ export default function Pricing() {
               <LoadingIcon />
             </div>
           ) : (
-            <div className="mt-16 space-y-6 justify-center gap-6 sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-3">
+            <div className="mt-4 md:mt-16 space-y-6 justify-center gap-6 sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-3">
               {plans
                 .filter(plan => plan.price > 0)
                 .map((item, idx) => (
                   <div
                     key={idx}
-                    className="relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2"
+                    className="relative flex-1 flex items-stretch flex-col p-2 md:p-8 rounded-xl border-2"
                   >
                     <div>
                       <span className="text-[#369326] font-medium">
