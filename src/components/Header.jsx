@@ -63,10 +63,10 @@ export default function Header() {
     return (
       <>
         <div
-          className="text-xs md:text-base hover:scale-105 transform transition duration-250 font-saira_bold text-white"
+          className="text-xs md:text-lg hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/all-responses"
         >
-          <span className="hidden md:block">TODAY&apos;S PICKS: </span>
+          <span className="hidden md:inline-block">TODAY&apos;S PICKS:</span>{' '}
           <span
             className={`${
               user.picksPerDay - user.picksUsed == 0
@@ -112,7 +112,7 @@ export default function Header() {
     <div className="mx-8 my-3 rounded-lg px-3 md:px-10 py-2 bg-black bg-opacity-50 flex justify-between items-center text-xl tracking-wider">
       <NavLink
         to={user.username ? '/games' : '/'}
-        className="hover:scale-105 transform transition duration-250 h-full font-saira_bold text-white text-sm md:text-base"
+        className="hover:scale-105 transform transition duration-250 h-full font-saira_bold text-white text-sm md:text-lg"
       >
         STAT <span className="text-[#4DE234]">PICK</span> AI
       </NavLink>

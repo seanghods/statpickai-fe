@@ -23,6 +23,7 @@ export default function MenuButtonX() {
             <MenuItem onClick={() => navigate('/profile')}>
               {user.username.toUpperCase()}
             </MenuItem>
+            <MenuItem onClick={() => navigate('/')}>HOME</MenuItem>
           </>
         ) : (
           <>
