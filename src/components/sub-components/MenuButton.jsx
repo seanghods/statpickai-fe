@@ -16,7 +16,6 @@ export default function MenuButtonX() {
       <Menu slots={{ listbox: Listbox }}>
         {user.username ? (
           <>
-            <MenuItem onClick={() => navigate('/games')}>GAMES</MenuItem>
             <MenuItem onClick={() => navigate('/all-responses')}>
               RESPONSES
             </MenuItem>
@@ -27,7 +26,6 @@ export default function MenuButtonX() {
           </>
         ) : (
           <>
-            <MenuItem onClick={() => navigate('/games')}>GAMES</MenuItem>
             <MenuItem onClick={() => navigate('/sign-up')}>SIGN UP</MenuItem>
             <MenuItem onClick={() => navigate('/pricing')}>PRICING</MenuItem>
             <MenuItem onClick={() => navigate('/about')}>ABOUT</MenuItem>
@@ -115,7 +113,7 @@ const MenuButton = styled(BaseMenuButton)(
   font-size: 0.875rem/* 14px */;
   line-height: 1.25rem/* 20px */;
   letter-spacing: .03rem;
-  padding: 4px 12px;
+  padding: 4px 6px;
   border-radius: 8px;
   cursor: pointer;
   background-color: black;

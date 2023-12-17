@@ -25,13 +25,13 @@ export default function Header() {
   function notLoggedInHeader() {
     return (
       <>
-        <MenuButtonX />
         <NavLink
-          className="hidden md:block hover:scale-105 transform transition duration-250 font-saira_bold text-white"
+          className="md:text-lg text-sm hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/games"
         >
           GAMES
         </NavLink>
+        <MenuButtonX />
         <NavLink
           className="hidden md:block hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/pricing"
@@ -63,7 +63,7 @@ export default function Header() {
     return (
       <>
         <div
-          className="text-xs md:text-lg hover:scale-105 transform transition duration-250 font-saira_bold text-white"
+          className="text-xs pr-4 md:text-lg hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/all-responses"
         >
           <span className="hidden md:inline-block">TODAY&apos;S PICKS:</span>{' '}
@@ -80,13 +80,13 @@ export default function Header() {
           </span>
           /{user.picksPerDay}
         </div>
-        <MenuButtonX />
         <NavLink
-          className="hidden md:block hover:scale-105 transform transition duration-250 font-saira_bold text-white"
+          className="text-sm md:text-lg hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/games"
         >
           GAMES
         </NavLink>
+        <MenuButtonX />
         <NavLink
           className="hidden md:block hover:scale-105 transform transition duration-250 font-saira_bold text-white"
           to="/all-responses"
@@ -116,7 +116,7 @@ export default function Header() {
       >
         STAT <span className="text-[#4DE234]">PICK</span> AI
       </NavLink>
-      <div className="flex gap-6 font-saira items-center">
+      <div className="flex gap-1 md:gap-6 font-saira items-center">
         {user.username ? loggedInHeader() : notLoggedInHeader()}
       </div>
     </div>

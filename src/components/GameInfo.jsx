@@ -120,7 +120,7 @@ export default function GameInfo({ game }) {
       )}
       <div className="" style={gradientStyle}>
         <div
-          className={`game-area md:mx-16 flex h-[800px] md:h-[700px] shadow-sm shadow-gray-300 rounded-lg p-5`}
+          className={`game-area lg:mx-16 flex h-[800px] md:h-[700px] shadow-sm shadow-gray-300 rounded-lg p-5`}
         >
           <div className="AWAY flex-1 flex flex-col items-start gap-4 md:gap-20 border-r-2 border-black border-dotted">
             <div
@@ -138,7 +138,7 @@ export default function GameInfo({ game }) {
                       <button
                         id={slugify(player.full_name, { lower: true })}
                         onClick={e => handlePlayerClick(e)}
-                        className={`font-saira_bold text-lg md:py-1 px-3 rounded-lg shadow-sm shadow-gray-700 saturate-200 hover:bg-[${
+                        className={`font-saira_bold w-[155px] md:w-auto text-lg md:py-1 px-3 rounded-lg shadow-sm shadow-gray-700 saturate-200 hover:bg-[${
                           teamAway.secondary_color_hex
                         }] hover:text-white text-center ${
                           selectedPlayer ==
@@ -170,7 +170,7 @@ export default function GameInfo({ game }) {
                       <button
                         id={slugify(player.full_name, { lower: true })}
                         onClick={e => handlePlayerClick(e)}
-                        className={`font-saira_bold text-lg md:py-1 px-3 shadow-sm shadow-gray-700 rounded-lg saturate-200 hover:bg-[${
+                        className={`w-[155px] md:w-auto font-saira_bold text-lg md:py-1 px-3 shadow-sm shadow-gray-700 rounded-lg saturate-200 hover:bg-[${
                           teamHome.secondary_color_hex
                         }] hover:text-white text-center ${
                           selectedPlayer ==
