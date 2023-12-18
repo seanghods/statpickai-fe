@@ -119,7 +119,7 @@ export default function TermsOfService() {
             We strive to ensure complete satisfaction with our services. While
             all sales are considered final, we understand that exceptional
             circumstances may occur. If you believe you have a valid reason for
-            a refund, please contact us at [contact information] with your
+            a refund, please contact us at statpickai@gmail.com with your
             request. Please note that refunds are not guaranteed and will be
             evaluated on a case-by-case basis. In specific situations, and
             solely at our discretion, we may offer a pro-rated refund. We
