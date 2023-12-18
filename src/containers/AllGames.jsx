@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Footer, Header } from '../components';
 import { API_ROUTES } from '../utils/constants';
 import { NavLink } from 'react-router-dom';
+import { showTime } from '../utils/helpers';
 
 export default function Games() {
   const [games, setGames] = useState([]);
@@ -13,16 +14,9 @@ export default function Games() {
     }
     getGames();
   }, []);
-  function showTime(iso) {
-    const obj = new Date(iso);
-    return obj.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: 'numeric',
-    });
-  }
   return (
     <>
-      <div className="hero h-[400px] md:h-[700px] w-full trapezoid-score-div relative z-0">
+      <div className="hero h-[400px] w-full trapezoid-score-div relative z-0">
         <Header />
         <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-4xl md:text-7xl text-center">
           <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
@@ -30,7 +24,7 @@ export default function Games() {
           </div>
         </div>
       </div>
-      <div className="game-area flex-1 md:mx-24 px-2 md:px-12 flex flex-col gap-6 mb-10 bg-gradient-to-r from-gray-200 via-gray-700 to-gray-200">
+      <div className="game-area flex-1 md:mx-24 px-2 md:px-12 flex flex-col gap-6 mb-10 md:mt-10 bg-gradient-to-r from-gray-200 via-gray-700 to-gray-200">
         {games.map((game, index) => {
           return (
             <NavLink

@@ -3,6 +3,7 @@ export { default as Game } from './Game.jsx';
 export { default as AllGames } from './AllGames.jsx';
 export { default as AiResponse } from './AiResponse.jsx';
 export { default as ResponseList } from './ResponseList.jsx';
+export { default as UserHome } from './UserHome.jsx';
 export { default as SignUpPage } from './SignUpPage.jsx';
 export { default as Profile } from './Profile.jsx';
 export { default as NotFound } from './NotFound.jsx';

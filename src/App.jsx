@@ -11,6 +11,7 @@ import {
   ResponseList,
   SignUpPage,
   Profile,
+  UserHome,
 } from './containers';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
@@ -111,6 +112,7 @@ function App() {
         <Route path="/all-responses/" element={<ResponseList />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/home" element={<UserHome />} />
         <Route path="/about" element={<About />} />
         <Route path="/sign-up/*" element={<SignUpPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
