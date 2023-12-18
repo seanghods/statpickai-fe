@@ -45,13 +45,13 @@ export default function Pricing() {
               <LoadingIcon />
             </div>
           ) : (
-            <div className="mt-4 md:mt-16 space-y-6 justify-center gap-6 sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-3">
+            <div className="mt-4 md:mt-16 space-y-6 justify-center sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-4">
               {plans
-                .filter(plan => plan.price > 0)
+                // .filter(plan => plan.price > 0)
                 .map((item, idx) => (
                   <div
                     key={idx}
-                    className="relative flex-1 flex items-stretch flex-col p-2 md:p-8 rounded-xl border-2"
+                    className="relative flex-1 flex items-stretch flex-col p-2 md:p-5 rounded-xl border-2"
                   >
                     <div>
                       <span className="text-[#369326] font-medium">
