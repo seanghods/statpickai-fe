@@ -77,17 +77,17 @@ export default function UserHome() {
                     <div className="pl-5 md:w-[100px]">
                       {response.dateOfGame.slice(5)}
                     </div>
-                    <div className="w-[100px]">{response.player}</div>
+                    <div className="w-[125px]">{response.player}</div>
                     <div className="md:hidden">
                       {response.playerTeam.split(' ').pop()}
                     </div>
-                    <div className="hidden md:block w-[250px] pl-12">
+                    <div className="hidden md:block w-[210px] pl-12">
                       {response.playerTeam}
                     </div>
                     <div className="md:w-[100px]">
                       {capitalize(response.stat)}
                     </div>
-                    <div className="md:w-[75px]">{response.line}</div>
+                    <div className="md:w-[40px]">{response.line}</div>
                     <div className="md:hidden flex-1">
                       {response.opponentTeam.split(' ').pop()}
                     </div>
