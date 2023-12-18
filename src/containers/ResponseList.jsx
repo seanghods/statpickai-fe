@@ -61,9 +61,9 @@ export default function ResponseList() {
             ) : (
               <>
                 <div className="flex gap-3 text-sm mb-3 justify-between text-left">
-                  <div className="md:w-[100px] pl-2">Date</div>
-                  <div className="flex-1">Player</div>
-                  <div className="">Team</div>
+                  <div className="md:w-[100px] pl-8">Date</div>
+                  <div className="w-[75px] md:w-[150px]">Player</div>
+                  <div className="w-[50px] md:w-[220px]">Team</div>
                   <div className="md:w-[100px]">Stat</div>
                   <div className="md:w-[75px]">Line</div>
                   <div className="flex-1">Opponent</div>
@@ -86,19 +86,25 @@ export default function ResponseList() {
                         className="flex gap-3 text-xs md:text-sm hover:bg-gray-400 shadow-sm shadow-gray-500 p-2 py-3 rounded-xl flex-1 justify-between text-left bg-white"
                         key={index}
                       >
-                        <div className="md:w-[100px]">
+                        <div className="pl-5 md:w-[100px]">
                           {response.dateOfGame.slice(5)}
                         </div>
-                        <div className="flex-1">{response.player}</div>
-                        <div className="">
+                        <div className="w-[100px]">{response.player}</div>
+                        <div className="md:hidden">
                           {response.playerTeam.split(' ').pop()}
+                        </div>
+                        <div className="hidden md:block w-[250px] pl-12">
+                          {response.playerTeam}
                         </div>
                         <div className="md:w-[100px]">
                           {capitalize(response.stat)}
                         </div>
                         <div className="md:w-[75px]">{response.line}</div>
-                        <div className="flex-1">
+                        <div className="md:hidden flex-1">
                           {response.opponentTeam.split(' ').pop()}
+                        </div>
+                        <div className="hidden md:block flex-1">
+                          {response.opponentTeam}
                         </div>
                       </NavLink>
                     );

@@ -8,7 +8,7 @@ import useResponse from '../../context/useResponse';
 
 export default function MenuButtonX() {
   const navigate = useNavigate();
-  const { user } = useResponse();
+  const { user, setShowLogInModal } = useResponse();
 
   return (
     <Dropdown>
@@ -26,7 +26,7 @@ export default function MenuButtonX() {
           </>
         ) : (
           <>
-            <MenuItem onClick={() => navigate('/sign-up')}>SIGN UP</MenuItem>
+            <MenuItem onClick={() => setShowLogInModal(true)}>LOG IN</MenuItem>
             <MenuItem onClick={() => navigate('/pricing')}>PRICING</MenuItem>
             <MenuItem onClick={() => navigate('/about')}>ABOUT</MenuItem>
           </>

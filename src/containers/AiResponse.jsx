@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Header, Footer } from '../components';
 import { API_ROUTES } from '../utils/constants';
 import LoadingAiModal from '../components/sub-components/LoadingAiModal';
@@ -20,6 +20,7 @@ export default function AiResponse() {
   const { path } = useParams();
   const date = path.substring(0, 10);
   const id = path.substring(11);
+  const navigate = useNavigate();
   useEffect(() => {
     async function checkAuthenticationStatus() {
       setLoadingAuth(true);
@@ -75,7 +76,7 @@ export default function AiResponse() {
     <>
       <ScrollToTop />
       {loadingAi && <LoadingAiModal />}
-      <div className="hero h-[400px] md:h-[700px] w-full trapezoid-ball-div relative z-0">
+      <div className="hero h-[400px] w-full trapezoid-ball-div relative z-0">
         <Header />
         <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-2xl md:text-5xl text-center">
           <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24 uppercase">
@@ -86,8 +87,16 @@ export default function AiResponse() {
         </div>
       </div>
       <div className="flex-1 w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200">
-        <div className="flex-1 md:mx-28 flex font-saira text-black md:text-lg p-3 md:p-5 rounded-lg my-5 flex-col justify-center items-center">
-          <div className="md:w-4/5 flex md:my-12 flex-col gap-4 bg-gray-300 shadow-lg p-4 md:p-12 shadow-black rounded-lg">
+        <div className="text-center mt-8">
+          <button
+            className="font-saira_bold bg-gray-700 text-white md:text-lg px-3 py-1 rounded-lg hover:bg-black hover:text-white shadow-sm shadow-gray-700"
+            onClick={() => navigate(-1)}
+          >
+            GO BACK
+          </button>
+        </div>
+        <div className="flex-1 md:mx-28 flex font-saira text-black md:text-lg p-3 md:p-3 rounded-lg my-2 flex-col justify-center items-center">
+          <div className="md:w-4/5 flex md:my-4 flex-col gap-4 bg-gray-300 shadow-lg p-4 md:p-12 shadow-black rounded-lg">
             {/* {response.message && (
             <Typewriter
               options={{ delay: 25, cursor: '#' }}

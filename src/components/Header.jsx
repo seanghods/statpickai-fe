@@ -45,14 +45,14 @@ export default function Header() {
           ABOUT
         </NavLink>
         <button
-          className="hover:scale-105 md:text-lg text-sm transform transition duration-250 font-saira_bold text-white tracking-wide"
+          className="hidden md:block hover:scale-105 text-lg transform transition duration-250 font-saira_bold text-white tracking-wide"
           onClick={() => setShowLogInModal(true)}
         >
           LOG IN
         </button>
         <NavLink
           to="/sign-up"
-          className="hidden md:block bg-[#4DE234] rounded-lg px-1 py-0.5 hover:scale-105 transform transition duration-250 font-saira_bold text-white"
+          className="text-sm md:text-lg bg-[#4DE234] rounded-lg px-1 py-0.5 hover:scale-105 transform transition duration-250 font-saira_bold text-white"
         >
           SIGN-UP
         </NavLink>
