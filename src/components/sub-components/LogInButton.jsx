@@ -72,6 +72,7 @@ export default function LogInButton() {
               <TextField.Input
                 name="username"
                 type="text"
+                onClick={e => e.stopPropagation()}
                 onChange={e => setUsername(e.target.value)}
                 placeholder="Enter your username or email"
               />
@@ -84,6 +85,7 @@ export default function LogInButton() {
               <TextField.Input
                 name="password"
                 type="password"
+                onClick={e => e.stopPropagation()}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="Enter your password"
               />
