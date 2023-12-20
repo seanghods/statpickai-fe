@@ -6,7 +6,6 @@ export function ResponseProvider({ children }) {
   const [analysisData, setAnalysisData] = useState({});
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [responseFailed, setResponseFailed] = useState(false);
-  const [showLogInModal, setShowLogInModal] = useState(false);
   const [user, setUser] = useState({ user: '' });
 
   return (
@@ -20,8 +19,6 @@ export function ResponseProvider({ children }) {
         setAnalysisComplete,
         responseFailed,
         setResponseFailed,
-        showLogInModal,
-        setShowLogInModal,
         user,
         setUser,
       }}

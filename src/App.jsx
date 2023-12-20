@@ -16,7 +16,7 @@ import {
 } from './containers';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { FullLoadingPage, LogInModal } from './components';
+import { FullLoadingPage } from './components';
 import { Checkmark, Xmark } from './components/sub-components/Icons';
 import useResponse from './context/useResponse';
 import { useEffect, useState } from 'react';
@@ -31,7 +31,6 @@ function App() {
     setAnalysisComplete,
     responseFailed,
     setResponseFailed,
-    showLogInModal,
     setUser,
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(false);
@@ -104,7 +103,6 @@ function App() {
     <>
       <Toaster position="top-center" reverseOrder={false} />
       {fullLoadingPage && <FullLoadingPage />}
-      {showLogInModal && <LogInModal />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<AllGames />} />
