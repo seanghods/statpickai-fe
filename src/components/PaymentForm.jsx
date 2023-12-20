@@ -131,8 +131,8 @@ export default function PaymentForm({ accountInfo }) {
                   {({ active, checked }) => (
                     <>
                       <div className="flex w-full items-center justify-between">
-                        <div className="flex items-center">
-                          <div className="text-sm">
+                        <div className="flex items-center ">
+                          <div className="text-sm ">
                             <RadioGroup.Label
                               as="p"
                               className={`font-medium  ${
