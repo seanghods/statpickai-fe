@@ -199,7 +199,7 @@ export default function Header() {
               </button>
               <li>
                 <NavLink
-                  to="./sign-up"
+                  to="/sign-up"
                   className="flex w-[100px] md:w-auto text-xs items-center justify-center gap-x-0 md:gap-x-1 py-2 px-1 md:px-4 text-white font-medium bg-sky-500 hover:bg-sky-400 active:bg-sky-600 duration-150 rounded-full md:inline-flex"
                 >
                   Get started

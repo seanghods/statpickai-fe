@@ -1,5 +1,5 @@
 import { Footer, Header } from '../components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
 import aiPic from '../assets/ai-gpu.jpg';
 import { useState } from 'react';
@@ -8,6 +8,7 @@ import logo from '../assets/logo.png';
 
 export default function Home() {
   const [showButton, setShowButton] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="bg-gray-900 relative z-0">
       <div
@@ -27,7 +28,7 @@ export default function Home() {
               <span className="text-[#4DE234]"> Pick</span> AI
             </h1>
             <div>
-              <p className="text-gray-300 max-w-xl leading-relaxed sm:mx-auto lg:ml-0 text-[18px]">
+              <p className="text-gray-300 text-center max-w-xl leading-relaxed sm:mx-auto lg:ml-0 text-[18px]">
                 Expand your research tools by utilizing our state-of-the-art AI
                 to learn circumstances, statistics, and comparisons regarding
                 your NBA Prop Pick.
@@ -78,7 +79,9 @@ export default function Home() {
             />
             {showButton && (
               <div className="w-full text-center p-4">
-                <Button>See rest of response</Button>
+                <Button onClick={navigate('/preview')}>
+                  See rest of response
+                </Button>
               </div>
             )}
           </div>
