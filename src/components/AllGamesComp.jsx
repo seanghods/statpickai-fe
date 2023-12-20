@@ -31,7 +31,9 @@ export default function AllGamesComp() {
             <div className="hidden md:block">Over/Under</div>
             <div className="md:hidden">Over</div>
           </Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Start Time</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell>
+            Start <span className="hidden md:inline-block">Time</span>
+          </Table.ColumnHeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -67,7 +69,7 @@ export default function AllGamesComp() {
                   ? `+${game.homeTeamWinOdds}`
                   : game.homeTeamWinOdds}
                 )
-              </Table.Cell>{' '}
+              </Table.Cell>
               <Table.Cell className="hidden md:block">
                 {game.homeTeamWinOdds < game.awayTeamWinOdds ? '-' : '+'}
                 {Math.abs(game.teamSpread)} (
