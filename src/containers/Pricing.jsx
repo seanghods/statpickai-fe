@@ -53,7 +53,7 @@ export default function Pricing() {
                   <LoadingIcon />
                 </div>
               ) : (
-                <div className="mt-4 md:mt-16 space-y-6 justify-center sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-4">
+                <div className="mt-4 md:mt-16 space-y-6 justify-center sm:grid sm:grid-cols-2 sm:space-y-0 gap-4 lg:grid-cols-4">
                   {plans
                     // .filter(plan => plan.price > 0)
                     .map((item, idx) => (
