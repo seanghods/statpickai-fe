@@ -26,7 +26,7 @@ export default function AllGamesComp() {
           <LoadingIcon />
         </div>
       ) : (
-        <Table.Root className="mt-24" variant="surface" size="2">
+        <Table.Root className="mt-12 md:mt-24" variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell>Away Team</Table.ColumnHeaderCell>

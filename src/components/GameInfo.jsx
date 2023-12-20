@@ -128,8 +128,8 @@ export default function GameInfo({ game }) {
           line={line}
         />
       )}
-      <section className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex">
-        <Table.Root className="mt-24" variant="surface" size="2">
+      <section className="mt-12 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex">
+        <Table.Root variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell style={colorsAway}>
@@ -167,7 +167,7 @@ export default function GameInfo({ game }) {
               })}
           </Table.Body>
         </Table.Root>
-        <Table.Root className="mt-24" variant="surface" size="2">
+        <Table.Root variant="surface" size="2">
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell style={colorsHome}>
@@ -205,7 +205,7 @@ export default function GameInfo({ game }) {
               })}
           </Table.Body>
         </Table.Root>
-        <Table.Root className="mt-24" variant="surface" size="2">
+        <Table.Root variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell>Stat</Table.ColumnHeaderCell>
@@ -243,7 +243,7 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
         <Table.Root
-          className="mt-24 w-[70px] max-h-[780px] md:max-h-[700px]"
+          className=" w-[70px] max-h-[780px] md:max-h-[700px]"
           variant="surface"
           size="2"
         >

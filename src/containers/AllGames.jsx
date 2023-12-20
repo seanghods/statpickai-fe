@@ -14,7 +14,7 @@ export default function Games() {
         <Header />
         <div className="flex-1">
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl px-4 items-center gap-12 md:px-8 flex-1">
-            <div className="mb-8 md:mb-24 space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
+            <div className="md:mb-24 space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
               <h1 className="text-white font-bold text-4xl xl:text-[44px]">
                 Games
               </h1>
