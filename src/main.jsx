@@ -6,6 +6,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ResponseProvider } from './context/ResponseProvider.jsx';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import '@radix-ui/themes/styles.css';
+import { Theme, ThemePanel } from '@radix-ui/themes';
 
 (async () => {
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -14,7 +16,9 @@ import { loadStripe } from '@stripe/stripe-js';
     <Router>
       <ResponseProvider>
         <Elements stripe={stripePromise}>
-          <App />
+          <Theme>
+            <App />
+          </Theme>
         </Elements>
       </ResponseProvider>
     </Router>,

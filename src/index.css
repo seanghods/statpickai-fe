@@ -76,3 +76,7 @@ select {
   height: 30px;
   width: 50px;
 }
+
+.blur-bg::before {
+  filter: blur(100px);
+}
