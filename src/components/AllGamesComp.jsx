@@ -11,7 +11,7 @@ export default function AllGamesComp() {
     async function getGames() {
       const response = await fetch(API_ROUTES.games);
       const data = await response.json();
-      setTimeout(() => setGames(data), 0);
+      setGames(data);
     }
     getGames();
   }, []);
