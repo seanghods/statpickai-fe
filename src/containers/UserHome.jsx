@@ -1,45 +1,6 @@
-import { useEffect, useState } from 'react';
 import { AllGamesComp, AllResponses, Footer, Header } from '../components';
-import { NavLink } from 'react-router-dom';
-import { capitalize, showTime } from '../utils/helpers';
-import useResponse from '../context/useResponse';
-import { API_ROUTES } from '../utils/constants';
 
 export default function UserHome() {
-  const { user, setShowLogInModal } = useResponse();
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [games, setGames] = useState([]);
-  useEffect(() => {
-    async function getGames() {
-      const response = await fetch(API_ROUTES.games);
-      const data = await response.json();
-      setGames(data);
-    }
-    getGames();
-  }, []);
-  useEffect(() => {
-    async function checkAuthenticationStatus() {
-      setLoading(true);
-      try {
-        const response = await fetch(API_ROUTES.checkSession, {
-          credentials: 'include',
-          withCredentials: true,
-        });
-        const data = await response.json();
-
-        if (data.isAuthenticated) {
-          setLoggedIn(true);
-        } else {
-          setLoggedIn(false);
-        }
-      } catch (error) {
-        console.error('Failed to check authentication status:', error);
-      }
-      setLoading(false);
-    }
-    checkAuthenticationStatus();
-  }, []);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

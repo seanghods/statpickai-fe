@@ -5,9 +5,10 @@ import { API_ROUTES } from '../utils/constants';
 import { capitalize } from '../utils/helpers';
 import { useEffect, useState } from 'react';
 import { Table } from '@radix-ui/themes';
+import LogInButton from '../components/sub-components/LogInButton';
 
 export default function Profile() {
-  const { user, setShowLogInModal } = useResponse();
+  const { user } = useResponse();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -112,12 +113,7 @@ export default function Profile() {
                 <div className="font-saira_bold ">
                   Please log in to view your profile.
                 </div>
-                <button
-                  onClick={() => setShowLogInModal(true)}
-                  className="bg-gray-300 font-saira_bold px-3 py-1 rounded-lg font-bold text-indigo-500"
-                >
-                  Log In
-                </button>
+                <LogInButton />
               </div>
             )}
           </section>

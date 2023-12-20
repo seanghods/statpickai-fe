@@ -5,9 +5,10 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { capitalize } from '../utils/helpers';
 import { useState, useEffect, API_ROUTES } from 'react';
+import LogInButton from './sub-components/LogInButton';
 
 export default function AllResponses() {
-  const { user, setShowLogInModal } = useResponse();
+  const { user } = useResponse();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -119,12 +120,7 @@ export default function AllResponses() {
           <div className="">
             Please log in to view your account&apos;s responses.
           </div>
-          <Button
-            onClick={() => setShowLogInModal(true)}
-            className="cursor-pointer"
-          >
-            Log In
-          </Button>
+          <LogInButton />
         </div>
       )}
     </div>

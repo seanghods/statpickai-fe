@@ -3,10 +3,11 @@ import useResponse from '../context/useResponse';
 import { API_ROUTES } from '../utils/constants';
 import MenuButtonX from './sub-components/MenuButton';
 import logo from '../assets/logo.png';
+import LogInButton from './sub-components/LogInButton';
 
 export default function Header() {
   const navigate = useNavigate();
-  const { setShowLogInModal, user, setUser } = useResponse();
+  const { user, setUser } = useResponse();
 
   async function handleLogOut() {
     const response = await fetch(API_ROUTES.logOut, {
@@ -111,12 +112,9 @@ export default function Header() {
               <div className="md:hidden">
                 <MenuButtonX handleLogOut={handleLogOut} />
               </div>
-              <button
-                className="hidden md:block transform transition duration-250 text-gray-300 hover:text-gray-400 text-sm md:text-base"
-                onClick={() => setShowLogInModal(true)}
-              >
-                Log In
-              </button>
+              <div className="hidden md:block">
+                <LogInButton />
+              </div>
               <li>
                 <NavLink
                   to="/sign-up"

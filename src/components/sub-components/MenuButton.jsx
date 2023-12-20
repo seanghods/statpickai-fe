@@ -3,12 +3,12 @@ import useResponse from '../../context/useResponse';
 import { DropdownMenu, Button } from '@radix-ui/themes';
 import { CaretDownIcon, CaretLeftIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
+import LogInButton from './LogInButton';
 
 export default function MenuButtonX({ handleLogOut }) {
   const navigate = useNavigate();
-  const { user, setShowLogInModal } = useResponse();
+  const { user } = useResponse();
   const [dropdown, setDropdown] = useState(false);
-
   const handleOpenChange = open => {
     if (open) {
       setDropdown(true);
@@ -16,7 +16,6 @@ export default function MenuButtonX({ handleLogOut }) {
       setDropdown(false);
     }
   };
-
   return (
     <>
       <DropdownMenu.Root onOpenChange={handleOpenChange}>
@@ -69,12 +68,8 @@ export default function MenuButtonX({ handleLogOut }) {
               About
             </DropdownMenu.Item>
             <DropdownMenu.Separator />
-            <DropdownMenu.Item
-              style={{ width: '90px' }}
-              color="purple"
-              onClick={() => setShowLogInModal(true)}
-            >
-              Log In
+            <DropdownMenu.Item style={{ width: '90px' }} color="white">
+              <LogInButton />
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         )}

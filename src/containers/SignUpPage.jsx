@@ -5,9 +5,10 @@ import { API_ROUTES } from '../utils/constants';
 import useResponse from '../context/useResponse';
 import { PaymentForm } from '../components';
 import { Button } from '@radix-ui/themes';
+import LogInButton from '../components/sub-components/LogInButton';
 
 export default function SignUpPage() {
-  const { user, setShowLogInModal } = useResponse();
+  const { user } = useResponse();
   const [loadingTransition, setLoadingTransition] = useState(false);
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showLoggedInMsg, setShowLoggedInMsg] = useState(false);
@@ -209,15 +210,7 @@ export default function SignUpPage() {
                           </div>
                         </form>
                         <div className="button text-center m-2 font-game flex justify-center">
-                          <button
-                            className="inline-flex font-gamebold justify-center rounded-md border border-transparent bg-gray-200 px-3 py-1 text-sm text-indigo-600 font-bold hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                            onClick={e => {
-                              e.stopPropagation();
-                              setShowLogInModal(true);
-                            }}
-                          >
-                            Log In
-                          </button>
+                          <LogInButton />
                         </div>
                       </div>
                     )}
