@@ -11,12 +11,12 @@ export default function AllGamesComp() {
     async function getGames() {
       const response = await fetch(API_ROUTES.games);
       const data = await response.json();
-      setGames(data);
+      setTimeout(() => setGames(data), 0);
     }
     getGames();
   }, []);
   return (
-    <Table.Root variant="surface" size="2">
+    <Table.Root className="mt-24" variant="surface" size="2">
       <Table.Header>
         <Table.Row style={{ color: 'white' }}>
           <Table.ColumnHeaderCell>Away Team</Table.ColumnHeaderCell>
