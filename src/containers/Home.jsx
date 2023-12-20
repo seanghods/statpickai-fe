@@ -79,7 +79,7 @@ export default function Home() {
             />
             {showButton && (
               <div className="w-full text-center p-4">
-                <Button onClick={navigate('/preview')}>
+                <Button onClick={() => navigate('/preview')}>
                   See rest of response
                 </Button>
               </div>
