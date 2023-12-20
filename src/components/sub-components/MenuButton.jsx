@@ -11,7 +11,11 @@ export default function MenuButtonX({ handleLogOut }) {
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger
-          style={{ color: 'rgb(209, 213, 219)', padding: 0 }}
+          style={{
+            color: 'rgb(209, 213, 219)',
+            padding: 0,
+            backgroundColor: 'transparent',
+          }}
           className="text-gray-300"
         >
           <Button variant="soft">

@@ -71,7 +71,9 @@ export default function Profile() {
                         Picks Per Day
                       </Table.ColumnHeaderCell>
                       <Table.ColumnHeaderCell>Cost</Table.ColumnHeaderCell>
-                      <Table.ColumnHeaderCell>Started</Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell className="hidden md:block">
+                        Started
+                      </Table.ColumnHeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body className="text-white">
@@ -83,7 +85,7 @@ export default function Profile() {
                       <Table.Cell>{user.picksUsed}</Table.Cell>
                       <Table.Cell>{user.plan.picksPerDay}</Table.Cell>
                       <Table.Cell>${user.plan.price} / Month</Table.Cell>
-                      <Table.Cell>
+                      <Table.Cell className="hidden md:block">
                         {new Date(user.subscriptionStartDate).toDateString()}
                       </Table.Cell>
                     </Table.Row>

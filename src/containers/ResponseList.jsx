@@ -1,37 +1,6 @@
 import { AllResponses, Footer, Header } from '../components';
-import useResponse from '../context/useResponse';
-import { NavLink } from 'react-router-dom';
-import { capitalize } from '../utils/helpers';
-import { useEffect, useState } from 'react';
-import { API_ROUTES } from '../utils/constants';
-import { LoadingIcon } from '../components/sub-components/Icons';
 
 export default function ResponseList() {
-  const { user, setShowLogInModal } = useResponse();
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    async function checkAuthenticationStatus() {
-      setLoading(true);
-      try {
-        const response = await fetch(API_ROUTES.checkSession, {
-          credentials: 'include',
-          withCredentials: true,
-        });
-        const data = await response.json();
-
-        if (data.isAuthenticated) {
-          setLoggedIn(true);
-        } else {
-          setLoggedIn(false);
-        }
-      } catch (error) {
-        console.error('Failed to check authentication status:', error);
-      }
-      setLoading(false);
-    }
-    checkAuthenticationStatus();
-  }, []);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

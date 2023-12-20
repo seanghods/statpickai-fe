@@ -4,10 +4,35 @@ import { LoadingIcon } from './sub-components/Icons';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { capitalize } from '../utils/helpers';
+import { useState, useEffect, API_ROUTES } from 'react';
 
 export default function AllResponses() {
-  const { user, loading, loggedIn, setShowLogInModal } = useResponse();
+  const { user, setShowLogInModal } = useResponse();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    async function checkAuthenticationStatus() {
+      setLoading(true);
+      try {
+        const response = await fetch(API_ROUTES.checkSession, {
+          credentials: 'include',
+          withCredentials: true,
+        });
+        const data = await response.json();
+
+        if (data.isAuthenticated) {
+          setLoggedIn(true);
+        } else {
+          setLoggedIn(false);
+        }
+      } catch (error) {
+        console.error('Failed to check authentication status:', error);
+      }
+      setLoading(false);
+    }
+    checkAuthenticationStatus();
+  }, []);
   return (
     <div className="flex-1 flex w-full flex-col items-center text-center ">
       {user.username ? (
