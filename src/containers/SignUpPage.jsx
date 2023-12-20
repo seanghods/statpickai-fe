@@ -1,9 +1,10 @@
 import { Footer, Header } from '../components';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../utils/constants';
 import useResponse from '../context/useResponse';
 import { PaymentForm } from '../components';
+import { Button } from '@radix-ui/themes';
 
 export default function SignUpPage() {
   const { user, setShowLogInModal } = useResponse();
@@ -11,9 +12,10 @@ export default function SignUpPage() {
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showLoggedInMsg, setShowLoggedInMsg] = useState(false);
   const [accountInfo, setAccountInfo] = useState('');
+  const navigate = useNavigate();
   useEffect(() => {
-    user.username && setShowLoggedInMsg(true);
-  }, []);
+    user.username ? setShowLoggedInMsg(true) : null;
+  }, [user]);
   const [formErrors, setFormErrors] = useState({
     username: '',
     password: '',
@@ -93,10 +95,10 @@ export default function SignUpPage() {
         ></div>
         <Header />
         <div className="flex-1">
-          <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
-            <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
+          <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
+            <div className="space-y-4 flex-1 sm:text-center lg:text-left flex-col items-center hidden md:flex">
               <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-24">
-                Pricing
+                Sign Up
               </h1>
             </div>
             <div className="w-full flex justify-center min-h-[650px]">
@@ -107,12 +109,9 @@ export default function SignUpPage() {
                 {showLoggedInMsg ? (
                   <>
                     <div className="font-saira_bold">You are logged in.</div>
-                    <NavLink
-                      to="/profile"
-                      className="bg-gray-300 font-saira_bold px-4 py-2 rounded-lg font-bold hover:bg-gray-200"
-                    >
+                    <Button onClick={() => navigate('/profile')}>
                       Visit Your Profile
-                    </NavLink>
+                    </Button>
                   </>
                 ) : (
                   <>

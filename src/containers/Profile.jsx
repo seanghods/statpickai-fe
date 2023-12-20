@@ -44,9 +44,9 @@ export default function Profile() {
         ></div>
         <Header />
         <div className="flex-1">
-          <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
+          <section className="mt-12 md:mt-24 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-24">
+              <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-14 md:mb-24">
                 {user.username ? user.username.toUpperCase() : 'Profile'}
               </h1>
             </div>
