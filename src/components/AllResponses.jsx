@@ -1,11 +1,12 @@
 import useResponse from '../context/useResponse';
-import { Table, Button } from '@radix-ui/themes';
+import { Table } from '@radix-ui/themes';
 import { LoadingIcon } from './sub-components/Icons';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { capitalize } from '../utils/helpers';
-import { useState, useEffect, API_ROUTES } from 'react';
+import { useState, useEffect } from 'react';
 import LogInButton from './sub-components/LogInButton';
+import { API_ROUTES } from '../utils/constants';
 
 export default function AllResponses() {
   const { user } = useResponse();
@@ -21,7 +22,6 @@ export default function AllResponses() {
           withCredentials: true,
         });
         const data = await response.json();
-
         if (data.isAuthenticated) {
           setLoggedIn(true);
         } else {

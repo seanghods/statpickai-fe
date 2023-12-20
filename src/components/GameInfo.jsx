@@ -25,7 +25,6 @@ export default function GameInfo({ game }) {
     { length: 50 / 0.5 + 1 },
     (_, index) => index * 0.5,
   );
-  useEffect(() => console.log(selectedPlayer), [selectedPlayer]);
   const colorsAway = {
     backgroundColor: teamAway.primary_color_hex,
     color: teamAway.secondary_color_hex,
@@ -128,7 +127,10 @@ export default function GameInfo({ game }) {
           line={line}
         />
       )}
-      <section className="mt-12 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex">
+      <div className="mt-8 md:mt-0 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
+        Choose a player, stat, and line to analyze:
+      </div>
+      <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex">
         <Table.Root variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
