@@ -4,6 +4,7 @@ import useResponse from '../context/useResponse';
 import { API_ROUTES } from '../utils/constants';
 import { capitalize } from '../utils/helpers';
 import { useEffect, useState } from 'react';
+import { Table } from '@radix-ui/themes';
 
 export default function Profile() {
   const { user, setShowLogInModal } = useResponse();
@@ -33,78 +34,94 @@ export default function Profile() {
   }, [user]);
   return (
     <>
-      <div className="hero h-[400px] w-full trapezoid-home-div relative z-0">
+      <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">
+        <div
+          className="absolute top-0 left-0 w-full h-full blur-[118px] -z-10"
+          style={{
+            background:
+              'linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.11) 15.74%, rgba(232, 121, 249, 0.11) 56.49%, rgba(79, 70, 229, 0.3) 115.91%)',
+          }}
+        ></div>
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-4xl md:text-7xl text-center">
-          <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
-            {user.username ? user.username.toUpperCase() : 'PROFILE'}
-          </div>
-        </div>
-      </div>
-      <div className="flex-1 flex justify-center w-full mb-12 flex-col items-center">
-        {loading ? (
-          <div>
-            <LoadingIcon />
-          </div>
-        ) : loggedIn && user.username ? (
-          <div className="flex items-center w-4/5 md:w-1/2 flex-col gap-3">
-            <div className="text-4xl mb-5 font-bold">Profile Information</div>
-            <div className="flex flex-col gap-3">
-              <div>
-                <span className="font-bold">Status:</span>{' '}
-                {capitalize(user.subscriptionStatus)}
-              </div>
-              <div>
-                <span className="font-bold">Plan:</span> {user.plan.name}
-              </div>
-              <div>
-                <span className="font-bold">Picks Used Today:</span>{' '}
-                {user.picksUsed}
-              </div>
-              <div>
-                <span className="font-bold">Picks Per Day:</span>{' '}
-                {user.plan.picksPerDay}
-              </div>
-              <div>
-                <span className="font-bold">Cost:</span> ${user.plan.price} /
-                Month
-              </div>
-              <div>
-                <span className="font-bold">Started:</span>{' '}
-                {new Date(user.subscriptionStartDate).toDateString()}
-              </div>
+        <div className="flex-1">
+          <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
+            <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
+              <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-24">
+                {user.username ? user.username.toUpperCase() : 'Profile'}
+              </h1>
             </div>
-            {user.plan.price == 0 ? (
-              <PaymentForm />
+            {loading ? (
+              <div className="flex justify-center w-full">
+                <LoadingIcon />
+              </div>
+            ) : loggedIn && user.username ? (
+              <div className="flex items-center flex-col gap-3">
+                <div className="text-2xl mb-5 font-bold">
+                  Profile Information
+                </div>
+                <Table.Root variant="surface" size="3">
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell>Plan</Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell>
+                        Picks Used Today
+                      </Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell>
+                        Picks Per Day
+                      </Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell>Cost</Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell>Started</Table.ColumnHeaderCell>
+                    </Table.Row>
+                  </Table.Header>
+                  <Table.Body className="text-white">
+                    <Table.Row>
+                      <Table.Cell>
+                        {capitalize(user.subscriptionStatus)}
+                      </Table.Cell>
+                      <Table.Cell>{user.plan.name}</Table.Cell>
+                      <Table.Cell>{user.picksUsed}</Table.Cell>
+                      <Table.Cell>{user.plan.picksPerDay}</Table.Cell>
+                      <Table.Cell>${user.plan.price} / Month</Table.Cell>
+                      <Table.Cell>
+                        {new Date(user.subscriptionStartDate).toDateString()}
+                      </Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                </Table.Root>
+                {user.plan.price == 0 ? (
+                  <PaymentForm />
+                ) : (
+                  <div>
+                    Update your subscription plan or billing information{' '}
+                    <a
+                      href="https://billing.stripe.com/p/login/5kAbJd1PW5bi1OMfYY"
+                      alt="Stripe Link"
+                      className="font-bold text-blue-800"
+                    >
+                      here via Stripe.
+                    </a>
+                  </div>
+                )}
+              </div>
             ) : (
-              <div>
-                Update your subscription plan or billing information{' '}
-                <a
-                  href="https://billing.stripe.com/p/login/5kAbJd1PW5bi1OMfYY"
-                  alt="Stripe Link"
-                  className="font-bold text-blue-800"
+              <div className="w-1/3 text-center">
+                {console.log(loggedIn)}
+                <div className="font-saira_bold ">
+                  Please log in to view your profile.
+                </div>
+                <button
+                  onClick={() => setShowLogInModal(true)}
+                  className="bg-gray-300 font-saira_bold px-3 py-1 rounded-lg font-bold text-indigo-500"
                 >
-                  here via Stripe.
-                </a>
+                  Log In
+                </button>
               </div>
             )}
-          </div>
-        ) : (
-          <div className="w-1/3 text-center">
-            {console.log(loggedIn)}
-            <div className="font-saira_bold ">
-              Please log in to view your profile.
-            </div>
-            <button
-              onClick={() => setShowLogInModal(true)}
-              className="bg-gray-300 font-saira_bold px-3 py-1 rounded-lg font-bold text-indigo-500"
-            >
-              Log In
-            </button>
-          </div>
-        )}
+          </section>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

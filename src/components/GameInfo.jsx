@@ -4,6 +4,7 @@ import LoadingAiModal from './sub-components/LoadingAiModal';
 import slugify from 'slugify';
 import useResponse from '../context/useResponse';
 import toast from 'react-hot-toast';
+import { Table } from '@radix-ui/themes';
 
 export default function GameInfo({ game }) {
   const {
@@ -20,18 +21,27 @@ export default function GameInfo({ game }) {
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedStat, setSelectedStat] = useState();
   const [line, setLine] = useState();
-  const gradientStyle = {
-    backgroundImage: `linear-gradient(to right, ${teamAway.primary_color_hex}, #D7D7D7, ${teamHome.primary_color_hex})`,
-    filter: 'saturate(0.6)',
+  const numbers = Array.from(
+    { length: 50 / 0.5 + 1 },
+    (_, index) => index * 0.5,
+  );
+  useEffect(() => console.log(selectedPlayer), [selectedPlayer]);
+  const colorsAway = {
+    backgroundColor: teamAway.primary_color_hex,
+    color: teamAway.secondary_color_hex,
+  };
+  const colorsHome = {
+    backgroundColor: teamHome.primary_color_hex,
+    color: teamHome.secondary_color_hex,
   };
   const statButtons = [
-    { id: 'points', name: 'POINTS', disabled: false },
-    { id: 'rebounds', name: 'REBOUNDS', disabled: false },
-    { id: 'assists', name: 'ASSISTS', disabled: false },
-    { id: '3pm', name: '3 POINT FG', disabled: true },
-    { id: 'steals', name: 'STEALS', disabled: true },
-    { id: 'blocks', name: 'BLOCKS', disabled: true },
-    { id: 'turnovers', name: 'TURNOVERS', disabled: true },
+    { id: 'points', name: 'Points', disabled: false },
+    { id: 'rebounds', name: 'Rebounds', disabled: false },
+    { id: 'assists', name: 'Assists', disabled: false },
+    { id: '3pm', name: '3 Point FG', disabled: true },
+    { id: 'steals', name: 'Steals', disabled: true },
+    { id: 'blocks', name: 'Blocks', disabled: true },
+    { id: 'turnovers', name: 'Turnovers', disabled: true },
   ];
   useEffect(() => {
     async function fetchPlayers() {
@@ -118,7 +128,164 @@ export default function GameInfo({ game }) {
           line={line}
         />
       )}
-      <div className="" style={gradientStyle}>
+      <section className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex">
+        <Table.Root className="mt-24" variant="surface" size="2">
+          <Table.Header>
+            <Table.Row style={{ color: 'white' }}>
+              <Table.ColumnHeaderCell style={colorsAway}>
+                {game.awayTeam}
+              </Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body className="text-white">
+            {teamAway.players
+              .sort((a, b) => a.full_name.localeCompare(b.full_name))
+              .map((player, index) => {
+                return (
+                  <Table.Row
+                    key={index}
+                    to={`/game/${game._id}`}
+                    state={{ game }}
+                    className={`cursor-pointer hover:bg-gray-700 ${
+                      selectedPlayer ==
+                      slugify(player.full_name, { lower: true })
+                        ? `bg-gray-700`
+                        : ''
+                    }`}
+                    style={{ color: 'white' }}
+                    onClick={e => handlePlayerClick(e)}
+                  >
+                    <Table.Cell
+                      id={slugify(player.full_name, { lower: true })}
+                      width={'260px'}
+                    >
+                      {player.full_name}
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              })}
+          </Table.Body>
+        </Table.Root>
+        <Table.Root className="mt-24" variant="surface" size="2">
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell style={colorsHome}>
+                {game.homeTeam}
+              </Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body className="text-white">
+            {teamHome.players
+              .sort((a, b) => a.full_name.localeCompare(b.full_name))
+              .map((player, index) => {
+                return (
+                  <Table.Row
+                    key={index}
+                    to={`/game/${game._id}`}
+                    state={{ game }}
+                    className={`cursor-pointer hover:bg-gray-700 ${
+                      selectedPlayer ==
+                      slugify(player.full_name, { lower: true })
+                        ? `bg-gray-700`
+                        : ''
+                    }`}
+                    style={{ color: 'white' }}
+                    onClick={e => handlePlayerClick(e)}
+                  >
+                    <Table.Cell
+                      id={slugify(player.full_name, { lower: true })}
+                      width={'260px'}
+                    >
+                      {player.full_name}
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              })}
+          </Table.Body>
+        </Table.Root>
+        <Table.Root className="mt-24" variant="surface" size="2">
+          <Table.Header>
+            <Table.Row style={{ color: 'white' }}>
+              <Table.ColumnHeaderCell>Stat</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body className="text-white">
+            {statButtons.map((stat, index) => {
+              return (
+                <Table.Row
+                  key={index}
+                  className={`cursor-pointer hover:bg-gray-700 ${
+                    selectedStat == stat.id ? `bg-gray-700` : ''
+                  }`}
+                >
+                  {stat.disabled ? (
+                    <Table.Cell className="text-red-300">
+                      {stat.name}
+                    </Table.Cell>
+                  ) : (
+                    <Table.Cell
+                      id={stat.id}
+                      key={index}
+                      className={``}
+                      onClick={e => {
+                        handleStatClick(e);
+                      }}
+                    >
+                      {stat.name}
+                    </Table.Cell>
+                  )}
+                </Table.Row>
+              );
+            })}
+          </Table.Body>
+        </Table.Root>
+        <Table.Root
+          className="mt-24 w-[70px] max-h-[780px] md:max-h-[700px]"
+          variant="surface"
+          size="2"
+        >
+          <Table.Header>
+            <Table.Row style={{ color: 'white' }}>
+              <Table.ColumnHeaderCell>Line</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body className="text-white">
+            {numbers.map(number => (
+              <Table.Row
+                onClick={() => setLine(number)}
+                className={`cursor-pointer hover:bg-gray-700 ${
+                  line == number ? `bg-gray-700` : ''
+                }`}
+                key={number}
+              >
+                <Table.Cell>{number}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
+      </section>
+      <div className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:px-8 flex flex-col">
+        <button
+          id="analyze"
+          onClick={() => handleAnalyze()}
+          className={`font-saira_bold shadow-sm shadow-gray-700 text-2xl px-5 py-3 rounded-lg mt-6 hover:bg-gray-700 ${
+            loadingAi ? 'bg-gray-400 shadow-gray-500' : 'bg-gray-800'
+          } ${!user.username && 'shadow-none'}`}
+        >
+          ANALYZE
+        </button>
+        {!user.username && (
+          <div className="font-inter_bold italic text-red-500 text-sm rounded-lg">
+            Please log in to analyze your pick.
+          </div>
+        )}
+      </div>
+
+      {/* <div className="" style={gradientStyle}>
         <div
           className={`game-area lg:mx-16 flex h-[800px] md:h-[700px] shadow-sm shadow-gray-300 rounded-lg p-5`}
         >
@@ -253,7 +420,7 @@ export default function GameInfo({ game }) {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

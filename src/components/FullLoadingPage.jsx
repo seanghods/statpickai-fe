@@ -1,12 +1,11 @@
 import { LoadingIcon } from '../components/sub-components/Icons';
+import logo from '../assets/logo.png';
 
 export default function FullLoadingPage() {
   return (
     <div className="w-screen h-screen fixed top-0 left-0 z-50 bg-[#f3f4f6] dark:bg-black flex flex-col justify-center items-center">
-      <h1 className="text-3xl font-saira_bold text-white">
-        STAT <span className="text-[#4DE234]">PICK</span> AI
-      </h1>
-      <LoadingIcon width="75" height="75" />
+      <img src={logo} alt="Stat Pick AI Logo" className="w-[200px] pr-5" />
+      <LoadingIcon width="70" height="70" />
     </div>
   );
 }

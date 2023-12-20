@@ -1,89 +1,29 @@
-import { useEffect, useState } from 'react';
-import { Footer, Header } from '../components';
-import { API_ROUTES } from '../utils/constants';
-import { NavLink } from 'react-router-dom';
-import { showTime } from '../utils/helpers';
+import { AllGamesComp, Footer, Header } from '../components';
 
 export default function Games() {
-  const [games, setGames] = useState([]);
-  useEffect(() => {
-    async function getGames() {
-      const response = await fetch(API_ROUTES.games);
-      const data = await response.json();
-      setGames(data);
-    }
-    getGames();
-  }, []);
   return (
     <>
-      <div className="hero h-[400px] w-full trapezoid-score-div relative z-0">
+      <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">
+        <div
+          className="absolute top-0 left-0 w-full h-full blur-[118px] -z-10"
+          style={{
+            background:
+              'linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.11) 15.74%, rgba(232, 121, 249, 0.11) 56.49%, rgba(79, 70, 229, 0.3) 115.91%)',
+          }}
+        ></div>
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-4xl md:text-7xl text-center">
-          <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24">
-            TODAY&apos;S <span className="text-[#4DE234]">GAMES</span>
-          </div>
+        <div className="flex-1">
+          <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
+            <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
+              <h1 className="text-white font-bold text-4xl xl:text-[44px]">
+                Games
+              </h1>
+            </div>
+            <AllGamesComp />
+          </section>
         </div>
+        <Footer />
       </div>
-      <div className="game-area flex-1 md:mx-24 px-2 md:px-12 flex flex-col gap-6 mb-10 md:mt-10 bg-gradient-to-r from-gray-200 via-gray-700 to-gray-200">
-        {games.map((game, index) => {
-          return (
-            <NavLink
-              key={index}
-              to={`/game/${game._id}`}
-              state={{ game }}
-              className="bg-white p-2 md:px-6 rounded-md flex font-saira_bold text-xs md:text-lg hover:bg-gray-300 shadow-sm shadow-gray-600 select-none"
-            >
-              <div className="w-1/4">
-                <div>
-                  {game.awayTeam} (
-                  {game.awayTeamWinOdds > 0
-                    ? `+${game.awayTeamWinOdds}`
-                    : game.awayTeamWinOdds}
-                  )
-                </div>
-                <div className="hidden md:block text-center text-sm text-gray-700 pr-12">
-                  {game.awayTeamWinOdds < game.homeTeamWinOdds ? '-' : '+'}
-                  {Math.abs(game.teamSpread)} (
-                  {game.awayTeamSpreadOdds > 0
-                    ? `+${game.awayTeamSpreadOdds}`
-                    : game.awayTeamSpreadOdds}
-                  )
-                </div>
-              </div>
-              <div className="px-3 text-center flex items-center text-blue-600">
-                AT
-              </div>
-              <div className="flex-1 md:px-16 flex flex-col">
-                <div>
-                  {game.homeTeam} (
-                  {game.homeTeamWinOdds > 0
-                    ? `+${game.homeTeamWinOdds}`
-                    : game.homeTeamWinOdds}
-                  ){' '}
-                </div>
-                <div>
-                  {' '}
-                  <div className="hidden md:block text-center text-sm pr-12 text-gray-700">
-                    {game.homeTeamWinOdds < game.awayTeamWinOdds ? '-' : '+'}
-                    {Math.abs(game.teamSpread)} (
-                    {game.homeTeamSpreadOdds > 0
-                      ? `+${game.homeTeamSpreadOdds}`
-                      : game.homeTeamSpreadOdds}
-                    )
-                  </div>
-                </div>
-              </div>
-              <div className="w-1/6 text-gray-700 justify-center flex items-center">
-                o/u {game.overUnder.toFixed(1)}
-              </div>
-              <div className="w-1/6 justify-end flex items-center md:pr-4 text-gray-700">
-                {showTime(game.startTime)}
-              </div>
-            </NavLink>
-          );
-        })}
-      </div>
-      <Footer />
     </>
   );
 }

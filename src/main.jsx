@@ -16,7 +16,8 @@ import { Theme, ThemePanel } from '@radix-ui/themes';
     <Router>
       <ResponseProvider>
         <Elements stripe={stripePromise}>
-          <Theme>
+          <Theme appearance="dark" accentColor="iris">
+            {' '}
             <App />
           </Theme>
         </Elements>

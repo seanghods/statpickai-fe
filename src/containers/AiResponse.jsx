@@ -7,6 +7,7 @@ import { ScrollToTop, capitalize } from '../utils/helpers';
 import useResponse from '../context/useResponse';
 import { LoadingIcon } from '../components/sub-components/Icons';
 import DOMPurify from 'dompurify';
+import { Button } from '@radix-ui/themes';
 // import Typewriter from 'typewriter-effect';
 
 export default function AiResponse() {
@@ -76,28 +77,36 @@ export default function AiResponse() {
     <>
       <ScrollToTop />
       {loadingAi && <LoadingAiModal />}
-      <div className="hero h-[400px] w-full trapezoid-ball-div relative z-0">
+      <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">
+        <div
+          className="absolute top-0 left-0 w-full h-full blur-[118px] -z-10"
+          style={{
+            background:
+              'linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.11) 15.74%, rgba(232, 121, 249, 0.11) 56.49%, rgba(79, 70, 229, 0.3) 115.91%)',
+          }}
+        ></div>
         <Header />
-        <div className="title h-1/2 flex items-center justify-center w-full font-saira_bold text-white text-2xl md:text-5xl text-center">
-          <div className="bg-black bg-opacity-60 rounded-lg px-12 py-4 mt-24 uppercase">
-            {response.message
-              ? `${response.player} +/- ${response.line} ${response.stat}`
-              : 'Retrieving'}
-          </div>
-        </div>
-      </div>
-      <div className="flex-1 w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200">
-        <div className="text-center mt-8">
-          <button
-            className="font-saira_bold bg-gray-700 text-white md:text-lg px-3 py-1 rounded-lg hover:bg-black hover:text-white shadow-sm shadow-gray-700"
-            onClick={() => navigate(-1)}
-          >
-            GO BACK
-          </button>
-        </div>
-        <div className="flex-1 md:mx-28 flex font-saira text-black md:text-lg p-3 md:p-3 rounded-lg my-2 flex-col justify-center items-center">
-          <div className="md:w-4/5 flex md:my-4 flex-col gap-4 bg-gray-300 shadow-lg p-4 md:p-12 shadow-black rounded-lg">
-            {/* {response.message && (
+        <div className="flex-1">
+          <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
+            <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
+              <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-6 text-center">
+                {response.message ? (
+                  <div>
+                    {response.player} +/- <br className="md:hidden" />
+                    {response.line} {capitalize(response.stat)}
+                  </div>
+                ) : (
+                  'Retrieving'
+                )}
+              </h1>
+            </div>
+            <div className="flex-1 w-full h-full">
+              <div className="text-center mt-8">
+                <Button onClick={() => navigate(-1)}>GO BACK</Button>
+              </div>
+              <div className="flex-1 md:mx-28 flex md:text-lg p-3 md:p-3 rounded-lg my-2 flex-col justify-center items-center">
+                <div className="flex md:my-4 flex-col gap-4 p-4 md:p-12Z">
+                  {/* {response.message && (
             <Typewriter
               options={{ delay: 25, cursor: '#' }}
               onInit={typewriter => {
@@ -105,29 +114,33 @@ export default function AiResponse() {
               }}
             />
           )} */}
-            {loadingAuth ? (
-              <div className="flex justify-center w-full">
-                <LoadingIcon />
-              </div>
-            ) : loggedIn ? (
-              user.responses && user.responses.some(obj => obj._id === id) ? (
-                finalMessage
-              ) : (
-                <div className="flex justify-center w-full font-saira_bold uppercase">
-                  {`Please ensure your account has completed the analysis for 
+                  {loadingAuth ? (
+                    <div className="flex justify-center w-full">
+                      <LoadingIcon />
+                    </div>
+                  ) : loggedIn ? (
+                    user.responses &&
+                    user.responses.some(obj => obj._id === id) ? (
+                      finalMessage
+                    ) : (
+                      <div className="flex justify-center w-full">
+                        {`Please ensure your account has completed the analysis for 
                 ${response.player} +/- ${response.line}
                 ${capitalize(response.stat)}.`}
+                      </div>
+                    )
+                  ) : (
+                    <div className="flex justify-center w-full font-saira_bold text-2xl uppercase">
+                      Please log in to view this analysis.
+                    </div>
+                  )}
                 </div>
-              )
-            ) : (
-              <div className="flex justify-center w-full font-saira_bold text-2xl uppercase">
-                Please log in to view this analysis.
               </div>
-            )}
-          </div>
+            </div>
+          </section>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

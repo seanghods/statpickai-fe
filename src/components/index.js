@@ -4,3 +4,5 @@ export { default as GameInfo } from './GameInfo.jsx';
 export { default as LogInModal } from './LogInModal.jsx';
 export { default as FullLoadingPage } from './FullLoadingPage.jsx';
 export { default as PaymentForm } from './PaymentForm.jsx';
+export { default as AllResponses } from './AllResponses.jsx';
+export { default as AllGamesComp } from './AllGamesComp.jsx';
