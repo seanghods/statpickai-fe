@@ -1,6 +1,7 @@
 import { Footer, Header } from '../components';
 import { useLocation } from 'react-router-dom';
 import { GameInfo } from '../components';
+import { ScrollToTop } from '../utils/helpers';
 
 export default function Game() {
   const location = useLocation();
@@ -9,6 +10,7 @@ export default function Game() {
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">
+        <ScrollToTop />
         <div
           className="absolute top-0 left-0 w-full h-full blur-[118px] -z-10"
           style={{
