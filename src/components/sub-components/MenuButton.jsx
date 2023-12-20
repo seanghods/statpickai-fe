@@ -1,15 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import useResponse from '../../context/useResponse';
 import { DropdownMenu, Button } from '@radix-ui/themes';
-import { CaretDownIcon } from '@radix-ui/react-icons';
+import { CaretDownIcon, CaretLeftIcon } from '@radix-ui/react-icons';
+import { useState } from 'react';
 
 export default function MenuButtonX({ handleLogOut }) {
   const navigate = useNavigate();
   const { user, setShowLogInModal } = useResponse();
+  const [dropdown, setDropdown] = useState(false);
+
+  const handleOpenChange = open => {
+    if (open) {
+      setDropdown(true);
+    } else {
+      setDropdown(false);
+    }
+  };
 
   return (
     <>
-      <DropdownMenu.Root>
+      <DropdownMenu.Root onOpenChange={handleOpenChange}>
         <DropdownMenu.Trigger
           style={{
             color: 'rgb(209, 213, 219)',
@@ -19,8 +29,15 @@ export default function MenuButtonX({ handleLogOut }) {
           className="text-gray-300"
         >
           <Button variant="soft">
-            Menu
-            <CaretDownIcon />
+            {dropdown ? (
+              <>
+                Menu <CaretDownIcon />
+              </>
+            ) : (
+              <>
+                Menu <CaretLeftIcon />
+              </>
+            )}
           </Button>
         </DropdownMenu.Trigger>
         {user.username ? (
