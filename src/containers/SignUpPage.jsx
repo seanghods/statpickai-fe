@@ -103,7 +103,7 @@ export default function SignUpPage() {
               </h1>
             </div>
             <div className="w-full flex justify-center min-h-[650px]">
-              <div className="w-5/6 md:w-1/2 mb-12 transform overflow-hidden rounded-lg p-6 text-left align-middle flex flex-col items-center gap-4 relative">
+              <div className="w-5/6 md:w-3/4 mb-12 transform overflow-hidden rounded-lg p-6 text-left align-middle flex flex-col items-center gap-4 relative">
                 <div className="text-lg w-full font-bold leading-6 flex justify-center items-center border-b-2 pb-8">
                   Sign Up
                 </div>
@@ -132,7 +132,7 @@ export default function SignUpPage() {
                         >
                           <label htmlFor="username">Username*</label>
                           <input
-                            className="bg-gray-100 font-gamebold  outline-1 outline rounded-md p-1"
+                            className="bg-gray-800 text-white font-gamebold  border-2 border-gray-700 rounded-sm p-1"
                             name="username"
                             type="text"
                             placeholder="user"
@@ -147,7 +147,7 @@ export default function SignUpPage() {
                           )}
                           <label htmlFor="password">Password*</label>
                           <input
-                            className="bg-gray-100 font-gamebold outline-1 outline rounded-md p-1"
+                            className="bg-gray-800 text-white font-gamebold border-2 border-gray-700 rounded-sm p-1"
                             name="password"
                             type="password"
                             placeholder="***"
@@ -161,7 +161,7 @@ export default function SignUpPage() {
                           )}
                           <label htmlFor="email">Email*</label>
                           <input
-                            className="bg-gray-100 font-gamebold outline-1 outline rounded-md p-1"
+                            className="bg-gray-800 text-white font-gamebold border-2 border-gray-700 rounded-sm p-1"
                             name="email"
                             type="email"
                             autoComplete="off"

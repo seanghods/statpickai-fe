@@ -12,14 +12,14 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
     .join(' ');
   function GeneratingModal() {
     return (
-      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+      <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-gray-900 p-6 text-left align-middle shadow-xl transition-all">
         <Dialog.Title
           as="h3"
-          className="text-lg font-inter_bold leading-6 text-gray-900 flex justify-center items-center border-b-2 pb-3"
+          className="text-lg leading-6 text-white flex justify-center items-center border-black border-b-2 pb-3"
         >
           {player ? 'Generating AI Analysis...' : 'Retrieving AI Analysis...'}
         </Dialog.Title>
-        <div className="mt-4 flex justify-center flex-col items-center font-inter italic gap-5">
+        <div className="mt-4 flex justify-center flex-col items-center italic gap-5 text-white">
           <div>
             <LoadingAiIcon />
           </div>
@@ -32,7 +32,7 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
               <div className="flex flex-col items-center gap-2 mt-2">
                 <button
                   onClick={() => setLoadingAi(false)}
-                  className="bg-gray-200 text-sm px-3 py-1 rounded-lg font-inter_bold hover:bg-gray-300"
+                  className="bg-gray-400 text-sm px-3 py-1 rounded-lg hover:bg-gray-500"
                 >
                   Close
                 </button>
@@ -51,14 +51,14 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
   }
   function ErrorModal() {
     return (
-      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-900 p-6 text-left align-middle shadow-xl transition-all">
         <Dialog.Title
           as="h3"
-          className="text-lg font-inter_bold leading-6 text-gray-900 flex justify-center items-center border-b-2 pb-3"
+          className="text-lg leading-6 text-white flex justify-center items-center border-b-2 pb-3"
         >
           Error...
         </Dialog.Title>
-        <div className="mt-4 flex justify-center flex-col items-center font-inter italic gap-5">
+        <div className="mt-4 flex justify-center flex-col items-center italic gap-5 text-white">
           <div>
             <Xmark />
           </div>
@@ -70,7 +70,7 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
           <div>Sorry for the inconvenience</div>{' '}
           <button
             onClick={() => setLoadingAi(false)}
-            className="bg-gray-200 text-sm px-3 py-1 rounded-lg font-inter_bold hover:bg-gray-300"
+            className="bg-gray-400 text-sm px-3 py-1 rounded-lg hover:bg-gray-500"
           >
             Close
           </button>

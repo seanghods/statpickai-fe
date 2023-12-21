@@ -109,7 +109,6 @@ export default function Profile() {
               </div>
             ) : (
               <div className="w-full text-center">
-                {console.log(loggedIn)}
                 <div className="font-saira_bold ">
                   Please log in to view your profile.
                 </div>

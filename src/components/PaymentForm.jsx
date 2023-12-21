@@ -110,7 +110,7 @@ export default function PaymentForm({ accountInfo }) {
   function RadioSubs() {
     return (
       <div className="w-full p-4">
-        <div className="mx-auto w-full max-w-md">
+        <div className="mx-auto w-full max-w-md focus:outline-0">
           <RadioGroup value={selectedPlan} onChange={setSelectedPlan}>
             <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
             <div className="space-y-2">
@@ -124,19 +124,19 @@ export default function PaymentForm({ accountInfo }) {
                         ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-sky-300'
                         : ''
                     }
-                  ${checked ? 'bg-sky-900/75 text-white' : 'bg-white'}
+                  ${checked ? 'bg-sky-900/75 text-white' : 'bg-gray-800'}
                     relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md border-2 focus:outline-none`
                   }
                 >
                   {({ active, checked }) => (
                     <>
                       <div className="flex w-full items-center justify-between">
-                        <div className="flex items-center ">
-                          <div className="text-sm ">
+                        <div className="flex items-center">
+                          <div className="text-sm">
                             <RadioGroup.Label
                               as="p"
                               className={`font-medium  ${
-                                checked ? 'text-white' : 'text-gray-900'
+                                checked ? 'text-white' : 'text-white'
                               }`}
                             >
                               {plan.name}
@@ -144,7 +144,7 @@ export default function PaymentForm({ accountInfo }) {
                             <RadioGroup.Description
                               as="span"
                               className={`inline ${
-                                checked ? 'text-sky-100' : 'text-gray-500'
+                                checked ? 'text-sky-100' : 'text-gray-300'
                               }`}
                             >
                               <span>

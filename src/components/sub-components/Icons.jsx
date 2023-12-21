@@ -166,8 +166,8 @@ export function LoadingAiIcon() {
         display: 'block',
         shapeRendering: 'auto',
       }}
-      width="120px"
-      height="120px"
+      width="100px"
+      height="100px"
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
     >
