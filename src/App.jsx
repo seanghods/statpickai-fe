@@ -116,7 +116,7 @@ function App() {
   return (
     <>
       <Marquee
-        className="absolute top-20 cursor-default select-none"
+        className="absolute top-24 cursor-default select-none"
         speed="125"
         gradient={false}
       >
