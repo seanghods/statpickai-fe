@@ -115,7 +115,11 @@ function App() {
   }
   return (
     <>
-      <Marquee className="absolute top-20" speed="125" gradient={false}>
+      <Marquee
+        className="absolute top-20 cursor-default select-none"
+        speed="125"
+        gradient={false}
+      >
         <div className="flex gap-48 text-lg brightness-150">
           {popularPicks.map((pick, index) => (
             <p key={index} className={getRandomClassName()}>

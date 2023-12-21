@@ -41,7 +41,7 @@ export default function Header() {
   ];
 
   return (
-    <header>
+    <header className="select-none">
       <div className="md:gap-x-12 items-center max-w-screen-xl mx-auto px-4 flex md:px-8 py-5">
         <NavLink to={user.username ? '/home' : '/'}>
           <img
