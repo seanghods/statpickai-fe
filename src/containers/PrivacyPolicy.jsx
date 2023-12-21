@@ -597,7 +597,7 @@ export default function PrivacyPolicy() {
                   contact us:
                 </p>
                 <ul className="list-disc pl-3">
-                  <li>By email: statpickai@gmail.com</li>
+                  <li>By email: info@statpickai.com</li>
                 </ul>
               </div>
             </div>

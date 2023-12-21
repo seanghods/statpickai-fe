@@ -130,7 +130,7 @@ export default function TermsOfService() {
                   While all sales are considered final, we understand that
                   exceptional circumstances may occur. If you believe you have a
                   valid reason for a refund, please contact us at
-                  statpickai@gmail.com with your request. Please note that
+                  info@statpickai.com with your request. Please note that
                   refunds are not guaranteed and will be evaluated on a
                   case-by-case basis. In specific situations, and solely at our
                   discretion, we may offer a pro-rated refund. We reserve the
@@ -429,9 +429,8 @@ export default function TermsOfService() {
                 </p>
 
                 <p>
-                  As long as the website and the information and services on the
-                  website are provided free of charge, we will not be liable for
-                  any loss or damage of any nature.
+                  If you have any questions regarding the Terms of Service, you
+                  may contact us at info@statpickai.com{' '}
                 </p>
               </div>
             </div>

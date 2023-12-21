@@ -59,6 +59,11 @@ export default function About() {
                   we provide. For more information, please check out the Pricing
                   section on our website.
                 </p>
+                <p>
+                  For any further questions or if you would like to get in
+                  touch, please send an email to{' '}
+                  <strong>info@statpickai.com</strong>.
+                </p>
               </div>
             </div>
           </section>
