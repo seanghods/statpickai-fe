@@ -58,7 +58,9 @@ export default function AllResponses() {
                   <Table.Row style={{ color: 'white' }}>
                     <Table.ColumnHeaderCell>Date</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Player</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Team</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="hidden md:block">
+                      Team
+                    </Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Stat</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Line</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell className="hidden md:table-cell">
@@ -96,9 +98,6 @@ export default function AllResponses() {
                             {response.dateOfGame.slice(5)}
                           </Table.Cell>
                           <Table.Cell>{response.player}</Table.Cell>
-                          <Table.Cell className="md:hidden">
-                            {response.playerTeam.split(' ').pop()}
-                          </Table.Cell>
                           <Table.Cell className="hidden md:block">
                             {response.playerTeam}
                           </Table.Cell>
