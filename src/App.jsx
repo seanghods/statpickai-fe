@@ -116,15 +116,18 @@ function App() {
   return (
     <>
       <Marquee
-        className="absolute top-24 cursor-default select-none"
+        className="!absolute top-20 cursor-default select-none"
         speed="125"
         gradient={false}
       >
         <div className="flex gap-48 text-lg brightness-150">
           {popularPicks.map((pick, index) => (
-            <p key={index} className={getRandomClassName()}>
-              {pick}
-            </p>
+            <>
+              <p key={index} className={getRandomClassName()}>
+                {pick}
+              </p>
+              {/* <p className="ticker-three">Recent Pick</p> */}
+            </>
           ))}
           <p></p>
         </div>
