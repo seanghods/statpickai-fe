@@ -21,6 +21,7 @@ import { Checkmark, Xmark } from './components/sub-components/Icons';
 import useResponse from './context/useResponse';
 import { useEffect, useState } from 'react';
 import { API_ROUTES } from './utils/constants';
+import Marquee from 'react-fast-marquee';
 
 function App() {
   const {
@@ -34,6 +35,7 @@ function App() {
     setUser,
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(false);
+  const [popularPicks, setPopularPicks] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     async function checkAuthenticationStatus() {
@@ -57,6 +59,14 @@ function App() {
     }
     checkAuthenticationStatus();
   }, [setUser]);
+  useEffect(() => {
+    async function fetchPopularPicks() {
+      const response = await fetch(API_ROUTES.picks);
+      const data = await response.json();
+      setPopularPicks(data);
+    }
+    fetchPopularPicks();
+  }, []);
   useEffect(() => {
     if (analysisComplete) {
       if (loadingAi && !responseFailed) {
@@ -99,8 +109,22 @@ function App() {
       { style: { padding: '5px 6px' } },
     );
   }
+  function getRandomClassName() {
+    const classes = ['ticker-one', 'ticker-two', 'ticker-three'];
+    return classes[Math.floor(Math.random() * classes.length)];
+  }
   return (
     <>
+      <Marquee className="absolute top-20" speed="125" gradient={false}>
+        <div className="flex gap-48 text-lg brightness-150">
+          {popularPicks.map((pick, index) => (
+            <p key={index} className={getRandomClassName()}>
+              {pick}
+            </p>
+          ))}
+          <p></p>
+        </div>
+      </Marquee>
       <Toaster position="top-center" reverseOrder={false} />
       {fullLoadingPage && <FullLoadingPage />}
       <Routes>

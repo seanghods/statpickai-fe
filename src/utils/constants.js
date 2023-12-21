@@ -21,4 +21,5 @@ export const API_ROUTES = {
   allResponses: `${BASE_URL}/all-responses`,
   plans: `${BASE_URL}/plans`,
   analysis: `${BASE_URL}/analysis`,
+  picks: `${BASE_URL}/popular-picks`,
 };
