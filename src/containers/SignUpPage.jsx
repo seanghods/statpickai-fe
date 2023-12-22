@@ -110,8 +110,8 @@ export default function SignUpPage() {
                 {showLoggedInMsg ? (
                   <>
                     <div className="font-saira_bold">You are logged in.</div>
-                    <Button onClick={() => navigate('/profile')}>
-                      Visit Your Profile
+                    <Button onClick={() => navigate('/games')}>
+                      Visit Today&apos;s Games
                     </Button>
                   </>
                 ) : (
