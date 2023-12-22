@@ -215,13 +215,10 @@ export default function PaymentForm({ accountInfo }) {
         >
           <div>Choose your subscription option:</div>
           {plans.length > 0 ? RadioSubs() : <div className="h-[728px]"></div>}
-          <div>
+          <div className={`${selectedPlan.price == 0 ? 'hidden' : null}`}>
             <StripeSvg />
             <div
-              className={`mt-1 p-2 outline-1 outline rounded-md w-full ${
-                selectedPlan.price == 0
-                  ? 'bg-gray-300 cursor-default'
-                  : 'bg-white'
+              className={`mt-1 p-2 outline-1 outline rounded-md w-full bg-white
               }`}
             >
               <CardElement />
