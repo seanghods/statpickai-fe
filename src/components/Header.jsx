@@ -4,6 +4,7 @@ import { API_ROUTES } from '../utils/constants';
 import MenuButtonX from './sub-components/MenuButton';
 import logo from '../assets/logo.png';
 import LogInButton from './sub-components/LogInButton';
+import { capitalize } from '../utils/helpers';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function Header() {
     { title: 'Games', path: '/games' },
     { title: 'Responses', path: '/all-responses', class: 'hidden md:block' },
     {
-      title: user.username && user.username.toUpperCase(),
+      title: user.username && capitalize(user.username),
       path: '/profile',
       class: 'hidden md:block',
     },
