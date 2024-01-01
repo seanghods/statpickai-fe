@@ -22,7 +22,7 @@ export default function Preview() {
           <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
               <h1 className="text-white font-bold text-4xl mb-6 text-center">
-                Lebron James +/ <br className="md:hidden" /> 7.5 Assists
+                Lebron James +/- <br className="md:hidden" /> 7.5 Assists
               </h1>
             </div>
             <div className="flex-1 w-full h-full">
