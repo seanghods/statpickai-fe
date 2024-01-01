@@ -9,7 +9,6 @@ import { LoadingIcon } from '../components/sub-components/Icons';
 import DOMPurify from 'dompurify';
 import { Button } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
-// import Typewriter from 'typewriter-effect';
 
 export default function AiResponse() {
   const [loadingAi, setLoadingAi] = useState(false);
@@ -110,14 +109,6 @@ export default function AiResponse() {
               </div>
               <div className="flex-1 md:mx-28 flex md:text-lg rounded-lg flex-col justify-center items-center">
                 <div className="flex flex-col gap-4 p-4 md:p-12Z">
-                  {/* {response.message && (
-            <Typewriter
-              options={{ delay: 25, cursor: '#' }}
-              onInit={typewriter => {
-                typewriter.typeString(finalMessage).start();
-              }}
-            />
-          )} */}
                   {loadingAuth ? (
                     <div className="flex justify-center w-full">
                       <LoadingIcon />
