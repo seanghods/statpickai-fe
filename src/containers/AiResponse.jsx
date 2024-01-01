@@ -8,6 +8,7 @@ import useResponse from '../context/useResponse';
 import { LoadingIcon } from '../components/sub-components/Icons';
 import DOMPurify from 'dompurify';
 import { Button } from '@radix-ui/themes';
+import logo from '../assets/logotransp.png';
 // import Typewriter from 'typewriter-effect';
 
 export default function AiResponse() {
@@ -104,8 +105,11 @@ export default function AiResponse() {
               <div className="text-center mt-8">
                 <Button onClick={() => navigate(-1)}>GO BACK</Button>
               </div>
-              <div className="flex-1 md:mx-28 flex md:text-lg p-3 md:p-3 rounded-lg my-2 flex-col justify-center items-center">
-                <div className="flex md:my-4 flex-col gap-4 p-4 md:p-12Z">
+              <div className="w-full flex justify-center my-3">
+                <img src={logo} alt="pic of logo" className="w-12 h-12" />
+              </div>
+              <div className="flex-1 md:mx-28 flex md:text-lg rounded-lg flex-col justify-center items-center">
+                <div className="flex flex-col gap-4 p-4 md:p-12Z">
                   {/* {response.message && (
             <Typewriter
               options={{ delay: 25, cursor: '#' }}
