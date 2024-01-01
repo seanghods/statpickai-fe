@@ -72,11 +72,11 @@ export default function Home() {
                     `Based on the data provided, my analysis points toward LeBron James likely going <strong>over the 7.5 assists line</strong> against the New York Knicks. Let's break down the relevant information:`,
                   )
                   .typeString(
-                    `<br /><br /><strong>1. LeBron's Average Assists:</strong> <br />- <strong>*Season Average*:</strong> LeBron’s season average is slightly
+                    `<br /><br /><strong>1. LeBron's Average Assists:</strong> <br />- <strong>Season Average:</strong> LeBron’s season average is slightly
             below the line at 7.08 assists per game. However, it's close enough
             that a good game could easily push it over.<br /> - <strong>Last 5 Games Average</strong>: Importantly, LeBron has been distributing the ball
             exceptionally well over the last five games with an average of 9.2
-            assists, which is well above the line. <br /> <strong>Last 10 Games Average</strong>:
+            assists, which is well above the line. <br /> - <strong>Last 10 Games Average</strong>:
             LeBron's last 10 games average also sits above the line at 7.9
             assists.<br /> - <strong>Average vs. Knicks</strong>: Against the Knicks in the past
             three seasons, LeBron has been outstanding with an average of 10.67
