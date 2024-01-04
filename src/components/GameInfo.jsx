@@ -37,7 +37,7 @@ export default function GameInfo({ game }) {
     { id: 'points', name: 'Points', disabled: false },
     { id: 'rebounds', name: 'Rebounds', disabled: false },
     { id: 'assists', name: 'Assists', disabled: false },
-    { id: '3pm', name: '3 Point FG', disabled: true },
+    { id: '3pm', name: '3 Point FG', disabled: false },
     { id: 'steals', name: 'Steals', disabled: true },
     { id: 'blocks', name: 'Blocks', disabled: true },
     { id: 'turnovers', name: 'Turnovers', disabled: true },
@@ -130,7 +130,7 @@ export default function GameInfo({ game }) {
       <div className="mt-8 md:mt-0 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
         Choose a player, stat, and line to analyze:
       </div>
-      <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex">
+      <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
         <Table.Root variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
@@ -219,9 +219,7 @@ export default function GameInfo({ game }) {
               return (
                 <Table.Row
                   key={index}
-                  className={`cursor-pointer hover:bg-gray-700 ${
-                    selectedStat == stat.id ? `bg-gray-700` : ''
-                  }`}
+                  className={`${selectedStat == stat.id ? `bg-gray-700` : ''}`}
                 >
                   {stat.disabled ? (
                     <Table.Cell className="text-red-300">
@@ -231,7 +229,7 @@ export default function GameInfo({ game }) {
                     <Table.Cell
                       id={stat.id}
                       key={index}
-                      className={``}
+                      className={`hover:bg-gray-700 cursor-pointer`}
                       onClick={e => {
                         handleStatClick(e);
                       }}

@@ -93,7 +93,10 @@ export default function AiResponse() {
                 {response.message ? (
                   <div>
                     {response.player} +/- <br className="md:hidden" />
-                    {response.line} {capitalize(response.stat)}
+                    {response.line}{' '}
+                    {response.stat == '3pm'
+                      ? '3 Point FG'
+                      : capitalize(response.stat)}
                   </div>
                 ) : (
                   'Retrieving'
