@@ -13,6 +13,10 @@ import * as Sentry from '@sentry/react';
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,
   integrations: [
+    new Sentry.Feedback({
+      // Additional SDK configuration goes in here, for example:
+      colorScheme: 'dark',
+    }),
     new Sentry.BrowserTracing({
       // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
       tracePropagationTargets: ['localhost', /^https:\/\/yourserver\.io\/api/],

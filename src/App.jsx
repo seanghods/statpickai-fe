@@ -122,12 +122,9 @@ function App() {
       >
         <div className="flex gap-48 text-lg brightness-150">
           {popularPicks.map((pick, index) => (
-            <>
-              <p key={index} className={getRandomClassName()}>
-                {pick}
-              </p>
-              {/* <p className="ticker-three">Recent Pick</p> */}
-            </>
+            <p key={index} className={getRandomClassName()}>
+              {pick}
+            </p>
           ))}
           <p></p>
         </div>

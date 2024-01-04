@@ -48,19 +48,23 @@ export default function PaymentForm({ accountInfo }) {
       setProcessing(true);
       const clientSecret = await createSetupIntent();
       const cardElement = elements.getElement(CardElement);
+      console.log(clientSecret);
       const { setupIntent, error } = await stripe.confirmCardSetup(
         clientSecret,
         {
           payment_method: { card: cardElement },
         },
       );
+      console.log(setupIntent);
+      console.log(error);
       if (error) {
         console.log(`Error ${error}`);
       } else {
+        console.log('else');
+        console.log(setupIntent.payment_method);
         const subscription = await createSubscription(
           setupIntent.payment_method,
         );
-        console.log(subscription);
         if (
           subscription.subscriptionStatus === 'active' &&
           subscription.subscribedPlanId
