@@ -5,6 +5,7 @@ import MenuButtonX from './sub-components/MenuButton';
 import logo from '../assets/logo.png';
 import LogInButton from './sub-components/LogInButton';
 import { capitalize } from '../utils/helpers';
+import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -44,13 +45,33 @@ export default function Header() {
   return (
     <header className="select-none">
       <div className="md:gap-x-12 items-center max-w-screen-xl mx-auto px-4 flex md:px-8 py-5">
-        <NavLink to={user.username ? '/home' : '/'}>
-          <img
-            src={logo}
-            alt="Stat Pick AI Logo"
-            className="h-[50px] md:w-[130px]"
-          />
-        </NavLink>
+        <div className="flex items-center gap-2">
+          <NavLink to={user.username ? '/home' : '/'}>
+            <img
+              src={logo}
+              alt="Stat Pick AI Logo"
+              className="h-[50px] md:w-[130px]"
+            />
+          </NavLink>
+          <div className="flex gap-4 h-full">
+            <a
+              href="https://twitter.com/statpickai"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-500 font-bold hover:text-blue-300 flex items-center justify-center"
+            >
+              <TwitterLogoIcon className="w-5 h-5" />
+            </a>
+            <a
+              href="https://discord.gg/6EE6G9nC"
+              target="_blank"
+              rel="noreferrer"
+              className="text-gray-500 font-bold hover:text-gray-300 flex items-center justify-center"
+            >
+              <DiscordLogoIcon className="inline-block w-5 h-5" />
+            </a>
+          </div>
+        </div>
         <ul className="flex-1 gap-1 justify-end items-center flex md:space-x-6 md:space-y-0">
           {user.username ? (
             <>
