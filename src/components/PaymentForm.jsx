@@ -7,6 +7,24 @@ import { NavLink, useParams } from 'react-router-dom';
 import { StripeSvg } from './sub-components/Icons';
 
 export default function PaymentForm({ accountInfo }) {
+  const { user } = useResponse();
+  const [email, setEmail] = useState('');
+  const [noEmail, setNoEmail] = useState(false);
+  useEffect(() => {
+    async function getEmail() {
+      if (user.username) {
+        const response = await fetch(API_ROUTES.getEmail, {
+          credentials: 'include',
+          withCredentials: true,
+        });
+        const data = await response.json();
+        setEmail(data.email);
+      } else {
+        setNoEmail(true);
+      }
+    }
+    getEmail();
+  }, []);
   const [selectedPlan, setSelectedPlan] = useState('');
   const [plans, setPlans] = useState([]);
   const [loadingTransition, setLoadingTransition] = useState(false);
@@ -94,7 +112,7 @@ export default function PaymentForm({ accountInfo }) {
       body: JSON.stringify({
         paymentMethodId: paymentMethodId,
         priceId: selectedPlan.priceId,
-        email: accountInfo.email,
+        email: accountInfo.email ? accountInfo.email : email,
       }),
     });
 
@@ -118,60 +136,63 @@ export default function PaymentForm({ accountInfo }) {
           <RadioGroup value={selectedPlan} onChange={setSelectedPlan}>
             <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
             <div className="space-y-2">
-              {plans.map(plan => (
-                <RadioGroup.Option
-                  key={plan.name}
-                  value={plan}
-                  className={({ active, checked }) =>
-                    `${
-                      active
-                        ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-sky-300'
-                        : ''
-                    }
+              {plans
+                .filter(plan => (email ? plan.price > 0 : true))
+                .map(plan => (
+                  <RadioGroup.Option
+                    key={plan.name}
+                    value={plan}
+                    className={({ active, checked }) =>
+                      `${
+                        active
+                          ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-sky-300'
+                          : ''
+                      }
                   ${checked ? 'bg-sky-900/75 text-white' : 'bg-gray-800'}
                     relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md border-2 focus:outline-none`
-                  }
-                >
-                  {({ active, checked }) => (
-                    <>
-                      <div className="flex w-full items-center justify-between">
-                        <div className="flex items-center">
-                          <div className="text-sm">
-                            <RadioGroup.Label
-                              as="p"
-                              className={`font-medium  ${
-                                checked ? 'text-white' : 'text-white'
-                              }`}
-                            >
-                              {plan.name}
-                            </RadioGroup.Label>
-                            <RadioGroup.Description
-                              as="span"
-                              className={`inline ${
-                                checked ? 'text-sky-100' : 'text-gray-300'
-                              }`}
-                            >
-                              <span>
-                                {plan.price > 0 && `$${plan.price} / Month - `}
-                              </span>
-                              <span>
-                                {plan.price
-                                  ? `${plan.picksPerDay} Picks Per Day`
-                                  : `1 Pick Per Day`}
-                              </span>{' '}
-                            </RadioGroup.Description>
+                    }
+                  >
+                    {({ active, checked }) => (
+                      <>
+                        <div className="flex w-full items-center justify-between">
+                          <div className="flex items-center">
+                            <div className="text-sm">
+                              <RadioGroup.Label
+                                as="p"
+                                className={`font-medium  ${
+                                  checked ? 'text-white' : 'text-white'
+                                }`}
+                              >
+                                {plan.name}
+                              </RadioGroup.Label>
+                              <RadioGroup.Description
+                                as="span"
+                                className={`inline ${
+                                  checked ? 'text-sky-100' : 'text-gray-300'
+                                }`}
+                              >
+                                <span>
+                                  {plan.price > 0 &&
+                                    `$${plan.price} / Month - `}
+                                </span>
+                                <span>
+                                  {plan.price
+                                    ? `${plan.picksPerDay} Picks Per Day`
+                                    : `1 Pick Per Day`}
+                                </span>{' '}
+                              </RadioGroup.Description>
+                            </div>
                           </div>
+                          {checked && (
+                            <div className="shrink-0 text-white">
+                              <CheckIcon className="h-6 w-6" />
+                            </div>
+                          )}
                         </div>
-                        {checked && (
-                          <div className="shrink-0 text-white">
-                            <CheckIcon className="h-6 w-6" />
-                          </div>
-                        )}
-                      </div>
-                    </>
-                  )}
-                </RadioGroup.Option>
-              ))}
+                      </>
+                    )}
+                  </RadioGroup.Option>
+                ))}
             </div>
           </RadioGroup>
         </div>
@@ -210,49 +231,56 @@ export default function PaymentForm({ accountInfo }) {
           </NavLink>
         </div>
       ) : (
-        <div
-          className={`flex w-full md:w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-3 ${
-            loadingTransition
-              ? 'animate-slide-out-left'
-              : 'animate-slide-in-right'
-          }`}
-        >
-          <div>Choose your subscription option:</div>
-          {plans.length > 0 ? RadioSubs() : <div className="h-[728px]"></div>}
-          <div className={`${selectedPlan.price == 0 ? 'hidden' : null}`}>
-            <StripeSvg />
+        plans.length > 0 &&
+        (email || noEmail) && (
+          <div
+            className={`flex w-full md:w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-3 ${
+              loadingTransition
+                ? 'animate-slide-out-left'
+                : 'animate-slide-in-right'
+            } ${email && 'md:items-center'}`}
+          >
+            <div>Choose your subscription option:</div>
+            {plans.length > 0 ? RadioSubs() : <div className="h-[728px]"></div>}
             <div
-              className={`mt-1 p-2 outline-1 outline rounded-md w-full bg-white
+              className={`${selectedPlan.price == 0 ? 'hidden' : null} ${
+                email && 'md:w-3/5'
               }`}
             >
-              <CardElement />
+              <StripeSvg />
+              <div
+                className={`mt-1 p-2 outline-1 outline rounded-md w-full bg-white
+              }`}
+              >
+                <CardElement />
+              </div>
+            </div>
+            {error}
+            <div className="w-full flex justify-center">
+              <button
+                onClick={() => !processing && handleSubmit()}
+                className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white rounded-lg w-1/2 text-center px-3 py-2"
+              >
+                {processing ? 'Loading...' : 'Sign Up'}
+              </button>
+            </div>{' '}
+            <div className="text-xs">
+              *Please note that all payment processing is securely handled by
+              Stripe. We do not store or have access to your credit card
+              information. For more information on how Stripe protects your
+              payment information, please visit{' '}
+              <a
+                href="https://stripe.com/docs/security"
+                alt="Stripes Secuirty Docs"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500"
+              >
+                Stripe&apos;s Security Page.
+              </a>
             </div>
           </div>
-          {error}
-          <div className="w-full flex justify-center">
-            <button
-              onClick={() => !processing && handleSubmit()}
-              className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white rounded-lg w-1/2 text-center px-3 py-2"
-            >
-              {processing ? 'Loading...' : 'Sign Up'}
-            </button>
-          </div>{' '}
-          <div className="text-xs">
-            *Please note that all payment processing is securely handled by
-            Stripe. We do not store or have access to your credit card
-            information. For more information on how Stripe protects your
-            payment information, please visit{' '}
-            <a
-              href="https://stripe.com/docs/security"
-              alt="Stripes Secuirty Docs"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-500"
-            >
-              Stripe&apos;s Security Page.
-            </a>
-          </div>
-        </div>
+        )
       )}
     </>
   );

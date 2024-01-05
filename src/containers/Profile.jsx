@@ -11,6 +11,7 @@ export default function Profile() {
   const { user } = useResponse();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
+  const isMobile = window.innerWidth <= 768;
   useEffect(() => {
     async function checkAuthenticationStatus() {
       setLoading(true);
@@ -63,34 +64,70 @@ export default function Profile() {
                 <Table.Root variant="surface" size="3">
                   <Table.Header>
                     <Table.Row>
-                      <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-                      <Table.ColumnHeaderCell>Plan</Table.ColumnHeaderCell>
-                      <Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell className="hidden md:table-cell">
+                        Status
+                      </Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
+                        Plan
+                      </Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
                         Picks Used Today
                       </Table.ColumnHeaderCell>
-                      <Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
                         Picks Per Day
                       </Table.ColumnHeaderCell>
-                      <Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
                         Total Picks Used
                       </Table.ColumnHeaderCell>
-                      <Table.ColumnHeaderCell>Cost</Table.ColumnHeaderCell>
-                      <Table.ColumnHeaderCell className="hidden md:block">
+                      <Table.ColumnHeaderCell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
+                        Cost
+                      </Table.ColumnHeaderCell>
+                      <Table.ColumnHeaderCell className="hidden md:table-cell">
                         Started
                       </Table.ColumnHeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body className="text-white">
                     <Table.Row>
-                      <Table.Cell>
+                      <Table.Cell className="hidden md:table-cell">
                         {capitalize(user.subscriptionStatus)}
                       </Table.Cell>
-                      <Table.Cell>{user.plan.name}</Table.Cell>
-                      <Table.Cell>{user.picksUsed}</Table.Cell>
-                      <Table.Cell>{user.plan.picksPerDay}</Table.Cell>
-                      <Table.Cell>{user.responses.length}</Table.Cell>
-                      <Table.Cell>${user.plan.price} / Month</Table.Cell>
-                      <Table.Cell className="hidden md:block">
+                      <Table.Cell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
+                        {user.plan.name}
+                      </Table.Cell>
+                      <Table.Cell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
+                        {user.picksUsed}
+                      </Table.Cell>
+                      <Table.Cell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
+                        {user.plan.picksPerDay}
+                      </Table.Cell>
+                      <Table.Cell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
+                        {user.responses.length}
+                      </Table.Cell>
+                      <Table.Cell
+                        style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      >
+                        ${user.plan.price} / Month
+                      </Table.Cell>
+                      <Table.Cell className="hidden md:table-cell">
                         {new Date(user.subscriptionStartDate).toDateString()}
                       </Table.Cell>
                     </Table.Row>
