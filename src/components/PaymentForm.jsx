@@ -112,7 +112,7 @@ export default function PaymentForm({ accountInfo }) {
       body: JSON.stringify({
         paymentMethodId: paymentMethodId,
         priceId: selectedPlan.priceId,
-        email: accountInfo.email ? accountInfo.email : email,
+        email: email ? email : accountInfo.email,
       }),
     });
 
