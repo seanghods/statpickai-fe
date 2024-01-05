@@ -57,7 +57,7 @@ export default function Home() {
                 >
                   Discord <DiscordLogoIcon className="inline-block w-5 h-5" />
                 </a>{' '}
-                community to discuss analyis, features, and picks.
+                community here.
               </p>
             </div>
             <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">

@@ -53,7 +53,7 @@ export default function Header() {
               className="h-[50px] md:w-[130px]"
             />
           </NavLink>
-          <div className="flex gap-4 h-full">
+          <div className="gap-4 h-full hidden md:flex">
             <a
               href="https://twitter.com/statpickai"
               target="_blank"
