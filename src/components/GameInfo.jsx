@@ -21,6 +21,9 @@ export default function GameInfo({ game }) {
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedStat, setSelectedStat] = useState();
   const [line, setLine] = useState();
+  useEffect(() => {
+    console.log('User state after update:', user);
+  }, [user]);
   const numbers = Array.from(
     { length: 50 / 0.5 + 1 },
     (_, index) => index * 0.5,

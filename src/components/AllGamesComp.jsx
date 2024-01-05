@@ -19,6 +19,7 @@ export default function AllGamesComp() {
     }
     getGames();
   }, []);
+  const isMobile = window.innerWidth <= 768;
   return (
     <>
       {loading ? (
@@ -54,14 +55,14 @@ export default function AllGamesComp() {
                   key={index}
                   to={`/game/${game._id}`}
                   state={{ game }}
-                  className="cursor-pointer hover:bg-gray-700"
+                  className="cursor-pointer hover:bg-gray-700 !text-sm"
                   style={{ color: 'white' }}
                   onClick={() =>
                     navigate(`/game/${game._id}`, { state: { game } })
                   }
                 >
-                  <Table.Cell>
-                    {game.awayTeam} (
+                  <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
+                    {game.awayTeam} <br className="md:hidden" />(
                     {game.awayTeamWinOdds > 0
                       ? `+${game.awayTeamWinOdds}`
                       : game.awayTeamWinOdds}
@@ -75,8 +76,8 @@ export default function AllGamesComp() {
                       : game.awayTeamSpreadOdds}
                     )
                   </Table.Cell>
-                  <Table.Cell>
-                    {game.homeTeam} (
+                  <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
+                    {game.homeTeam} <br className="md:hidden" /> (
                     {game.homeTeamWinOdds > 0
                       ? `+${game.homeTeamWinOdds}`
                       : game.homeTeamWinOdds}
@@ -90,10 +91,10 @@ export default function AllGamesComp() {
                       : game.homeTeamSpreadOdds}
                     )
                   </Table.Cell>
-                  <Table.Cell className="">
+                  <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
                     {game.overUnder.toFixed(1)}
                   </Table.Cell>
-                  <Table.Cell className="">
+                  <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
                     {showTime(game.startTime)}
                   </Table.Cell>
                 </Table.Row>
