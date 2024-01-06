@@ -141,7 +141,7 @@ export default function Profile() {
                     <a
                       href="https://billing.stripe.com/p/login/5kAbJd1PW5bi1OMfYY"
                       alt="Stripe Link"
-                      className="font-bold text-blue-800"
+                      className="font-bold text-blue-600"
                       target="_blank"
                       rel="noreferrer"
                     >

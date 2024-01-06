@@ -1,3 +1,4 @@
+import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
@@ -22,6 +23,27 @@ export default function Footer() {
           <NavLink className="hover:text-gray-200" to="/terms-of-service">
             Terms of Service
           </NavLink>
+          <NavLink className="hover:text-gray-200" to="/contact-us">
+            Contact Us
+          </NavLink>
+        </div>
+        <div className="flex font-inter text-gray-300 text-sm gap-5 justify-center mt-3">
+          <a
+            href="https://twitter.com/statpickai"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-500 font-bold hover:text-blue-300 flex items-center justify-center"
+          >
+            <TwitterLogoIcon className="w-5 h-5" />
+          </a>
+          <a
+            href="https://discord.gg/6EE6G9nC"
+            target="_blank"
+            rel="noreferrer"
+            className="text-gray-500 font-bold hover:text-gray-300 flex items-center justify-center"
+          >
+            <DiscordLogoIcon className="inline-block w-5 h-5" />
+          </a>
         </div>
       </div>
     </div>

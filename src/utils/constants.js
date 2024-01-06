@@ -23,4 +23,5 @@ export const API_ROUTES = {
   analysis: `${BASE_URL}/analysis`,
   picks: `${BASE_URL}/popular-picks`,
   getEmail: `${BASE_URL}/get-email`,
+  contactUs: `${BASE_URL}/contact-us`,
 };

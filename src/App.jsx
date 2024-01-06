@@ -13,6 +13,7 @@ import {
   Profile,
   UserHome,
   Preview,
+  ContactUs,
 } from './containers';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
@@ -145,6 +146,7 @@ function App() {
         <Route path="/preview" element={<Preview />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
