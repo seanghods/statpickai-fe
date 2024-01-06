@@ -103,7 +103,7 @@ export default function LogInButton() {
               <Button onClick={e => handleLogIn(e)}>Log In</Button>
             </Dialog.Close>
           </Flex>
-          <Text className="italic">{formErrors.message}</Text>
+          <Text className="italic text-red-300">{formErrors.message}</Text>
         </form>
       </Dialog.Content>
     </Dialog.Root>

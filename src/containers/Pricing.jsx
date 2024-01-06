@@ -28,16 +28,16 @@ export default function Pricing() {
           }}
         ></div>
         <Header />
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col">
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
               <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-8 md:mb-24">
                 Pricing
               </h1>
             </div>
-            <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+            <div className="max-w-screen-xl mx-auto md:px-8">
               <div className="relative max-w-xl mx-auto sm:text-center">
-                <h3 className="md:text-3xl font-semibold sm:text-4xl">
+                <h3 className="text-2xl text-center md:text-3xl font-semibold sm:text-4xl">
                   Choose your Level
                 </h3>
                 <div className="mt-3 max-w-xl">
@@ -59,15 +59,24 @@ export default function Pricing() {
                     .map((item, idx) => (
                       <div
                         key={idx}
-                        className="relative flex-1 flex items-stretch flex-col p-2 md:p-5 rounded-xl border-2"
+                        className={`relative flex-1 flex items-stretch flex-col px-5 py-8 rounded-xl border-2 ${
+                          item.name == 'Starter' && 'border-green-500 border-4'
+                        }`}
                       >
                         <div>
                           <span className="text-[#369326] font-medium">
-                            {item.name}
+                            {item.name}{' '}
+                            <span
+                              className={`text-white ${
+                                item.name !== 'Starter' && 'hidden'
+                              }`}
+                            >
+                              (Most Popular)
+                            </span>
                           </span>
                           <div className="mt-4 text-3xl font-semibold">
                             ${item.price}{' '}
-                            <span className="text-xl font-normal">/mo</span>
+                            <span className="text-xl font-normal">/mo </span>
                           </div>
                         </div>
                         <ul className="py-8 space-y-3">
