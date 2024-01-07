@@ -24,4 +24,6 @@ export const API_ROUTES = {
   picks: `${BASE_URL}/popular-picks`,
   getEmail: `${BASE_URL}/get-email`,
   contactUs: `${BASE_URL}/contact-us`,
+  forgotPassword: `${BASE_URL}/forgot-password`,
+  resetPassword: `${BASE_URL}/reset-password`,
 };

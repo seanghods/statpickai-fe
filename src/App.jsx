@@ -14,6 +14,7 @@ import {
   UserHome,
   Preview,
   ContactUs,
+  ResetPassword,
 } from './containers';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
@@ -147,6 +148,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

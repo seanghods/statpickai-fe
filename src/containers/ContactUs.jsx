@@ -52,7 +52,7 @@ export default function ContactUs() {
                   Get in touch
                 </p>
                 <p className="text-gray-300">
-                  We’d love to hear from you! Please fill out the form bellow.
+                  We’d love to hear from you! Please fill out the form below.
                 </p>
               </div>
               <div className="mt-12 mx-auto px-4 p-8 sm:max-w-lg sm:px-8 sm:rounded-xl">
