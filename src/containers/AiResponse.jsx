@@ -62,6 +62,7 @@ export default function AiResponse() {
       fetchMessage();
     }
   }, [id]);
+
   function renderFormattedText(text) {
     const withStrongTags = text.replace(
       /\*\*(.*?)\*\*/g,
@@ -89,7 +90,7 @@ export default function AiResponse() {
         <div className="flex-1">
           <section className="mt-10 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className="text-white font-bold text-3xl md:text-4xl mb-6 text-center">
+              <h1 className={`ticker-two font-bold text-3xl mb-14 text-center`}>
                 {response.message ? (
                   <div>
                     {response.player} +/- <br className="md:hidden" />
@@ -103,11 +104,8 @@ export default function AiResponse() {
                 )}
               </h1>
             </div>
-            <div className="flex-1 w-full h-full">
-              <div className="text-center mt-8">
-                <Button onClick={() => navigate(-1)}>GO BACK</Button>
-              </div>
-              <div className="w-full flex justify-center my-3">
+            <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-300">
+              <div className="w-full flex justify-center my-5">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>
               <div className="flex-1 md:mx-28 flex md:text-lg rounded-lg flex-col justify-center items-center">
@@ -132,6 +130,9 @@ export default function AiResponse() {
                       Please log in to view this analysis.
                     </div>
                   )}
+                  <div className="text-center mt-8">
+                    <Button onClick={() => navigate(-1)}>GO BACK</Button>
+                  </div>
                 </div>
               </div>
             </div>

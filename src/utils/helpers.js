@@ -22,3 +22,8 @@ export function showTime(iso) {
     minute: 'numeric',
   });
 }
+
+export function getRandomClassName() {
+  const classes = ['ticker-one', 'ticker-two', 'ticker-three'];
+  return classes[Math.floor(Math.random() * classes.length)];
+}

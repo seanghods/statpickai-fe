@@ -3,7 +3,6 @@ export function LoadingIcon({ width = '100px', height = '100px' }) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        margin: 'auto',
         background: 'none',
         display: 'block',
         shapeRendering: 'auto',

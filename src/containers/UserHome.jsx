@@ -14,9 +14,11 @@ export default function UserHome() {
         <Header />
         <div className="flex-1">
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
-            <div className="text-3xl m-4 text-center">Your Recent Picks</div>
+            <div className="ticker-three text-3xl m-4 text-center">
+              Your Recent Picks
+            </div>
             <AllResponses />
-            <div className="text-3xl m-4 text-center mt-20">
+            <div className="ticker-two text-3xl m-4 text-center mt-20">
               Today&apos;s Games
             </div>
             <AllGamesComp />

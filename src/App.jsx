@@ -25,6 +25,7 @@ import useResponse from './context/useResponse';
 import { useEffect, useState } from 'react';
 import { API_ROUTES } from './utils/constants';
 import Marquee from 'react-fast-marquee';
+import { getRandomClassName } from './utils/helpers';
 
 function App() {
   const {
@@ -111,10 +112,6 @@ function App() {
       </div>,
       { style: { padding: '5px 6px' } },
     );
-  }
-  function getRandomClassName() {
-    const classes = ['ticker-one', 'ticker-two', 'ticker-three'];
-    return classes[Math.floor(Math.random() * classes.length)];
   }
   return (
     <>

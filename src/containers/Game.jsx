@@ -1,12 +1,17 @@
 import { Footer, Header } from '../components';
 import { useLocation } from 'react-router-dom';
 import { GameInfo } from '../components';
-import { ScrollToTop } from '../utils/helpers';
+import { ScrollToTop, getRandomClassName } from '../utils/helpers';
+import { useEffect, useState } from 'react';
 
 export default function Game() {
   const location = useLocation();
   const { state } = location;
   const game = state.game;
+  const [colorClass, setColorClass] = useState('');
+  useEffect(() => {
+    setColorClass(getRandomClassName());
+  }, []);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">
@@ -22,7 +27,9 @@ export default function Game() {
         <div className="flex-1">
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="font-bold space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className="text-white text-3xl md:text-4xl xl:text-[44px]">
+              <h1
+                className={`${colorClass} uppercase font-bold text-3xl mb-6 text-center`}
+              >
                 {game.awayTeam.split(' ').slice(-1)}{' '}
                 <span className="text-[#4DE234]">VS</span>{' '}
                 {game.homeTeam.split(' ').slice(-1)}

@@ -14,10 +14,8 @@ export default function About() {
         <Header />
         <div className="flex-1">
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
-            <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-8 md:mb-12">
-                About
-              </h1>
+            <div className="mb-8 space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
+              <h1 className="ticker-two h-[50px] font-bold text-3xl ">About</h1>
             </div>
             <div className="flex-1 flex justify-center w-full mb-12">
               <div className="w-5/6 md:w-3/5 flex flex-col gap-5">
