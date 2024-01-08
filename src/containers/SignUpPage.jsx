@@ -99,17 +99,23 @@ export default function SignUpPage() {
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex-col items-center hidden md:flex">
               <h1 className="text-white font-bold text-4xl xl:text-[44px] mb-24">
-                Register An Account
+                Sign Up
               </h1>
             </div>
             <div className="w-full flex justify-center min-h-[650px]">
               <div className="w-5/6 md:w-3/4 mb-12 transform overflow-hidden rounded-lg py-6 md:p-6 text-left align-middle flex flex-col items-center gap-4 relative">
                 <div className="text-lg w-full md:w-2/3 font-bold leading-6 flex justify-center items-center border-b-2 pb-8">
-                  Sign Up
+                  Register an Account
                 </div>
                 {showLoggedInMsg ? (
                   <>
-                    <div className="font-saira_bold">You are logged in.</div>
+                    <div className="font-saira_bold text-lg">
+                      You are logged in.
+                    </div>
+                    <div>
+                      If you just registered, check your email for a
+                      verification link to start analyzing picks.
+                    </div>
                     <Button onClick={() => navigate('/games')}>
                       Visit Today&apos;s Games
                     </Button>

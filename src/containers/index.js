@@ -15,3 +15,4 @@ export { default as TermsOfService } from './TermsOfService.jsx';
 export { default as Preview } from './ResponsePreview.jsx';
 export { default as ContactUs } from './ContactUs.jsx';
 export { default as ResetPassword } from './ResetPassword.jsx';
+export { default as VerifyEmail } from './VerifyEmail.jsx';

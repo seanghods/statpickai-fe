@@ -26,4 +26,5 @@ export const API_ROUTES = {
   contactUs: `${BASE_URL}/contact-us`,
   forgotPassword: `${BASE_URL}/forgot-password`,
   resetPassword: `${BASE_URL}/reset-password`,
+  verifyEmail: `${BASE_URL}/verify-email`,
 };

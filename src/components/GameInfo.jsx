@@ -75,47 +75,51 @@ export default function GameInfo({ game }) {
   }
   async function handleAnalyze() {
     if (user.username) {
-      if (selectedPlayer && selectedStat && line && line !== 'Select...') {
-        if (user.picksUsed >= user.picksPerDay) {
-          alert(
-            'You have used all your picks for the day. Please return tomorrow to analyze more picks or upgrade your plan.',
-          );
-          return;
-        } else {
-          if (confirm(`Please confirm your selections to analyze`)) {
-            setUser({ ...user, picksUsed: user.picksUsed + 1 });
-            setLoadingAi(true);
-            try {
-              const url = `${API_ROUTES.analysis}?stat=${selectedStat}&player=${selectedPlayer}&line=${line}&game=${game._id}&home_team=${teamHome.slug_team_name}&away_team=${teamAway.slug_team_name}`;
-              const response = await fetch(url, {
-                credentials: 'include',
-                withCredentials: true,
-              });
-              const data = await response.json();
-              if (!data.success) {
-                setResponseFailed(true);
+      if (user.isVerified) {
+        if (selectedPlayer && selectedStat && line && line !== 'Select...') {
+          if (user.picksUsed >= user.picksPerDay) {
+            alert(
+              'You have used all your picks for the day. Please return tomorrow to analyze more picks or upgrade your plan.',
+            );
+            return;
+          } else {
+            if (confirm(`Please confirm your selections to analyze`)) {
+              setUser({ ...user, picksUsed: user.picksUsed + 1 });
+              setLoadingAi(true);
+              try {
+                const url = `${API_ROUTES.analysis}?stat=${selectedStat}&player=${selectedPlayer}&line=${line}&game=${game._id}&home_team=${teamHome.slug_team_name}&away_team=${teamAway.slug_team_name}`;
+                const response = await fetch(url, {
+                  credentials: 'include',
+                  withCredentials: true,
+                });
+                const data = await response.json();
+                if (!data.success) {
+                  setResponseFailed(true);
+                  setUser(prevUser => ({
+                    ...prevUser,
+                    picksUsed: prevUser.picksUsed - 1,
+                  }));
+                }
+                setUser(prevUser => ({
+                  ...prevUser,
+                  responses: [...prevUser.responses, data],
+                }));
+                setAnalysisData(data);
+                setAnalysisComplete(true);
+              } catch (error) {
+                console.error('Fetch error:', error);
                 setUser(prevUser => ({
                   ...prevUser,
                   picksUsed: prevUser.picksUsed - 1,
                 }));
               }
-              setUser(prevUser => ({
-                ...prevUser,
-                responses: [...prevUser.responses, data],
-              }));
-              setAnalysisData(data);
-              setAnalysisComplete(true);
-            } catch (error) {
-              console.error('Fetch error:', error);
-              setUser(prevUser => ({
-                ...prevUser,
-                picksUsed: prevUser.picksUsed - 1,
-              }));
             }
           }
+        } else {
+          alert('Please ensure you have selected a player, stat, and line.');
         }
       } else {
-        alert('Please ensure you have selected a player, stat, and line.');
+        toast.error('Please verify your email to analyze.');
       }
     } else {
       toast.error('Please log in to analyze.');
@@ -271,6 +275,16 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
       </section>
+      {!user.username ? (
+        <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
+          Please log in to analyze your pick.
+        </div>
+      ) : !user.isVerified ? (
+        <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
+          Please verify your email to analyze a pick. Check your email from
+          account registration.
+        </div>
+      ) : null}
       <div className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:px-8 flex flex-col">
         <button
           id="analyze"
@@ -281,13 +295,7 @@ export default function GameInfo({ game }) {
         >
           ANALYZE
         </button>
-        {!user.username && (
-          <div className="font-inter_bold italic text-red-500 text-sm rounded-lg">
-            Please log in to analyze your pick.
-          </div>
-        )}
       </div>
-
       {/* <div className="" style={gradientStyle}>
         <div
           className={`game-area lg:mx-16 flex h-[800px] md:h-[700px] shadow-sm shadow-gray-300 rounded-lg p-5`}

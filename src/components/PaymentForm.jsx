@@ -8,36 +8,33 @@ import { StripeSvg } from './sub-components/Icons';
 
 export default function PaymentForm({ accountInfo }) {
   const { user } = useResponse();
-  const [email, setEmail] = useState('');
-  const [noEmail, setNoEmail] = useState(false);
-  useEffect(() => {
-    async function getEmail() {
-      if (user.username) {
-        const response = await fetch(API_ROUTES.getEmail, {
-          credentials: 'include',
-          withCredentials: true,
-        });
-        const data = await response.json();
-        setEmail(data.email);
-      } else {
-        setNoEmail(true);
-      }
-    }
-    getEmail();
-  }, []);
   const [selectedPlan, setSelectedPlan] = useState('');
   const [plans, setPlans] = useState([]);
   const [loadingTransition, setLoadingTransition] = useState(false);
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [userChecked, setUserChecked] = useState(false);
   const [error, setError] = useState();
   const { setUser } = useResponse();
   useEffect(() => {
+    async function checkAuthenticationStatus() {
+      try {
+        const response = await fetch(API_ROUTES.checkSession, {
+          credentials: 'include',
+          withCredentials: true,
+        });
+        const data = await response.json();
+        setUserChecked(true);
+      } catch (error) {
+        console.error('Failed to check authentication status:', error);
+      }
+    }
     async function getPlans() {
       const response = await fetch(API_ROUTES.plans);
       const data = await response.json();
       setPlans(data);
     }
+    checkAuthenticationStatus();
     getPlans();
   }, []);
   const elements = useElements();
@@ -66,20 +63,15 @@ export default function PaymentForm({ accountInfo }) {
       setProcessing(true);
       const clientSecret = await createSetupIntent();
       const cardElement = elements.getElement(CardElement);
-      console.log(clientSecret);
       const { setupIntent, error } = await stripe.confirmCardSetup(
         clientSecret,
         {
           payment_method: { card: cardElement },
         },
       );
-      console.log(setupIntent);
-      console.log(error);
       if (error) {
         console.log(`Error ${error}`);
       } else {
-        console.log('else');
-        console.log(setupIntent.payment_method);
         const subscription = await createSubscription(
           setupIntent.payment_method,
         );
@@ -112,7 +104,7 @@ export default function PaymentForm({ accountInfo }) {
       body: JSON.stringify({
         paymentMethodId: paymentMethodId,
         priceId: selectedPlan.priceId,
-        email: email ? email : accountInfo.email,
+        email: user.email ? user.email : accountInfo.email,
       }),
     });
 
@@ -137,7 +129,7 @@ export default function PaymentForm({ accountInfo }) {
             <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
             <div className="space-y-2">
               {plans
-                .filter(plan => (email ? plan.price > 0 : true))
+                .filter(plan => (user.email ? plan.price > 0 : true))
                 .map(plan => (
                   <RadioGroup.Option
                     key={plan.name}
@@ -232,19 +224,19 @@ export default function PaymentForm({ accountInfo }) {
         </div>
       ) : (
         plans.length > 0 &&
-        (email || noEmail) && (
+        (user.email || userChecked) && (
           <div
             className={`flex w-full md:w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-3 ${
               loadingTransition
                 ? 'animate-slide-out-left'
                 : 'animate-slide-in-right'
-            } ${email && 'md:items-center'}`}
+            } ${user.email && 'md:items-center'}`}
           >
             <div>Choose your subscription option:</div>
             {plans.length > 0 ? RadioSubs() : <div className="h-[728px]"></div>}
             <div
               className={`${selectedPlan.price == 0 ? 'hidden' : null} ${
-                email && 'md:w-3/5'
+                user.email && 'md:w-3/5'
               }`}
             >
               <StripeSvg />
