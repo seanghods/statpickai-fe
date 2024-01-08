@@ -19,21 +19,21 @@ export default function Preview() {
         ></div>
         <Header />
         <div className="flex-1">
-          <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
+          <section className="mt-10 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className="text-white font-bold text-4xl mb-6 text-center">
-                Lebron James +/- <br className="md:hidden" /> 7.5 Assists
+              <h1 className={`ticker-two font-bold text-3xl mb-14 text-center`}>
+                <div>
+                  Lebron James <br className="md:hidden" />
+                  +/- 7.5 Assists
+                </div>
               </h1>
             </div>
-            <div className="flex-1 w-full h-full">
-              <div className="text-center mt-8">
-                <Button onClick={() => navigate(-1)}>GO BACK</Button>
-              </div>
-              <div className="w-full flex justify-center my-3">
+            <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-300">
+              <div className="w-full flex justify-center my-5">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>
-              <div className="flex-1 md:mx-28 flex md:text-lg p-1 md:p-1 rounded-lg my-2 flex-col justify-center items-center">
-                <div className="flex flex-col gap-6 p-4 md:p-12Z">
+              <div className="flex-1 md:mx-28 flex md:text-lg rounded-lg flex-col justify-center items-center">
+                <div className="flex flex-col gap-4 p-4 md:p-12Z">
                   <p>
                     Based on the data provided, my analysis points toward LeBron
                     James likely going{' '}
@@ -140,6 +140,9 @@ export default function Preview() {
                     assists. Consequently, I would recommend betting on LeBron
                     to go <strong>over the assists line set at 7.5.</strong>
                   </p>
+                  <div className="text-center mt-8">
+                    <Button onClick={() => navigate(-1)}>GO BACK</Button>
+                  </div>
                 </div>
               </div>
             </div>
