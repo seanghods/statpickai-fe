@@ -113,8 +113,8 @@ export default function SignUpPage() {
                       You are logged in.
                     </div>
                     <div>
-                      If you just registered, check your email for a
-                      verification link to start analyzing picks.
+                      If you just registered, check your email ({user.email})
+                      for a verification link to start analyzing picks.
                     </div>
                     <Button onClick={() => navigate('/games')}>
                       Visit Today&apos;s Games
