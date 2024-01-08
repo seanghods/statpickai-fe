@@ -61,6 +61,9 @@ export default function Profile() {
                 <div className="text-2xl mb-5 font-bold">
                   Profile Information
                 </div>
+                <div>
+                  <strong>Email:</strong> {user.email}
+                </div>
                 <Table.Root variant="surface" size="3">
                   <Table.Header>
                     <Table.Row>
