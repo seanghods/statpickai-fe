@@ -30,23 +30,23 @@ export default function AllGamesComp() {
         <Table.Root className="mt-12 md:mt-24" variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
-              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
-                Away Team
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '12px' }}>
+                Away
               </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell className="hidden md:table-cell">
                 Spread
               </Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
-                Home Team
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '12px' }}>
+                Home
               </Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell className="hidden md:table-cell">
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '12px' }}>
                 Spread
               </Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '12px' }}>
                 <div className="hidden md:block">Over/Under</div>
                 <div className="md:hidden">Over</div>
               </Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '12px' }}>
                 Start <span className="hidden md:inline-block">Time</span>
               </Table.ColumnHeaderCell>
             </Table.Row>
@@ -123,11 +123,17 @@ export default function AllGamesComp() {
                       : game.homeTeamSpreadOdds}
                     )
                   </Table.Cell>
+                  <Table.Cell
+                    className="md:hidden"
+                    style={{ fontSize: isMobile ? '12px' : '16px' }}
+                  >
+                    +/- {Math.abs(game.teamSpread)}
+                  </Table.Cell>
                   <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
                     {game.overUnder.toFixed(1)}
                   </Table.Cell>
                   <Table.Cell
-                    className={`${isMobile && 'w-[80px]'}`}
+                    className={`${isMobile && 'w-[40px]'}`}
                     style={{ fontSize: isMobile ? '12px' : '16px' }}
                   >
                     {showTime(game.startTime)}
