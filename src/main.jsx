@@ -14,12 +14,14 @@ Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,
   integrations: [
     new Sentry.Feedback({
-      // Additional SDK configuration goes in here, for example:
+      buttonLabel: '',
       colorScheme: 'dark',
+      themeDark: {
+        background: '#1F2937',
+      },
     }),
     new Sentry.BrowserTracing({
-      // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-      tracePropagationTargets: ['localhost', /^https:\/\/yourserver\.io\/api/],
+      tracePropagationTargets: ['localhost', /^https:\/\/statpickai\.com\/api/],
     }),
     new Sentry.Replay({
       maskAllText: false,
