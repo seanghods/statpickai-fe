@@ -21,9 +21,6 @@ export default function GameInfo({ game }) {
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedStat, setSelectedStat] = useState();
   const [line, setLine] = useState();
-  useEffect(() => {
-    console.log('User state after update:', user);
-  }, [user]);
   const numbers = Array.from(
     { length: 50 / 0.5 + 1 },
     (_, index) => index * 0.5,
@@ -137,7 +134,7 @@ export default function GameInfo({ game }) {
       <div className="mt-8 md:mt-0 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
         Choose a player, stat, and line to analyze:
       </div>
-      <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
+      <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
         <Table.Root variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
@@ -250,7 +247,7 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
         <Table.Root
-          className=" w-[70px] max-h-[780px] md:max-h-[700px]"
+          className="w-[70px] max-h-[780px] md:max-h-[700px]"
           variant="surface"
           size="2"
         >
