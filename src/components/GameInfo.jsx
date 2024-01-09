@@ -4,7 +4,7 @@ import LoadingAiModal from './sub-components/LoadingAiModal';
 import slugify from 'slugify';
 import useResponse from '../context/useResponse';
 import toast from 'react-hot-toast';
-import { Table } from '@radix-ui/themes';
+import { Table, Tooltip } from '@radix-ui/themes';
 
 export default function GameInfo({ game }) {
   const {
@@ -38,6 +38,32 @@ export default function GameInfo({ game }) {
     { id: 'rebounds', name: 'Rebounds', disabled: false },
     { id: 'assists', name: 'Assists', disabled: false },
     { id: '3pm', name: '3 Point FG', disabled: false },
+    {
+      id: 'pr',
+      name: 'PR (Points',
+      name2: 'Rebounds)',
+      disabled: true,
+    },
+    {
+      id: 'pa',
+      name: 'PA (Points',
+      name2: 'Assists)',
+      disabled: true,
+    },
+    {
+      id: 'pra',
+      name: 'PRA (Points',
+      name2: 'Rebounds',
+      name3: 'Assists)',
+      disabled: true,
+    },
+    {
+      id: 'ra',
+      name: 'RA',
+      name2: '(Rebounds',
+      name3: 'Assists)',
+      disabled: true,
+    },
     { id: 'steals', name: 'Steals', disabled: true },
     { id: 'blocks', name: 'Blocks', disabled: true },
     { id: 'turnovers', name: 'Turnovers', disabled: true },
@@ -226,9 +252,21 @@ export default function GameInfo({ game }) {
                   className={`${selectedStat == stat.id ? `bg-gray-700` : ''}`}
                 >
                   {stat.disabled ? (
-                    <Table.Cell className="text-red-300">
-                      {stat.name}
-                    </Table.Cell>
+                    <Tooltip content="Coming soon">
+                      <Table.Cell className="text-red-300">
+                        {stat.name}{' '}
+                        {stat.name2 && (
+                          <>
+                            <br className="hidden md:block" /> {stat.name2}
+                          </>
+                        )}
+                        {stat.name3 && (
+                          <>
+                            <br className="hidden md:block" /> {stat.name3}
+                          </>
+                        )}
+                      </Table.Cell>
+                    </Tooltip>
                   ) : (
                     <Table.Cell
                       id={stat.id}
