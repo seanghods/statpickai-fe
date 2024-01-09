@@ -9,7 +9,6 @@ export { default as Profile } from './Profile.jsx';
 export { default as NotFound } from './NotFound.jsx';
 export { default as Pricing } from './Pricing.jsx';
 export { default as About } from './About.jsx';
-export { default as LoadingPage } from './LoadingPage.jsx';
 export { default as PrivacyPolicy } from './PrivacyPolicy.jsx';
 export { default as TermsOfService } from './TermsOfService.jsx';
 export { default as Preview } from './ResponsePreview.jsx';
