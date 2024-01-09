@@ -20,6 +20,10 @@ export default function Games() {
               </h1>
             </div>
             <AllGamesComp />
+            <div className="w-full text-center mt-12 italic text-gray-300 text-sm md:text-base">
+              The next day&apos;s slate of games and all picks refresh at 9PM US
+              Pacific every day.
+            </div>
           </section>
         </div>
         <Footer />

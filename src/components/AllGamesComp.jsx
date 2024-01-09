@@ -30,19 +30,23 @@ export default function AllGamesComp() {
         <Table.Root className="mt-12 md:mt-24" variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
-              <Table.ColumnHeaderCell>Away Team</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
+                Away Team
+              </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell className="hidden md:table-cell">
                 Spread
               </Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Home Team</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
+                Home Team
+              </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell className="hidden md:table-cell">
                 Spread
               </Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
                 <div className="hidden md:block">Over/Under</div>
                 <div className="md:hidden">Over</div>
               </Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell style={{ fontSize: isMobile && '13px' }}>
                 Start <span className="hidden md:inline-block">Time</span>
               </Table.ColumnHeaderCell>
             </Table.Row>
@@ -55,14 +59,28 @@ export default function AllGamesComp() {
                   key={index}
                   to={`/game/${game._id}`}
                   state={{ game }}
-                  className="cursor-pointer hover:bg-gray-700 !text-sm"
+                  className="cursor-pointer hover:bg-gray-700"
                   style={{ color: 'white' }}
                   onClick={() =>
                     navigate(`/game/${game._id}`, { state: { game } })
                   }
                 >
                   <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
-                    {game.awayTeam} <br className="md:hidden" />(
+                    {game.awayTeam.split(' ')[2] ? (
+                      <>
+                        {game.awayTeam.split(' ')[0]}{' '}
+                        {game.awayTeam.split(' ')[1]}{' '}
+                        <br className="md:hidden" />{' '}
+                        {game.awayTeam.split(' ')[2]}
+                      </>
+                    ) : (
+                      <>
+                        {game.awayTeam.split(' ')[0]}
+                        <br className="md:hidden" />{' '}
+                        {game.awayTeam.split(' ')[1]}
+                      </>
+                    )}{' '}
+                    <br className="md:hidden" />(
                     {game.awayTeamWinOdds > 0
                       ? `+${game.awayTeamWinOdds}`
                       : game.awayTeamWinOdds}
@@ -77,7 +95,21 @@ export default function AllGamesComp() {
                     )
                   </Table.Cell>
                   <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
-                    {game.homeTeam} <br className="md:hidden" /> (
+                    {game.homeTeam.split(' ')[2] ? (
+                      <>
+                        {game.homeTeam.split(' ')[0]}{' '}
+                        {game.homeTeam.split(' ')[1]}{' '}
+                        <br className="md:hidden" />{' '}
+                        {game.homeTeam.split(' ')[2]}
+                      </>
+                    ) : (
+                      <>
+                        {game.homeTeam.split(' ')[0]}
+                        <br className="md:hidden" />{' '}
+                        {game.homeTeam.split(' ')[1]}
+                      </>
+                    )}{' '}
+                    <br className="md:hidden" />(
                     {game.homeTeamWinOdds > 0
                       ? `+${game.homeTeamWinOdds}`
                       : game.homeTeamWinOdds}
@@ -94,7 +126,10 @@ export default function AllGamesComp() {
                   <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
                     {game.overUnder.toFixed(1)}
                   </Table.Cell>
-                  <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
+                  <Table.Cell
+                    className={`${isMobile && 'w-[80px]'}`}
+                    style={{ fontSize: isMobile ? '12px' : '16px' }}
+                  >
                     {showTime(game.startTime)}
                   </Table.Cell>
                 </Table.Row>

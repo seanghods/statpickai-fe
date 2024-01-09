@@ -61,9 +61,7 @@ export default function Profile() {
                 <div className="text-2xl mb-5 font-bold">
                   Profile Information
                 </div>
-                <div>
-                  <strong>Email:</strong> {user.email}
-                </div>
+                <div className="italic">{user.email}</div>
                 <Table.Root variant="surface" size="3">
                   <Table.Header>
                     <Table.Row>
@@ -139,7 +137,7 @@ export default function Profile() {
                 {user.plan.price == 0 ? (
                   <PaymentForm />
                 ) : (
-                  <div>
+                  <div className="w-full text-center">
                     Update your subscription plan or billing information{' '}
                     <a
                       href="https://billing.stripe.com/p/login/5kAbJd1PW5bi1OMfYY"
