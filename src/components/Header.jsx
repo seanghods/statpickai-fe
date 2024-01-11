@@ -10,7 +10,6 @@ import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 export default function Header() {
   const navigate = useNavigate();
   const { user, setUser } = useResponse();
-
   async function handleLogOut() {
     const response = await fetch(API_ROUTES.logOut, {
       withCredentials: true,
@@ -36,7 +35,7 @@ export default function Header() {
     { title: 'Games', path: '/games' },
     { title: 'Responses', path: '/all-responses', class: 'hidden md:block' },
     {
-      title: user.username && capitalize(user.username),
+      title: user.username ? capitalize(user.username) : 'Profile',
       path: '/profile',
       class: 'hidden md:block',
     },

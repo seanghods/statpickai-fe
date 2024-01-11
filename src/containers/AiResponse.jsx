@@ -124,7 +124,7 @@ export default function AiResponse() {
     <>
       <ScrollToTop />
       {loadingAi && <LoadingAiModal />}
-      <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">
+      <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col bg-image">
         <div
           className="absolute top-0 left-0 w-full h-full blur-[118px] -z-10"
           style={{
@@ -147,7 +147,7 @@ export default function AiResponse() {
                 )}
               </h1>
             </div>
-            <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-300">
+            <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-200">
               <div className="w-full flex justify-center my-5">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>

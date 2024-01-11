@@ -72,3 +72,9 @@ select {
   background-clip: text;
   -webkit-background-clip: text;
 }
+
+.bg-image {
+  background-image: url('./assets/watermark.png');
+  background-repeat: no-repeat;
+  background-position: 60% 70%;
+}
