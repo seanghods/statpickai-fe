@@ -27,7 +27,10 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
             <>
               <div>This may take up to a minute...</div>
               <div>Player: {playerName}...</div>
-              <div>Stat: {statName}...</div>
+              <div>
+                Stat: {statName.length < 5 ? statName.toUpperCase() : statName}
+                ...
+              </div>
               <div>Line: {line}...</div>{' '}
               <div className="flex flex-col items-center gap-2 mt-2">
                 <button

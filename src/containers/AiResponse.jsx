@@ -15,6 +15,7 @@ export default function AiResponse() {
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [response, setResponse] = useState({ message: '' });
   const [loggedIn, setLoggedIn] = useState(false);
+  const [statName, setStatName] = useState('');
   const { user } = useResponse();
   const location = useLocation();
   const { state } = location;
@@ -52,11 +53,56 @@ export default function AiResponse() {
         { credentials: 'include', withCredentials: true },
       );
       const data = await response.json();
+      console.log(data.stat);
+      switch (data.stat) {
+        case '3pm': {
+          setStatName('3 Point FG');
+          break;
+        }
+        case 'pr': {
+          setStatName('Points and Rebounds');
+          break;
+        }
+        case 'pa': {
+          setStatName('Points and Assists');
+          break;
+        }
+        case 'pra': {
+          setStatName('Points, Rebounds and Assists');
+          break;
+        }
+        case 'ra': {
+          setStatName('Rebounds and Assists');
+          break;
+        }
+      }
       setResponse(data);
       setLoadingAi(false);
     }
     if (state) {
       const passedResponse = state.response;
+      switch (passedResponse.stat) {
+        case '3pm': {
+          setStatName('3 Point FG');
+          break;
+        }
+        case 'pr': {
+          setStatName('Points and Rebounds');
+          break;
+        }
+        case 'pa': {
+          setStatName('Points and Assists');
+          break;
+        }
+        case 'pra': {
+          setStatName('Points, Rebounds, and Assists');
+          break;
+        }
+        case 'ra': {
+          setStatName('Rebounds and Assists');
+          break;
+        }
+      }
       setResponse(passedResponse);
     } else {
       fetchMessage();
@@ -94,10 +140,7 @@ export default function AiResponse() {
                 {response.message ? (
                   <div>
                     {response.player} +/- <br className="md:hidden" />
-                    {response.line}{' '}
-                    {response.stat == '3pm'
-                      ? '3 Point FG'
-                      : capitalize(response.stat)}
+                    {response.line} {statName || capitalize(response.stat)}
                   </div>
                 ) : (
                   'Retrieving'

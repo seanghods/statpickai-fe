@@ -102,8 +102,8 @@ export default function AllResponses() {
                             {response.playerTeam}
                           </Table.Cell>
                           <Table.Cell>
-                            {response.stat == '3pm'
-                              ? '3PM'
+                            {response.stat.length < 4
+                              ? response.stat.toUpperCase()
                               : capitalize(response.stat)}
                           </Table.Cell>
                           <Table.Cell>{response.line}</Table.Cell>
