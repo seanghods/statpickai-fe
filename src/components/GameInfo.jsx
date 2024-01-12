@@ -104,6 +104,17 @@ export default function GameInfo({ game }) {
             );
             return;
           } else {
+            if (
+              user.plan.price == 0 &&
+              premiumStatButtons.some(
+                statButton => statButton.id === selectedStat,
+              )
+            ) {
+              alert(
+                'Premium stats (PR, PA, PRA, and RA) are only available to subscription-paying accounts. Please purchase a subscription to analyze these stats.',
+              );
+              return;
+            }
             if (confirm(`Please confirm your selections to analyze`)) {
               setUser({ ...user, picksUsed: user.picksUsed + 1 });
               setLoadingAi(true);
@@ -298,7 +309,10 @@ export default function GameInfo({ game }) {
           <Table.Root variant="surface" size="2">
             <Table.Header>
               <Table.Row style={{ color: 'white' }}>
-                <Table.ColumnHeaderCell>Premium Stat</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>
+                  Premium Stat <br className="hidden md:block" />
+                  (Paid Plans Only)
+                </Table.ColumnHeaderCell>
               </Table.Row>
             </Table.Header>
 

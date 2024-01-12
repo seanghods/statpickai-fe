@@ -25,7 +25,6 @@ import useResponse from './context/useResponse';
 import { useEffect, useState } from 'react';
 import { API_ROUTES } from './utils/constants';
 import Marquee from 'react-fast-marquee';
-import { getRandomClassName } from './utils/helpers';
 
 function App() {
   const {
@@ -40,6 +39,7 @@ function App() {
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(false);
   const [popularPicks, setPopularPicks] = useState([]);
+  let currentColor;
   const navigate = useNavigate();
   useEffect(() => {
     async function checkAuthenticationStatus() {
@@ -112,6 +112,15 @@ function App() {
       </div>,
       { style: { padding: '5px 6px' } },
     );
+  }
+  function getRandomClassName() {
+    const classes = ['ticker-one', 'ticker-two', 'ticker-three'];
+    let color;
+    do {
+      color = classes[Math.floor(Math.random() * classes.length)];
+    } while (color == currentColor);
+    currentColor = color;
+    return color;
   }
   return (
     <>
