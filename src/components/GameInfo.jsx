@@ -38,9 +38,9 @@ export default function GameInfo({ game }) {
     { id: 'rebounds', name: 'Rebounds', disabled: false },
     { id: 'assists', name: 'Assists', disabled: false },
     { id: '3pm', name: '3 Point FG', disabled: false },
-    { id: 'steals', name: 'Steals', disabled: true },
-    { id: 'blocks', name: 'Blocks', disabled: true },
-    { id: 'turnovers', name: 'Turnovers', disabled: true },
+    { id: 'steals', name: 'Steals', disabled: false },
+    { id: 'blocks', name: 'Blocks', disabled: false },
+    { id: 'turnovers', name: 'Turnovers', disabled: false },
   ];
   const premiumStatButtons = [
     {
@@ -67,6 +67,12 @@ export default function GameInfo({ game }) {
       name: 'RA',
       name2: '(Rebounds',
       name3: 'Assists)',
+      disabled: false,
+    },
+    {
+      id: 'sb',
+      name: 'SB (Steals',
+      name2: 'Blocks)',
       disabled: false,
     },
   ];
@@ -321,7 +327,7 @@ export default function GameInfo({ game }) {
               <Table.Row style={{ color: 'white' }}>
                 <Table.ColumnHeaderCell>
                   Premium Stat <br className="hidden md:block" />
-                  (Paid Plans Only)
+                  (Paid Only)
                 </Table.ColumnHeaderCell>
               </Table.Row>
             </Table.Header>

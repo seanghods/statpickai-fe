@@ -75,6 +75,10 @@ export default function AiResponse() {
           setStatName('Rebounds and Assists');
           break;
         }
+        case 'sb': {
+          setStatName('Steals and Blocks');
+          break;
+        }
       }
       setResponse(data);
       setLoadingAi(false);
@@ -100,6 +104,10 @@ export default function AiResponse() {
         }
         case 'ra': {
           setStatName('Rebounds and Assists');
+          break;
+        }
+        case 'sb': {
+          setStatName('Steals and Blocks');
           break;
         }
       }
