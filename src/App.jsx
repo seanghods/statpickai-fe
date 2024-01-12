@@ -124,6 +124,8 @@ function App() {
   }
   return (
     <>
+      {/* <div className="flex justify-center">
+        <div className="mx-auto max-w-screen-xl !absolute top-20 cursor-default select-none"> */}
       <Marquee
         className="!absolute top-20 cursor-default select-none"
         speed="125"
@@ -138,6 +140,8 @@ function App() {
           <p></p>
         </div>
       </Marquee>
+      {/* </div>
+      </div> */}
       <Toaster position="top-center" reverseOrder={false} />
       {fullLoadingPage && <FullLoadingPage />}
       <Routes>

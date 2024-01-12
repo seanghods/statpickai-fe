@@ -167,7 +167,7 @@ export default function GameInfo({ game }) {
         />
       )}
       <div className="mt-8 md:mt-0 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
-        Choose a player, stat, and line to analyze:
+        Choose one player, stat, and line to analyze:
       </div>
       <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
         <Table.Root variant="surface" size="2">
@@ -188,10 +188,15 @@ export default function GameInfo({ game }) {
                     key={index}
                     to={`/game/${game._id}`}
                     state={{ game }}
-                    className={`cursor-pointer hover:bg-gray-700 ${
+                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
+                      selectedPlayer &&
+                      selectedPlayer !==
+                        slugify(player.full_name, { lower: true }) &&
+                      'brightness-90'
+                    } ${
                       selectedPlayer ==
                       slugify(player.full_name, { lower: true })
-                        ? `bg-gray-700`
+                        ? `bg-gray-600 font-bold`
                         : ''
                     }`}
                     style={{ color: 'white' }}
@@ -226,10 +231,15 @@ export default function GameInfo({ game }) {
                     key={index}
                     to={`/game/${game._id}`}
                     state={{ game }}
-                    className={`cursor-pointer hover:bg-gray-700 ${
+                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
+                      selectedPlayer &&
+                      selectedPlayer !==
+                        slugify(player.full_name, { lower: true }) &&
+                      'brightness-90'
+                    } ${
                       selectedPlayer ==
                       slugify(player.full_name, { lower: true })
-                        ? `bg-gray-700`
+                        ? `bg-gray-600 font-bold`
                         : ''
                     }`}
                     style={{ color: 'white' }}
@@ -260,7 +270,7 @@ export default function GameInfo({ game }) {
                   <Table.Row
                     key={index}
                     className={`${
-                      selectedStat == stat.id ? `bg-gray-700` : ''
+                      selectedStat == stat.id ? `bg-gray-600 font-bold` : ''
                     }`}
                   >
                     {stat.disabled ? (
@@ -283,7 +293,7 @@ export default function GameInfo({ game }) {
                       <Table.Cell
                         id={stat.id}
                         key={index}
-                        className={`hover:bg-gray-700 cursor-pointer`}
+                        className={`hover:bg-gray-600 cursor-pointer`}
                         onClick={e => {
                           handleStatClick(e);
                         }}
@@ -322,7 +332,7 @@ export default function GameInfo({ game }) {
                   <Table.Row
                     key={index}
                     className={`${
-                      selectedStat == stat.id ? `bg-gray-700` : ''
+                      selectedStat == stat.id ? `bg-gray-600 font-bold` : ''
                     }`}
                   >
                     {stat.disabled ? (
@@ -345,7 +355,7 @@ export default function GameInfo({ game }) {
                       <Table.Cell
                         id={stat.id}
                         key={index}
-                        className={`hover:bg-gray-700 cursor-pointer`}
+                        className={`hover:bg-gray-600 cursor-pointer`}
                         onClick={e => {
                           handleStatClick(e);
                         }}
@@ -384,8 +394,8 @@ export default function GameInfo({ game }) {
             {numbers.map(number => (
               <Table.Row
                 onClick={() => setLine(number)}
-                className={`cursor-pointer hover:bg-gray-700 ${
-                  line == number ? `bg-gray-700` : ''
+                className={`cursor-pointer hover:bg-gray-600 ${
+                  line == number ? `bg-gray-600 font-bold` : ''
                 }`}
                 key={number}
               >

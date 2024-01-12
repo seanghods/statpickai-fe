@@ -63,7 +63,7 @@ export default function Home() {
             <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
               <NavLink
                 to="/sign-up"
-                className="px-7 py-3 w-full bg-[#6c6ce0] text-white hover:bg-[#7878e0] text-center rounded-md shadow-md block sm:w-auto"
+                className="px-7 py-3 w-full bg-[#25bd37] text-black font-bold hover:bg-[#51d661] text-center rounded-md shadow-md block sm:w-auto"
               >
                 Get started
               </NavLink>
@@ -192,7 +192,7 @@ export default function Home() {
             <div className="mt-4 flex w-full justify-center">
               <NavLink
                 to="/sign-up"
-                className="inline-block py-2 px-4 text-white font-medium bg-gray-800 duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-lg shadow-md hover:shadow-none"
+                className="inline-block py-2 px-4 bg-[#25bd37] text-black font-bold hover:bg-[#51d661] duration-150 rounded-lg shadow-md hover:shadow-none"
               >
                 Get started
               </NavLink>
