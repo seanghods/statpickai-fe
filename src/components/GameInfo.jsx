@@ -212,7 +212,7 @@ export default function GameInfo({ game }) {
                       id={slugify(player.full_name, { lower: true })}
                       width={'260px'}
                     >
-                      {player.full_name}
+                      {player.full_name} ({player.position})
                     </Table.Cell>
                   </Table.Row>
                 );
@@ -255,7 +255,7 @@ export default function GameInfo({ game }) {
                       id={slugify(player.full_name, { lower: true })}
                       width={'260px'}
                     >
-                      {player.full_name}
+                      {player.full_name} ({player.position})
                     </Table.Cell>
                   </Table.Row>
                 );
