@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Footer, Header } from '../components';
 import { API_ROUTES } from '../utils/constants';
+import useResponse from '../context/useResponse';
 
 export default function ContactUs() {
+  const { user } = useResponse();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
+  useEffect(() => {
+    if (user.email) {
+      setFormData({ ...formData, email: user.email, name: user.username });
+    }
+  }, [user]);
   const [message, setMessage] = useState(false);
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });

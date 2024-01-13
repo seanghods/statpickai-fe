@@ -6,6 +6,7 @@ import { capitalize } from '../utils/helpers';
 import { useEffect, useState } from 'react';
 import { Table } from '@radix-ui/themes';
 import LogInButton from '../components/sub-components/LogInButton';
+import { NavLink } from 'react-router-dom';
 
 export default function Profile() {
   const { user } = useResponse();
@@ -135,20 +136,36 @@ export default function Profile() {
                   </Table.Body>
                 </Table.Root>
                 {user.plan.price == 0 ? (
-                  <PaymentForm />
-                ) : (
-                  <div className="w-full text-center">
-                    Update your subscription plan or billing information{' '}
-                    <a
-                      href="https://billing.stripe.com/p/login/5kAbJd1PW5bi1OMfYY"
-                      alt="Stripe Link"
-                      className="font-bold text-blue-600"
-                      target="_blank"
-                      rel="noreferrer"
+                  <>
+                    <PaymentForm />
+                    <NavLink
+                      to="/contact-us"
+                      className="mt-5 bg-gray-500 rounded-lg hover:bg-gray-400 text-sm px-2 py-1"
                     >
-                      here via Stripe.
-                    </a>
-                  </div>
+                      Contact Support Here
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <div className="w-full text-center">
+                      Update your subscription plan or billing information{' '}
+                      <a
+                        href="https://billing.stripe.com/p/login/5kAbJd1PW5bi1OMfYY"
+                        alt="Stripe Link"
+                        className="font-bold text-blue-600"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        here via Stripe.
+                      </a>
+                    </div>
+                    <NavLink
+                      to="/contact-us"
+                      className="mt-5 bg-gray-500 rounded-lg hover:bg-gray-400 text-sm px-2 py-1"
+                    >
+                      Contact Support Here
+                    </NavLink>
+                  </>
                 )}
               </div>
             ) : (
