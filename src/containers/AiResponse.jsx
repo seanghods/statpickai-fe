@@ -144,7 +144,9 @@ export default function AiResponse() {
         <div className="flex-1">
           <section className="mt-10 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className={`ticker-two font-bold text-3xl mb-14 text-center`}>
+              <h1
+                className={`ticker-two font-bold text-3xl mb-14 text-center brightness-125`}
+              >
                 {response.message ? (
                   <div>
                     {response.player} +/- <br className="md:hidden" />
@@ -178,15 +180,15 @@ export default function AiResponse() {
                                   className="flex flex-col gap-3"
                                 >
                                   {index == '0' ? (
-                                    <strong className="ticker-three text-xl">
+                                    <strong className="ticker-three brightness-125 text-xl">
                                       {response.player}
                                     </strong>
                                   ) : index == '1' ? (
-                                    <strong className="ticker-one text-xl">
+                                    <strong className="ticker-one brightness-125 text-xl">
                                       {response.playerTeam}
                                     </strong>
                                   ) : (
-                                    <strong className="ticker-two text-xl">
+                                    <strong className="ticker-two brightness-125 text-xl">
                                       {response.opponentTeam}
                                     </strong>
                                   )}
