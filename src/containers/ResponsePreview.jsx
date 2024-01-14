@@ -6,6 +6,35 @@ import logo from '../assets/logotransp.png';
 
 export default function Preview() {
   const navigate = useNavigate();
+  const statsColumnOne = [
+    ['Position', 'SF'],
+    ['Season Average', 7.08],
+    ['Last 5 Average', 9.2],
+    ['Last 10 Average', 7.9],
+    ['Average vs Opponent', 10.67],
+    ['Games Vs Opp Past 3 Seasons', 3],
+  ];
+  const statsColumnTwo = [
+    ['L10 Pace', 101.95],
+    ['L10 Pace Ranking', 6],
+    ['L10 Assist Percent', 63.5],
+    ['L10 Assist Percent Rank', 26],
+    ['L10 Assist Ratio (Per 100 Poss)', 19.1],
+    ['L10 Assist Ratio Rank', 23],
+    ['Over/Under', 227],
+    ['Home / Away', 'Home'],
+  ];
+  const statsColumnThree = [
+    ['Pace', 99.3],
+    ['Pace Ranking', 20],
+    ['SZN Effective FG Defense %', 54.5],
+    ['SZN Effective FG Defense % Ranking', 17],
+    ['L10 Turnover %', 13.1],
+    ['L10 Turnover % Rank', 11],
+    [`L15 Assists Allowed to SF`, 4.36],
+    [`L15 Assists Allowed to SF Ranking`, 24],
+  ];
+  const stats = [statsColumnOne, statsColumnTwo, statsColumnThree];
   return (
     <>
       <ScrollToTop />
@@ -32,8 +61,42 @@ export default function Preview() {
               <div className="w-full flex justify-center my-5">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>
-              <div className="flex-1 md:mx-28 flex md:text-lg rounded-lg flex-col justify-center items-center">
-                <div className="flex flex-col gap-4 p-4 md:p-12Z">
+              <div className="flex-1 md:mx-10 flex md:text-lg rounded-lg flex-col justify-center items-center gap-4">
+                <div className="flex flex-col md:grid grid-cols-3 gap-2 border-2 p-3 rounded-lg border-gray-300">
+                  {stats.map((column, index) => {
+                    return (
+                      <div key={index} className="flex flex-col gap-3">
+                        {index == '0' ? (
+                          <strong className="ticker-three brightness-125 text-xl">
+                            LeBron James
+                          </strong>
+                        ) : index == '1' ? (
+                          <strong className="ticker-one brightness-125 text-xl">
+                            Los Angeles Lakers
+                          </strong>
+                        ) : (
+                          <strong className="ticker-two brightness-125 text-xl">
+                            New York Knicks
+                          </strong>
+                        )}
+                        {column.map((stat, index) => {
+                          return (
+                            <div key={index}>
+                              {
+                                <>
+                                  <strong>{stat[0]}</strong>
+                                  {': '}
+                                  {stat[1]}
+                                </>
+                              }
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex flex-col gap-4 p-4 md:p-12Z md:mx-28">
                   <p>
                     Based on the data provided, my analysis points toward LeBron
                     James likely going{' '}

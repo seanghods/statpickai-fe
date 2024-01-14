@@ -31,9 +31,9 @@ export default function Home() {
             </h1>
             <div className="w-full flex flex-col items-center">
               <p className="text-gray-300 text-center leading-relaxed md:w-3/5 text-sm md:text-[18px]">
-                Expand your research tools by utilizing our state-of-the-art AI
-                to learn circumstances, statistics, and comparisons regarding
-                your NBA Prop Pick.
+                Get a custom report on any NBA Prop Pick with a full table of
+                curated, relevant statistics and state-of-the-art AI analysis of
+                the line.
               </p>
               <p className="text-gray-300 text-center leading-relaxed md:w-3/5 text-sm md:text-[18px] mt-4">
                 Follow our{' '}
@@ -137,17 +137,35 @@ export default function Home() {
                   suite of advanced statistics is incorporated in the analysis,
                   including team and opponent pace, opponent effective field
                   goal percentage, assist ratios, and more.
-                </p>
-                <p>
-                  {' '}
-                  The integration of comprehensive, contextual statistics
-                  empowers the AI to deliver more precise predictions. Each
-                  analysis is accompanied by a detailed breakdown of the key
-                  statistics that influenced the decision, enhancing user
-                  understanding and supporting informed decision-making.
-                  Discover a smarter way to approach NBA prop picks, informed by
-                  cutting-edge AI analysis.
-                </p>
+                </p>{' '}
+                <div className="grid grid-cols-2 gap-4 p-4">
+                  <div className="col-span-2 text-center text-lg font-bold mb-4">
+                    Statistics We Analyze Include:
+                  </div>
+                  <ul className="list-disc italic flex flex-col gap-2 pl-2">
+                    <li>Season Average</li>
+                    <li>Last 5 Average</li>
+                    <li>Last 10 Average</li>
+                    <li>Average vs Opponent</li>
+                    <li>Opponent Defense vs Position</li>
+                    <li>Team/Opponent Pace</li>
+                    <li>Opponent Defensive Rating</li>
+                    <li>Opponent Effective FG/3PFG Defense</li>
+                  </ul>
+                  <ul className="list-disc italic flex flex-col gap-2 pl-1">
+                    <li>Team/Opponent Off/Def/Total Rebounds</li>
+                    <li>Opponent Turnovers</li>
+                    <li>Team Assist Percent</li>
+                    <li>Team Assist Ratio</li>
+                    <li>Opponent Allowed Steals</li>
+                    <li>Opponent Blocks Against</li>
+                    <li>Opponent Forced Turnovers</li>
+                    <li>Total Over/Under</li>
+                  </ul>
+                  <div className="col-span-2 text-center italic font-bold mb-4">
+                    And more...
+                  </div>
+                </div>
                 <NavLink
                   to="/about"
                   className="inline-flex gap-x-1 items-center text-indigo-600 hover:text-indigo-500 duration-150 font-medium"
