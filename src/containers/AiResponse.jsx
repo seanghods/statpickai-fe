@@ -159,7 +159,7 @@ export default function AiResponse() {
               <div className="w-full flex justify-center my-5">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>
-              <div className="flex-1 md:mx-28 flex md:text-lg rounded-lg flex-col justify-center items-center">
+              <div className="flex-1 md:mx-10 flex md:text-lg rounded-lg flex-col justify-center items-center">
                 <div className="flex flex-col gap-4 p-4 md:p-12Z">
                   {loadingAuth ? (
                     <div className="flex justify-center w-full">
@@ -168,7 +168,50 @@ export default function AiResponse() {
                   ) : loggedIn ? (
                     user.responses &&
                     user.responses.some(obj => obj._id === id) ? (
-                      finalMessage
+                      <>
+                        {response.fullStats.length > 0 && (
+                          <div className="flex flex-col md:grid grid-cols-3 gap-2 border-2 p-3 rounded-lg border-gray-300">
+                            {response.fullStats.map((column, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className="flex flex-col gap-3"
+                                >
+                                  {index == '0' ? (
+                                    <strong className="ticker-three text-xl">
+                                      {response.player}
+                                    </strong>
+                                  ) : index == '1' ? (
+                                    <strong className="ticker-one text-xl">
+                                      {response.playerTeam}
+                                    </strong>
+                                  ) : (
+                                    <strong className="ticker-two text-xl">
+                                      {response.opponentTeam}
+                                    </strong>
+                                  )}
+                                  {column.map((stat, index) => {
+                                    return (
+                                      <div key={index}>
+                                        {
+                                          <>
+                                            <strong>{stat[0]}</strong>
+                                            {': '}
+                                            {stat[1]}
+                                          </>
+                                        }
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                        <div className="md:mx-28 flex flex-col gap-4 p-4 md:p-12Z">
+                          {finalMessage}
+                        </div>
+                      </>
                     ) : (
                       <div className="flex justify-center w-full">
                         {`Please ensure your account has completed the analysis for 

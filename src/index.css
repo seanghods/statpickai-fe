@@ -76,5 +76,5 @@ select {
 .bg-image {
   background-image: url('./assets/watermark.png');
   background-repeat: no-repeat;
-  background-position: 60% 70%;
+  background-position: 60% 20%;
 }
