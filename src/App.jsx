@@ -131,7 +131,7 @@ function App() {
         speed="125"
         gradient={false}
       >
-        <div className="flex gap-48 text-lg brightness-150">
+        <div className="flex gap-48 text-base md:text-lg brightness-150">
           {popularPicks.map((pick, index) => (
             <p key={index} className={getRandomClassName()}>
               {pick}
