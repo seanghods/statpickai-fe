@@ -25,8 +25,8 @@ export default function Preview() {
     ['Home / Away', 'Home'],
   ];
   const statsColumnThree = [
-    ['Pace', 99.3],
-    ['Pace Ranking', 20],
+    ['L10 Pace', 99.3],
+    ['L10 Pace Ranking', 20],
     ['SZN Effective FG Defense %', 54.5],
     ['SZN Effective FG Defense % Ranking', 17],
     ['L10 Turnover %', 13.1],
