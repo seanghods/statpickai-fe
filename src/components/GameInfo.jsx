@@ -430,13 +430,12 @@ export default function GameInfo({ game }) {
           id="analyze"
           // disabled
           onClick={() => handleAnalyze()}
-          className={`font-saira_bold shadow-sm shadow-gray-700 text-2xl px-5 py-3 rounded-lg mt-6 ${
+          className={`font-saira_bold shadow-sm shadow-gray-700 hover:bg-gray-700 text-2xl px-5 py-3 rounded-lg mt-6 ${
             loadingAi ? 'bg-gray-400 shadow-gray-500' : 'bg-gray-800'
           } ${!user.username && 'shadow-none'}`}
         >
           ANALYZE
         </button>
-        {/* hover:bg-gray-700 */}
       </div>
     </>
   );
