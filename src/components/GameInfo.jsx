@@ -422,8 +422,8 @@ export default function GameInfo({ game }) {
         </div>
       ) : null}
       <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
-        Analysis is paused at the moment due to an update, will be resumed
-        shortly. Thank you for your patience.
+        Analysis is paused at the moment due to maintenence, will be resumed
+        soon. Thank you for your patience.
       </div>
       <div className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:px-8 flex flex-col">
         <button
