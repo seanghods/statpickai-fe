@@ -421,21 +421,22 @@ export default function GameInfo({ game }) {
           account registration.
         </div>
       ) : null}
-      {/* <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
+      <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
         Analysis is paused at the moment due to an update, will be resumed
         shortly. Thank you for your patience.
-      </div> */}
+      </div>
       <div className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:px-8 flex flex-col">
         <button
           id="analyze"
-          // disabled
+          disabled
           onClick={() => handleAnalyze()}
-          className={`font-saira_bold shadow-sm shadow-gray-700 hover:bg-gray-700 text-2xl px-5 py-3 rounded-lg mt-6 ${
+          className={`font-saira_bold shadow-sm shadow-gray-700 text-2xl px-5 py-3 rounded-lg mt-6 ${
             loadingAi ? 'bg-gray-400 shadow-gray-500' : 'bg-gray-800'
           } ${!user.username && 'shadow-none'}`}
         >
           ANALYZE
         </button>
+        {/* hover:bg-gray-700 */}
       </div>
     </>
   );
