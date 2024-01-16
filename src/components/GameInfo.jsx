@@ -411,7 +411,7 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
       </section>
-      {!user.username ? (
+      {/* {!user.username ? (
         <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
           Please log in to analyze your pick.
         </div>
@@ -420,8 +420,8 @@ export default function GameInfo({ game }) {
           Please verify your email to analyze a pick. Check your email from
           account registration.
         </div>
-      ) : null}
-      <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
+      ) : null} */}
+      <div className="mt-5 font-inter_bold italic text-red-500 text-lg rounded-lg mx-auto max-w-screen-xl w-full text-center">
         Analysis is paused at the moment due to maintenence, will be resumed
         soon. Thank you for your patience.
       </div>
@@ -431,12 +431,12 @@ export default function GameInfo({ game }) {
           disabled
           onClick={() => handleAnalyze()}
           className={`font-saira_bold shadow-sm shadow-gray-700 text-2xl px-5 py-3 rounded-lg mt-6 ${
-            loadingAi ? 'bg-gray-400 shadow-gray-500' : 'bg-gray-800'
+            loadingAi ? 'bg-gray-400 shadow-gray-500' : 'bg-gray-500'
           } ${!user.username && 'shadow-none'}`}
         >
           ANALYZE
         </button>
-        {/* hover:bg-gray-700 */}
+        {/* hover:bg-gray-700 bg-gray-800*/}
       </div>
     </>
   );
