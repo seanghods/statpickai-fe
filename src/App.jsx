@@ -59,7 +59,7 @@ function App() {
       } catch (error) {
         console.error('Failed to check authentication status:', error);
       }
-      setFullLoadingPage(false);
+      setFullLoadingPage(true);
     }
     checkAuthenticationStatus();
   }, [setUser]);
