@@ -104,7 +104,7 @@ export default function Home() {
               }}
             />
             {showButton && (
-              <div className="w-full text-center p-4">
+              <div className="w-full text-center p-4 mt-5">
                 <Button
                   className="!cursor-pointer !bg-[#31b940] hover:!bg-[#51d661]"
                   onClick={() => navigate('/preview')}

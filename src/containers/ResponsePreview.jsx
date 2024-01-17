@@ -110,7 +110,7 @@ export default function Preview() {
                         <strong>1. LeBron&apos;s Average Assists: </strong>
                       </li>
                       <li>
-                        <strong>- Season Average:</strong> LeBron&apos:s season
+                        <strong>- Season Average:</strong> LeBron&apos;s season
                         average is slightly below the line at 7.08 assists per
                         game. However, it&apos;s close enough that a good game
                         could easily push it over.{' '}
