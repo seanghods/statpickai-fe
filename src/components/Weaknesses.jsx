@@ -299,10 +299,61 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                             <Table.Row key={index} style={{ color: 'white' }}>
                               <Table.Cell>{weakness.position}</Table.Cell>
                               <Table.Cell>
-                                {Object.keys(weakness)[1].split('-')[0]}
+                                <div className="flex flex-col">
+                                  {Object.keys(weakness)[1] && (
+                                    <div>
+                                      {Object.keys(weakness)[1].split('-')[0]}
+                                    </div>
+                                  )}
+                                  {Object.keys(weakness)[2] && (
+                                    <div>
+                                      {Object.keys(weakness)[2].split('-')[0]}
+                                    </div>
+                                  )}
+                                  {Object.keys(weakness)[3] && (
+                                    <div>
+                                      {Object.keys(weakness)[3].split('-')[0]}
+                                    </div>
+                                  )}
+                                  {Object.keys(weakness)[4] && (
+                                    <div>
+                                      {Object.keys(weakness)[4].split('-')[0]}
+                                    </div>
+                                  )}
+                                  {Object.keys(weakness)[5] && (
+                                    <div>
+                                      {Object.keys(weakness)[5].split('-')[0]}
+                                    </div>
+                                  )}
+                                  {Object.keys(weakness)[6] && (
+                                    <div>
+                                      {Object.keys(weakness)[6].split('-')[0]}
+                                    </div>
+                                  )}
+                                </div>
                               </Table.Cell>
                               <Table.Cell>
-                                {Object.values(weakness)[1]}
+                                <div className="flex flex-col">
+                                  {' '}
+                                  {Object.values(weakness)[1] && (
+                                    <div>{Object.values(weakness)[1]}</div>
+                                  )}
+                                  {Object.values(weakness)[2] && (
+                                    <div>{Object.values(weakness)[2]}</div>
+                                  )}
+                                  {Object.values(weakness)[3] && (
+                                    <div>{Object.values(weakness)[3]}</div>
+                                  )}
+                                  {Object.values(weakness)[4] && (
+                                    <div>{Object.values(weakness)[4]}</div>
+                                  )}
+                                  {Object.values(weakness)[5] && (
+                                    <div>{Object.values(weakness)[5]}</div>
+                                  )}
+                                  {Object.values(weakness)[6] && (
+                                    <div>{Object.values(weakness)[6]}</div>
+                                  )}
+                                </div>
                               </Table.Cell>
                               <Table.Cell className="whitespace-nowrap">
                                 <div className="flex flex-col gap-2">
