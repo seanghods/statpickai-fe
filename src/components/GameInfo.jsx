@@ -5,6 +5,7 @@ import slugify from 'slugify';
 import useResponse from '../context/useResponse';
 import toast from 'react-hot-toast';
 import { Table, Tooltip } from '@radix-ui/themes';
+import Weaknesses from './Weaknesses';
 
 export default function GameInfo({ game }) {
   const {
@@ -172,6 +173,7 @@ export default function GameInfo({ game }) {
           line={line}
         />
       )}
+      <Weaknesses game={game} teamHome={teamHome} teamAway={teamAway} />
       <div className="mt-8 md:mt-0 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
         Choose one player, stat, and line to analyze:
       </div>

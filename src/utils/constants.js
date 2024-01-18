@@ -10,6 +10,7 @@ export const API_ROUTES = {
   base: `${BASE_URL}`,
   games: `${BASE_URL}/games`,
   players: `${BASE_URL}/players`,
+  weaknesses: `${BASE_URL}/weaknesses`,
   message: `${BASE_URL}/message`,
   logIn: `${BASE_URL}/log-in`,
   logOut: `${BASE_URL}/log-out`,
