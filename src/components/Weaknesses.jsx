@@ -58,7 +58,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
       {/* <div>
         <Tooltip open={tooltipOpen} onOpenChange={() => {}}>
           <div
-            className="mx-auto max-w-screen-xl text-center font-bold text-lg my-6"
+            className="mx-auto max-w-screen-xl text-center font-bold text-lg my-4"
             id="test"
           >
             <TooltipTrigger asChild>
@@ -232,11 +232,11 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
       </div> */}
       <Dialog.Root onOpenChange={() => {}} open={tooltipOpen}>
         <Dialog.Trigger>
-          <div className="mx-auto max-w-screen-xl text-center font-bold text-lg my-6">
+          <div className="mx-auto max-w-screen-xl text-center font-bold text-lg my-4">
             <button
               ref={buttonRef}
               onClick={handleButtonClick}
-              className={`hover:bg-gray-900 py-2 px-4 rounded-md ${
+              className={`hover:bg-gray-900 py-2 px-2 md:px-4 rounded-md ${
                 tooltipOpen ? 'bg-gray-900' : 'bg-gray-700'
               }`}
             >

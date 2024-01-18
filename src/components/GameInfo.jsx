@@ -23,6 +23,7 @@ export default function GameInfo({ game }) {
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedStat, setSelectedStat] = useState();
   const [line, setLine] = useState();
+  const isMobile = window.innerWidth <= 768;
   const numbers = Array.from(
     { length: 69 / 0.5 + 1 },
     (_, index) => index * 0.5,
@@ -175,10 +176,41 @@ export default function GameInfo({ game }) {
         />
       )}
       <div className="mx-auto max-w-screen-xl flex flex-col md:flex-row gap-12">
+        <Table.Root
+          variant="surface"
+          size="2"
+          style={!isMobile ? { minWidth: 400 } : null}
+        >
+          <Table.Header>
+            <Table.Row style={{ color: 'white' }}>
+              <Table.ColumnHeaderCell>ML</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Spread</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Over/Under</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body className="text-white">
+            <Table.Row>
+              <Table.Cell>
+                {game.awayTeamWinOdds > 0
+                  ? `+${game.awayTeamWinOdds}`
+                  : game.awayTeamWinOdds}{' '}
+                /{' '}
+                {game.homeTeamWinOdds > 0
+                  ? `+${game.homeTeamWinOdds}`
+                  : game.homeTeamWinOdds}
+              </Table.Cell>
+              <Table.Cell>+/- {Math.abs(game.teamSpread)}</Table.Cell>
+              <Table.Cell>{game.overUnder.toFixed(1)}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table.Root>
+      </div>
+      <div className="mx-auto max-w-screen-xl flex md:flex-row gap-6 md:gap-12">
         <Strengths game={game} teamHome={teamHome} teamAway={teamAway} />
         <Weaknesses game={game} teamHome={teamHome} teamAway={teamAway} />
       </div>
-      <div className="mt-8 md:mt-0 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
+      <div className="mt-2 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
         Choose one player, stat, and line to analyze:
       </div>
       <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
