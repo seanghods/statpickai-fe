@@ -233,16 +233,19 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
       <Dialog.Root onOpenChange={() => {}} open={tooltipOpen}>
         <Dialog.Trigger>
           <div className="mx-auto max-w-screen-xl text-center font-bold text-lg my-4">
-            <button
+            <Button
               ref={buttonRef}
               onClick={handleButtonClick}
-              className={`hover:bg-gray-900 py-2 px-2 md:px-4 rounded-md ${
-                tooltipOpen ? 'bg-gray-900' : 'bg-gray-700'
+              style={{ padding: '20px' }}
+              className={` py-2 px-2 md:px-4 cursor-pointer rounded-md p-6 ${
+                tooltipOpen ? 'bg-gray-900' : 'null'
               }`}
             >
-              Team Weaknesses
-              <div className="text-xs">Last 15 Games</div>
-            </button>
+              <div className="flex flex-col">
+                <div>Team Weaknesses</div>
+                <div className="text-xs text-center">Last 15 Games</div>
+              </div>
+            </Button>
           </div>
         </Dialog.Trigger>
         <Dialog.Content
