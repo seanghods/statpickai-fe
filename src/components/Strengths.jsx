@@ -2,18 +2,13 @@ import { useEffect, useState, useRef } from 'react';
 import { API_ROUTES } from '../utils/constants';
 import slugify from 'slugify';
 import { Button, Dialog, Table } from '@radix-ui/themes';
-// import {
-//   Tooltip,
-//   TooltipContent,
-//   TooltipTrigger,
-// } from '@radix-ui/react-tooltip';
 
-export default function Weaknesses({ game, teamHome, teamAway }) {
+export default function Strengths({ game, teamHome, teamAway }) {
   const tooltipContentRef = useRef(null);
   const buttonRef = useRef(null);
   const [tooltipOpen, setTooltipOpen] = useState(false);
-  const [homeWeakness, setHomeWeakness] = useState([]);
-  const [awayWeakness, setAwayWeakness] = useState([]);
+  const [homeStrengths, setHomeStrengths] = useState([]);
+  const [awayStrengths, setAwayStrengths] = useState([]);
   const isMobile = window.innerWidth <= 768;
   const handleButtonClick = () => {
     setTooltipOpen(!tooltipOpen);
@@ -40,18 +35,18 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
     };
   }, [tooltipOpen]);
   useEffect(() => {
-    async function fetchWeaknesses() {
+    async function fetchStrengths() {
       const homeTeamSlug = slugify(game.homeTeam, { lower: true });
       const awayTeamSlug = slugify(game.awayTeam, { lower: true });
       const response = await fetch(
-        `${API_ROUTES.weaknesses}?home_team=${homeTeamSlug}&away_team=${awayTeamSlug}`,
+        `${API_ROUTES.strengths}?home_team=${homeTeamSlug}&away_team=${awayTeamSlug}`,
       );
       const data = await response.json();
-      const [awayWeakness, homeWeakness] = data;
-      setAwayWeakness(awayWeakness);
-      setHomeWeakness(homeWeakness);
+      const [awayStrength, homeStrength] = data;
+      setAwayStrengths(awayStrength);
+      setHomeStrengths(homeStrength);
     }
-    fetchWeaknesses();
+    fetchStrengths();
   }, []);
   return (
     <>
@@ -69,7 +64,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                   tooltipOpen ? 'bg-gray-900' : 'bg-gray-700'
                 }`}
               >
-                Team Weaknesses
+                Team Strengths
                 <div className="text-xs">Last 15 Games</div>
               </button>
             </TooltipTrigger>
@@ -85,10 +80,10 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                   Ranked in Allowed Stat to Opponent Position
                 </div>
                 <div className="mx-auto max-w-screen-xl text-center mb-4 text-sm">
-                  (Bottom Half of the NBA Only)
+                  (Top 5 of the NBA Only)
                 </div>
                 <div className="flex flex-col md:flex-row mx-auto max-w-screen-xl gap-12 mb-5">
-                  {awayWeakness.length > 0 && (
+                  {awayStrengths.length > 0 && (
                     <div className="flex flex-col gap-2">
                       <div
                         className={`w-full text-center font-bold rounded-sm`}
@@ -119,28 +114,28 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                           </Table.Row>
                         </Table.Header>
                         <Table.Body className="text-white">
-                          {awayWeakness.map((weakness, index) => {
+                          {awayStrengths.map((strength, index) => {
                             return (
                               <Table.Row key={index} style={{ color: 'white' }}>
-                                <Table.Cell>{weakness.position}</Table.Cell>
+                                <Table.Cell>{strength.position}</Table.Cell>
                                 <Table.Cell>
-                                  {Object.keys(weakness)[1].split('-')[0]}
+                                  {Object.keys(strength)[1].split('-')[0]}
                                 </Table.Cell>
                                 <Table.Cell>
-                                  {Object.values(weakness)[1]}
+                                  {Object.values(strength)[1]}
                                 </Table.Cell>
                                 <Table.Cell>
                                   <div className="flex flex-col gap-2">
                                     {teamHome.players.filter(
                                       player =>
-                                        player.position == weakness.position,
+                                        player.position == strength.position,
                                     ).length == 0
                                       ? 'No Players'
                                       : teamHome.players
                                           .filter(
                                             player =>
                                               player.position ==
-                                              weakness.position,
+                                              strength.position,
                                           )
                                           .map((player, index) => (
                                             <div key={index}>
@@ -156,7 +151,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                       </Table.Root>
                     </div>
                   )}
-                  {homeWeakness.length > 0 && (
+                  {homeStrengths.length > 0 && (
                     <div className="flex flex-col gap-2">
                       <div
                         className="w-full text-center font-bold rounded-sm"
@@ -187,28 +182,28 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                           </Table.Row>
                         </Table.Header>
                         <Table.Body className="text-white">
-                          {homeWeakness.map((weakness, index) => {
+                          {homeStrengths.map((strength, index) => {
                             return (
                               <Table.Row key={index} style={{ color: 'white' }}>
-                                <Table.Cell>{weakness.position}</Table.Cell>
+                                <Table.Cell>{strength.position}</Table.Cell>
                                 <Table.Cell>
-                                  {Object.keys(weakness)[1].split('-')[0]}
+                                  {Object.keys(strength)[1].split('-')[0]}
                                 </Table.Cell>
                                 <Table.Cell>
-                                  {Object.values(weakness)[1]}
+                                  {Object.values(strength)[1]}
                                 </Table.Cell>
                                 <Table.Cell>
                                   <div className="flex flex-col gap-2">
                                     {teamAway.players.filter(
                                       player =>
-                                        player.position == weakness.position,
+                                        player.position == strength.position,
                                     ).length == 0
                                       ? 'No Players'
                                       : teamAway.players
                                           .filter(
                                             player =>
                                               player.position ==
-                                              weakness.position,
+                                              strength.position,
                                           )
                                           .map((player, index) => (
                                             <div key={index}>
@@ -240,11 +235,12 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                 tooltipOpen ? 'bg-gray-900' : 'bg-gray-700'
               }`}
             >
-              Team Weaknesses
+              Team Strengths
               <div className="text-xs">Last 15 Games</div>
             </button>
           </div>
         </Dialog.Trigger>
+
         <Dialog.Content
           style={!isMobile && { minWidth: 750 }}
           ref={tooltipContentRef}
@@ -252,7 +248,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
         >
           <Dialog.Title>
             <div className="text-lg w-full font-bold leading-6 flex justify-center items-center border-b-2 border-gray-400 pb-2">
-              Weaknesses
+              Strengths
             </div>
           </Dialog.Title>
           {
@@ -261,10 +257,10 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                 Ranked in Allowed Stat to Opponent Position
               </div>
               <div className="mx-auto max-w-screen-xl text-center mb-4 text-sm">
-                (Bottom Half of the NBA Only)
+                (Top 5 of the NBA Only)
               </div>
               <div className="flex flex-col md:flex-row mx-auto max-w-screen-xl gap-12 mb-5">
-                {awayWeakness.length > 0 && (
+                {awayStrengths.length > 0 && (
                   <div className="flex flex-col gap-2">
                     <div
                       className={`w-full text-center font-bold rounded-sm`}
@@ -291,28 +287,28 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                         </Table.Row>
                       </Table.Header>
                       <Table.Body className="text-white">
-                        {awayWeakness.map((weakness, index) => {
+                        {awayStrengths.map((strength, index) => {
                           return (
                             <Table.Row key={index} style={{ color: 'white' }}>
-                              <Table.Cell>{weakness.position}</Table.Cell>
+                              <Table.Cell>{strength.position}</Table.Cell>
                               <Table.Cell>
-                                {Object.keys(weakness)[1].split('-')[0]}
+                                {Object.keys(strength)[1].split('-')[0]}
                               </Table.Cell>
                               <Table.Cell>
-                                {Object.values(weakness)[1]}
+                                {Object.values(strength)[1]}
                               </Table.Cell>
                               <Table.Cell className="whitespace-nowrap">
                                 <div className="flex flex-col gap-2">
                                   {teamHome.players.filter(
                                     player =>
-                                      player.position == weakness.position,
+                                      player.position == strength.position,
                                   ).length == 0
                                     ? 'No Players'
                                     : teamHome.players
                                         .filter(
                                           player =>
                                             player.position ==
-                                            weakness.position,
+                                            strength.position,
                                         )
                                         .map((player, index) => (
                                           <div key={index}>
@@ -328,7 +324,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                     </Table.Root>
                   </div>
                 )}
-                {homeWeakness.length > 0 && (
+                {homeStrengths.length > 0 && (
                   <div className="flex flex-col gap-2">
                     <div
                       className="w-full text-center font-bold rounded-sm"
@@ -355,28 +351,28 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                         </Table.Row>
                       </Table.Header>
                       <Table.Body className="text-white">
-                        {homeWeakness.map((weakness, index) => {
+                        {homeStrengths.map((strength, index) => {
                           return (
                             <Table.Row key={index} style={{ color: 'white' }}>
-                              <Table.Cell>{weakness.position}</Table.Cell>
+                              <Table.Cell>{strength.position}</Table.Cell>
                               <Table.Cell>
-                                {Object.keys(weakness)[1].split('-')[0]}
+                                {Object.keys(strength)[1].split('-')[0]}
                               </Table.Cell>
                               <Table.Cell>
-                                {Object.values(weakness)[1]}
+                                {Object.values(strength)[1]}
                               </Table.Cell>
                               <Table.Cell className="whitespace-nowrap">
                                 <div className="flex flex-col gap-2">
                                   {teamAway.players.filter(
                                     player =>
-                                      player.position == weakness.position,
+                                      player.position == strength.position,
                                   ).length == 0
                                     ? 'No Players'
                                     : teamAway.players
                                         .filter(
                                           player =>
                                             player.position ==
-                                            weakness.position,
+                                            strength.position,
                                         )
                                         .map((player, index) => (
                                           <div key={index}>
@@ -395,7 +391,6 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
               </div>
             </>
           }
-
           <Dialog.Close>
             <Button onClick={handleButtonClick} variant="soft" color="gray">
               Close
