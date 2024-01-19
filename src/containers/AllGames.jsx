@@ -21,8 +21,8 @@ export default function Games() {
             </div>
             <AllGamesComp />
             <div className="w-full text-center mt-12 italic text-gray-300 text-sm md:text-base">
-              The next day&apos;s slate of games and all picks refresh at 9PM US
-              Pacific every day.
+              The next day&apos;s slate of games and all picks refresh at 12AM
+              US Eastern every day.
             </div>
           </section>
         </div>
