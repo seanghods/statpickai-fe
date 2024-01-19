@@ -231,7 +231,7 @@ export default function Strengths({ game, teamHome, teamAway }) {
             <Button
               ref={buttonRef}
               onClick={handleButtonClick}
-              style={{ padding: '20px' }}
+              style={isMobile ? { padding: '20px 10px' } : { padding: '20px' }}
               className={` py-2 px-2 md:px-4 cursor-pointer rounded-md p-6 ${
                 tooltipOpen ? 'bg-gray-900' : 'null'
               }`}

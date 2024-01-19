@@ -28,7 +28,7 @@ export default function Game() {
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="font-bold space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
               <h1
-                className={`${colorClass} uppercase font-bold text-3xl mb-6 text-center`}
+                className={`${colorClass} uppercase font-bold text-2xl md:text-3xl mb-6 text-center`}
               >
                 {game.awayTeam.split(' ').slice(-1)}{' '}
                 <span className="text-[#4DE234]">VS</span>{' '}
