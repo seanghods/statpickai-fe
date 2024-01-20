@@ -4,7 +4,7 @@ import LoadingAiModal from './sub-components/LoadingAiModal';
 import slugify from 'slugify';
 import useResponse from '../context/useResponse';
 import toast from 'react-hot-toast';
-import { Table, Tooltip } from '@radix-ui/themes';
+import { Button, Table, Tooltip } from '@radix-ui/themes';
 import Weaknesses from './Weaknesses';
 import Strengths from './Strengths';
 import Injuries from './Injuries';
@@ -104,6 +104,7 @@ export default function GameInfo({ game }) {
       ? setSelectedStat(null)
       : setSelectedStat(e.target.id);
   }
+
   async function handleAnalyze() {
     if (user.username) {
       if (user.isVerified) {
@@ -235,7 +236,7 @@ export default function GameInfo({ game }) {
         <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
       </div>
       <div className="mt-2 italic text-sm md:text-base mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
-        Choose one player, stat, and line to analyze:
+        Choose <strong>one</strong> player, stat, and line to analyze:
       </div>
       <section className="mt-8 md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
         <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
@@ -474,11 +475,11 @@ export default function GameInfo({ game }) {
         </Table.Root>
       </section>
       {!user.username ? (
-        <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
+        <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center mb-3">
           Please log in to analyze your pick.
         </div>
       ) : !user.isVerified ? (
-        <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center">
+        <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center mb-3">
           Please verify your email to analyze a pick. Check your email from
           account registration.
         </div>
@@ -488,16 +489,16 @@ export default function GameInfo({ game }) {
         soon. Thank you for your patience.
       </div> */}
       <div className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:px-8 flex flex-col">
-        <button
+        <Button
           id="analyze"
           // disabled
           onClick={() => handleAnalyze()}
-          className={`font-saira_bold shadow-sm hover:bg-gray-700 shadow-gray-700 text-2xl px-5 py-3 rounded-lg mt-6 ${
+          className={`!bg-indigo-700 hover:!bg-indigo-600 !p-6 !cursor-pointer !shadow-sm !shadow-gray-700 !font-bold mt-6 ${
             loadingAi ? 'bg-gray-400 shadow-gray-500' : 'bg-gray-800'
           } ${!user.username && 'shadow-none'}`}
         >
-          ANALYZE
-        </button>
+          Analyze
+        </Button>
       </div>
     </>
   );
