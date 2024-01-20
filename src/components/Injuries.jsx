@@ -60,6 +60,9 @@ export default function Injuries({ game, teamAway, teamHome }) {
               Team Injuries
             </div>
           </Dialog.Title>
+          <div className="mx-auto max-w-screen-xl text-center text-xs italic">
+            Updated hourly
+          </div>
           {
             <>
               <div className="flex flex-col mx-auto max-w-screen-xl gap-12 mb-5 mt-6">
