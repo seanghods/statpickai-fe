@@ -140,11 +140,18 @@ export default function GameInfo({ game }) {
                     ...prevUser,
                     picksUsed: prevUser.picksUsed - 1,
                   }));
+                } else {
+                  setUser(prevUser => ({
+                    ...prevUser,
+                    responses: [...prevUser.responses, data],
+                  }));
+                  if (data.alreadyHas) {
+                    setUser(prevUser => ({
+                      ...prevUser,
+                      picksUsed: prevUser.picksUsed - 1,
+                    }));
+                  }
                 }
-                setUser(prevUser => ({
-                  ...prevUser,
-                  responses: [...prevUser.responses, data],
-                }));
                 setAnalysisData(data);
                 setAnalysisComplete(true);
               } catch (error) {
