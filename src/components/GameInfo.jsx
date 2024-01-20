@@ -237,8 +237,8 @@ export default function GameInfo({ game }) {
       <div className="mt-2 italic text-sm md:text-base mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
         Choose one player, stat, and line to analyze:
       </div>
-      <section className="mt-8 md:mt-0 mx-auto max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
-        <Table.Root variant="surface" size="2">
+      <section className="mt-8 md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
+        <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell style={colorsAway}>
@@ -281,7 +281,7 @@ export default function GameInfo({ game }) {
               })}
           </Table.Body>
         </Table.Root>
-        <Table.Root variant="surface" size="2">
+        <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell style={colorsHome}>
@@ -325,7 +325,7 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
         <div className="flex flex-col gap-5">
-          <Table.Root variant="surface" size="2">
+          <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
             <Table.Header>
               <Table.Row style={{ color: 'white' }}>
                 <Table.ColumnHeaderCell>Stat</Table.ColumnHeaderCell>
@@ -384,7 +384,7 @@ export default function GameInfo({ game }) {
               })}
             </Table.Body>
           </Table.Root>
-          <Table.Root variant="surface" size="2">
+          <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
             <Table.Header>
               <Table.Row style={{ color: 'white' }}>
                 <Table.ColumnHeaderCell>
@@ -450,7 +450,7 @@ export default function GameInfo({ game }) {
         <Table.Root
           className="w-[70px] max-h-[780px] md:max-h-[700px]"
           variant="surface"
-          size="2"
+          size={isMobile ? '1' : '2'}
         >
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
