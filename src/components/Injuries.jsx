@@ -63,17 +63,19 @@ export default function Injuries({ game, teamAway, teamHome }) {
           {
             <>
               <div className="flex flex-col mx-auto max-w-screen-xl gap-12 mb-5 mt-6">
-                {teamAway.injuries && (
-                  <div className="flex flex-col gap-2">
+                <div className="flex flex-col">
+                  {game.awayTeam && (
                     <div
-                      className={`w-full text-center font-bold rounded-sm`}
+                      className="w-full text-center font-bold rounded-sm"
                       style={{
-                        color: teamAway.secondary_color_hex,
                         backgroundColor: teamAway.primary_color_hex,
+                        color: teamAway.secondary_color_hex,
                       }}
                     >
                       {game.awayTeam}
                     </div>
+                  )}
+                  {teamAway.injuries && (
                     <Table.Root variant="surface" size="1">
                       <Table.Header>
                         <Table.Row style={{ color: 'white' }}>
@@ -87,7 +89,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                         </Table.Row>
                       </Table.Header>
                       <Table.Body className="text-white">
-                        {teamAway.injuries &&
+                        {teamAway.injuries.length > 0 ? (
                           teamAway.injuries.map((player, index) => {
                             return (
                               <>
@@ -95,7 +97,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                   key={index}
                                   style={{ color: 'white' }}
                                 >
-                                  <Table.Cell className="whitespace-nowrap">
+                                  <Table.Cell className="whitespace-nowrap w-[175px]">
                                     {player.full_name}
                                   </Table.Cell>
                                   <Table.Cell>
@@ -104,13 +106,19 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                 </Table.Row>
                               </>
                             );
-                          })}
+                          })
+                        ) : (
+                          <Table.Row>
+                            <Table.Cell>N/A</Table.Cell>
+                            <Table.Cell>No Current Injuries</Table.Cell>
+                          </Table.Row>
+                        )}
                       </Table.Body>
                     </Table.Root>
-                  </div>
-                )}
-                {teamHome.injuries && (
-                  <div className="flex flex-col gap-2">
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  {game.homeTeam && (
                     <div
                       className="w-full text-center font-bold rounded-sm"
                       style={{
@@ -120,6 +128,8 @@ export default function Injuries({ game, teamAway, teamHome }) {
                     >
                       {game.homeTeam}
                     </div>
+                  )}
+                  {teamHome.injuries && (
                     <Table.Root variant="surface" size="1">
                       <Table.Header>
                         <Table.Row style={{ color: 'white' }}>
@@ -133,7 +143,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                         </Table.Row>
                       </Table.Header>
                       <Table.Body className="text-white">
-                        {teamHome.injuries &&
+                        {teamHome.injuries.length > 0 ? (
                           teamHome.injuries.map((player, index) => {
                             return (
                               <>
@@ -141,7 +151,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                   key={index}
                                   style={{ color: 'white' }}
                                 >
-                                  <Table.Cell className="whitespace-nowrap">
+                                  <Table.Cell className="whitespace-nowrap w-[175px]">
                                     {player.full_name}
                                   </Table.Cell>
                                   <Table.Cell>
@@ -150,11 +160,17 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                 </Table.Row>
                               </>
                             );
-                          })}
+                          })
+                        ) : (
+                          <Table.Row>
+                            <Table.Cell>N/A</Table.Cell>
+                            <Table.Cell>No Current Injuries</Table.Cell>
+                          </Table.Row>
+                        )}
                       </Table.Body>
                     </Table.Root>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </>
           }

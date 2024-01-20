@@ -50,181 +50,6 @@ export default function Strengths({ game, teamHome, teamAway }) {
   }, []);
   return (
     <>
-      {/* <div>
-        <Tooltip open={tooltipOpen} onOpenChange={() => {}}>
-          <div
-            className="mx-auto max-w-screen-xl text-center font-bold text-lg my-4"
-            id="test"
-          >
-            <TooltipTrigger asChild>
-              <button
-                ref={buttonRef}
-                onClick={handleButtonClick}
-                className={`hover:bg-gray-900 py-2 px-4 rounded-md ${
-                  tooltipOpen ? 'bg-gray-900' : 'bg-gray-700'
-                }`}
-              >
-                Team Strengths
-                <div className="text-xs">Last 15 Games</div>
-              </button>
-            </TooltipTrigger>
-          </div>
-          <TooltipContent
-            ref={tooltipContentRef}
-            sideOffset={10}
-            className="bg-gray-900 p-3 md:p-10 rounded-lg z-50 cursor-default"
-          >
-            {
-              <>
-                <div className="mx-auto max-w-screen-xl text-center font-bold">
-                  Ranked in Allowed Stat to Opponent Position
-                </div>
-                <div className="mx-auto max-w-screen-xl text-center mb-4 text-sm">
-                  (Top 5 of the NBA Only)
-                </div>
-                <div className="flex flex-col md:flex-row mx-auto max-w-screen-xl gap-12 mb-5">
-                  {awayStrengths.length > 0 && (
-                    <div className="flex flex-col gap-2">
-                      <div
-                        className={`w-full text-center font-bold rounded-sm`}
-                        style={{
-                          color: teamAway.secondary_color_hex,
-                          backgroundColor: teamAway.primary_color_hex,
-                        }}
-                      >
-                        {game.awayTeam}
-                      </div>
-                      <Table.Root variant="surface" size="1">
-                        <Table.Header>
-                          <Table.Row style={{ color: 'white' }}>
-                            <Table.ColumnHeaderCell
-                            // style={{ fontSize: isMobile && '12px' }}
-                            >
-                              Position
-                            </Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>
-                              Stat
-                            </Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>
-                              Rank
-                            </Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>
-                              Opponent Players
-                            </Table.ColumnHeaderCell>
-                          </Table.Row>
-                        </Table.Header>
-                        <Table.Body className="text-white">
-                          {awayStrengths.map((strength, index) => {
-                            return (
-                              <Table.Row key={index} style={{ color: 'white' }}>
-                                <Table.Cell>{strength.position}</Table.Cell>
-                                <Table.Cell>
-                                  {Object.keys(strength)[1].split('-')[0]}
-                                </Table.Cell>
-                                <Table.Cell>
-                                  {Object.values(strength)[1]}
-                                </Table.Cell>
-                                <Table.Cell>
-                                  <div className="flex flex-col gap-2">
-                                    {teamHome.players.filter(
-                                      player =>
-                                        player.position == strength.position,
-                                    ).length == 0
-                                      ? 'No Players'
-                                      : teamHome.players
-                                          .filter(
-                                            player =>
-                                              player.position ==
-                                              strength.position,
-                                          )
-                                          .map((player, index) => (
-                                            <div key={index}>
-                                              {player.full_name}
-                                            </div>
-                                          ))}
-                                  </div>
-                                </Table.Cell>
-                              </Table.Row>
-                            );
-                          })}
-                        </Table.Body>
-                      </Table.Root>
-                    </div>
-                  )}
-                  {homeStrengths.length > 0 && (
-                    <div className="flex flex-col gap-2">
-                      <div
-                        className="w-full text-center font-bold rounded-sm"
-                        style={{
-                          backgroundColor: teamHome.primary_color_hex,
-                          color: teamHome.secondary_color_hex,
-                        }}
-                      >
-                        {game.homeTeam}
-                      </div>
-                      <Table.Root variant="surface" size="1">
-                        <Table.Header>
-                          <Table.Row style={{ color: 'white' }}>
-                            <Table.ColumnHeaderCell
-                            // style={{ fontSize: isMobile && '12px' }}
-                            >
-                              Position
-                            </Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>
-                              Stat
-                            </Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>
-                              Rank
-                            </Table.ColumnHeaderCell>
-                            <Table.ColumnHeaderCell>
-                              Opponent Players
-                            </Table.ColumnHeaderCell>
-                          </Table.Row>
-                        </Table.Header>
-                        <Table.Body className="text-white">
-                          {homeStrengths.map((strength, index) => {
-                            return (
-                              <Table.Row key={index} style={{ color: 'white' }}>
-                                <Table.Cell>{strength.position}</Table.Cell>
-                                <Table.Cell>
-                                  {Object.keys(strength)[1].split('-')[0]}
-                                </Table.Cell>
-                                <Table.Cell>
-                                  {Object.values(strength)[1]}
-                                </Table.Cell>
-                                <Table.Cell>
-                                  <div className="flex flex-col gap-2">
-                                    {teamAway.players.filter(
-                                      player =>
-                                        player.position == strength.position,
-                                    ).length == 0
-                                      ? 'No Players'
-                                      : teamAway.players
-                                          .filter(
-                                            player =>
-                                              player.position ==
-                                              strength.position,
-                                          )
-                                          .map((player, index) => (
-                                            <div key={index}>
-                                              {player.full_name}
-                                            </div>
-                                          ))}
-                                  </div>
-                                </Table.Cell>
-                              </Table.Row>
-                            );
-                          })}
-                        </Table.Body>
-                      </Table.Root>
-                    </div>
-                  )}
-                </div>
-              </>
-            }
-          </TooltipContent>
-        </Tooltip>
-      </div> */}
       <Dialog.Root onOpenChange={() => {}} open={tooltipOpen}>
         <Dialog.Trigger>
           <div className="mx-auto max-w-screen-xl text-center font-bold text-lg my-4">
@@ -264,7 +89,7 @@ export default function Strengths({ game, teamHome, teamAway }) {
               </div>
               <div className="flex flex-col md:flex-row mx-auto max-w-screen-xl gap-12 mb-5">
                 {awayStrengths.length > 0 && (
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col">
                     <div
                       className={`w-full text-center font-bold rounded-sm`}
                       style={{
@@ -379,7 +204,7 @@ export default function Strengths({ game, teamHome, teamAway }) {
                   </div>
                 )}
                 {homeStrengths.length > 0 && (
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col">
                     <div
                       className="w-full text-center font-bold rounded-sm"
                       style={{
