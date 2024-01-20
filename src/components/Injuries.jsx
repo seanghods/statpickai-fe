@@ -80,6 +80,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                       <Table.Header>
                         <Table.Row style={{ color: 'white' }}>
                           {/* style={{ fontSize: isMobile && '12px' }} */}
+                          <Table.ColumnHeaderCell>Date</Table.ColumnHeaderCell>
                           <Table.ColumnHeaderCell>
                             Player
                           </Table.ColumnHeaderCell>
@@ -97,6 +98,10 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                   key={index}
                                   style={{ color: 'white' }}
                                 >
+                                  <Table.Cell className="w-[60px]">
+                                    {player.injuries[0].update_date.slice(5) ||
+                                      player.injuries[0].start_date}
+                                  </Table.Cell>
                                   <Table.Cell className="whitespace-nowrap w-[175px]">
                                     {player.full_name}
                                   </Table.Cell>
@@ -134,6 +139,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                       <Table.Header>
                         <Table.Row style={{ color: 'white' }}>
                           {/* style={{ fontSize: isMobile && '12px' }} */}
+                          <Table.ColumnHeaderCell>Date</Table.ColumnHeaderCell>
                           <Table.ColumnHeaderCell>
                             Player
                           </Table.ColumnHeaderCell>
@@ -151,6 +157,10 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                   key={index}
                                   style={{ color: 'white' }}
                                 >
+                                  <Table.Cell className="w-[60px]">
+                                    {player.injuries[0].update_date.slice(5) ||
+                                      player.injuries[0].start_date}
+                                  </Table.Cell>
                                   <Table.Cell className="whitespace-nowrap w-[175px]">
                                     {player.full_name}
                                   </Table.Cell>
