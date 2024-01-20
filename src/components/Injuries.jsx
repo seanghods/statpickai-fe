@@ -102,7 +102,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                     {player.injuries[0].update_date.slice(5) ||
                                       player.injuries[0].start_date}
                                   </Table.Cell>
-                                  <Table.Cell className="whitespace-nowrap w-[175px]">
+                                  <Table.Cell className="md:w-[175px]">
                                     {player.full_name}
                                   </Table.Cell>
                                   <Table.Cell>
@@ -161,7 +161,7 @@ export default function Injuries({ game, teamAway, teamHome }) {
                                     {player.injuries[0].update_date.slice(5) ||
                                       player.injuries[0].start_date}
                                   </Table.Cell>
-                                  <Table.Cell className="whitespace-nowrap w-[175px]">
+                                  <Table.Cell className="md:w-[175px]">
                                     {player.full_name}
                                   </Table.Cell>
                                   <Table.Cell>
