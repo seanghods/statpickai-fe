@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { Table, Tooltip } from '@radix-ui/themes';
 import Weaknesses from './Weaknesses';
 import Strengths from './Strengths';
+import Injuries from './Injuries';
 
 export default function GameInfo({ game }) {
   const {
@@ -223,9 +224,15 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
       </div>
-      <div className="mx-auto max-w-screen-xl flex md:flex-row gap-6 md:gap-12">
+      <div className="mx-auto max-w-screen-xl flex md:flex-row gap-6 md:gap-12 justify-center">
         <Strengths game={game} teamHome={teamHome} teamAway={teamAway} />
+        <div className="hidden md:flex items-center">
+          <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
+        </div>
         <Weaknesses game={game} teamHome={teamHome} teamAway={teamAway} />
+      </div>
+      <div className="injuries mx-auto max-w-screen-xl md:hidden">
+        <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
       </div>
       <div className="mt-2 italic text-sm md:text-base mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
         Choose one player, stat, and line to analyze:
