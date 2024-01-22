@@ -76,7 +76,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
           <Dialog.Title>
             <div className="text-lg w-full font-bold leading-6 flex justify-center items-center border-b-2 border-gray-400 pb-2">
               <div className="flex-1"></div>
-              <div className="flex-1">Weaknesses</div>
+              <div className="flex-1 text-center">Weaknesses</div>
               <div className="flex-1 flex justify-end">
                 <Dialog.Close>
                   <Button
