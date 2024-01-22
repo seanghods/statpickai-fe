@@ -225,7 +225,18 @@ export default function AiResponse() {
                                             <Table.Cell>
                                               <strong>{stat[0]}</strong>
                                             </Table.Cell>
-                                            <Table.Cell>{stat[1]}</Table.Cell>
+                                            <Table.Cell>
+                                              {stat[0].includes('Rank') ? (
+                                                <>
+                                                  <strong>{stat[1]}</strong>{' '}
+                                                  <span className="text-xs">
+                                                    / 30
+                                                  </span>
+                                                </>
+                                              ) : (
+                                                stat[1]
+                                              )}
+                                            </Table.Cell>
                                           </Table.Row>
                                         );
                                       })}
