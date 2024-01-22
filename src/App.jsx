@@ -128,10 +128,10 @@ function App() {
         <div className="mx-auto max-w-screen-xl !absolute top-20 cursor-default select-none"> */}
       <Marquee
         className="!absolute top-20 cursor-default select-none"
-        speed="125"
+        speed="100"
         gradient={false}
       >
-        <div className="flex gap-48 text-base md:text-lg brightness-150">
+        <div className="flex gap-72 text-base md:text-lg brightness-150">
           {popularPicks.map((pick, index) => (
             <p key={index} className={getRandomClassName()}>
               {pick}
