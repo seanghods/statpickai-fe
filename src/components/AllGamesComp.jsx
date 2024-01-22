@@ -27,7 +27,7 @@ export default function AllGamesComp() {
           <LoadingIcon />
         </div>
       ) : (
-        <Table.Root className="mt-12 md:mt-24" variant="surface" size="2">
+        <Table.Root className="mt-6 md:mt-24" variant="surface" size="2">
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell style={{ fontSize: isMobile && '12px' }}>

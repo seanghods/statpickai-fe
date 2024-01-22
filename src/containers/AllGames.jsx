@@ -15,12 +15,14 @@ export default function Games() {
         <div className="flex-1">
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl px-4 items-center gap-12 md:px-8 flex-1">
             <div className="md:mb-24 space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className={`text-cyan-400 font-bold text-3xl text-center`}>
+              <h1
+                className={`text-cyan-400 font-bold text-2xl md:text-3xl text-center`}
+              >
                 Games
               </h1>
             </div>
             <AllGamesComp />
-            <div className="w-full text-center mt-12 italic text-gray-300 text-sm md:text-base">
+            <div className="w-full text-center mt-6 italic text-gray-300 text-sm md:text-base">
               The next day&apos;s slate of games and all picks refresh at 12AM
               US Eastern every day.
             </div>

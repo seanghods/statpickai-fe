@@ -57,7 +57,21 @@ export default function Injuries({ game, teamAway, teamHome }) {
         >
           <Dialog.Title>
             <div className="text-lg w-full font-bold leading-6 flex justify-center items-center border-b-2 border-gray-400 pb-2">
-              Team Injuries
+              <div className="flex-1"></div>
+              <div className="flex-1 text-center whitespace-nowrap">
+                Team Injuries
+              </div>
+              <div className="flex-1 flex justify-end">
+                <Dialog.Close>
+                  <Button
+                    onClick={handleButtonClick}
+                    variant="soft"
+                    color="gray"
+                  >
+                    <span className="text-xs text-gray-400">X</span>
+                  </Button>
+                </Dialog.Close>
+              </div>
             </div>
           </Dialog.Title>
           <div className="mx-auto max-w-screen-xl text-center text-xs italic">

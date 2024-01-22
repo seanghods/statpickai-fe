@@ -125,9 +125,21 @@ export default function AiResponse() {
     const sanitizedHtml = DOMPurify.sanitize(withStrongTags);
     return <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />;
   }
-  const finalMessage = response.message
-    .split('\n')
-    .map((line, index) => <div key={index}>{renderFormattedText(line)}</div>);
+  const final = response.message.split('\n');
+  const finalMessage = final.map((line, index) => {
+    return index == 0 ? (
+      <div className="border-b-2 border-gray-700 p-3" key={index}>
+        {renderFormattedText(line)}
+      </div>
+    ) : index == final.length - 1 ? (
+      <div className="border-t-2 border-gray-700 p-3">
+        {renderFormattedText(line)}
+      </div>
+    ) : (
+      <div key={index}>{renderFormattedText(line)}</div>
+    );
+  });
+
   return (
     <>
       <ScrollToTop />
@@ -145,7 +157,7 @@ export default function AiResponse() {
           <section className="mt-10 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
               <h1
-                className={`ticker-two font-bold text-3xl mb-14 text-center brightness-125`}
+                className={`ticker-three font-bold text-2xl md:text-3xl md:mb-10 text-center brightness-125`}
               >
                 {response.message ? (
                   <div>
@@ -172,7 +184,7 @@ export default function AiResponse() {
                     user.responses.some(obj => obj._id === id) ? (
                       <>
                         {response.fullStats.length > 0 && (
-                          <div className="flex flex-col md:grid grid-cols-3 gap-2 border-2 p-3 rounded-lg border-gray-300">
+                          <div className="flex flex-col md:grid grid-cols-3 gap-2 border-2 p-3 rounded-lg border-gray-700">
                             {response.fullStats.map((column, index) => {
                               return (
                                 <div
@@ -181,15 +193,15 @@ export default function AiResponse() {
                                 >
                                   <div className="w-full text-center">
                                     {index == '0' ? (
-                                      <strong className="ticker-three brightness-125 text-xl">
+                                      <strong className="ticker-three brightness-125 text-lg md:text-xl">
                                         {response.player}
                                       </strong>
                                     ) : index == '1' ? (
-                                      <strong className="ticker-one brightness-125 text-xl">
+                                      <strong className="ticker-one brightness-125 text-lg md:text-xl">
                                         {response.playerTeam}
                                       </strong>
                                     ) : (
-                                      <strong className="ticker-two brightness-125 text-xl">
+                                      <strong className="ticker-two brightness-125 text-lg md:text-xl">
                                         {response.opponentTeam}
                                       </strong>
                                     )}

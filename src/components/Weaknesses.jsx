@@ -75,7 +75,19 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
         >
           <Dialog.Title>
             <div className="text-lg w-full font-bold leading-6 flex justify-center items-center border-b-2 border-gray-400 pb-2">
-              Weaknesses
+              <div className="flex-1"></div>
+              <div className="flex-1">Weaknesses</div>
+              <div className="flex-1 flex justify-end">
+                <Dialog.Close>
+                  <Button
+                    onClick={handleButtonClick}
+                    variant="soft"
+                    color="gray"
+                  >
+                    <span className="text-xs text-gray-400">X</span>
+                  </Button>
+                </Dialog.Close>
+              </div>
             </div>
           </Dialog.Title>
           {
