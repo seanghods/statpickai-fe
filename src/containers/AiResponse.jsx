@@ -7,7 +7,7 @@ import { ScrollToTop, capitalize } from '../utils/helpers';
 import useResponse from '../context/useResponse';
 import { LoadingIcon } from '../components/sub-components/Icons';
 import DOMPurify from 'dompurify';
-import { Button } from '@radix-ui/themes';
+import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 
 export default function AiResponse() {
@@ -179,32 +179,46 @@ export default function AiResponse() {
                                   key={index}
                                   className="flex flex-col gap-3"
                                 >
-                                  {index == '0' ? (
-                                    <strong className="ticker-three brightness-125 text-xl">
-                                      {response.player}
-                                    </strong>
-                                  ) : index == '1' ? (
-                                    <strong className="ticker-one brightness-125 text-xl">
-                                      {response.playerTeam}
-                                    </strong>
-                                  ) : (
-                                    <strong className="ticker-two brightness-125 text-xl">
-                                      {response.opponentTeam}
-                                    </strong>
-                                  )}
-                                  {column.map((stat, index) => {
-                                    return (
-                                      <div key={index}>
-                                        {
-                                          <>
-                                            <strong>{stat[0]}</strong>
-                                            {': '}
-                                            {stat[1]}
-                                          </>
-                                        }
-                                      </div>
-                                    );
-                                  })}
+                                  <div className="w-full text-center">
+                                    {index == '0' ? (
+                                      <strong className="ticker-three brightness-125 text-xl">
+                                        {response.player}
+                                      </strong>
+                                    ) : index == '1' ? (
+                                      <strong className="ticker-one brightness-125 text-xl">
+                                        {response.playerTeam}
+                                      </strong>
+                                    ) : (
+                                      <strong className="ticker-two brightness-125 text-xl">
+                                        {response.opponentTeam}
+                                      </strong>
+                                    )}
+                                  </div>
+                                  <Table.Root variant="surface" size="1">
+                                    <Table.Header>
+                                      <Table.Row style={{ color: 'white' }}>
+                                        {/* style={{ fontSize: isMobile && '12px' }} */}
+                                        <Table.ColumnHeaderCell>
+                                          Stat Description
+                                        </Table.ColumnHeaderCell>
+                                        <Table.ColumnHeaderCell>
+                                          Stat
+                                        </Table.ColumnHeaderCell>
+                                      </Table.Row>
+                                    </Table.Header>
+                                    <Table.Body className="text-white">
+                                      {column.map((stat, index) => {
+                                        return (
+                                          <Table.Row key={index}>
+                                            <Table.Cell>
+                                              <strong>{stat[0]}</strong>
+                                            </Table.Cell>
+                                            <Table.Cell>{stat[1]}</Table.Cell>
+                                          </Table.Row>
+                                        );
+                                      })}
+                                    </Table.Body>
+                                  </Table.Root>
                                 </div>
                               );
                             })}
