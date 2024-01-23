@@ -30,6 +30,19 @@ export default function Injuries({ game, teamAway, teamHome }) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [tooltipOpen]);
+  function compareDates(date1, date2) {
+    const [year1, month1, day1] = date1.split('-').map(Number);
+    const [year2, month2, day2] = date2.split('-').map(Number);
+
+    if (year1 !== year2) {
+      return year2 - year1;
+    } else if (month1 !== month2) {
+      return month2 - month1;
+    } else {
+      return day2 - day1;
+    }
+  }
+
   return (
     <>
       <Dialog.Root onOpenChange={() => {}} open={tooltipOpen}>
@@ -108,27 +121,35 @@ export default function Injuries({ game, teamAway, teamHome }) {
                       </Table.Header>
                       <Table.Body className="text-white">
                         {teamAway.injuries.length > 0 ? (
-                          teamAway.injuries.map((player, index) => {
-                            return (
-                              <>
-                                <Table.Row
-                                  key={index}
-                                  style={{ color: 'white' }}
-                                >
-                                  <Table.Cell className="w-[60px]">
-                                    {player.injuries[0].update_date.slice(5) ||
-                                      player.injuries[0].start_date}
-                                  </Table.Cell>
-                                  <Table.Cell className="md:w-[175px]">
-                                    {player.full_name}
-                                  </Table.Cell>
-                                  <Table.Cell>
-                                    {player.injuries[0].comment}
-                                  </Table.Cell>
-                                </Table.Row>
-                              </>
-                            );
-                          })
+                          teamAway.injuries
+                            .sort((a, b) =>
+                              compareDates(
+                                a.injuries[0].update_date,
+                                b.injuries[0].update_date,
+                              ),
+                            )
+                            .map((player, index) => {
+                              return (
+                                <>
+                                  <Table.Row
+                                    key={index}
+                                    style={{ color: 'white' }}
+                                  >
+                                    <Table.Cell className="w-[60px]">
+                                      {player.injuries[0].update_date.slice(
+                                        5,
+                                      ) || player.injuries[0].start_date}
+                                    </Table.Cell>
+                                    <Table.Cell className="md:w-[175px]">
+                                      {player.full_name}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                      {player.injuries[0].comment}
+                                    </Table.Cell>
+                                  </Table.Row>
+                                </>
+                              );
+                            })
                         ) : (
                           <Table.Row>
                             <Table.Cell>N/A</Table.Cell>
@@ -167,27 +188,35 @@ export default function Injuries({ game, teamAway, teamHome }) {
                       </Table.Header>
                       <Table.Body className="text-white">
                         {teamHome.injuries.length > 0 ? (
-                          teamHome.injuries.map((player, index) => {
-                            return (
-                              <>
-                                <Table.Row
-                                  key={index}
-                                  style={{ color: 'white' }}
-                                >
-                                  <Table.Cell className="w-[60px]">
-                                    {player.injuries[0].update_date.slice(5) ||
-                                      player.injuries[0].start_date}
-                                  </Table.Cell>
-                                  <Table.Cell className="md:w-[175px]">
-                                    {player.full_name}
-                                  </Table.Cell>
-                                  <Table.Cell>
-                                    {player.injuries[0].comment}
-                                  </Table.Cell>
-                                </Table.Row>
-                              </>
-                            );
-                          })
+                          teamHome.injuries
+                            .sort((a, b) =>
+                              compareDates(
+                                a.injuries[0].update_date,
+                                b.injuries[0].update_date,
+                              ),
+                            )
+                            .map((player, index) => {
+                              return (
+                                <>
+                                  <Table.Row
+                                    key={index}
+                                    style={{ color: 'white' }}
+                                  >
+                                    <Table.Cell className="w-[60px]">
+                                      {player.injuries[0].update_date.slice(
+                                        5,
+                                      ) || player.injuries[0].start_date}
+                                    </Table.Cell>
+                                    <Table.Cell className="md:w-[175px]">
+                                      {player.full_name}
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                      {player.injuries[0].comment}
+                                    </Table.Cell>
+                                  </Table.Row>
+                                </>
+                              );
+                            })
                         ) : (
                           <Table.Row>
                             <Table.Cell>N/A</Table.Cell>
