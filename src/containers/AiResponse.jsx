@@ -184,67 +184,79 @@ export default function AiResponse() {
                     user.responses.some(obj => obj._id === id) ? (
                       <>
                         {response.fullStats.length > 0 && (
-                          <div className="flex flex-col md:grid grid-cols-3 gap-2 border-2 p-3 rounded-lg border-gray-700">
-                            {response.fullStats.map((column, index) => {
-                              return (
-                                <div
-                                  key={index}
-                                  className="flex flex-col gap-3"
-                                >
-                                  <div className="w-full text-center">
-                                    {index == '0' ? (
-                                      <strong className="ticker-three brightness-125 text-lg md:text-xl">
-                                        {response.player}
-                                      </strong>
-                                    ) : index == '1' ? (
-                                      <strong className="ticker-one brightness-125 text-lg md:text-xl">
-                                        {response.playerTeam}
-                                      </strong>
-                                    ) : (
-                                      <strong className="ticker-two brightness-125 text-lg md:text-xl">
-                                        {response.opponentTeam}
-                                      </strong>
-                                    )}
+                          <div className="border-2 border-gray-700">
+                            <div className="flex flex-col md:grid grid-cols-3 gap-2 p-3 rounded-lg border-gray-700">
+                              {response.fullStats.map((column, index) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="flex flex-col gap-3"
+                                  >
+                                    <div className="w-full text-center">
+                                      {index == '0' ? (
+                                        <strong className="ticker-three brightness-125 text-lg md:text-xl">
+                                          {response.player}
+                                        </strong>
+                                      ) : index == '1' ? (
+                                        <strong className="ticker-one brightness-125 text-lg md:text-xl">
+                                          {response.playerTeam}
+                                        </strong>
+                                      ) : (
+                                        <strong className="ticker-two brightness-125 text-lg md:text-xl">
+                                          {response.opponentTeam}
+                                        </strong>
+                                      )}
+                                    </div>
+                                    <Table.Root variant="surface" size="1">
+                                      <Table.Header>
+                                        <Table.Row style={{ color: 'white' }}>
+                                          {/* style={{ fontSize: isMobile && '12px' }} */}
+                                          <Table.ColumnHeaderCell>
+                                            Stat Description
+                                          </Table.ColumnHeaderCell>
+                                          <Table.ColumnHeaderCell>
+                                            Stat
+                                          </Table.ColumnHeaderCell>
+                                        </Table.Row>
+                                      </Table.Header>
+                                      <Table.Body className="text-white">
+                                        {column.map((stat, index) => {
+                                          return (
+                                            <Table.Row key={index}>
+                                              <Table.Cell>
+                                                <strong>{stat[0]}</strong>
+                                              </Table.Cell>
+                                              <Table.Cell>
+                                                {stat[0].includes('Rank') ? (
+                                                  <>
+                                                    <strong>{stat[1]}</strong>{' '}
+                                                    <span className="text-xs">
+                                                      / 30
+                                                    </span>
+                                                  </>
+                                                ) : (
+                                                  stat[1]
+                                                )}
+                                              </Table.Cell>
+                                            </Table.Row>
+                                          );
+                                        })}
+                                      </Table.Body>
+                                    </Table.Root>
                                   </div>
-                                  <Table.Root variant="surface" size="1">
-                                    <Table.Header>
-                                      <Table.Row style={{ color: 'white' }}>
-                                        {/* style={{ fontSize: isMobile && '12px' }} */}
-                                        <Table.ColumnHeaderCell>
-                                          Stat Description
-                                        </Table.ColumnHeaderCell>
-                                        <Table.ColumnHeaderCell>
-                                          Stat
-                                        </Table.ColumnHeaderCell>
-                                      </Table.Row>
-                                    </Table.Header>
-                                    <Table.Body className="text-white">
-                                      {column.map((stat, index) => {
-                                        return (
-                                          <Table.Row key={index}>
-                                            <Table.Cell>
-                                              <strong>{stat[0]}</strong>
-                                            </Table.Cell>
-                                            <Table.Cell>
-                                              {stat[0].includes('Rank') ? (
-                                                <>
-                                                  <strong>{stat[1]}</strong>{' '}
-                                                  <span className="text-xs">
-                                                    / 30
-                                                  </span>
-                                                </>
-                                              ) : (
-                                                stat[1]
-                                              )}
-                                            </Table.Cell>
-                                          </Table.Row>
-                                        );
-                                      })}
-                                    </Table.Body>
-                                  </Table.Root>
-                                </div>
-                              );
-                            })}
+                                );
+                              })}
+                            </div>
+                            <div className="flex flex-col w-full items-end pl-2 md:pl-0 pr-2 text-xs md:text-sm italic">
+                              <div className="text-right">
+                                L10 = Last 10 Games{' '}
+                                <span className="hidden md:inline-flex">|</span>{' '}
+                                <br className="md:hidden" /> L15 = Last 15 Games{' '}
+                                <span className="hidden md:inline-flex">|</span>{' '}
+                                <br className="md:hidden" />
+                                SZN = This Season
+                              </div>
+                            </div>
                           </div>
                         )}
                         <div className="md:mx-28 flex flex-col gap-4 p-4 md:p-12Z">
