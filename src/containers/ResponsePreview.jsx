@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Header, Footer } from '../components';
 import { ScrollToTop } from '../utils/helpers';
-import { Button } from '@radix-ui/themes';
+import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 
 export default function Preview() {
@@ -50,7 +50,9 @@ export default function Preview() {
         <div className="flex-1">
           <section className="mt-10 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-              <h1 className={`ticker-two font-bold text-3xl mb-14 text-center`}>
+              <h1
+                className={`ticker-three font-bold text-2xl md:text-3xl md:mb-10 text-center brightness-125`}
+              >
                 <div>
                   Lebron James <br className="md:hidden" />
                   +/- 7.5 Assists
@@ -62,42 +64,77 @@ export default function Preview() {
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>
               <div className="flex-1 md:mx-10 flex md:text-lg rounded-lg flex-col justify-center items-center gap-4">
-                <div className="flex flex-col md:grid grid-cols-3 gap-2 border-2 p-3 rounded-lg border-gray-300">
-                  {stats.map((column, index) => {
-                    return (
-                      <div key={index} className="flex flex-col gap-3">
-                        {index == '0' ? (
-                          <strong className="ticker-three brightness-125 text-xl">
-                            LeBron James
-                          </strong>
-                        ) : index == '1' ? (
-                          <strong className="ticker-one brightness-125 text-xl">
-                            Los Angeles Lakers
-                          </strong>
-                        ) : (
-                          <strong className="ticker-two brightness-125 text-xl">
-                            New York Knicks
-                          </strong>
-                        )}
-                        {column.map((stat, index) => {
-                          return (
-                            <div key={index}>
-                              {
-                                <>
-                                  <strong>{stat[0]}</strong>
-                                  {': '}
-                                  {stat[1]}
-                                </>
-                              }
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
+                <div className="border-2 border-gray-700">
+                  <div className="flex flex-col md:grid grid-cols-3 gap-2 p-3 rounded-lg border-gray-700">
+                    {stats.map((column, index) => {
+                      return (
+                        <div key={index} className="flex flex-col gap-3">
+                          <div className="w-full text-center">
+                            {index == '0' ? (
+                              <strong className="ticker-three brightness-125 text-lg md:text-xl">
+                                LeBron James
+                              </strong>
+                            ) : index == '1' ? (
+                              <strong className="ticker-one brightness-125 text-lg md:text-xl">
+                                Los Angeles Lakers
+                              </strong>
+                            ) : (
+                              <strong className="ticker-two brightness-125 text-lg md:text-xl">
+                                New York Knicks
+                              </strong>
+                            )}
+                          </div>
+                          <Table.Root variant="surface" size="1">
+                            <Table.Header>
+                              <Table.Row style={{ color: 'white' }}>
+                                {/* style={{ fontSize: isMobile && '12px' }} */}
+                                <Table.ColumnHeaderCell>
+                                  Stat Description
+                                </Table.ColumnHeaderCell>
+                                <Table.ColumnHeaderCell>
+                                  Stat
+                                </Table.ColumnHeaderCell>
+                              </Table.Row>
+                            </Table.Header>
+                            <Table.Body className="text-white">
+                              {column.map((stat, index) => {
+                                return (
+                                  <Table.Row key={index}>
+                                    <Table.Cell>
+                                      <strong>{stat[0]}</strong>
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                      {stat[0].includes('Rank') ? (
+                                        <>
+                                          <strong>{stat[1]}</strong>{' '}
+                                          <span className="text-xs">/ 30</span>
+                                        </>
+                                      ) : (
+                                        stat[1]
+                                      )}
+                                    </Table.Cell>
+                                  </Table.Row>
+                                );
+                              })}
+                            </Table.Body>
+                          </Table.Root>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="flex flex-col w-full items-end pl-2 md:pl-0 pr-2 text-xs md:text-sm italic">
+                    <div className="text-right">
+                      L10 = Last 10 Games{' '}
+                      <span className="hidden md:inline-flex">|</span>{' '}
+                      <br className="md:hidden" /> L15 = Last 15 Games{' '}
+                      <span className="hidden md:inline-flex">|</span>{' '}
+                      <br className="md:hidden" />
+                      SZN = This Season
+                    </div>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-4 p-4 md:p-12Z md:mx-28">
-                  <p>
+                  <p className="font-bold border-b-2 border-gray-700 py-3">
                     Based on the data provided, my analysis points toward LeBron
                     James likely going{' '}
                     <strong>over the 7.5 assists line</strong> against the New
@@ -193,7 +230,7 @@ export default function Preview() {
                       </li>
                     </ul>
                   </p>
-                  <p>
+                  <p className="font-bold border-t-2 border-gray-700 pt-2">
                     Taking all this into account, while LeBron&apos;s assist
                     percentage and his team assists ranks are low, his recent
                     performance and historical data against the Knicks indicate
