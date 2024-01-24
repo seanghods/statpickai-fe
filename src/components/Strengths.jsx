@@ -97,7 +97,7 @@ export default function Strengths({ game, teamHome, teamAway }) {
                 Ranked in Allowed Stat to Opponent Position
               </div>
               <div className="mx-auto max-w-screen-xl text-center mb-4 text-sm">
-                (Top 5 of the NBA Only)
+                (Top 5 of the NBA Only) - Look for Unders
               </div>
               <div className="flex flex-col md:flex-row mx-auto max-w-screen-xl gap-12 mb-5">
                 {awayStrengths.length > 0 && (

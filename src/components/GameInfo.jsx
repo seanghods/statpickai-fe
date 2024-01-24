@@ -241,7 +241,7 @@ export default function GameInfo({ game }) {
         </Table.Root>
       </div>
       <div className="mx-auto max-w-screen-xl w-full text-center italic mt-3">
-        View matchups:
+        View matchups / potential picks:
       </div>
       <div className="mx-auto max-w-screen-xl flex md:flex-row gap-6 md:gap-12 justify-center">
         <Strengths game={game} teamHome={teamHome} teamAway={teamAway} />

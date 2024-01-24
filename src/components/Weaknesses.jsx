@@ -96,7 +96,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                 Ranked in Allowed Stat to Opponent Position
               </div>
               <div className="mx-auto max-w-screen-xl text-center mb-4 text-sm">
-                (Bottom Half of the NBA Only)
+                (Bottom Half of the NBA Only) - Look for Overs
               </div>
               <div className="flex flex-col md:flex-row mx-auto max-w-screen-xl gap-12 mb-5">
                 {awayWeakness.length > 0 && (
