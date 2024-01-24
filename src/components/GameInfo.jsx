@@ -242,7 +242,7 @@ export default function GameInfo({ game }) {
       <div className="mt-10 mx-auto max-w-screen-xl w-full text-center italic font-bold">
         To Analyze a Prop:
       </div>
-      <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-1 md:gap-6 lg:gap-12 flex-1 flex lg:px-12 select-none justify-center">
+      <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-4 md:gap-6 lg:gap-10 flex-1 flex lg:px-12 select-none justify-center">
         <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
           <div>Select one player from either team</div>
           <div className="flex gap-24 md:gap-72 justify-center">
@@ -251,8 +251,10 @@ export default function GameInfo({ game }) {
           </div>
         </div>
         {/* <div className="w-[75px]"></div> */}
-        <div className="italic text-sm md:text-base pl-8 md:pl-8 lg:pl-0 lg:text-left text-center md:whitespace-nowrap">
-          <div>Select one stat</div>
+        <div className="italic text-sm md:text-base pl-6 md:pl-8 lg:pl-2 lg:text-left text-center md:whitespace-nowrap">
+          <div>
+            Select <span className="hidden md:inline-block">one</span> stat
+          </div>
           <div className="flex justify-center">
             <ArrowCircleDownIcon />
           </div>
@@ -261,7 +263,7 @@ export default function GameInfo({ game }) {
           <div>
             Select <span className="hidden md:inline-block">one</span> line
           </div>
-          <div className="pl-2 flex justify-center">
+          <div className="pl-2 lg:pl-0 flex justify-center">
             <ArrowCircleDownIcon />
           </div>
         </div>
