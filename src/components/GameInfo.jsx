@@ -9,6 +9,7 @@ import Weaknesses from './Weaknesses';
 import Strengths from './Strengths';
 import Injuries from './Injuries';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 export default function GameInfo({ game }) {
   const {
@@ -22,6 +23,7 @@ export default function GameInfo({ game }) {
   } = useResponse();
   const [teamHome, setTeamHome] = useState({ players: [] });
   const [teamAway, setTeamAway] = useState({ players: [] });
+  const [selectedTeam, setSelectedTeam] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedStat, setSelectedStat] = useState();
   const [line, setLine] = useState();
@@ -96,9 +98,21 @@ export default function GameInfo({ game }) {
     fetchPlayers();
   }, []);
   function handlePlayerClick(e) {
-    selectedPlayer == e.target.id
-      ? setSelectedPlayer(null)
-      : setSelectedPlayer(e.target.id);
+    if (selectedPlayer == e.target.id) {
+      setSelectedTeam(null);
+      setSelectedPlayer(null);
+    } else {
+      let awaySelected = false;
+      for (const each of teamAway.players) {
+        if (e.target.id == slugify(each.full_name, { lower: true })) {
+          setSelectedTeam('away');
+          awaySelected = true;
+          break;
+        }
+      }
+      if (!awaySelected) setSelectedTeam('home');
+      setSelectedPlayer(e.target.id);
+    }
   }
   function handleStatClick(e) {
     selectedStat == e.target.id
@@ -246,8 +260,22 @@ export default function GameInfo({ game }) {
         <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
           <div>Select one player from either team</div>
           <div className="flex gap-24 md:gap-72 justify-center">
-            <ArrowCircleDownIcon />
-            <ArrowCircleDownIcon />
+            {!selectedPlayer ? (
+              <>
+                <ArrowCircleDownIcon />
+                <ArrowCircleDownIcon />
+              </>
+            ) : selectedTeam == 'away' ? (
+              <>
+                <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+                <ArrowCircleDownIcon className="brightness-50" />
+              </>
+            ) : (
+              <>
+                <ArrowCircleDownIcon className="brightness-50" />
+                <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+              </>
+            )}
           </div>
         </div>
         {/* <div className="w-[75px]"></div> */}
@@ -256,15 +284,23 @@ export default function GameInfo({ game }) {
             Select <span className="hidden md:inline-block">one</span> stat
           </div>
           <div className="flex justify-center">
-            <ArrowCircleDownIcon />
+            {selectedStat ? (
+              <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+            ) : (
+              <ArrowCircleDownIcon />
+            )}
           </div>
         </div>
         <div className="italic text-sm md:text-base lg:text-left text-center md:whitespace-nowrap md:pl-4 lg:pl-0">
           <div>
             Select <span className="hidden md:inline-block">one</span> line
           </div>
-          <div className="pl-2 lg:pl-0 flex justify-center">
-            <ArrowCircleDownIcon />
+          <div className="lg:pl-0 flex justify-center">
+            {line ? (
+              <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+            ) : (
+              <ArrowCircleDownIcon />
+            )}
           </div>
         </div>
       </div>
