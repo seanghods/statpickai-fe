@@ -158,14 +158,15 @@ export default function GameInfo({ game }) {
                     picksUsed: prevUser.picksUsed - 1,
                   }));
                 } else {
-                  setUser(prevUser => ({
-                    ...prevUser,
-                    responses: [...prevUser.responses, data],
-                  }));
                   if (data.alreadyHas) {
                     setUser(prevUser => ({
                       ...prevUser,
                       picksUsed: prevUser.picksUsed - 1,
+                    }));
+                  } else {
+                    setUser(prevUser => ({
+                      ...prevUser,
+                      responses: [...prevUser.responses, data],
                     }));
                   }
                 }
