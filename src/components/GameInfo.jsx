@@ -253,7 +253,7 @@ export default function GameInfo({ game }) {
       <div className="injuries mx-auto max-w-screen-xl md:hidden">
         <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
       </div>
-      <div className="mt-10 mx-auto max-w-screen-xl w-full text-center italic font-bold">
+      <div className="mt-6 mx-auto max-w-screen-xl w-full text-center italic font-bold">
         To Analyze a Prop:
       </div>
       <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-4 md:gap-6 lg:gap-10 flex-1 flex lg:px-12 select-none justify-center">
