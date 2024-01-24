@@ -51,12 +51,12 @@ export default function Injuries({ game, teamAway, teamHome }) {
             <Button
               ref={buttonRef}
               onClick={handleButtonClick}
-              style={isMobile ? { padding: '20px 10px' } : { padding: '20px' }}
+              style={isMobile ? { padding: '18px 10px' } : { padding: '20px' }}
               className={` py-2 px-2 md:px-4 cursor-pointer rounded-md p-6 ${
                 tooltipOpen ? 'bg-gray-900' : 'null'
               }`}
             >
-              <div className="flex flex-col">
+              <div className="flex flex-col text-xs md:text-sm">
                 <div>Team Injuries</div>
               </div>
             </Button>

@@ -57,13 +57,15 @@ export default function Strengths({ game, teamHome, teamAway }) {
               ref={buttonRef}
               onClick={handleButtonClick}
               style={isMobile ? { padding: '20px 10px' } : { padding: '20px' }}
-              className={` py-2 px-2 md:px-4 cursor-pointer rounded-md p-6 w-[142px] md:w-[165px] ${
+              className={` py-2 px-2 md:px-4 cursor-pointer rounded-md p-6 w-[130px] md:w-[165px]  ${
                 tooltipOpen ? 'bg-gray-900' : 'null'
               }`}
             >
-              <div className="flex flex-col">
+              <div className="flex flex-col text-xs md:text-sm">
                 <div>Team Strengths</div>
-                <div className="text-xs text-center">Last 15 Games</div>
+                <div className="text-[10px] md:text-xs text-center">
+                  Last 15 Games
+                </div>
               </div>
             </Button>
           </div>
