@@ -8,6 +8,7 @@ import { Button, Table, Tooltip } from '@radix-ui/themes';
 import Weaknesses from './Weaknesses';
 import Strengths from './Strengths';
 import Injuries from './Injuries';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 
 export default function GameInfo({ game }) {
   const {
@@ -225,6 +226,9 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
       </div>
+      <div className="mx-auto max-w-screen-xl w-full text-center italic mt-3">
+        View matchups:
+      </div>
       <div className="mx-auto max-w-screen-xl flex md:flex-row gap-6 md:gap-12 justify-center">
         <Strengths game={game} teamHome={teamHome} teamAway={teamAway} />
         <div className="hidden md:flex items-center">
@@ -235,10 +239,34 @@ export default function GameInfo({ game }) {
       <div className="injuries mx-auto max-w-screen-xl md:hidden">
         <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
       </div>
-      <div className="mt-2 italic text-sm md:text-base mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 flex-1">
-        Choose <strong>one</strong> player, stat, and line to analyze:
+      <div className="mt-10 mx-auto max-w-screen-xl w-full text-center italic font-bold">
+        To Analyze a Prop:
       </div>
-      <section className="mt-8 md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
+      <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-1 md:gap-6 lg:gap-12 flex-1 flex lg:px-12 select-none justify-center">
+        <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
+          <div>Select one player from either team</div>
+          <div className="flex gap-24 md:gap-72 justify-center">
+            <ArrowCircleDownIcon />
+            <ArrowCircleDownIcon />
+          </div>
+        </div>
+        {/* <div className="w-[75px]"></div> */}
+        <div className="italic text-sm md:text-base pl-8 md:pl-8 lg:pl-0 lg:text-left text-center md:whitespace-nowrap">
+          <div>Select one stat</div>
+          <div className="flex justify-center">
+            <ArrowCircleDownIcon />
+          </div>
+        </div>
+        <div className="italic text-sm md:text-base lg:text-left text-center md:whitespace-nowrap md:pl-4 lg:pl-0">
+          <div>
+            Select <span className="hidden md:inline-block">one</span> line
+          </div>
+          <div className="pl-2 flex justify-center">
+            <ArrowCircleDownIcon />
+          </div>
+        </div>
+      </div>
+      <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
         <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
@@ -488,6 +516,9 @@ export default function GameInfo({ game }) {
         Analysis is paused at the moment due to maintenence, will be resumed
         soon. Thank you for your patience.
       </div> */}
+      <div className="my-5 italic rounded-lg mx-auto max-w-screen-xl w-full text-center">
+        Then analyze...
+      </div>
       <div className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:px-8 flex flex-col">
         <Button
           id="analyze"
