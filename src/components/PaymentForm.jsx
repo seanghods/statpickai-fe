@@ -123,7 +123,7 @@ export default function PaymentForm({ accountInfo }) {
   }
   function RadioSubs() {
     return (
-      <div className="w-full p-4">
+      <div className="w-full md:p-4">
         <div className="mx-auto w-full max-w-md focus:outline-0">
           <RadioGroup value={selectedPlan} onChange={setSelectedPlan}>
             <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
@@ -141,7 +141,9 @@ export default function PaymentForm({ accountInfo }) {
                           : ''
                       }
                   ${checked ? 'bg-sky-900/75 text-white' : 'bg-gray-800'}
-                    relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md border-2 focus:outline-none`
+                    relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md border-2 focus:outline-none ${
+                      plan.name == 'Starter' && 'border-green-300'
+                    }`
                     }
                   >
                     {({ active, checked }) => (
@@ -155,7 +157,9 @@ export default function PaymentForm({ accountInfo }) {
                                   checked ? 'text-white' : 'text-white'
                                 }`}
                               >
-                                {plan.name}
+                                {plan.name == 'Starter'
+                                  ? 'Starter - Most Popular'
+                                  : plan.name}
                               </RadioGroup.Label>
                               <RadioGroup.Description
                                 as="span"
@@ -234,6 +238,9 @@ export default function PaymentForm({ accountInfo }) {
           >
             <div>Choose your subscription option:</div>
             {plans.length > 0 ? RadioSubs() : <div className="h-[728px]"></div>}
+            <div className="font-bold text-center w-full">
+              Total: ${selectedPlan.price || 0}
+            </div>
             <div
               className={`${selectedPlan.price == 0 ? 'hidden' : null} ${
                 user.email && 'md:w-3/5'
