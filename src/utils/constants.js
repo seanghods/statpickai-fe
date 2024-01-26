@@ -29,4 +29,5 @@ export const API_ROUTES = {
   forgotPassword: `${BASE_URL}/forgot-password`,
   resetPassword: `${BASE_URL}/reset-password`,
   verifyEmail: `${BASE_URL}/verify-email`,
+  getTeams: `${BASE_URL}/teams`,
 };

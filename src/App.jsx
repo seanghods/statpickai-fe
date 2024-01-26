@@ -39,12 +39,10 @@ function App() {
     setUser,
     isDuplicate,
     setIsDuplicate,
-    isMobile,
     setIsMobile,
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(true);
   const [popularPicks, setPopularPicks] = useState([]);
-  useEffect(() => console.log(isMobile), []);
   useEffect(() => {
     function handleIsMobile() {
       setIsMobile(window.innerWidth <= 768);
