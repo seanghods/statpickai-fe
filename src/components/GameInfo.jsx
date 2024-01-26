@@ -15,6 +15,7 @@ export default function GameInfo({ game }) {
   const {
     loadingAi,
     setLoadingAi,
+    setIsDuplicate,
     user,
     setUser,
     setAnalysisData,
@@ -26,8 +27,10 @@ export default function GameInfo({ game }) {
   const [selectedTeam, setSelectedTeam] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState();
   const [selectedStat, setSelectedStat] = useState();
+  const [toDisable, setToDisable] = useState([]);
   const [line, setLine] = useState();
   const isMobile = window.innerWidth <= 768;
+  useEffect(() => console.log(user.responses), [user]);
   const numbers = Array.from(
     { length: 69 / 0.5 + 1 },
     (_, index) => index * 0.5,
@@ -142,6 +145,10 @@ export default function GameInfo({ game }) {
               return;
             }
             if (confirm(`Please confirm your selections to analyze`)) {
+              setToDisable(prevDisable => [
+                ...prevDisable,
+                { player: selectedPlayer, stat: selectedStat, line: line },
+              ]);
               setUser({ ...user, picksUsed: user.picksUsed + 1 });
               setLoadingAi(true);
               try {
@@ -151,24 +158,40 @@ export default function GameInfo({ game }) {
                   withCredentials: true,
                 });
                 const data = await response.json();
-                if (!data.success) {
+                if (data.currentlyProcessing) {
+                  setLoadingAi(false);
+                  setIsDuplicate(true);
                   setResponseFailed(true);
                   setUser(prevUser => ({
                     ...prevUser,
                     picksUsed: prevUser.picksUsed - 1,
                   }));
+                } else if (!data.success && !data.currentlyProcessing) {
+                  setResponseFailed(true);
+                  setToDisable(prevDisable =>
+                    prevDisable.filter(
+                      entry =>
+                        !(
+                          entry.player === selectedPlayer &&
+                          entry.stat === selectedStat &&
+                          entry.line === line
+                        ),
+                    ),
+                  );
+                  setUser(prevUser => ({
+                    ...prevUser,
+                    picksUsed: prevUser.picksUsed - 1,
+                  }));
+                } else if (data.alreadyHas) {
+                  setUser(prevUser => ({
+                    ...prevUser,
+                    picksUsed: prevUser.picksUsed - 1,
+                  }));
                 } else {
-                  if (data.alreadyHas) {
-                    setUser(prevUser => ({
-                      ...prevUser,
-                      picksUsed: prevUser.picksUsed - 1,
-                    }));
-                  } else {
-                    setUser(prevUser => ({
-                      ...prevUser,
-                      responses: [...prevUser.responses, data],
-                    }));
-                  }
+                  setUser(prevUser => ({
+                    ...prevUser,
+                    responses: [...prevUser.responses, data],
+                  }));
                 }
                 setAnalysisData(data);
                 setAnalysisComplete(true);
@@ -310,7 +333,11 @@ export default function GameInfo({ game }) {
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell style={colorsAway}>
-                {game.awayTeam}
+                {isMobile ? (
+                  game.awayTeam
+                ) : (
+                  <span className="!text-base">{game.awayTeam}</span>
+                )}
               </Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
@@ -353,7 +380,11 @@ export default function GameInfo({ game }) {
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell style={colorsHome}>
-                {game.homeTeam}
+                {isMobile ? (
+                  game.homeTeam
+                ) : (
+                  <span className="!text-base">{game.homeTeam}</span>
+                )}
               </Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
@@ -558,17 +589,37 @@ export default function GameInfo({ game }) {
       <div className="my-5 italic rounded-lg mx-auto max-w-screen-xl w-full text-center">
         Then analyze...
       </div>
-      <div className="mx-auto max-w-screen-xl pb-12 px-4 gap-1 md:px-8 flex flex-col">
+      <div className="mx-auto max-w-screen-xl pb-6 px-4 gap-1 md:px-8 flex flex-col">
         <Button
           id="analyze"
-          // disabled
           onClick={() => handleAnalyze()}
+          disabled={toDisable.some(
+            entry =>
+              line == entry.line &&
+              selectedStat == entry.stat &&
+              selectedPlayer == entry.player,
+          )}
           className={`!bg-indigo-700 hover:!bg-indigo-600 !p-6 !cursor-pointer !shadow-sm !shadow-gray-700 !font-bold mt-6 ${
             loadingAi ? 'bg-gray-400 shadow-gray-500' : 'bg-gray-800'
-          } ${!user.username && 'shadow-none'}`}
+          } ${!user.username && 'shadow-none'} ${
+            toDisable.some(
+              entry =>
+                line == entry.line &&
+                selectedStat == entry.stat &&
+                selectedPlayer == entry.player,
+            ) && '!bg-gray-700 hover:!bg-gray-700 !cursor-default'
+          }`}
         >
           Analyze
         </Button>
+      </div>
+      <div className="mx-auto max-w-screen-xl font-bold italic text-sm">
+        {toDisable.some(
+          entry =>
+            line == entry.line &&
+            selectedStat == entry.stat &&
+            selectedPlayer == entry.player,
+        ) && 'Selection currently processing or already processed'}
       </div>
     </>
   );

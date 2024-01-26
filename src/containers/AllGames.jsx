@@ -18,7 +18,7 @@ export default function Games() {
               <h1
                 className={`text-cyan-400 font-bold text-2xl md:text-3xl text-center`}
               >
-                Games
+                Today&apos;s Games
               </h1>
             </div>
             <AllGamesComp />

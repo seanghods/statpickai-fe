@@ -7,7 +7,7 @@ import { LoadingIcon } from './sub-components/Icons';
 
 export default function AllGamesComp() {
   const [games, setGames] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
     async function getGames() {
@@ -65,19 +65,26 @@ export default function AllGamesComp() {
                     navigate(`/game/${game._id}`, { state: { game } })
                   }
                 >
-                  <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
+                  <Table.Cell
+                    style={{
+                      fontSize: isMobile ? '12px' : '16px',
+                      fontWeight: 500,
+                    }}
+                  >
                     {game.awayTeam.split(' ')[2] ? (
                       <>
-                        {game.awayTeam.split(' ')[0]}{' '}
+                        {isMobile ? game.awayTeam.split(' ')[2] : game.awayTeam}
+                        {/* {game.awayTeam.split(' ')[0]}{' '}
                         {game.awayTeam.split(' ')[1]}{' '}
                         <br className="md:hidden" />{' '}
-                        {game.awayTeam.split(' ')[2]}
+                        {game.awayTeam.split(' ')[2]} */}
                       </>
                     ) : (
                       <>
-                        {game.awayTeam.split(' ')[0]}
+                        {isMobile ? game.awayTeam.split(' ')[1] : game.awayTeam}
+                        {/* {game.awayTeam.split(' ')[0]}
                         <br className="md:hidden" />{' '}
-                        {game.awayTeam.split(' ')[1]}
+                        {game.awayTeam.split(' ')[1]} */}
                       </>
                     )}{' '}
                     <br className="md:hidden" />(
@@ -94,19 +101,26 @@ export default function AllGamesComp() {
                       : game.awayTeamSpreadOdds}
                     )
                   </Table.Cell>
-                  <Table.Cell style={{ fontSize: isMobile ? '12px' : '16px' }}>
+                  <Table.Cell
+                    style={{
+                      fontSize: isMobile ? '12px' : '16px',
+                      fontWeight: 500,
+                    }}
+                  >
                     {game.homeTeam.split(' ')[2] ? (
                       <>
-                        {game.homeTeam.split(' ')[0]}{' '}
+                        {isMobile ? game.homeTeam.split(' ')[2] : game.homeTeam}
+                        {/* {game.homeTeam.split(' ')[0]}{' '}
                         {game.homeTeam.split(' ')[1]}{' '}
                         <br className="md:hidden" />{' '}
-                        {game.homeTeam.split(' ')[2]}
+                        {game.homeTeam.split(' ')[2]} */}
                       </>
                     ) : (
                       <>
-                        {game.homeTeam.split(' ')[0]}
+                        {isMobile ? game.homeTeam.split(' ')[1] : game.homeTeam}
+                        {/* {game.homeTeam.split(' ')[0]}
                         <br className="md:hidden" />{' '}
-                        {game.homeTeam.split(' ')[1]}
+                        {game.homeTeam.split(' ')[1]} */}
                       </>
                     )}{' '}
                     <br className="md:hidden" />(

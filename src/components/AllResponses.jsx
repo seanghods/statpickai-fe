@@ -11,7 +11,7 @@ import { API_ROUTES } from '../utils/constants';
 export default function AllResponses() {
   const { user } = useResponse();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
     async function checkAuthenticationStatus() {
@@ -70,49 +70,50 @@ export default function AllResponses() {
                 </Table.Header>
 
                 <Table.Body className="text-white">
-                  {user.responses
-                    .sort((a, b) => {
-                      if (a.createdAt < b.createdAt) {
-                        return 1;
-                      }
-                      if (a.createdAt > b.createdAt) {
-                        return -1;
-                      }
-                      return 0;
-                    })
-                    .map((response, index) => {
-                      return (
-                        <Table.Row
-                          onClick={() =>
-                            navigate(
-                              `/response/${response.dateOfGame}-${response._id}`,
-                              {
-                                state: { response },
-                              },
-                            )
-                          }
-                          key={index}
-                          className="hover:bg-gray-700 cursor-pointer"
-                        >
-                          <Table.Cell className="w-[80px]">
-                            {response.dateOfGame.slice(5)}
-                          </Table.Cell>
-                          <Table.Cell>{response.player}</Table.Cell>
-                          <Table.Cell className="hidden md:block">
-                            {response.playerTeam}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {response.stat.length < 4
-                              ? response.stat.toUpperCase()
-                              : capitalize(response.stat)}
-                          </Table.Cell>
-                          <Table.Cell>{response.line}</Table.Cell>
-                          <Table.Cell className="hidden md:block flex-1">
-                            {response.opponentTeam}
-                          </Table.Cell>
-                        </Table.Row>
-                      );
-                    })}
+                  {user.responses &&
+                    user.responses
+                      .sort((a, b) => {
+                        if (a.createdAt < b.createdAt) {
+                          return 1;
+                        }
+                        if (a.createdAt > b.createdAt) {
+                          return -1;
+                        }
+                        return 0;
+                      })
+                      .map((response, index) => {
+                        return (
+                          <Table.Row
+                            onClick={() =>
+                              navigate(
+                                `/response/${response.dateOfGame}-${response._id}`,
+                                {
+                                  state: { response },
+                                },
+                              )
+                            }
+                            key={index}
+                            className="hover:bg-gray-700 cursor-pointer"
+                          >
+                            <Table.Cell className="w-[80px]">
+                              {response.dateOfGame.slice(5)}
+                            </Table.Cell>
+                            <Table.Cell>{response.player}</Table.Cell>
+                            <Table.Cell className="hidden md:block">
+                              {response.playerTeam}
+                            </Table.Cell>
+                            <Table.Cell>
+                              {response.stat.length < 4
+                                ? response.stat.toUpperCase()
+                                : capitalize(response.stat)}
+                            </Table.Cell>
+                            <Table.Cell>{response.line}</Table.Cell>
+                            <Table.Cell className="hidden md:block flex-1">
+                              {response.opponentTeam}
+                            </Table.Cell>
+                          </Table.Row>
+                        );
+                      })}
                 </Table.Body>
               </Table.Root>
             </>

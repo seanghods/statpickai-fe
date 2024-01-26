@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export function ResponseProvider({ children }) {
   const [loadingAi, setLoadingAi] = useState(false);
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const [analysisData, setAnalysisData] = useState({});
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [responseFailed, setResponseFailed] = useState(false);
@@ -13,6 +14,8 @@ export function ResponseProvider({ children }) {
       value={{
         loadingAi,
         setLoadingAi,
+        isDuplicate,
+        setIsDuplicate,
         analysisData,
         setAnalysisData,
         analysisComplete,

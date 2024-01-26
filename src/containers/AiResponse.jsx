@@ -115,7 +115,7 @@ export default function AiResponse() {
     } else {
       fetchMessage();
     }
-  }, [id]);
+  }, [statName]);
 
   function renderFormattedText(text) {
     const withStrongTags = text.replace(

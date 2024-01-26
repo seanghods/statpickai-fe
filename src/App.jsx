@@ -25,6 +25,7 @@ import useResponse from './context/useResponse';
 import { useEffect, useState } from 'react';
 import { API_ROUTES } from './utils/constants';
 import Marquee from 'react-fast-marquee';
+import loadingToast from './assets/loadingToast.png';
 
 function App() {
   const {
@@ -36,6 +37,8 @@ function App() {
     responseFailed,
     setResponseFailed,
     setUser,
+    isDuplicate,
+    setIsDuplicate,
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(false);
   const [popularPicks, setPopularPicks] = useState([]);
@@ -73,9 +76,12 @@ function App() {
   }, []);
   useEffect(() => {
     if (analysisComplete) {
-      if (loadingAi && !responseFailed) {
+      if (loadingAi && !responseFailed && !isDuplicate) {
         navigate(`/response/${analysisData.dateOfGame}-${analysisData._id}`);
         setLoadingAi(false);
+      } else if (!loadingAi && isDuplicate) {
+        ToastDuplicateMsg();
+        setResponseFailed(false);
       } else if (!loadingAi && responseFailed) {
         ToastErrorMsg();
         setResponseFailed(false);
@@ -85,6 +91,21 @@ function App() {
       setAnalysisComplete(false);
     }
   }, [analysisComplete, loadingAi]);
+  function ToastDuplicateMsg() {
+    return toast(
+      <div className="flex items-center font-saira_bold">
+        <img
+          src={loadingToast}
+          alt="loading icon"
+          className="w-7 h-7 bg-yellow-300 rounded-lg"
+        />
+        <span className="pl-2">
+          That player, stat, and line is currently processing.
+        </span>
+      </div>,
+      { style: { padding: '5px 6px' } },
+    );
+  }
   function ToastErrorMsg() {
     return toast(
       <div className="flex items-center font-saira_bold">
