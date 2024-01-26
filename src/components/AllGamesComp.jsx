@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { API_ROUTES } from '../utils/constants';
 import { showTime } from '../utils/helpers';
 import { LoadingIcon } from './sub-components/Icons';
+import useResponse from '../context/useResponse';
 
 export default function AllGamesComp() {
   const [games, setGames] = useState([]);
@@ -19,7 +20,7 @@ export default function AllGamesComp() {
     }
     getGames();
   }, []);
-  const isMobile = window.innerWidth <= 768;
+  const { isMobile } = useResponse();
   return (
     <>
       {loading ? (

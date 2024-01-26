@@ -39,9 +39,24 @@ function App() {
     setUser,
     isDuplicate,
     setIsDuplicate,
+    isMobile,
+    setIsMobile,
   } = useResponse();
-  const [fullLoadingPage, setFullLoadingPage] = useState(false);
+  const [fullLoadingPage, setFullLoadingPage] = useState(true);
   const [popularPicks, setPopularPicks] = useState([]);
+  useEffect(() => console.log(isMobile), []);
+  useEffect(() => {
+    function handleIsMobile() {
+      setIsMobile(window.innerWidth <= 768);
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleIsMobile);
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleIsMobile);
+  }, []);
+
   let currentColor;
   const navigate = useNavigate();
   useEffect(() => {
@@ -82,6 +97,7 @@ function App() {
       } else if (!loadingAi && isDuplicate) {
         ToastDuplicateMsg();
         setResponseFailed(false);
+        setIsDuplicate(false);
       } else if (!loadingAi && responseFailed) {
         ToastErrorMsg();
         setResponseFailed(false);

@@ -21,6 +21,7 @@ export default function GameInfo({ game }) {
     setAnalysisData,
     setAnalysisComplete,
     setResponseFailed,
+    isMobile,
   } = useResponse();
   const [teamHome, setTeamHome] = useState({ players: [] });
   const [teamAway, setTeamAway] = useState({ players: [] });
@@ -29,7 +30,6 @@ export default function GameInfo({ game }) {
   const [selectedStat, setSelectedStat] = useState();
   const [toDisable, setToDisable] = useState([]);
   const [line, setLine] = useState();
-  const isMobile = window.innerWidth <= 768;
   useEffect(() => console.log(user.responses), [user]);
   const numbers = Array.from(
     { length: 69 / 0.5 + 1 },

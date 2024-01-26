@@ -12,7 +12,7 @@ export default function Profile() {
   const { user } = useResponse();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
-  const isMobile = window.innerWidth <= 768;
+  const { isMobile } = useResponse();
   useEffect(() => {
     async function checkAuthenticationStatus() {
       setLoading(true);

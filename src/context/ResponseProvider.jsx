@@ -7,6 +7,7 @@ export function ResponseProvider({ children }) {
   const [analysisData, setAnalysisData] = useState({});
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [responseFailed, setResponseFailed] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [user, setUser] = useState({ user: '' });
 
   return (
@@ -24,6 +25,8 @@ export function ResponseProvider({ children }) {
         setResponseFailed,
         user,
         setUser,
+        isMobile,
+        setIsMobile,
       }}
     >
       {children}

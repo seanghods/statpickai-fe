@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import { Button, Dialog, Table } from '@radix-ui/themes';
+import useResponse from '../context/useResponse';
 
 export default function Injuries({ game, teamAway, teamHome }) {
+  const { isMobile } = useResponse();
   const tooltipContentRef = useRef(null);
   const buttonRef = useRef(null);
   const [tooltipOpen, setTooltipOpen] = useState(false);
-  const isMobile = window.innerWidth <= 768;
   const handleButtonClick = () => {
     setTooltipOpen(!tooltipOpen);
   };

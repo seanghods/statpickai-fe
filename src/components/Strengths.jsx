@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { API_ROUTES } from '../utils/constants';
 import slugify from 'slugify';
 import { Button, Dialog, Table } from '@radix-ui/themes';
+import useResponse from '../context/useResponse';
 
 export default function Strengths({ game, teamHome, teamAway }) {
   const tooltipContentRef = useRef(null);
@@ -9,7 +10,7 @@ export default function Strengths({ game, teamHome, teamAway }) {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [homeStrengths, setHomeStrengths] = useState([]);
   const [awayStrengths, setAwayStrengths] = useState([]);
-  const isMobile = window.innerWidth <= 768;
+  const { isMobile } = useResponse();
   const handleButtonClick = () => {
     setTooltipOpen(!tooltipOpen);
   };
