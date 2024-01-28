@@ -42,6 +42,8 @@ export default function SignUpPage() {
         }
         if (!form['email'].checkValidity()) {
           newErrors.email = 'Email is invalid';
+        } else if (form.email.value.contains('@permmail.com')) {
+          newErrors.email = 'Invalid email domain.';
         }
         setFormErrors(newErrors);
       } else {

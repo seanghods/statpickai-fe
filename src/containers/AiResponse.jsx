@@ -193,7 +193,7 @@ export default function AiResponse() {
                                     className="flex flex-col gap-3"
                                   >
                                     <div className="w-full text-center">
-                                      {index == '0' ? (
+                                      {/* {index == '0' ? (
                                         <strong className="ticker-three brightness-125 text-lg md:text-xl">
                                           {response.player}
                                         </strong>
@@ -205,14 +205,26 @@ export default function AiResponse() {
                                         <strong className="ticker-two brightness-125 text-lg md:text-xl">
                                           {response.opponentTeam}
                                         </strong>
-                                      )}
+                                      )} */}
                                     </div>
                                     <Table.Root variant="surface" size="1">
                                       <Table.Header>
                                         <Table.Row style={{ color: 'white' }}>
                                           {/* style={{ fontSize: isMobile && '12px' }} */}
                                           <Table.ColumnHeaderCell>
-                                            Stat Description
+                                            {index == '0' ? (
+                                              <strong className="ticker-three brightness-125 text-lg md:text-xl">
+                                                {response.player}
+                                              </strong>
+                                            ) : index == '1' ? (
+                                              <strong className="ticker-one brightness-125 text-lg md:text-xl">
+                                                {response.playerTeam}
+                                              </strong>
+                                            ) : (
+                                              <strong className="ticker-two brightness-125 text-lg md:text-xl">
+                                                {response.opponentTeam}
+                                              </strong>
+                                            )}
                                           </Table.ColumnHeaderCell>
                                           <Table.ColumnHeaderCell>
                                             Stat

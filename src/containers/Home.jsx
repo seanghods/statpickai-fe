@@ -62,16 +62,16 @@ export default function Home() {
             </div>
             <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
               <NavLink
-                to="/sign-up"
-                className="px-7 py-3 w-full bg-[#31b940] text-white hover:bg-[#51d661] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
-              >
-                Get started
-              </NavLink>
-              <NavLink
                 to="/games"
                 className="px-7 py-3 w-full bg-gray-700 hover:bg-gray-500 text-gray-200 text-center rounded-md block sm:w-auto"
               >
                 See Today&apos;s Games
+              </NavLink>
+              <NavLink
+                to="/sign-up"
+                className="px-7 py-3 w-full bg-[#31b940] text-white hover:bg-[#51d661] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
+              >
+                Get started
               </NavLink>
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function Home() {
             {showButton && (
               <div className="w-full text-center p-4 mt-5">
                 <Button
-                  className="!cursor-pointer !bg-[#31b940] hover:!bg-[#51d661]"
+                  className="!cursor-pointer"
                   onClick={() => navigate('/preview')}
                 >
                   See rest of response
