@@ -227,7 +227,9 @@ export default function AiResponse() {
                                             )}
                                           </Table.ColumnHeaderCell>
                                           <Table.ColumnHeaderCell>
-                                            Stat
+                                            <div className="flex w-full h-full items-center">
+                                              Stat
+                                            </div>
                                           </Table.ColumnHeaderCell>
                                         </Table.Row>
                                       </Table.Header>
@@ -238,7 +240,7 @@ export default function AiResponse() {
                                               <Table.Cell>
                                                 <strong>{stat[0]}</strong>
                                               </Table.Cell>
-                                              <Table.Cell>
+                                              <Table.Cell className="whitespace-nowrap">
                                                 {stat[0].includes('Rank') ? (
                                                   <>
                                                     <strong>{stat[1]}</strong>{' '}
