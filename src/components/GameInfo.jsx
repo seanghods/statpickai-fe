@@ -276,6 +276,18 @@ export default function GameInfo({ game }) {
       <div className="injuries mx-auto max-w-screen-xl md:hidden">
         <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
       </div>
+      {game.awayBackToBack && (
+        <div className="mx-auto max-w-screen-xl w-full text-center mt-3 text-red-200">
+          {game.awayTeam} are on the second leg of a back-to-back. They played
+          yesterday.
+        </div>
+      )}
+      {game.homeBackToBack && (
+        <div className="mx-auto max-w-screen-xl w-full text-center mt-3 text-red-200">
+          {game.homeTeam} are on the second leg of a back-to-back. They played
+          yesterday.
+        </div>
+      )}
       <div className="mt-8 md:mt-10 mx-auto max-w-screen-xl w-full text-center italic font-bold">
         To Analyze a Prop:
       </div>

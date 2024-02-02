@@ -22,6 +22,10 @@ export default function Games() {
               </h1>
             </div>
             <AllGamesComp />
+            <div className="w-full text-center mt-6 font-bold text-sm md:text-base text-red-200">
+              Teams highlighted in red are on the second leg of a back-to-back.
+              They played yesterday.
+            </div>
             <div className="w-full text-center mt-6 italic text-gray-300 text-sm md:text-base">
               The next day&apos;s slate of games and all picks refresh at 12AM
               US Eastern every day.

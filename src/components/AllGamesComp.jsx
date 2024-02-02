@@ -92,6 +92,7 @@ export default function AllGamesComp() {
                       style={{
                         fontSize: isMobile ? '12px' : '16px',
                         fontWeight: 500,
+                        color: game.awayBackToBack ? 'pink' : null,
                       }}
                     >
                       {game.awayTeam.split(' ')[2] ? (
@@ -132,6 +133,7 @@ export default function AllGamesComp() {
                       style={{
                         fontSize: isMobile ? '12px' : '16px',
                         fontWeight: 500,
+                        color: game.homeBackToBack ? 'pink' : null,
                       }}
                     >
                       {game.homeTeam.split(' ')[2] ? (
