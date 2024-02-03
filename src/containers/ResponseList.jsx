@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
 import { AllResponses, Footer, Header } from '../components';
 
 export default function ResponseList() {
+  useEffect(() => {
+    document.title = 'All Responses';
+  }, []);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

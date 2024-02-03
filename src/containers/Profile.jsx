@@ -14,6 +14,9 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const { isMobile } = useResponse();
   useEffect(() => {
+    document.title = 'Profile';
+  }, []);
+  useEffect(() => {
     async function checkAuthenticationStatus() {
       setLoading(true);
       try {

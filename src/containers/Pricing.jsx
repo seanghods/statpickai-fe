@@ -8,6 +8,9 @@ export default function Pricing() {
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    document.title = 'Pricing';
+  }, []);
+  useEffect(() => {
     async function getPlans() {
       setLoading(true);
       const response = await fetch(API_ROUTES.plans);

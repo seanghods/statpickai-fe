@@ -11,6 +11,9 @@ export default function ContactUs() {
     message: '',
   });
   useEffect(() => {
+    document.title = 'Contact Us';
+  }, []);
+  useEffect(() => {
     if (user.email) {
       setFormData({ ...formData, email: user.email, name: user.username });
     }

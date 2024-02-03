@@ -7,7 +7,9 @@ export default function ResetPassword() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [token, setToken] = useState('');
   const [message, setMessage] = useState('');
-
+  useEffect(() => {
+    document.title = 'Reset Password';
+  }, []);
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const token = queryParams.get('token');

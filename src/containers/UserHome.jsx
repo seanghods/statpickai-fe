@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
 import { AllGamesComp, AllResponses, Footer, Header } from '../components';
 
 export default function UserHome() {
+  useEffect(() => {
+    document.title = 'Home';
+  }, []);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

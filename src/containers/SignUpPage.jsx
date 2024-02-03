@@ -15,6 +15,9 @@ export default function SignUpPage() {
   const [accountInfo, setAccountInfo] = useState('');
   const navigate = useNavigate();
   useEffect(() => {
+    document.title = 'Sign Up';
+  }, []);
+  useEffect(() => {
     user.username ? setShowLoggedInMsg(true) : null;
   }, [user]);
   const [formErrors, setFormErrors] = useState({

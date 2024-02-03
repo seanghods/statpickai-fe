@@ -24,6 +24,9 @@ export default function AiResponse() {
   const id = path.substring(11);
   const navigate = useNavigate();
   useEffect(() => {
+    document.title = response.player ? response.player : 'Response';
+  }, [response]);
+  useEffect(() => {
     async function checkAuthenticationStatus() {
       setLoadingAuth(true);
       try {

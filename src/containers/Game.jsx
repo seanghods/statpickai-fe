@@ -12,6 +12,11 @@ export default function Game() {
   useEffect(() => {
     setColorClass(getRandomClassName());
   }, []);
+  useEffect(() => {
+    document.title = `${game.awayTeam.split(' ').slice(-1)} vs ${game.homeTeam
+      .split(' ')
+      .slice(-1)}`;
+  }, [game]);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

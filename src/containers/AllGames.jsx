@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import { AllGamesComp, Footer, Header } from '../components';
 
 export default function Games() {
+  useEffect(() => {
+    document.title = "Today's Games";
+  }, []);
+
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

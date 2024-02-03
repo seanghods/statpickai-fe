@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
 import { Footer, Header } from '../components';
 
 export default function TermsOfService() {
+  useEffect(() => {
+    document.title = 'Terms of Service';
+  }, []);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

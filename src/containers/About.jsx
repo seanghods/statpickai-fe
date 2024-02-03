@@ -1,8 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { Footer, Header } from '../components';
 import logo from '../assets/logo.png';
+import { useEffect } from 'react';
 
 export default function About() {
+  useEffect(() => {
+    document.title = 'About';
+  }, []);
   return (
     <>
       <div className="bg-gray-900 relative z-0 min-h-screen min-w-screen flex flex-col">

@@ -10,6 +10,9 @@ export default function VerifyEmail() {
   const [verificationStatus, setVerificationStatus] = useState('');
   const { setUser } = useResponse();
   useEffect(() => {
+    document.title = 'Verify Email';
+  }, []);
+  useEffect(() => {
     const verifyEmail = async () => {
       // Extract the token from the URL
       const queryParams = new URLSearchParams(window.location.search);

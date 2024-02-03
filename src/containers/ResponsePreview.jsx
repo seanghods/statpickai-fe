@@ -3,9 +3,13 @@ import { Header, Footer } from '../components';
 import { ScrollToTop } from '../utils/helpers';
 import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
+import { useEffect } from 'react';
 
 export default function Preview() {
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = 'Analysis Preview';
+  }, []);
   const statsColumnOne = [
     ['Position', 'SF'],
     ['Season Average', 7.08],
