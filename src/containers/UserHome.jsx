@@ -1,7 +1,14 @@
 import { useEffect } from 'react';
 import { AllGamesComp, AllResponses, Footer, Header } from '../components';
+import useResponse from '../context/useResponse';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserHome() {
+  const { user } = useResponse();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user.username) navigate('/');
+  }, []);
   useEffect(() => {
     document.title = 'Home';
   }, []);
