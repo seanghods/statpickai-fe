@@ -271,14 +271,24 @@ export default function AiResponse() {
                                 );
                               })}
                             </div>
-                            <div className="flex flex-col w-full items-end pl-2 md:pl-0 pr-2 text-xs md:text-sm italic">
-                              <div className="text-right">
-                                L10 = Last 10 Games{' '}
-                                <span className="hidden md:inline-flex">|</span>{' '}
-                                <br className="md:hidden" /> L15 = Last 15 Games{' '}
-                                <span className="hidden md:inline-flex">|</span>{' '}
-                                <br className="md:hidden" />
-                                SZN = This Season
+                            <div className="flex flex-col w-full items-end pl-2 pr-2 text-xs md:text-sm italic">
+                              <div className="text-right w-full flex justify-between">
+                                <div className="flex items-end">
+                                  Stat Pick AI
+                                </div>
+                                <div>
+                                  L10 = Last 10 Games{' '}
+                                  <span className="hidden md:inline-flex">
+                                    |
+                                  </span>{' '}
+                                  <br className="md:hidden" /> L15 = Last 15
+                                  Games{' '}
+                                  <span className="hidden md:inline-flex">
+                                    |
+                                  </span>{' '}
+                                  <br className="md:hidden" />
+                                  SZN = This Season
+                                </div>
                               </div>
                             </div>
                           </div>
