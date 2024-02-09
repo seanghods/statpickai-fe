@@ -230,7 +230,13 @@ export default function AiResponse() {
                                             )}
                                           </Table.ColumnHeaderCell>
                                           <Table.ColumnHeaderCell>
-                                            <div className="flex w-full h-full items-center">
+                                            <div
+                                              className={`flex w-full h-full items-center justify-end pr-3 ${
+                                                index == 0
+                                                  ? 'justify-end pr-5'
+                                                  : ''
+                                              }`}
+                                            >
                                               Stat
                                             </div>
                                           </Table.ColumnHeaderCell>
@@ -243,11 +249,12 @@ export default function AiResponse() {
                                               <Table.Cell>
                                                 <strong>{stat[0]}</strong>
                                               </Table.Cell>
-                                              <Table.Cell className="whitespace-nowrap">
+                                              <Table.Cell className="whitespace-nowrap flex justify-end !pr-5 !h-full">
                                                 {stat[0].includes('Rank') ? (
                                                   <>
-                                                    <strong>{stat[1]}</strong>{' '}
-                                                    <span className="text-xs">
+                                                    <strong>{stat[1]}</strong>
+                                                    {'  '}
+                                                    <span className="text-[10px] flex items-end">
                                                       / 30
                                                     </span>
                                                   </>
