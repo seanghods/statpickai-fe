@@ -231,11 +231,7 @@ export default function AiResponse() {
                                           </Table.ColumnHeaderCell>
                                           <Table.ColumnHeaderCell>
                                             <div
-                                              className={`flex w-full h-full items-center justify-end pr-3 ${
-                                                index == 0
-                                                  ? 'justify-end pr-5'
-                                                  : ''
-                                              }`}
+                                              className={`flex w-full h-full items-center justify-end pr-3`}
                                             >
                                               Stat
                                             </div>

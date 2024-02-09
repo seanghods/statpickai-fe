@@ -17,6 +17,7 @@ export default function Preview() {
     ['Last 10 Average', 7.9],
     ['Average vs Opponent', 10.67],
     ['Games Vs Opp Past 3 Seasons', 3],
+    ['Last 5 Potential Assists', 14],
   ];
   const statsColumnTwo = [
     ['L10 Pace', 101.95],
@@ -73,30 +74,34 @@ export default function Preview() {
                     {stats.map((column, index) => {
                       return (
                         <div key={index} className="flex flex-col gap-3">
-                          <div className="w-full text-center">
-                            {index == '0' ? (
-                              <strong className="ticker-three brightness-125 text-lg md:text-xl">
-                                LeBron James
-                              </strong>
-                            ) : index == '1' ? (
-                              <strong className="ticker-one brightness-125 text-lg md:text-xl">
-                                Los Angeles Lakers
-                              </strong>
-                            ) : (
-                              <strong className="ticker-two brightness-125 text-lg md:text-xl">
-                                New York Knicks
-                              </strong>
-                            )}
-                          </div>
+                          <div className="w-full text-center"></div>
                           <Table.Root variant="surface" size="1">
                             <Table.Header>
                               <Table.Row style={{ color: 'white' }}>
                                 {/* style={{ fontSize: isMobile && '12px' }} */}
                                 <Table.ColumnHeaderCell>
-                                  Stat Description
+                                  {index == '0' ? (
+                                    <strong className="ticker-three brightness-125 text-lg md:text-xl">
+                                      LeBron James
+                                    </strong>
+                                  ) : index == '1' ? (
+                                    <strong className="ticker-one brightness-125 text-lg md:text-xl">
+                                      Los Angeles Lakers
+                                    </strong>
+                                  ) : (
+                                    <strong className="ticker-two brightness-125 text-lg md:text-xl">
+                                      New York Knicks
+                                    </strong>
+                                  )}
                                 </Table.ColumnHeaderCell>
                                 <Table.ColumnHeaderCell>
-                                  Stat
+                                  <div
+                                    className={`flex w-full h-full items-center justify-end pr-3 ${
+                                      index == 0 ? 'justify-end pr-5' : ''
+                                    }`}
+                                  >
+                                    Stat
+                                  </div>
                                 </Table.ColumnHeaderCell>
                               </Table.Row>
                             </Table.Header>
@@ -127,13 +132,16 @@ export default function Preview() {
                     })}
                   </div>
                   <div className="flex flex-col w-full items-end pl-2 md:pl-0 pr-2 text-xs md:text-sm italic">
-                    <div className="text-right">
-                      L10 = Last 10 Games{' '}
-                      <span className="hidden md:inline-flex">|</span>{' '}
-                      <br className="md:hidden" /> L15 = Last 15 Games{' '}
-                      <span className="hidden md:inline-flex">|</span>{' '}
-                      <br className="md:hidden" />
-                      SZN = This Season
+                    <div className="text-right w-full flex justify-between">
+                      <div className="flex items-end">Stat Pick AI</div>
+                      <div>
+                        L10 = Last 10 Games{' '}
+                        <span className="hidden md:inline-flex">|</span>{' '}
+                        <br className="md:hidden" /> L15 = Last 15 Games{' '}
+                        <span className="hidden md:inline-flex">|</span>{' '}
+                        <br className="md:hidden" />
+                        SZN = This Season
+                      </div>
                     </div>
                   </div>
                 </div>
