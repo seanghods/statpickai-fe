@@ -33,68 +33,68 @@ export default function Testimonials() {
             clickable: true,
           }}
           modules={[Pagination, Navigation]}
-          className="mySwiper mb-24"
+          className="mySwiper mb-12 md:mb-24"
         >
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T7}
                 alt="Testimonial 7"
-                className="rounded-lg w-[950px]"
+                className="rounded-lg w-5/6 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T6}
                 alt="Testimonial 6"
-                className="rounded-lg w-[950px]"
+                className="rounded-lg w-5/6 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T2}
                 alt="Testimonial 2"
-                className="rounded-lg w-[950px]"
+                className="rounded-lg w-5/6 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T3}
                 alt="Testimonial 3"
-                className="rounded-lg w-[950px]"
+                className="rounded-lg w-5/6 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T4}
                 alt="Testimonial 4"
-                className="rounded-lg w-[950px]"
+                className="rounded-lg w-5/6 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T1}
                 alt="Testimonial 1"
-                className="rounded-lg w-[950px]"
+                className="rounded-lg w-5/6 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T5}
                 alt="Testimonial 5"
-                className="rounded-lg w-[950px]"
+                className="rounded-lg w-5/6 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
