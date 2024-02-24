@@ -103,10 +103,10 @@ export default function Pricing() {
                             </li>
                           ))}
                         </ul>
-                        <div className="flex-1 flex items-end">
+                        <div className="flex-1 flex items-end justify-center">
                           <NavLink
                             to={`/sign-up/${item.id}`}
-                            className="text-center px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-[#4DE234] hover:bg-[#379c26] active:bg-green-700"
+                            className="text-center px-3 py-3 rounded-lg w-1/2 sm:w-full font-semibold text-sm duration-150 text-white bg-[#4DE234] hover:bg-[#379c26] active:bg-green-700"
                           >
                             Get Started
                           </NavLink>

@@ -78,3 +78,7 @@ select {
   background-repeat: no-repeat;
   background-position: 60% 20%;
 }
+
+.swiper-pagination-bullet {
+  background-color: white !important; /* Use !important to ensure override */
+}

@@ -7,6 +7,7 @@ import { Button } from '@radix-ui/themes';
 import logo from '../assets/logo.png';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { DiscordLogoIcon } from '@radix-ui/react-icons';
+import Testimonials from '../components/Testimonials';
 
 export default function Home() {
   const [showButton, setShowButton] = useState(false);
@@ -117,6 +118,7 @@ export default function Home() {
         </section>
         <section className="py-14">
           <div className="max-w-screen-xl mx-auto md:px-8">
+            <Testimonials />
             <div className="items-center gap-x-12 sm:px-4 md:px-0 lg:flex">
               <div className="flex-1 sm:hidden lg:block">
                 <img

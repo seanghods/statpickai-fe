@@ -9,6 +9,7 @@ import { LoadingIcon } from '../components/sub-components/Icons';
 import DOMPurify from 'dompurify';
 import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
+import ShareModal from '../components/sub-components/ShareModal';
 
 export default function AiResponse() {
   const [loadingAi, setLoadingAi] = useState(false);
@@ -175,6 +176,9 @@ export default function AiResponse() {
             <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-200">
               <div className="w-full flex justify-center my-5">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
+              </div>
+              <div className="w-full flex justify-center my-5">
+                {/* <ShareModal response={response} /> */}
               </div>
               <div className="flex-1 md:mx-10 flex md:text-lg rounded-lg flex-col justify-center items-center">
                 <div className="flex flex-col gap-4 p-4 md:p-12Z">
