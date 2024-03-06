@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 export default function FullLoadingPage() {
   return (
     <>
-      <div className="bg-gray-900 z-50 min-h-screen min-w-screen flex flex-col absolute">
+      <div className="bg-gray-900 z-50 h-full min-w-screen flex flex-col absolute">
         <div
           className="absolute top-0 left-0 w-full h-full blur-[118px] -z-10"
           style={{

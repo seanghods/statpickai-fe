@@ -1,20 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Header, Footer } from '../components';
+import { Header, Footer, AiAnalysis } from '../components';
 import { API_ROUTES } from '../utils/constants';
 import LoadingAiModal from '../components/sub-components/LoadingAiModal';
 import { ScrollToTop, capitalize } from '../utils/helpers';
 import useResponse from '../context/useResponse';
-import { LoadingIcon } from '../components/sub-components/Icons';
-import DOMPurify from 'dompurify';
+import { LoadingAiIcon, LoadingIcon } from '../components/sub-components/Icons';
+// import DOMPurify from 'dompurify';
 import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 import ShareModal from '../components/sub-components/ShareModal';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 export default function AiResponse() {
   const [loadingAi, setLoadingAi] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(false);
-  const [response, setResponse] = useState({ message: '' });
+  const [response, setResponse] = useState({ fullStats: {} });
+  useEffect(() => {
+    console.log(response);
+  }, [response]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [statName, setStatName] = useState('');
   const { user } = useResponse();
@@ -57,7 +62,7 @@ export default function AiResponse() {
         { credentials: 'include', withCredentials: true },
       );
       const data = await response.json();
-      console.log(data.stat);
+      console.log(data);
       switch (data.stat) {
         case '3pm': {
           setStatName('3 Point FG');
@@ -120,29 +125,56 @@ export default function AiResponse() {
       fetchMessage();
     }
   }, [statName]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (response._id && !response.message) {
+          const resp = await fetch(
+            `${API_ROUTES.checkResponse}?id=${response._id}`,
+          );
+          if (!resp.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await resp.json();
+          if (data.success) {
+            setResponse(data);
+            clearInterval(intervalId);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  function renderFormattedText(text) {
-    const withStrongTags = text.replace(
-      /\*\*(.*?)\*\*/g,
-      '<strong>$1</strong>',
-    );
-    const sanitizedHtml = DOMPurify.sanitize(withStrongTags);
-    return <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />;
-  }
-  const final = response.message.split('\n');
-  const finalMessage = final.map((line, index) => {
-    return index == 0 ? (
-      <div className="border-b-2 border-gray-700 p-3" key={index}>
-        {renderFormattedText(line)}
-      </div>
-    ) : index == final.length - 1 ? (
-      <div className="border-t-2 border-gray-700 p-3">
-        {renderFormattedText(line)}
-      </div>
-    ) : (
-      <div key={index}>{renderFormattedText(line)}</div>
-    );
-  });
+    const intervalId = setInterval(fetchData, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [response._id]);
+
+  // function renderFormattedText(text) {
+  //   const withStrongTags = text.replace(
+  //     /\*\*(.*?)\*\*/g,
+  //     '<strong>$1</strong>',
+  //   );
+  //   const sanitizedHtml = DOMPurify.sanitize(withStrongTags);
+  //   return <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />;
+  // }
+  // const final = response.message ? response.message.split('\n') : null;
+  // const finalMessage =
+  //   final &&
+  //   final.map((line, index) => {
+  //     return index == 0 ? (
+  //       <div className="border-b-2 border-gray-700 p-3" key={index}>
+  //         {renderFormattedText(line)}
+  //       </div>
+  //     ) : index == final.length - 1 ? (
+  //       <div className="border-t-2 border-gray-700 p-3">
+  //         {renderFormattedText(line)}
+  //       </div>
+  //     ) : (
+  //       <div key={index}>{renderFormattedText(line)}</div>
+  //     );
+  //   });
 
   return (
     <>
@@ -163,10 +195,12 @@ export default function AiResponse() {
               <h1
                 className={`ticker-three font-bold text-2xl md:text-3xl md:mb-10 text-center brightness-125`}
               >
-                {response.message ? (
+                {response.player ? (
                   <div>
                     {response.player} +/- <br className="md:hidden" />
-                    {response.line} {statName || capitalize(response.stat)}
+                    {response.line}{' '}
+                    {statName ||
+                      (response.stat ? capitalize(response.stat) : null)}
                   </div>
                 ) : (
                   'Retrieving'
@@ -190,17 +224,18 @@ export default function AiResponse() {
                     user.responses &&
                     user.responses.some(obj => obj._id === id) ? (
                       <>
-                        {response.fullStats.length > 0 && (
-                          <div className="border-2 border-gray-700">
-                            <div className="flex flex-col md:grid grid-cols-3 gap-2 p-3 rounded-lg border-gray-700">
-                              {response.fullStats.map((column, index) => {
-                                return (
-                                  <div
-                                    key={index}
-                                    className="flex flex-col gap-3"
-                                  >
-                                    <div className="w-full text-center">
-                                      {/* {index == '0' ? (
+                        {response.fullStats &&
+                          response.fullStats.length > 0 && (
+                            <div className="border-2 border-gray-700">
+                              <div className="flex flex-col md:grid grid-cols-3 gap-2 p-3 rounded-lg border-gray-700">
+                                {response.fullStats.map((column, index) => {
+                                  return (
+                                    <div
+                                      key={index}
+                                      className="flex flex-col gap-3"
+                                    >
+                                      <div className="w-full text-center">
+                                        {/* {index == '0' ? (
                                         <strong className="ticker-three brightness-125 text-lg md:text-xl">
                                           {response.player}
                                         </strong>
@@ -213,95 +248,119 @@ export default function AiResponse() {
                                           {response.opponentTeam}
                                         </strong>
                                       )} */}
+                                      </div>
+                                      <Table.Root variant="surface" size="1">
+                                        <Table.Header>
+                                          <Table.Row style={{ color: 'white' }}>
+                                            {/* style={{ fontSize: isMobile && '12px' }} */}
+                                            <Table.ColumnHeaderCell>
+                                              {index == '0' ? (
+                                                <strong className="ticker-three brightness-125 text-lg md:text-xl">
+                                                  {response.player}
+                                                </strong>
+                                              ) : index == '1' ? (
+                                                <strong className="ticker-one brightness-125 text-lg md:text-xl">
+                                                  {response.playerTeam}
+                                                </strong>
+                                              ) : (
+                                                <strong className="ticker-two brightness-125 text-lg md:text-xl">
+                                                  {response.opponentTeam}
+                                                </strong>
+                                              )}
+                                            </Table.ColumnHeaderCell>
+                                            <Table.ColumnHeaderCell>
+                                              <div
+                                                className={`flex w-full h-full items-center justify-end pr-3`}
+                                              >
+                                                Stat
+                                              </div>
+                                            </Table.ColumnHeaderCell>
+                                          </Table.Row>
+                                        </Table.Header>
+                                        <Table.Body className="text-white">
+                                          {column.map((stat, index) => {
+                                            return (
+                                              <Table.Row key={index}>
+                                                <Table.Cell>
+                                                  <strong>{stat[0]}</strong>
+                                                </Table.Cell>
+                                                <Table.Cell className="whitespace-nowrap flex justify-end !pr-5 !h-full">
+                                                  {stat[0].includes('Rank') ? (
+                                                    <>
+                                                      <strong>{stat[1]}</strong>
+                                                      {'  '}
+                                                      <span className="text-[10px] flex items-end">
+                                                        / 30
+                                                      </span>
+                                                    </>
+                                                  ) : (
+                                                    stat[1]
+                                                  )}
+                                                </Table.Cell>
+                                              </Table.Row>
+                                            );
+                                          })}
+                                        </Table.Body>
+                                      </Table.Root>
                                     </div>
-                                    <Table.Root variant="surface" size="1">
-                                      <Table.Header>
-                                        <Table.Row style={{ color: 'white' }}>
-                                          {/* style={{ fontSize: isMobile && '12px' }} */}
-                                          <Table.ColumnHeaderCell>
-                                            {index == '0' ? (
-                                              <strong className="ticker-three brightness-125 text-lg md:text-xl">
-                                                {response.player}
-                                              </strong>
-                                            ) : index == '1' ? (
-                                              <strong className="ticker-one brightness-125 text-lg md:text-xl">
-                                                {response.playerTeam}
-                                              </strong>
-                                            ) : (
-                                              <strong className="ticker-two brightness-125 text-lg md:text-xl">
-                                                {response.opponentTeam}
-                                              </strong>
-                                            )}
-                                          </Table.ColumnHeaderCell>
-                                          <Table.ColumnHeaderCell>
-                                            <div
-                                              className={`flex w-full h-full items-center justify-end pr-3`}
-                                            >
-                                              Stat
-                                            </div>
-                                          </Table.ColumnHeaderCell>
-                                        </Table.Row>
-                                      </Table.Header>
-                                      <Table.Body className="text-white">
-                                        {column.map((stat, index) => {
-                                          return (
-                                            <Table.Row key={index}>
-                                              <Table.Cell>
-                                                <strong>{stat[0]}</strong>
-                                              </Table.Cell>
-                                              <Table.Cell className="whitespace-nowrap flex justify-end !pr-5 !h-full">
-                                                {stat[0].includes('Rank') ? (
-                                                  <>
-                                                    <strong>{stat[1]}</strong>
-                                                    {'  '}
-                                                    <span className="text-[10px] flex items-end">
-                                                      / 30
-                                                    </span>
-                                                  </>
-                                                ) : (
-                                                  stat[1]
-                                                )}
-                                              </Table.Cell>
-                                            </Table.Row>
-                                          );
-                                        })}
-                                      </Table.Body>
-                                    </Table.Root>
+                                  );
+                                })}
+                              </div>
+                              <div className="flex flex-col w-full items-end pl-2 pr-2 text-xs md:text-sm italic">
+                                <div className="text-right w-full flex justify-between">
+                                  <div className="flex items-end">
+                                    Stat Pick AI
                                   </div>
-                                );
-                              })}
-                            </div>
-                            <div className="flex flex-col w-full items-end pl-2 pr-2 text-xs md:text-sm italic">
-                              <div className="text-right w-full flex justify-between">
-                                <div className="flex items-end">
-                                  Stat Pick AI
-                                </div>
-                                <div>
-                                  L10 = Last 10 Games{' '}
-                                  <span className="hidden md:inline-flex">
-                                    |
-                                  </span>{' '}
-                                  <br className="md:hidden" /> L15 = Last 15
-                                  Games{' '}
-                                  <span className="hidden md:inline-flex">
-                                    |
-                                  </span>{' '}
-                                  <br className="md:hidden" />
-                                  SZN = This Season
+                                  <div>
+                                    L10 = Last 10 Games{' '}
+                                    <span className="hidden md:inline-flex">
+                                      |
+                                    </span>{' '}
+                                    <br className="md:hidden" /> L15 = Last 15
+                                    Games{' '}
+                                    <span className="hidden md:inline-flex">
+                                      |
+                                    </span>{' '}
+                                    <br className="md:hidden" />
+                                    SZN = This Season
+                                  </div>
                                 </div>
                               </div>
                             </div>
+                          )}
+                        {response.message ? (
+                          <AiAnalysis response={response} />
+                        ) : (
+                          // <div className="md:mx-28 flex flex-col items-center justify-center">
+                          //   <div className="transition duration-200 ease-in-out hover:scale-125">
+                          //     <KeyboardDoubleArrowRightIcon
+                          //       sx={{ fontSize: 50, color: 'skyblue' }}
+                          //       className="cursor-pointer"
+                          //       onClick={() => {
+                          //         setShowAnalysis(true);
+                          //       }}
+                          //     />
+                          //   </div>
+                          //   <div className="italic cursor-default text-sky-100">
+                          //     Click to view the AI Analysis
+                          //   </div>
+                          // </div>
+                          <div className="md:mx-28 flex flex-col items-center justify-center">
+                            <div className="">
+                              <LoadingAiIcon />
+                            </div>
+                            <div className="italic">
+                              Your AI Response is currently generating. This may
+                              take up to a minute.
+                            </div>
                           </div>
                         )}
-                        <div className="md:mx-28 flex flex-col gap-4 p-4 md:p-12Z">
-                          {finalMessage}
-                        </div>
                       </>
                     ) : (
                       <div className="flex justify-center w-full">
                         {`Please ensure your account has completed the analysis for 
                 ${response.player} +/- ${response.line}
-                ${capitalize(response.stat)}.`}
+                ${response.stat ? capitalize(response.stat) : null}.`}
                       </div>
                     )
                   ) : (

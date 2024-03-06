@@ -158,6 +158,7 @@ export default function GameInfo({ game }) {
                   withCredentials: true,
                 });
                 const data = await response.json();
+                console.log(data);
                 if (data.currentlyProcessing) {
                   setLoadingAi(false);
                   setIsDuplicate(true);

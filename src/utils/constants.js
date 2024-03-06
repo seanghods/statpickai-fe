@@ -30,4 +30,5 @@ export const API_ROUTES = {
   resetPassword: `${BASE_URL}/reset-password`,
   verifyEmail: `${BASE_URL}/verify-email`,
   getTeams: `${BASE_URL}/teams`,
+  checkResponse: `${BASE_URL}/check-response`,
 };

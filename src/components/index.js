@@ -5,3 +5,4 @@ export { default as FullLoadingPage } from './FullLoadingPage.jsx';
 export { default as PaymentForm } from './PaymentForm.jsx';
 export { default as AllResponses } from './AllResponses.jsx';
 export { default as AllGamesComp } from './AllGamesComp.jsx';
+export { default as AiAnalysis } from './AiAnalysis.jsx';

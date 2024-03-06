@@ -12,12 +12,12 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
     .join(' ');
   function GeneratingModal() {
     return (
-      <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-gray-900 p-6 text-left align-middle shadow-xl transition-all">
+      <Dialog.Panel className="rounded-2xl w-full max-w-md transform overflow-hidden bg-indigo-950 p-6 text-left align-middle shadow-xl transition-all">
         <Dialog.Title
           as="h3"
           className="text-lg leading-6 text-white flex justify-center items-center border-black border-b-2 pb-3"
         >
-          {player ? 'Generating AI Analysis...' : 'Retrieving AI Analysis...'}
+          Retrieving Curated Relevant Stats
         </Dialog.Title>
         <div className="mt-4 flex justify-center flex-col items-center italic gap-5 text-white">
           <div>
@@ -25,7 +25,6 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
           </div>
           {player ? (
             <>
-              <div>This may take up to a minute...</div>
               <div>Player: {playerName}...</div>
               <div>
                 Stat: {statName.length < 5 ? statName.toUpperCase() : statName}
@@ -54,7 +53,7 @@ export default function LoadingAiModal({ player = '', stat = '', line = '' }) {
   }
   function ErrorModal() {
     return (
-      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-900 p-6 text-left align-middle shadow-xl transition-all">
+      <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-indigo-950 p-6 text-left align-middle shadow-xl transition-all">
         <Dialog.Title
           as="h3"
           className="text-lg leading-6 text-white flex justify-center items-center border-b-2 pb-3"
