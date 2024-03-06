@@ -26,6 +26,7 @@ import { useEffect, useState } from 'react';
 import { API_ROUTES } from './utils/constants';
 import Marquee from 'react-fast-marquee';
 import loadingToast from './assets/loadingToast.png';
+import posthog from 'posthog-js';
 
 function App() {
   const {
@@ -69,6 +70,9 @@ function App() {
 
         if (data.isAuthenticated) {
           setUser(data.user);
+          posthog.identify(data.user.email, {
+            username: data.user.username,
+          });
         } else {
           setUser({ username: '' });
         }
