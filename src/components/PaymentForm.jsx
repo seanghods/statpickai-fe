@@ -5,6 +5,7 @@ import useResponse from '../context/useResponse';
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { StripeSvg } from './sub-components/Icons';
+import posthog from 'posthog-js';
 
 export default function PaymentForm({ accountInfo }) {
   const { user } = useResponse();
@@ -57,7 +58,13 @@ export default function PaymentForm({ accountInfo }) {
       setTimeout(() => {
         setLoadingTransition(false);
         setShowSuccessMsg(true);
-        accountInfo.username ? setUser(accountInfo) : null;
+        if (accountInfo.username) {
+          setUser(accountInfo);
+          posthog.identify(accountInfo.email, {
+            email: accountInfo.email,
+            username: accountInfo.username,
+          });
+        }
       }, 350);
     } else {
       setProcessing(true);
