@@ -11,11 +11,11 @@ import { Theme } from '@radix-ui/themes';
 import * as Sentry from '@sentry/react';
 import posthog from 'posthog-js';
 
-if (import.meta.env.MODE === 'production') {
-  posthog.init('phc_pUBYgNmalMIDVcxXSDl10RuXU5S1SMvrwNHAA8gK2VY', {
-    api_host: 'https://app.posthog.com',
-  });
-}
+// if (import.meta.env.MODE === 'production') {
+posthog.init('phc_pUBYgNmalMIDVcxXSDl10RuXU5S1SMvrwNHAA8gK2VY', {
+  api_host: 'https://app.posthog.com',
+});
+// }
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,

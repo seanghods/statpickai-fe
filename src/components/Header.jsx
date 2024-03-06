@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 import LogInButton from './sub-components/LogInButton';
 import { capitalize } from '../utils/helpers';
 import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import posthog from 'posthog-js';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function Header() {
     const data = await response.json();
 
     if (response.ok && data.success) {
+      posthog.reset();
       setUser({ user: '' });
       navigate('/');
     } else {

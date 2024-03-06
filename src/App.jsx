@@ -71,6 +71,7 @@ function App() {
         if (data.isAuthenticated) {
           setUser(data.user);
           posthog.identify(data.user.email, {
+            email: data.user.email,
             username: data.user.username,
           });
         } else {
