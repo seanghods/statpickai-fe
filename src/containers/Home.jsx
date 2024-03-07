@@ -8,19 +8,14 @@ import logo from '../assets/logo.png';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { DiscordLogoIcon } from '@radix-ui/react-icons';
 import Testimonials from '../components/Testimonials';
+import { backgroundGradient } from '../utils/helperComponents.jsx';
 
 export default function Home() {
   const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
   return (
     <div className="bg-gray-900 relative z-0">
-      <div
-        className="absolute top-0 left-0 w-full h-full blur-[118px] -z-10"
-        style={{
-          background:
-            'linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.11) 15.74%, rgba(232, 121, 249, 0.11) 56.49%, rgba(79, 70, 229, 0.3) 115.91%)',
-        }}
-      ></div>
+      {backgroundGradient()}
       <Header />
       <div>
         <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex flex-col gap-12 md:px-8">
