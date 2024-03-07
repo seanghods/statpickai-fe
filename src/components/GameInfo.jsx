@@ -10,6 +10,7 @@ import Strengths from './Strengths';
 import Injuries from './Injuries';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import { getNBALogos } from './sub-components/NBALogos';
 
 export default function GameInfo({ game }) {
   const {
@@ -44,45 +45,50 @@ export default function GameInfo({ game }) {
     color: teamHome.secondary_color_hex,
   };
   const statButtons = [
-    { id: 'points', name: 'Points', disabled: false },
-    { id: 'rebounds', name: 'Rebounds', disabled: false },
-    { id: 'assists', name: 'Assists', disabled: false },
-    { id: '3pm', name: '3 Point FG', disabled: false },
-    { id: 'steals', name: 'Steals', disabled: false },
-    { id: 'blocks', name: 'Blocks', disabled: false },
-    { id: 'turnovers', name: 'Turnovers', disabled: false },
+    { id: 'points', acronym: 'P', name: 'Points', disabled: false },
+    { id: 'rebounds', acronym: 'R', name: 'Rebounds', disabled: false },
+    { id: 'assists', acronym: 'A', name: 'Assists', disabled: false },
+    { id: '3pm', acronym: '3', name: '3 Point FG', disabled: false },
+    { id: 'steals', acronym: 'ST', name: 'Steals', disabled: false },
+    { id: 'blocks', acronym: 'BL', name: 'Blocks', disabled: false },
+    { id: 'turnovers', acronym: 'TO', name: 'Turnovers', disabled: false },
   ];
   const premiumStatButtons = [
     {
       id: 'pr',
-      name: 'PR (Points',
-      name2: 'Rebounds)',
+      acronym: 'PR',
+      name: 'Points +',
+      name2: 'Rebounds',
       disabled: false,
     },
     {
       id: 'pa',
-      name: 'PA (Points',
-      name2: 'Assists)',
+      acronym: 'PA',
+      name: 'Points +',
+      name2: 'Assists',
       disabled: false,
     },
     {
       id: 'pra',
-      name: 'PRA (Points',
-      name2: 'Rebounds',
-      name3: 'Assists)',
+      acronym: 'PRA',
+      name: 'Points +',
+      name2: 'Rebounds +',
+      name3: 'Assists',
       disabled: false,
     },
     {
       id: 'ra',
-      name: 'RA',
-      name2: '(Rebounds',
-      name3: 'Assists)',
+      acronym: 'RA',
+      // name: 'Rebounds +',
+      name2: 'Rebounds + ',
+      name3: 'Assists',
       disabled: false,
     },
     {
       id: 'sb',
-      name: 'SB (Steals',
-      name2: 'Blocks)',
+      acronym: 'SB',
+      name: 'Steals +',
+      name2: 'Blocks',
       disabled: false,
     },
   ];
@@ -158,7 +164,6 @@ export default function GameInfo({ game }) {
                   withCredentials: true,
                 });
                 const data = await response.json();
-                console.log(data);
                 if (data.currentlyProcessing) {
                   setLoadingAi(false);
                   setIsDuplicate(true);
@@ -346,11 +351,14 @@ export default function GameInfo({ game }) {
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell style={colorsAway}>
-                {isMobile ? (
-                  game.awayTeam
-                ) : (
-                  <span className="!text-base">{game.awayTeam}</span>
-                )}
+                <div className="flex gap-3">
+                  {getNBALogos(game.awayTeam.split(' ').slice(-1)[0], 7, 7)}
+                  {isMobile ? (
+                    game.awayTeam
+                  ) : (
+                    <span className="!text-base">{game.awayTeam}</span>
+                  )}
+                </div>
               </Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
@@ -393,11 +401,14 @@ export default function GameInfo({ game }) {
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell style={colorsHome}>
-                {isMobile ? (
-                  game.homeTeam
-                ) : (
-                  <span className="!text-base">{game.homeTeam}</span>
-                )}
+                <div className="flex gap-3">
+                  {getNBALogos(game.homeTeam.split(' ').slice(-1)[0], 7, 7)}
+                  {isMobile ? (
+                    game.homeTeam
+                  ) : (
+                    <span className="!text-base">{game.homeTeam}</span>
+                  )}
+                </div>
               </Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
@@ -478,6 +489,9 @@ export default function GameInfo({ game }) {
                           handleStatClick(e);
                         }}
                       >
+                        <span className="hidden md:inline-block">
+                          <strong>{stat.acronym}</strong> -
+                        </span>{' '}
                         {stat.name}{' '}
                         {stat.name2 && (
                           <>
@@ -540,6 +554,9 @@ export default function GameInfo({ game }) {
                           handleStatClick(e);
                         }}
                       >
+                        <span className="hidden md:inline-block">
+                          <strong>{stat.acronym}</strong> -
+                        </span>{' '}
                         {stat.name}{' '}
                         {stat.name2 && (
                           <>

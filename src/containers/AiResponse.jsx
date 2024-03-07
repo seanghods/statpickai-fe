@@ -123,7 +123,7 @@ export default function AiResponse() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (response._id && !response.message) {
+        if (response._id && !response.doneGenerating) {
           const resp = await fetch(
             `${API_ROUTES.checkResponse}?id=${response._id}`,
             {
@@ -137,7 +137,7 @@ export default function AiResponse() {
           const data = await resp.json();
           if (data.success) {
             setResponse(data);
-            clearInterval(intervalId);
+            if (data.doneGenerating) clearInterval(intervalId);
           }
         }
       } catch (error) {
@@ -200,7 +200,7 @@ export default function AiResponse() {
                 )}
               </h1>
             </div>
-            <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-200">
+            <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-200 xl:w-[1216px]">
               <div className="w-full flex justify-center my-5">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>
@@ -343,8 +343,8 @@ export default function AiResponse() {
                               <LoadingAiIcon />
                             </div>
                             <div className="italic">
-                              Your AI Response is currently generating. This may
-                              take up to a minute.
+                              Your AI Response is generating now. It will appear
+                              shortly.
                             </div>
                           </div>
                         )}
