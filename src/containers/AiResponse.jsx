@@ -131,6 +131,10 @@ export default function AiResponse() {
         if (response._id && !response.message) {
           const resp = await fetch(
             `${API_ROUTES.checkResponse}?id=${response._id}`,
+            {
+              credentials: 'include',
+              withCredentials: true,
+            },
           );
           if (!resp.ok) {
             throw new Error('Network response was not ok');
