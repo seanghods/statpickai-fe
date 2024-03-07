@@ -17,9 +17,6 @@ export default function AiResponse() {
   const [loadingAi, setLoadingAi] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(false);
   const [response, setResponse] = useState({ fullStats: {} });
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [statName, setStatName] = useState('');
   const { user } = useResponse();
@@ -62,7 +59,6 @@ export default function AiResponse() {
         { credentials: 'include', withCredentials: true },
       );
       const data = await response.json();
-      console.log(data);
       switch (data.stat) {
         case '3pm': {
           setStatName('3 Point FG');
