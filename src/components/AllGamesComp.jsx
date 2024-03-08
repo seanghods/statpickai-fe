@@ -143,7 +143,7 @@ export default function AllGamesComp() {
                     <Table.Cell
                       style={{
                         fontSize: isMobile ? '12px' : '16px',
-                        padding: '0px',
+                        // padding: '0px',
                         fontWeight: 500,
                         color: game.homeBackToBack ? 'pink' : null,
                       }}

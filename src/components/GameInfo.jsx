@@ -115,20 +115,23 @@ export default function GameInfo({ game }) {
     fetchPlayers();
   }, []);
   function handlePlayerClick(e) {
-    if (selectedPlayer == e.target.id) {
+    if (selectedPlayer == e.target.closest('[id]').id) {
       setSelectedTeam(null);
       setSelectedPlayer(null);
     } else {
       let awaySelected = false;
       for (const each of teamAway.players) {
-        if (e.target.id == slugify(each.full_name, { lower: true })) {
+        if (
+          e.target.closest('[id]').id ==
+          slugify(each.full_name, { lower: true })
+        ) {
           setSelectedTeam('away');
           awaySelected = true;
           break;
         }
       }
       if (!awaySelected) setSelectedTeam('home');
-      setSelectedPlayer(e.target.id);
+      setSelectedPlayer(e.target.closest('[id]').id);
     }
   }
   function handleStatClick(e) {
@@ -409,25 +412,26 @@ export default function GameInfo({ game }) {
                         : ''
                     }`}
                     style={{ color: 'white' }}
-                    onClick={e => handlePlayerClick(e)}
                   >
                     <Table.Cell
                       id={slugify(player.full_name, { lower: true })}
+                      className="z-10"
                       // style={{ paddingTop: '0px', paddingBottom: '0px' }}
                       // className="flex items-center"
                       width={'260px'}
+                      onClick={e => handlePlayerClick(e)}
                     >
                       <div className="flex gap-3 items-center">
                         {player.headshotUrl ? (
                           <img
                             src={player.headshotUrl}
-                            className="w-8 h-8"
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
                             alt="headshot"
                           />
                         ) : (
                           <img
                             src={silhouette}
-                            className="w-8 h-8"
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
                             alt="headshot"
                           />
                         )}
@@ -480,23 +484,23 @@ export default function GameInfo({ game }) {
                         : ''
                     }`}
                     style={{ color: 'white' }}
-                    onClick={e => handlePlayerClick(e)}
                   >
                     <Table.Cell
                       id={slugify(player.full_name, { lower: true })}
+                      onClick={e => handlePlayerClick(e)}
                       width={'260px'}
                     >
                       <div className="flex gap-3 items-center">
                         {player.headshotUrl ? (
                           <img
                             src={player.headshotUrl}
-                            className="w-8 h-8"
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
                             alt="headshot"
                           />
                         ) : (
                           <img
                             src={silhouette}
-                            className="w-8 h-8"
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
                             alt="headshot"
                           />
                         )}

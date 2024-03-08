@@ -123,7 +123,7 @@ export default function AllResponses() {
                               <div className="flex gap-3 items-center">
                                 {headshots.length > 0 ? (
                                   <img
-                                    className="w-8 h-8"
+                                    className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
                                     src={
                                       headshots.find(
                                         player =>
