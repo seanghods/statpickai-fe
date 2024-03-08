@@ -367,7 +367,7 @@ export default function GameInfo({ game }) {
           </>
         )}
       </div>
-      <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex flex-col md:flex-row select-none items-center md:items-start">
+      <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-5 md:gap-12 md:px-8 flex-1 flex flex-col md:flex-row select-none items-center md:items-start">
         <Table.Root
           variant="surface"
           size={isMobile ? '1' : '2'}
