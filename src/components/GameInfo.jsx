@@ -11,6 +11,7 @@ import Injuries from './Injuries';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { getNBALogos } from './sub-components/NBALogos';
+import silhouette from '../assets/silhouette.png';
 
 export default function GameInfo({ game }) {
   const {
@@ -388,9 +389,26 @@ export default function GameInfo({ game }) {
                   >
                     <Table.Cell
                       id={slugify(player.full_name, { lower: true })}
+                      style={{ paddingTop: '0px', paddingBottom: '0px' }}
+                      className="flex items-center"
                       width={'260px'}
                     >
-                      {player.full_name} ({player.position})
+                      <div className="flex gap-3 items-center">
+                        {player.headshotUrl ? (
+                          <img
+                            src={player.headshotUrl}
+                            className="w-8 h-8"
+                            alt="headshot"
+                          />
+                        ) : (
+                          <img
+                            src={silhouette}
+                            className="w-8 h-8"
+                            alt="headshot"
+                          />
+                        )}
+                        {player.full_name} ({player.position})
+                      </div>
                     </Table.Cell>
                   </Table.Row>
                 );
@@ -440,7 +458,22 @@ export default function GameInfo({ game }) {
                       id={slugify(player.full_name, { lower: true })}
                       width={'260px'}
                     >
-                      {player.full_name} ({player.position})
+                      <div className="flex gap-3 items-center">
+                        {player.headshotUrl ? (
+                          <img
+                            src={player.headshotUrl}
+                            className="w-8 h-8"
+                            alt="headshot"
+                          />
+                        ) : (
+                          <img
+                            src={silhouette}
+                            className="w-8 h-8"
+                            alt="headshot"
+                          />
+                        )}
+                        {player.full_name} ({player.position})
+                      </div>
                     </Table.Cell>
                   </Table.Row>
                 );

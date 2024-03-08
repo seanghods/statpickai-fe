@@ -39,7 +39,6 @@ export default function AiAnalysis({ response }) {
         </div>
       );
     });
-  useEffect(() => console.log(finalMessage), [finalMessage]);
   // useEffect(() => {
   //   if (final && final.length > 2) {
   //     // Ensure 'final' is not null and has enough items

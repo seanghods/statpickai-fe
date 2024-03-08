@@ -7,12 +7,31 @@ import { capitalize } from '../utils/helpers';
 import { useState, useEffect } from 'react';
 import LogInButton from './sub-components/LogInButton';
 import { API_ROUTES } from '../utils/constants';
+import { getNBALogos } from './sub-components/NBALogos';
+import silhouette from '../assets/silhouette.png';
 
 export default function AllResponses() {
   const { user } = useResponse();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [headshots, setHeadshots] = useState([]);
+  useEffect(() => console.log(headshots), [headshots]);
   const navigate = useNavigate();
+  useEffect(() => {
+    async function getHeadshots() {
+      try {
+        const response = await fetch(API_ROUTES.getHeadshots, {
+          credentials: 'include',
+          withCredentials: true,
+        });
+        const data = await response.json();
+        setHeadshots(data);
+      } catch (error) {
+        console.error('Failed to check authentication status:', error);
+      }
+    }
+    getHeadshots();
+  }, []);
   useEffect(() => {
     async function checkAuthenticationStatus() {
       setLoading(true);
@@ -98,9 +117,32 @@ export default function AllResponses() {
                             <Table.Cell className="w-[80px]">
                               {response.dateOfGame.slice(5)}
                             </Table.Cell>
-                            <Table.Cell>{response.player}</Table.Cell>
-                            <Table.Cell className="hidden md:block">
-                              {response.playerTeam}
+                            <Table.Cell>
+                              <div className="flex gap-3 items-center">
+                                {headshots.length > 0 ? (
+                                  <img
+                                    className="w-8 h-8"
+                                    src={
+                                      headshots.find(
+                                        player =>
+                                          player.full_name === response.player,
+                                      )?.headshotUrl ?? silhouette
+                                    }
+                                    alt="headshot pic"
+                                  />
+                                ) : null}{' '}
+                                {response.player}
+                              </div>
+                            </Table.Cell>
+                            <Table.Cell className="hidden md:table-cell">
+                              <div className="flex gap-3 items-center h-full">
+                                {getNBALogos(
+                                  response.playerTeam.split(' ').slice(-1)[0],
+                                  6,
+                                  6,
+                                )}
+                                {response.playerTeam}
+                              </div>
                             </Table.Cell>
                             <Table.Cell>
                               {response.stat.length < 4
@@ -108,8 +150,15 @@ export default function AllResponses() {
                                 : capitalize(response.stat)}
                             </Table.Cell>
                             <Table.Cell>{response.line}</Table.Cell>
-                            <Table.Cell className="hidden md:block flex-1">
-                              {response.opponentTeam}
+                            <Table.Cell className="hidden md:table-cell flex-1">
+                              <div className="flex gap-3 items-center h-full">
+                                {getNBALogos(
+                                  response.opponentTeam.split(' ').slice(-1)[0],
+                                  6,
+                                  6,
+                                )}
+                                {response.opponentTeam}
+                              </div>
                             </Table.Cell>
                           </Table.Row>
                         );

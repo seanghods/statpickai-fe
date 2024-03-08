@@ -145,7 +145,7 @@ export default function AiResponse() {
       }
     };
 
-    const intervalId = setInterval(fetchData, 5000);
+    const intervalId = setInterval(fetchData, 4000);
 
     return () => clearInterval(intervalId);
   }, [response._id]);
@@ -208,7 +208,7 @@ export default function AiResponse() {
                 {/* <ShareModal response={response} /> */}
               </div>
               <div className="flex-1 md:mx-10 flex md:text-lg rounded-lg flex-col justify-center items-center">
-                <div className="flex flex-col gap-4 p-4 md:p-12Z">
+                <div className="flex flex-col gap-4 p-4 md:p-12Z w-full">
                   {loadingAuth ? (
                     <div className="flex justify-center w-full">
                       <LoadingIcon />

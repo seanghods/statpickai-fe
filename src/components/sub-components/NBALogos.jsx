@@ -123,7 +123,7 @@ export function getNBALogos(lastWord, w, h) {
           className={`h-${h} w-${w}`}
         />
       );
-    case 'sixers':
+    case '76ers':
       return (
         <img
           src={sixers}
