@@ -115,7 +115,9 @@ export default function AllResponses() {
                             className="hover:bg-gray-700 cursor-pointer"
                           >
                             <Table.Cell className="w-[80px]">
-                              {response.dateOfGame.slice(5)}
+                              <div className="flex items-center h-full">
+                                {response.dateOfGame.slice(5)}
+                              </div>
                             </Table.Cell>
                             <Table.Cell>
                               <div className="flex gap-3 items-center">
@@ -145,11 +147,18 @@ export default function AllResponses() {
                               </div>
                             </Table.Cell>
                             <Table.Cell>
-                              {response.stat.length < 4
-                                ? response.stat.toUpperCase()
-                                : capitalize(response.stat)}
+                              <div className="flex items-center h-full">
+                                {response.stat.length < 4
+                                  ? response.stat.toUpperCase()
+                                  : capitalize(response.stat)}
+                              </div>
                             </Table.Cell>
-                            <Table.Cell>{response.line}</Table.Cell>
+                            <Table.Cell>
+                              {' '}
+                              <div className="flex items-center h-full">
+                                {response.line}
+                              </div>
+                            </Table.Cell>
                             <Table.Cell className="hidden md:table-cell flex-1">
                               <div className="flex gap-3 items-center h-full">
                                 {getNBALogos(
