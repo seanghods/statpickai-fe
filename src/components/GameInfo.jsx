@@ -32,11 +32,13 @@ export default function GameInfo({ game }) {
   const [selectedStat, setSelectedStat] = useState();
   const [toDisable, setToDisable] = useState([]);
   const [line, setLine] = useState();
-
-  const numbers = Array.from(
-    { length: 69 / 0.5 + 1 },
-    (_, index) => index * 0.5,
-  );
+  function chunkArray(array, chunkSize) {
+    const result = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize));
+    }
+    return result;
+  }
   const colorsAway = {
     backgroundColor: teamAway.primary_color_hex,
     color: teamAway.secondary_color_hex,
@@ -45,6 +47,11 @@ export default function GameInfo({ game }) {
     backgroundColor: teamHome.primary_color_hex,
     color: teamHome.secondary_color_hex,
   };
+  const numbers = Array.from(
+    { length: 69 / 0.5 + 1 },
+    (_, index) => index * 0.5,
+  );
+  const chunkedNumbers = chunkArray(numbers, 5);
   const statButtons = [
     { id: 'points', acronym: 'P', name: 'Points', disabled: false },
     { id: 'rebounds', acronym: 'R', name: 'Rebounds', disabled: false },
@@ -300,55 +307,72 @@ export default function GameInfo({ game }) {
         To Analyze a Prop:
       </div>
       <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-4 md:gap-6 lg:gap-10 flex-1 flex lg:px-12 select-none justify-center">
-        <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
-          <div>Select one player from either team</div>
-          <div className="flex gap-24 md:gap-72 justify-center">
-            {!selectedPlayer ? (
-              <>
-                <ArrowCircleDownIcon />
-                <ArrowCircleDownIcon />
-              </>
-            ) : selectedTeam == 'away' ? (
-              <>
-                <ArrowCircleLeftIcon className="rotate-[-90deg]" />
-                <ArrowCircleDownIcon className="brightness-50" />
-              </>
-            ) : (
-              <>
-                <ArrowCircleDownIcon className="brightness-50" />
-                <ArrowCircleLeftIcon className="rotate-[-90deg]" />
-              </>
-            )}
-          </div>
-        </div>
-        {/* <div className="w-[75px]"></div> */}
-        <div className="italic text-sm md:text-base pl-6 md:pl-8 lg:pl-2 lg:text-left text-center md:whitespace-nowrap">
-          <div>
-            Select <span className="hidden md:inline-block">one</span> stat
-          </div>
-          <div className="flex justify-center">
-            {selectedStat ? (
-              <ArrowCircleLeftIcon className="rotate-[-90deg]" />
-            ) : (
+        {isMobile ? (
+          <>
+            <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
+              <div>Select one player from either team</div>
+              <div>Select one stat to analyze</div>
+              <div>Select one line number to analyze</div>
               <ArrowCircleDownIcon />
-            )}
-          </div>
-        </div>
-        <div className="italic text-sm md:text-base lg:text-left text-center md:whitespace-nowrap md:pl-4 lg:pl-0">
-          <div>
-            Select <span className="hidden md:inline-block">one</span> line
-          </div>
-          <div className="lg:pl-0 flex justify-center">
-            {line ? (
-              <ArrowCircleLeftIcon className="rotate-[-90deg]" />
-            ) : (
-              <ArrowCircleDownIcon />
-            )}
-          </div>
-        </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
+              <div>Select one player from either team</div>
+              <div className="flex gap-24 md:gap-72 justify-center">
+                {!selectedPlayer ? (
+                  <>
+                    <ArrowCircleDownIcon />
+                    <ArrowCircleDownIcon />
+                  </>
+                ) : selectedTeam == 'away' ? (
+                  <>
+                    <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+                    <ArrowCircleDownIcon className="brightness-50" />
+                  </>
+                ) : (
+                  <>
+                    <ArrowCircleDownIcon className="brightness-50" />
+                    <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+                  </>
+                )}
+              </div>
+            </div>
+            {/* <div className="w-[75px]"></div> */}
+            <div className="italic text-sm md:text-base pl-6 md:pl-8 lg:pl-2 lg:text-left text-center md:whitespace-nowrap">
+              <div>
+                Select <span className="hidden md:inline-block">one</span> stat
+              </div>
+              <div className="flex justify-center">
+                {selectedStat ? (
+                  <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+                ) : (
+                  <ArrowCircleDownIcon />
+                )}
+              </div>
+            </div>
+            <div className="italic text-sm md:text-base lg:text-left text-center md:whitespace-nowrap md:pl-4 lg:pl-0">
+              <div>
+                Select <span className="hidden md:inline-block">one</span> line
+              </div>
+              <div className="lg:pl-0 flex justify-center">
+                {line ? (
+                  <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+                ) : (
+                  <ArrowCircleDownIcon />
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </div>
-      <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex select-none">
-        <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
+      <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-1 md:gap-12 md:px-8 flex-1 flex flex-col md:flex-row select-none items-center md:items-start">
+        <Table.Root
+          variant="surface"
+          size={isMobile ? '1' : '2'}
+          className="w-2/3 md:w-auto"
+        >
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
               <Table.ColumnHeaderCell style={colorsAway}>
@@ -389,8 +413,8 @@ export default function GameInfo({ game }) {
                   >
                     <Table.Cell
                       id={slugify(player.full_name, { lower: true })}
-                      style={{ paddingTop: '0px', paddingBottom: '0px' }}
-                      className="flex items-center"
+                      // style={{ paddingTop: '0px', paddingBottom: '0px' }}
+                      // className="flex items-center"
                       width={'260px'}
                     >
                       <div className="flex gap-3 items-center">
@@ -415,7 +439,11 @@ export default function GameInfo({ game }) {
               })}
           </Table.Body>
         </Table.Root>
-        <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
+        <Table.Root
+          variant="surface"
+          size={isMobile ? '1' : '2'}
+          className="w-2/3 md:w-auto mt-4 md:mt-0"
+        >
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell style={colorsHome}>
@@ -480,7 +508,7 @@ export default function GameInfo({ game }) {
               })}
           </Table.Body>
         </Table.Root>
-        <div className="flex flex-col gap-5">
+        <div className="flex gap-1 md:gap-3 md:flex-col">
           <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
             <Table.Header>
               <Table.Row style={{ color: 'white' }}>
@@ -522,7 +550,7 @@ export default function GameInfo({ game }) {
                           handleStatClick(e);
                         }}
                       >
-                        <span className="hidden md:inline-block">
+                        <span>
                           <strong>{stat.acronym}</strong> -
                         </span>{' '}
                         {stat.name}{' '}
@@ -587,7 +615,7 @@ export default function GameInfo({ game }) {
                           handleStatClick(e);
                         }}
                       >
-                        <span className="hidden md:inline-block">
+                        <span>
                           <strong>{stat.acronym}</strong> -
                         </span>{' '}
                         {stat.name}{' '}
@@ -610,28 +638,44 @@ export default function GameInfo({ game }) {
           </Table.Root>
         </div>
         <Table.Root
-          className="w-[70px] max-h-[780px] md:max-h-[700px]"
+          className="max-h-[400px] md:max-h-[830px] overflow-y-auto w-5/6 md:w-[70px]"
           variant="surface"
           size={isMobile ? '1' : '2'}
         >
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
-              <Table.ColumnHeaderCell>Line</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell colSpan={5}>Line</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body className="text-white">
-            {numbers.map(number => (
-              <Table.Row
-                onClick={() => setLine(number)}
-                className={`cursor-pointer hover:bg-gray-600 ${
-                  line == number ? `bg-gray-600 font-bold` : ''
-                }`}
-                key={number}
-              >
-                <Table.Cell>{number}</Table.Cell>
-              </Table.Row>
-            ))}
+            {isMobile
+              ? chunkedNumbers.map((chunk, index) => (
+                  <Table.Row key={index}>
+                    {chunk.map(number => (
+                      <Table.Cell
+                        onClick={() => setLine(number)}
+                        className={`cursor-pointer hover:bg-gray-600 ${
+                          line === number ? `bg-gray-600 font-bold` : ''
+                        }`}
+                        key={number}
+                      >
+                        {number}
+                      </Table.Cell>
+                    ))}
+                  </Table.Row>
+                ))
+              : numbers.map(number => (
+                  <Table.Row
+                    onClick={() => setLine(number)}
+                    className={`cursor-pointer hover:bg-gray-600 ${
+                      line == number ? `bg-gray-600 font-bold` : ''
+                    }`}
+                    key={number}
+                  >
+                    <Table.Cell>{number}</Table.Cell>
+                  </Table.Row>
+                ))}
           </Table.Body>
         </Table.Root>
       </section>
