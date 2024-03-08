@@ -5,6 +5,7 @@ import T4 from '../assets/Testimonials/T4.png';
 import T5 from '../assets/Testimonials/T5.png';
 import T6 from '../assets/Testimonials/T6.png';
 import T7 from '../assets/Testimonials/T7.png';
+import T8 from '../assets/Testimonials/T8.png';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -35,6 +36,15 @@ export default function Testimonials() {
           modules={[Pagination, Navigation]}
           className="mySwiper mb-12 md:mb-24"
         >
+          <SwiperSlide>
+            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
+              <img
+                src={T8}
+                alt="Testimonial 8"
+                className="rounded-lg w-5/6 md:w-[825px]"
+              />
+            </div>
+          </SwiperSlide>
           <SwiperSlide>
             <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img

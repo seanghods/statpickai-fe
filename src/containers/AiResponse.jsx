@@ -11,6 +11,7 @@ import { LoadingAiIcon, LoadingIcon } from '../components/sub-components/Icons';
 import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 import ShareModal from '../components/sub-components/ShareModal';
+import { getNBALogos } from '../components/sub-components/NBALogos';
 
 export default function AiResponse() {
   const [loadingAi, setLoadingAi] = useState(false);
@@ -227,36 +228,35 @@ export default function AiResponse() {
                                       key={index}
                                       className="flex flex-col gap-3"
                                     >
-                                      <div className="w-full text-center">
-                                        {/* {index == '0' ? (
-                                        <strong className="ticker-three brightness-125 text-lg md:text-xl">
-                                          {response.player}
-                                        </strong>
-                                      ) : index == '1' ? (
-                                        <strong className="ticker-one brightness-125 text-lg md:text-xl">
-                                          {response.playerTeam}
-                                        </strong>
-                                      ) : (
-                                        <strong className="ticker-two brightness-125 text-lg md:text-xl">
-                                          {response.opponentTeam}
-                                        </strong>
-                                      )} */}
-                                      </div>
+                                      <div className="w-full text-center"></div>
                                       <Table.Root variant="surface" size="1">
                                         <Table.Header>
                                           <Table.Row style={{ color: 'white' }}>
-                                            {/* style={{ fontSize: isMobile && '12px' }} */}
                                             <Table.ColumnHeaderCell>
                                               {index == '0' ? (
                                                 <strong className="ticker-three brightness-125 text-lg md:text-xl">
                                                   {response.player}
                                                 </strong>
                                               ) : index == '1' ? (
-                                                <strong className="ticker-one brightness-125 text-lg md:text-xl">
+                                                <strong className="ticker-one brightness-125 text-lg md:text-xl flex gap-2 items-center">
+                                                  {getNBALogos(
+                                                    response.playerTeam
+                                                      .split(' ')
+                                                      .slice(-1)[0],
+                                                    7,
+                                                    7,
+                                                  )}{' '}
                                                   {response.playerTeam}
                                                 </strong>
                                               ) : (
-                                                <strong className="ticker-two brightness-125 text-lg md:text-xl">
+                                                <strong className="ticker-two brightness-125 text-lg md:text-xl flex gap-2 items-center">
+                                                  {getNBALogos(
+                                                    response.opponentTeam
+                                                      .split(' ')
+                                                      .slice(-1)[0],
+                                                    7,
+                                                    7,
+                                                  )}{' '}
                                                   {response.opponentTeam}
                                                 </strong>
                                               )}
