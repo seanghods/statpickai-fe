@@ -5,6 +5,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        grn: "url('./src/assets/green-gradient.jpg')",
+        gld: "url('./src/assets/gold-gradient.jpg')",
+      },
       fontFamily: {
         inter: ['inter', 'sans-serif'],
         inter_bold: ['inter_bold', 'sans-serf'],
