@@ -103,8 +103,8 @@ export default function SignUpPage() {
               </h1>
             </div>
             <div className="w-full flex justify-center min-h-[650px]">
-              <div className="w-5/6 md:w-3/4 transform overflow-hidden rounded-lg py-6 md:p-6 text-left align-middle flex flex-col items-center gap-4 relative">
-                <div className="text-2xl w-full md:w-2/3 font-bold leading-6 flex justify-center items-center pb-8">
+              <div className="md:w-3/4 transform overflow-hidden rounded-lg py-6 md:p-6 text-left align-middle flex flex-col items-center gap-4 relative">
+                <div className="text-2xl border-b-2 border-gray-700 w-full font-bold leading-6 flex justify-center items-center pb-8 md:pb-12">
                   Register
                 </div>
                 {showLoggedInMsg ? (
@@ -182,7 +182,7 @@ export default function SignUpPage() {
                           )}
                           <div className="button text-center mt-5">
                             {' '}
-                            <div className="reg-msg font-game text-sm my-3 md:my-8 ">
+                            <div className="reg-msg font-game text-sm my-6 md:my-8 ">
                               *By registering I agree to the{' '}
                               <NavLink
                                 to="/terms-of-service"

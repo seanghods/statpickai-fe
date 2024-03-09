@@ -27,41 +27,46 @@ export default function About() {
                     className="w-1/2 md:w-1/4"
                   />
                 </h1>
-                <p>
-                  When choosing a player, statistic, and line to analyze, you
-                  are given a custom report with a full stat-table of curated,
-                  relevant statistics and an advanced AI analysis of those
-                  statistics in context of the pick. These statistics are
-                  updated daily and delve into vital player metrics, covering
-                  not only their average performances in the most recent 5 and
-                  10 games but also their overall season averages, and their
-                  historical averages with specific opponents.{' '}
+                <p className="text-lg">
+                  When choosing a player prop to analyze, you are given a custom
+                  report with a full stat-table of curated, relevant statistics
+                  and an advanced AI analysis of those statistics in context of
+                  the pick.
                 </p>
-                <p>
+                <p className="text-lg">
+                  These statistics are updated daily and delve into vital player
+                  metrics, covering not only their average performances in the
+                  most recent 5 and 10 games but also their overall season
+                  averages, and their historical averages with specific
+                  opponents.{' '}
+                </p>
+                <p className="text-lg">
                   Advanced team and opponent statistics are provided as well
                   into the AI analysis, including assessments of team and
                   opponent paces, evaluations of opponent effective field goal
                   percentages, reading of assist ratios, among other nuanced
                   metrics.{' '}
                 </p>
-                <p>
+                <p className="text-lg">
                   Regarding the pricing, every response our AI generates comes
                   with its own cost for us. Besides that, we also maintain a
                   large collection of basic and detailed statistics, which are
-                  crucial for the AI to work effectively. To cover these ongoing
-                  costs, we&apos;ve set up a subscription model. This model
-                  includes various pricing options, so you can choose what works
-                  best for you. We suggest you take a look at the free example
-                  we&apos;ve provided above to get a feel for the quality of
-                  statistics and AI responses we provide. For more information,
-                  please check out the{' '}
+                  crucial for the AI to work effectively.
+                </p>
+                <p className="text-lg">
+                  To cover these ongoing costs, we&apos;ve set up a subscription
+                  model. This model includes various pricing options, so you can
+                  choose what works best for you. We suggest you take a look at
+                  the free example we&apos;ve provided above to get a feel for
+                  the quality of statistics and AI responses we provide. For
+                  more information, please check out the{' '}
                   <NavLink to="../pricing" className="text-blue-500 font-bold">
                     Pricing
                   </NavLink>{' '}
                   section on our website.
                 </p>
                 <div className="grid grid-cols-2 gap-4 p-4">
-                  <div className="col-span-2 text-center text-lg font-bold mb-4">
+                  <div className="col-span-2 text-center text-xl font-bold mb-4">
                     Statistics We Analyze Include:
                   </div>
                   <ul className="list-disc italic flex flex-col gap-2 pl-2">
@@ -98,7 +103,7 @@ export default function About() {
             <div className="mt-4 flex w-full justify-center">
               <NavLink
                 to="/sign-up"
-                className="inline-block py-2 px-4 bg-[#31b940] text-white hover:bg-[#51d661] hover:font-bold duration-150 rounded-lg shadow-md hover:shadow-none"
+                className="inline-block py-2 px-4 w-[175px] text-center bg-[#31b940] text-white hover:bg-[#51d661] hover:font-bold duration-150 rounded-lg shadow-md hover:shadow-none"
               >
                 Get started
               </NavLink>
