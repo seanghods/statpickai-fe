@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { API_ROUTES } from '../utils/constants';
 import LoadingAiModal from './sub-components/LoadingAiModal';
 import slugify from 'slugify';
@@ -12,6 +12,7 @@ import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { getNBALogos } from './sub-components/NBALogos';
 import silhouette from '../assets/silhouette.png';
+import { capitalize } from '../utils/helpers';
 
 export default function GameInfo({ game }) {
   const {
@@ -25,6 +26,7 @@ export default function GameInfo({ game }) {
     setResponseFailed,
     isMobile,
   } = useResponse();
+  const [customLine, setCustomLine] = useState(true);
   const [teamHome, setTeamHome] = useState({ players: [] });
   const [teamAway, setTeamAway] = useState({ players: [] });
   const [selectedTeam, setSelectedTeam] = useState('');
@@ -52,6 +54,15 @@ export default function GameInfo({ game }) {
     (_, index) => index * 0.5,
   );
   const chunkedNumbers = chunkArray(numbers, 5);
+  const cellRefs = useRef(Array.from({ length: 50 }, () => React.createRef()));
+  useEffect(() => {
+    if (line !== null && cellRefs.current[line]) {
+      cellRefs.current[line].current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [line]);
   const statButtons = [
     { id: 'points', acronym: 'P', name: 'Points', disabled: false },
     { id: 'rebounds', acronym: 'R', name: 'Rebounds', disabled: false },
@@ -132,12 +143,19 @@ export default function GameInfo({ game }) {
       }
       if (!awaySelected) setSelectedTeam('home');
       setSelectedPlayer(e.target.closest('[id]').id);
+      if (e.target.closest('[data-line]')) {
+        setCustomLine(false);
+        setLine(e.target.closest('[data-line]').dataset.line);
+      } else {
+        setCustomLine(true);
+      }
     }
   }
   function handleStatClick(e) {
     selectedStat == e.target.id
       ? setSelectedStat(null)
       : setSelectedStat(e.target.id);
+    setSelectedPlayer('');
   }
 
   async function handleAnalyze() {
@@ -161,7 +179,13 @@ export default function GameInfo({ game }) {
               );
               return;
             }
-            if (confirm(`Please confirm your selections to analyze`)) {
+            if (
+              confirm(
+                `Please confirm your selections to analyze. ${capitalize(
+                  selectedPlayer.split('-').slice(-1)[0],
+                )} ${capitalize(selectedStat)} ${line}.`,
+              )
+            ) {
               setToDisable(prevDisable => [
                 ...prevDisable,
                 { player: selectedPlayer, stat: selectedStat, line: line },
@@ -306,9 +330,9 @@ export default function GameInfo({ game }) {
           yesterday.
         </div>
       )}
-      <div className="mt-8 md:mt-10 mx-auto max-w-screen-xl w-full text-center italic font-bold">
+      {/* <div className="mt-8 md:mt-10 mx-auto max-w-screen-xl w-full text-center italic font-bold">
         To Analyze a Prop:
-      </div>
+      </div> */}
       <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-4 md:gap-6 lg:gap-10 flex-1 flex lg:px-12 select-none justify-center">
         {isMobile ? (
           <>
@@ -321,7 +345,22 @@ export default function GameInfo({ game }) {
           </>
         ) : (
           <>
-            <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
+            <div className="italic text-sm md:text-base pl-6 md:pl-8 lg:pl-2 lg:text-left text-center md:whitespace-nowrap flex flex-col justify-end">
+              <div>
+                Select <span className="hidden md:inline-block">one</span> stat
+              </div>
+              <div className="flex justify-center">
+                {selectedStat ? (
+                  <ArrowCircleLeftIcon className="rotate-[-90deg]" />
+                ) : (
+                  <ArrowCircleDownIcon />
+                )}
+              </div>
+            </div>
+            <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px] flex flex-col justify-end">
+              <div className="font-bold text-center pb-8">
+                To Analyze a Prop:
+              </div>
               <div>Select one player from either team</div>
               <div className="flex gap-24 md:gap-72 justify-center">
                 {!selectedPlayer ? (
@@ -343,7 +382,7 @@ export default function GameInfo({ game }) {
               </div>
             </div>
             {/* <div className="w-[75px]"></div> */}
-            <div className="italic text-sm md:text-base pl-6 md:pl-8 lg:pl-2 lg:text-left text-center md:whitespace-nowrap">
+            {/* <div className="italic text-sm md:text-base pl-6 md:pl-8 lg:pl-2 lg:text-left text-center md:whitespace-nowrap flex flex-col justify-end">
               <div>
                 Select <span className="hidden md:inline-block">one</span> stat
               </div>
@@ -354,9 +393,22 @@ export default function GameInfo({ game }) {
                   <ArrowCircleDownIcon />
                 )}
               </div>
-            </div>
-            <div className="italic text-sm md:text-base lg:text-left text-center md:whitespace-nowrap md:pl-4 lg:pl-0">
-              <div>
+            </div> */}
+            <div className="hidden md:block italic text-sm md:text-base lg:text-left text-center md:whitespace-nowrap md:pl-4 lg:pl-0">
+              <div className="flex gap-2 items-center justify-center rounded-lg border-2 border-gray-600 p-2">
+                <div className="font-bold">
+                  <p>Use</p>
+                  <p>Custom</p>
+                  <p>Line</p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={customLine}
+                  onChange={() => setCustomLine(!customLine)}
+                  className="w-6 h-6 rounded-lg text-gray-400"
+                />
+              </div>
+              <div className={`${!customLine && 'brightness-75'}`}>
                 Select <span className="hidden md:inline-block">one</span> line
               </div>
               <div className="lg:pl-0 flex justify-center">
@@ -371,147 +423,6 @@ export default function GameInfo({ game }) {
         )}
       </div>
       <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-5 md:gap-12 md:px-8 flex-1 flex flex-col md:flex-row select-none items-center md:items-start">
-        <Table.Root
-          variant="surface"
-          size={isMobile ? '1' : '2'}
-          className="w-2/3 md:w-auto"
-        >
-          <Table.Header>
-            <Table.Row style={{ color: 'white' }}>
-              <Table.ColumnHeaderCell style={colorsAway}>
-                <div className="flex gap-3">
-                  {getNBALogos(game.awayTeam.split(' ').slice(-1)[0], 7, 7)}
-                  {isMobile ? (
-                    game.awayTeam
-                  ) : (
-                    <span className="!text-base">{game.awayTeam}</span>
-                  )}
-                </div>
-              </Table.ColumnHeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body className="text-white">
-            {teamAway.players
-              .sort((a, b) => a.full_name.localeCompare(b.full_name))
-              .map((player, index) => {
-                return (
-                  <Table.Row
-                    key={index}
-                    to={`/game/${game._id}`}
-                    state={{ game }}
-                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
-                      selectedPlayer &&
-                      selectedPlayer !==
-                        slugify(player.full_name, { lower: true }) &&
-                      'brightness-90'
-                    } ${
-                      selectedPlayer ==
-                      slugify(player.full_name, { lower: true })
-                        ? `bg-gray-600 font-bold`
-                        : ''
-                    }`}
-                    style={{ color: 'white' }}
-                  >
-                    <Table.Cell
-                      id={slugify(player.full_name, { lower: true })}
-                      className="z-10"
-                      // style={{ paddingTop: '0px', paddingBottom: '0px' }}
-                      // className="flex items-center"
-                      width={'260px'}
-                      onClick={e => handlePlayerClick(e)}
-                    >
-                      <div className="flex gap-3 items-center">
-                        {player.headshotUrl ? (
-                          <img
-                            src={player.headshotUrl}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        ) : (
-                          <img
-                            src={silhouette}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        )}
-                        {player.full_name} ({player.position})
-                      </div>
-                    </Table.Cell>
-                  </Table.Row>
-                );
-              })}
-          </Table.Body>
-        </Table.Root>
-        <Table.Root
-          variant="surface"
-          size={isMobile ? '1' : '2'}
-          className="w-2/3 md:w-auto mt-4 md:mt-0"
-        >
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeaderCell style={colorsHome}>
-                <div className="flex gap-3">
-                  {getNBALogos(game.homeTeam.split(' ').slice(-1)[0], 7, 7)}
-                  {isMobile ? (
-                    game.homeTeam
-                  ) : (
-                    <span className="!text-base">{game.homeTeam}</span>
-                  )}
-                </div>
-              </Table.ColumnHeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body className="text-white">
-            {teamHome.players
-              .sort((a, b) => a.full_name.localeCompare(b.full_name))
-              .map((player, index) => {
-                return (
-                  <Table.Row
-                    key={index}
-                    to={`/game/${game._id}`}
-                    state={{ game }}
-                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
-                      selectedPlayer &&
-                      selectedPlayer !==
-                        slugify(player.full_name, { lower: true }) &&
-                      'brightness-90'
-                    } ${
-                      selectedPlayer ==
-                      slugify(player.full_name, { lower: true })
-                        ? `bg-gray-600 font-bold`
-                        : ''
-                    }`}
-                    style={{ color: 'white' }}
-                  >
-                    <Table.Cell
-                      id={slugify(player.full_name, { lower: true })}
-                      onClick={e => handlePlayerClick(e)}
-                      width={'260px'}
-                    >
-                      <div className="flex gap-3 items-center">
-                        {player.headshotUrl ? (
-                          <img
-                            src={player.headshotUrl}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        ) : (
-                          <img
-                            src={silhouette}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        )}
-                        {player.full_name} ({player.position})
-                      </div>
-                    </Table.Cell>
-                  </Table.Row>
-                );
-              })}
-          </Table.Body>
-        </Table.Root>
         <div className="flex gap-1 md:gap-3 md:flex-col">
           <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
             <Table.Header>
@@ -642,7 +553,382 @@ export default function GameInfo({ game }) {
           </Table.Root>
         </div>
         <Table.Root
-          className="max-h-[400px] md:max-h-[830px] overflow-y-auto w-5/6 md:w-[70px]"
+          variant="surface"
+          size={isMobile ? '1' : '2'}
+          className="w-2/3 md:w-auto"
+        >
+          <Table.Header>
+            <Table.Row style={{ color: 'white' }}>
+              <Table.ColumnHeaderCell style={colorsAway}>
+                <div className="flex gap-3">
+                  {getNBALogos(game.awayTeam.split(' ').slice(-1)[0], 7, 7)}
+                  {isMobile ? (
+                    game.awayTeam
+                  ) : (
+                    <span className="!text-base">{game.awayTeam}</span>
+                  )}
+                </div>
+              </Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body className="text-white">
+            {teamAway.players
+              .sort((a, b) => a.full_name.localeCompare(b.full_name))
+              .map((player, index) => {
+                return (
+                  <Table.Row
+                    key={index}
+                    to={`/game/${game._id}`}
+                    state={{ game }}
+                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
+                      selectedPlayer &&
+                      selectedPlayer !==
+                        slugify(player.full_name, { lower: true }) &&
+                      'brightness-90'
+                    } ${
+                      selectedPlayer ==
+                      slugify(player.full_name, { lower: true })
+                        ? `bg-gray-600 font-bold`
+                        : ''
+                    }`}
+                    style={{ color: 'white' }}
+                  >
+                    <Table.Cell
+                      id={slugify(player.full_name, { lower: true })}
+                      data-line={
+                        selectedStat
+                          ? game.props[
+                              selectedStat == '3pm' ? 'threes' : selectedStat
+                            ]
+                            ? game.props[
+                                selectedStat == '3pm' ? 'threes' : selectedStat
+                              ].find(
+                                obj => obj.participant_name == player.full_name,
+                              )
+                              ? game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ).handicap
+                              : null
+                            : null
+                          : null
+                      }
+                      className="z-10"
+                      width={'260px'}
+                      onClick={e => handlePlayerClick(e)}
+                    >
+                      <div className="flex gap-3 items-center">
+                        {player.headshotUrl ? (
+                          <img
+                            src={player.headshotUrl}
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                            alt="headshot"
+                          />
+                        ) : (
+                          <img
+                            src={silhouette}
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                            alt="headshot"
+                          />
+                        )}
+                        {player.full_name} ({player.position})
+                        {selectedStat ? (
+                          game.props[
+                            selectedStat == '3pm' ? 'threes' : selectedStat
+                          ] ? (
+                            game.props[
+                              selectedStat == '3pm' ? 'threes' : selectedStat
+                            ].find(
+                              obj => obj.participant_name == player.full_name,
+                            ) ? (
+                              <strong
+                                className={`text-xl flex-1 text-right text-gray-200 ${
+                                  customLine ? 'brightness-75' : null
+                                }`}
+                              >{`${
+                                game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ).handicap
+                              }`}</strong>
+                            ) : null
+                          ) : null
+                        ) : null}
+                      </div>
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              })}
+          </Table.Body>
+        </Table.Root>
+        <Table.Root
+          variant="surface"
+          size={isMobile ? '1' : '2'}
+          className="w-2/3 md:w-auto mt-4 md:mt-0"
+        >
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell style={colorsHome}>
+                <div className="flex gap-3">
+                  {getNBALogos(game.homeTeam.split(' ').slice(-1)[0], 7, 7)}
+                  {isMobile ? (
+                    game.homeTeam
+                  ) : (
+                    <span className="!text-base">{game.homeTeam}</span>
+                  )}
+                </div>
+              </Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body className="text-white">
+            {teamHome.players
+              .sort((a, b) => a.full_name.localeCompare(b.full_name))
+              .map((player, index) => {
+                return (
+                  <Table.Row
+                    key={index}
+                    to={`/game/${game._id}`}
+                    state={{ game }}
+                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
+                      selectedPlayer &&
+                      selectedPlayer !==
+                        slugify(player.full_name, { lower: true }) &&
+                      'brightness-90'
+                    } ${
+                      selectedPlayer ==
+                      slugify(player.full_name, { lower: true })
+                        ? `bg-gray-600 font-bold`
+                        : ''
+                    }`}
+                    style={{ color: 'white' }}
+                  >
+                    <Table.Cell
+                      id={slugify(player.full_name, { lower: true })}
+                      data-line={
+                        selectedStat
+                          ? game.props[
+                              selectedStat == '3pm' ? 'threes' : selectedStat
+                            ]
+                            ? game.props[
+                                selectedStat == '3pm' ? 'threes' : selectedStat
+                              ].find(
+                                obj => obj.participant_name == player.full_name,
+                              )
+                              ? game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ).handicap
+                              : null
+                            : null
+                          : null
+                      }
+                      onClick={e => handlePlayerClick(e)}
+                      width={'260px'}
+                    >
+                      <div className="flex gap-3 items-center">
+                        {player.headshotUrl ? (
+                          <img
+                            src={player.headshotUrl}
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                            alt="headshot"
+                          />
+                        ) : (
+                          <img
+                            src={silhouette}
+                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                            alt="headshot"
+                          />
+                        )}
+                        {player.full_name} ({player.position})
+                        {selectedStat ? (
+                          game.props[
+                            selectedStat == '3pm' ? 'threes' : selectedStat
+                          ] ? (
+                            game.props[
+                              selectedStat == '3pm' ? 'threes' : selectedStat
+                            ].find(
+                              obj => obj.participant_name == player.full_name,
+                            ) ? (
+                              <strong
+                                className={`text-xl flex-1 text-right text-gray-200 ${
+                                  customLine ? 'brightness-75' : null
+                                }`}
+                              >{`${
+                                game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ).handicap
+                              }`}</strong>
+                            ) : null
+                          ) : null
+                        ) : null}
+                      </div>
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              })}
+          </Table.Body>
+        </Table.Root>
+        <div className="hidden gap-1 md:gap-3 md:flex-col">
+          <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
+            <Table.Header>
+              <Table.Row style={{ color: 'white' }}>
+                <Table.ColumnHeaderCell>Stat</Table.ColumnHeaderCell>
+              </Table.Row>
+            </Table.Header>
+
+            <Table.Body className="text-white">
+              {statButtons.map((stat, index) => {
+                return (
+                  <Table.Row
+                    key={index}
+                    className={`${
+                      selectedStat == stat.id ? `bg-gray-600 font-bold` : ''
+                    }`}
+                  >
+                    {stat.disabled ? (
+                      <Tooltip content="Coming soon">
+                        <Table.Cell className="text-red-300">
+                          {stat.name}{' '}
+                          {stat.name2 && (
+                            <>
+                              <br className="hidden md:block" /> {stat.name2}
+                            </>
+                          )}
+                          {stat.name3 && (
+                            <>
+                              <br className="hidden md:block" /> {stat.name3}
+                            </>
+                          )}
+                        </Table.Cell>
+                      </Tooltip>
+                    ) : (
+                      <Table.Cell
+                        id={stat.id}
+                        key={index}
+                        className={`hover:bg-gray-600 cursor-pointer`}
+                        onClick={e => {
+                          handleStatClick(e);
+                        }}
+                      >
+                        <span>
+                          <strong>{stat.acronym}</strong> -
+                        </span>{' '}
+                        {stat.name}{' '}
+                        {stat.name2 && (
+                          <>
+                            <br className="hidden md:block" /> {stat.name2}
+                          </>
+                        )}
+                        {stat.name3 && (
+                          <>
+                            <br className="hidden md:block" /> {stat.name3}
+                          </>
+                        )}
+                      </Table.Cell>
+                    )}
+                  </Table.Row>
+                );
+              })}
+            </Table.Body>
+          </Table.Root>
+          <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
+            <Table.Header>
+              <Table.Row style={{ color: 'white' }}>
+                <Table.ColumnHeaderCell>
+                  Premium Stat <br className="hidden md:block" />
+                  (Paid Only)
+                </Table.ColumnHeaderCell>
+              </Table.Row>
+            </Table.Header>
+
+            <Table.Body className="text-white">
+              {premiumStatButtons.map((stat, index) => {
+                return (
+                  <Table.Row
+                    key={index}
+                    className={`${
+                      selectedStat == stat.id ? `bg-gray-600 font-bold` : ''
+                    }`}
+                  >
+                    {stat.disabled ? (
+                      <Tooltip content="Coming soon">
+                        <Table.Cell className="text-red-300">
+                          {stat.name}{' '}
+                          {stat.name2 && (
+                            <>
+                              <br className="hidden md:block" /> {stat.name2}
+                            </>
+                          )}
+                          {stat.name3 && (
+                            <>
+                              <br className="hidden md:block" /> {stat.name3}
+                            </>
+                          )}
+                        </Table.Cell>
+                      </Tooltip>
+                    ) : (
+                      <Table.Cell
+                        id={stat.id}
+                        key={index}
+                        className={`hover:bg-gray-600 cursor-pointer`}
+                        onClick={e => {
+                          handleStatClick(e);
+                        }}
+                      >
+                        <span>
+                          <strong>{stat.acronym}</strong> -
+                        </span>{' '}
+                        {stat.name}{' '}
+                        {stat.name2 && (
+                          <>
+                            <br className="hidden md:block" /> {stat.name2}
+                          </>
+                        )}
+                        {stat.name3 && (
+                          <>
+                            <br className="hidden md:block" /> {stat.name3}
+                          </>
+                        )}
+                      </Table.Cell>
+                    )}
+                  </Table.Row>
+                );
+              })}
+            </Table.Body>
+          </Table.Root>
+        </div>
+        <div className="md:hidden flex gap-2 items-center justify-center rounded-lg border-2 border-gray-600 p-2">
+          <div className="font-bold">Use Custom Line</div>
+          <input
+            type="checkbox"
+            checked={customLine}
+            onChange={() => setCustomLine(!customLine)}
+            className="w-6 h-6 rounded-lg text-gray-400"
+          />
+        </div>
+        <Table.Root
+          className={`max-h-[400px] md:max-h-[830px] overflow-y-auto w-5/6 md:w-[70px] ${
+            !customLine ? 'brightness-75' : null
+          }`}
           variant="surface"
           size={isMobile ? '1' : '2'}
         >
@@ -658,7 +944,10 @@ export default function GameInfo({ game }) {
                   <Table.Row key={index}>
                     {chunk.map(number => (
                       <Table.Cell
-                        onClick={() => setLine(number)}
+                        onClick={() => {
+                          if (customLine) setLine(number);
+                        }}
+                        ref={cellRefs.current[index]}
                         className={`cursor-pointer hover:bg-gray-600 ${
                           line === number ? `bg-gray-600 font-bold` : ''
                         }`}
@@ -669,12 +958,15 @@ export default function GameInfo({ game }) {
                     ))}
                   </Table.Row>
                 ))
-              : numbers.map(number => (
+              : numbers.map((number, index) => (
                   <Table.Row
-                    onClick={() => setLine(number)}
+                    onClick={() => {
+                      if (customLine) setLine(number);
+                    }}
                     className={`cursor-pointer hover:bg-gray-600 ${
                       line == number ? `bg-gray-600 font-bold` : ''
                     }`}
+                    ref={cellRefs.current[index]}
                     key={number}
                   >
                     <Table.Cell>{number}</Table.Cell>

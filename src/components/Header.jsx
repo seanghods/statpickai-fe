@@ -7,7 +7,6 @@ import LogInButton from './sub-components/LogInButton';
 import { capitalize } from '../utils/helpers';
 import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 import posthog from 'posthog-js';
-import { xSvg } from './sub-components/Icons';
 
 export default function Header() {
   const navigate = useNavigate();
