@@ -150,9 +150,9 @@ export default function PaymentForm({ accountInfo }) {
                   ${checked ? 'bg-sky-900/75 text-white' : 'bg-gray-800'}
                     relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md border-2 focus:outline-none hover:brightness-125 ${
                       plan.name == 'Starter'
-                        ? 'bg-gradient-to-r from-green-800 to-green-600 border-green-800 border-4'
+                        ? 'bg-grn bg-cover bg-center border-green-800 border-4'
                         : plan.name == 'Star Player'
-                        ? 'bg-gradient-to-r from-yellow-800 to-yellow-600 border-yellow-800 border-4'
+                        ? 'bg-gld border-yellow-800 border-4'
                         : null
                     }`
                     }

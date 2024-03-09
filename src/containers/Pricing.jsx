@@ -64,9 +64,9 @@ export default function Pricing() {
                           key={idx}
                           className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch flex-col px-3 md:px-5 py-5 md:py-8 rounded-xl border-2 ${
                             item.name == 'Starter'
-                              ? 'bg-gradient-to-r from-green-900 to-green-600 border-green-900'
+                              ? 'bg-grn bg-cover bg-center border-green-300'
                               : item.name == 'Star Player'
-                              ? 'bg-gradient-to-r from-yellow-900 to-yellow-600 border-yellow-900'
+                              ? 'bg-gld bg-cover bg-center border-yellow-900'
                               : null
                           }`}
                         >
@@ -125,14 +125,15 @@ export default function Pricing() {
                         .map((item, idx) => (
                           <div
                             key={idx}
-                            className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch justify-between px-3 py-4 rounded-xl border-2`}
+                            className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch justify-between px-5 py-3 rounded-xl border-2`}
                           >
-                            <span className="flex items-center text-[#369326] font-bold brightness-200">
+                            <span className="flex text-xl items-center text-[#369326] font-bold brightness-200">
                               {item.name}{' '}
                             </span>
-                            <div className="flex items-center text-3xl font-semibold">
+                            <div className="flex items-center gap-3 text-2xl font-semibold">
                               ${item.price}{' '}
-                              <span className="flex items-center text-xl font-normal">
+                              <span className="flex items-center text-lg font-normal">
+                                {' '}
                                 /mo{' '}
                               </span>
                             </div>
