@@ -181,9 +181,9 @@ export default function GameInfo({ game }) {
             }
             if (
               confirm(
-                `Please confirm your selections to analyze. ${capitalize(
+                `Please confirm your selections to analyze: ${capitalize(
                   selectedPlayer.split('-').slice(-1)[0],
-                )} ${capitalize(selectedStat)} ${line}.`,
+                )} || ${capitalize(selectedStat)} || ${line}.`,
               )
             ) {
               setToDisable(prevDisable => [
