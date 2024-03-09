@@ -680,16 +680,32 @@ export default function GameInfo({ game }) {
                                   className={`text-sm text-right text-gray-200 ${
                                     customLine ? 'brightness-75' : null
                                   }`}
-                                >{`(${
-                                  game.props[
-                                    selectedStat == '3pm'
-                                      ? 'threes'
-                                      : selectedStat
-                                  ].find(
-                                    obj =>
-                                      obj.participant_name == player.full_name,
-                                  ).odds
-                                })`}</strong>
+                                >
+                                  {parseInt(
+                                    game.props[
+                                      selectedStat == '3pm'
+                                        ? 'threes'
+                                        : selectedStat
+                                    ].find(
+                                      obj =>
+                                        obj.participant_name ==
+                                        player.full_name,
+                                    ).odds,
+                                  ) > 0
+                                    ? '(+'
+                                    : '('}
+                                  {`${
+                                    game.props[
+                                      selectedStat == '3pm'
+                                        ? 'threes'
+                                        : selectedStat
+                                    ].find(
+                                      obj =>
+                                        obj.participant_name ==
+                                        player.full_name,
+                                    ).odds
+                                  })`}
+                                </strong>
                               ) : null
                             ) : null
                           ) : null}
@@ -825,16 +841,32 @@ export default function GameInfo({ game }) {
                                   className={`text-sm text-right text-gray-200 ${
                                     customLine ? 'brightness-75' : null
                                   }`}
-                                >{`(${
-                                  game.props[
-                                    selectedStat == '3pm'
-                                      ? 'threes'
-                                      : selectedStat
-                                  ].find(
-                                    obj =>
-                                      obj.participant_name == player.full_name,
-                                  ).odds
-                                })`}</strong>
+                                >
+                                  {parseInt(
+                                    game.props[
+                                      selectedStat == '3pm'
+                                        ? 'threes'
+                                        : selectedStat
+                                    ].find(
+                                      obj =>
+                                        obj.participant_name ==
+                                        player.full_name,
+                                    ).odds,
+                                  ) > 0
+                                    ? '(+'
+                                    : '('}
+                                  {`${
+                                    game.props[
+                                      selectedStat == '3pm'
+                                        ? 'threes'
+                                        : selectedStat
+                                    ].find(
+                                      obj =>
+                                        obj.participant_name ==
+                                        player.full_name,
+                                    ).odds
+                                  })`}
+                                </strong>
                               ) : null
                             ) : null
                           ) : null}
