@@ -88,7 +88,10 @@ export default function Pricing() {
                           </div>
                           <ul className="py-8 space-y-3">
                             {item.features.map((featureItem, idx) => (
-                              <li key={idx} className="flex items-center gap-5">
+                              <li
+                                key={idx}
+                                className="flex items-center gap-5 text-white"
+                              >
                                 <div className="w-[20px]">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
