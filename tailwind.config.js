@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        grn: "url('./src/assets/green-gradient.jpg')",
-        gld: "url('./src/assets/gold-gradient.jpg')",
+        grn: "url('https://www.statpickai.com/green-gradient.jpg')",
+        gld: "url('https://www.statpickai.com/gold-gradient.jpg')",
       },
       fontFamily: {
         inter: ['inter', 'sans-serif'],
