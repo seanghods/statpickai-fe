@@ -337,9 +337,9 @@ export default function GameInfo({ game }) {
         {isMobile ? (
           <>
             <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
-              <div>Select one player from either team</div>
               <div>Select one stat to analyze</div>
-              <div>Select one line number to analyze</div>
+              <div>Select one player from either team</div>
+              <div>Select a custom line to analyze</div>
               <ArrowCircleDownIcon />
             </div>
           </>
