@@ -167,8 +167,6 @@ export function StripeSvg() {
 export function xSvg(w, h) {
   return (
     <svg
-      width="1200"
-      height="1227"
       viewBox="0 0 1200 1227"
       className={`w-${w} h-${h}`}
       fill="none"
