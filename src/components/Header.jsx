@@ -63,7 +63,7 @@ export default function Header() {
               className="text-blue-500 font-bold hover:text-blue-300 flex items-center justify-center"
             >
               {/* <TwitterLogoIcon className="w-5 h-5" /> */}
-              {xSvg()}
+              {xSvg(4, 4)}
             </a>
             <a
               href="https://discord.gg/6EE6G9nC"
