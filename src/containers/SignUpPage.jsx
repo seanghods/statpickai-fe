@@ -97,15 +97,15 @@ export default function SignUpPage() {
         <Header />
         <div className="flex-1">
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center gap-12 md:px-8 flex-1">
-            <div className="mb-14 md:mb-24 space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
+            <div className="mb-6 md:mb-24 space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
               <h1 className="ticker-two h-[50px] font-bold text-3xl">
                 Sign Up
               </h1>
             </div>
             <div className="w-full flex justify-center min-h-[650px]">
-              <div className="w-5/6 md:w-3/4 mb-12 transform overflow-hidden rounded-lg py-6 md:p-6 text-left align-middle flex flex-col items-center gap-4 relative">
-                <div className="text-lg w-full md:w-2/3 font-bold leading-6 flex justify-center items-center border-b-2 pb-8">
-                  Register an Account
+              <div className="w-5/6 md:w-3/4 transform overflow-hidden rounded-lg py-6 md:p-6 text-left align-middle flex flex-col items-center gap-4 relative">
+                <div className="text-2xl w-full md:w-2/3 font-bold leading-6 flex justify-center items-center pb-8">
+                  Register
                 </div>
                 {showLoggedInMsg ? (
                   <>
@@ -151,20 +151,6 @@ export default function SignUpPage() {
                               {formErrors.username}
                             </div>
                           )}
-                          <label htmlFor="password">Password*</label>
-                          <input
-                            className="bg-gray-800 text-white font-gamebold border-2 border-gray-700 rounded-sm p-1"
-                            name="password"
-                            type="password"
-                            placeholder="***"
-                            required
-                            minLength="6"
-                          />
-                          {formErrors.password && (
-                            <div className="error-message text-red-300 italic">
-                              {formErrors.password}
-                            </div>
-                          )}
                           <label htmlFor="email">Email*</label>
                           <input
                             className="bg-gray-800 text-white font-gamebold border-2 border-gray-700 rounded-sm p-1"
@@ -180,20 +166,34 @@ export default function SignUpPage() {
                             </div>
                           )}
 
+                          <label htmlFor="password">Password*</label>
+                          <input
+                            className="bg-gray-800 text-white font-gamebold border-2 border-gray-700 rounded-sm p-1"
+                            name="password"
+                            type="password"
+                            placeholder="***"
+                            required
+                            minLength="6"
+                          />
+                          {formErrors.password && (
+                            <div className="error-message text-red-300 italic">
+                              {formErrors.password}
+                            </div>
+                          )}
                           <div className="button text-center mt-5">
                             {' '}
-                            <div className="reg-msg font-game text-xs mb-3 ">
+                            <div className="reg-msg font-game text-sm my-3 md:my-8 ">
                               *By registering I agree to the{' '}
                               <NavLink
                                 to="/terms-of-service"
-                                className="text-blue-700 w-4/5 md:w-1/2"
+                                className="text-blue-400 w-4/5 md:w-1/2"
                               >
                                 Terms of Service
                               </NavLink>{' '}
                               and{' '}
                               <NavLink
                                 to="/privacy-policy"
-                                className="text-blue-700 w-4/5 md:w-1/2 text-right"
+                                className="text-blue-400 w-4/5 md:w-1/2 text-right"
                               >
                                 Privacy Policy
                               </NavLink>
@@ -207,7 +207,7 @@ export default function SignUpPage() {
                                 {formErrors.message}
                               </div>
                             )}
-                            <div className="pw-msg font-game text-xs mt-2 ">
+                            <div className="pw-msg font-game text-sm my-3 md:my-6 ">
                               Your privacy and security are important to us. We
                               use industry-standard security measures to protect
                               your personal information, including secure
@@ -215,8 +215,11 @@ export default function SignUpPage() {
                             </div>
                           </div>
                         </form>
-                        <div className="button text-center m-2 font-game flex justify-center">
-                          <LogInButton />
+                        <div className="button text-center font-game flex flex-col gap-3 items-center justify-center">
+                          Already Registered?
+                          <div className="bg-gray-600 w-[80px] px-4 py-1 rounded-lg ">
+                            <LogInButton />
+                          </div>
                         </div>
                       </div>
                     )}

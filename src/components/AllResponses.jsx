@@ -15,7 +15,6 @@ export default function AllResponses() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [headshots, setHeadshots] = useState([]);
-  useEffect(() => console.log(headshots), [headshots]);
   const navigate = useNavigate();
   useEffect(() => {
     async function getHeadshots() {

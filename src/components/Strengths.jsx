@@ -78,7 +78,7 @@ export default function Strengths({ game, teamHome, teamAway }) {
           className="bg-gray-900 p-3 md:p-10 rounded-lg z-50 cursor-default"
         >
           <Dialog.Title>
-            <div className="text-lg w-full font-bold leading-6 flex justify-center items-center border-b-2 border-gray-400 pb-2">
+            <div className="text-lg w-full font-bold leading-6 flex justify-center items-center border-b-2 border-gray-800 pb-2">
               <div className="flex-1"></div>
               <div className="flex-1 text-center">Strengths</div>
               <div className="flex-1 flex justify-end">

@@ -148,8 +148,12 @@ export default function PaymentForm({ accountInfo }) {
                           : ''
                       }
                   ${checked ? 'bg-sky-900/75 text-white' : 'bg-gray-800'}
-                    relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md border-2 focus:outline-none ${
-                      plan.name == 'Starter' && 'border-green-300'
+                    relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md border-2 focus:outline-none hover:brightness-125 ${
+                      plan.name == 'Starter'
+                        ? 'bg-gradient-to-r from-green-800 to-green-600 border-green-800 border-4'
+                        : plan.name == 'Star Player'
+                        ? 'bg-gradient-to-r from-yellow-800 to-yellow-600 border-yellow-800 border-4'
+                        : null
                     }`
                     }
                   >
@@ -245,8 +249,8 @@ export default function PaymentForm({ accountInfo }) {
           >
             <div>Choose your subscription option:</div>
             {plans.length > 0 ? RadioSubs() : <div className="h-[728px]"></div>}
-            <div className="font-bold text-center w-full">
-              Total: ${selectedPlan.price || 0}
+            <div className="text-center w-full">
+              Total: ${selectedPlan.price || 0}.00
             </div>
             <div
               className={`${selectedPlan.price == 0 ? 'hidden' : null} ${

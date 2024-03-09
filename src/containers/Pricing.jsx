@@ -4,8 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { API_ROUTES } from '../utils/constants';
 import { LoadingIcon } from '../components/sub-components/Icons';
 import { backgroundGradient } from '../utils/helperComponents.jsx';
+import useResponse from '../context/useResponse.jsx';
 
 export default function Pricing() {
+  const { isMobile } = useResponse();
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -49,66 +51,126 @@ export default function Pricing() {
                 </div>
               </div>
               {loading ? (
-                <div className="flex-1 flex justify-center h-[350px]">
+                <div className="flex-1 flex justify-center h-[350px] ">
                   <LoadingIcon />
                 </div>
               ) : (
-                <div className="mt-4 md:mt-16 space-y-6 justify-center sm:grid sm:grid-cols-2 sm:space-y-0 gap-4 lg:grid-cols-4">
-                  {plans
-                    // .filter(plan => plan.price > 0)
-                    .map((item, idx) => (
-                      <div
-                        key={idx}
-                        className={`relative flex-1 flex items-stretch flex-col px-5 py-8 rounded-xl border-2 ${
-                          item.name == 'Starter' && 'border-green-500 border-4'
-                        }`}
-                      >
-                        <div>
-                          <span className="text-[#369326] font-medium">
-                            {item.name}{' '}
-                            <span
-                              className={`text-white ${
-                                item.name !== 'Starter' && 'hidden'
-                              }`}
-                            >
-                              (Most Popular)
+                <>
+                  <div className="md:px-24 mt-4 md:mt-16 space-y-6 flex flex-col items-center md:items-stretch justify-center sm:grid sm:grid-cols-2 sm:space-y-0 gap-1 md:gap-20 lg:grid-cols-3">
+                    {plans
+                      .filter(plan => (isMobile ? true : plan.price > 0))
+                      .map((item, idx) => (
+                        <div
+                          key={idx}
+                          className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch flex-col px-3 md:px-5 py-5 md:py-8 rounded-xl border-2 ${
+                            item.name == 'Starter'
+                              ? 'bg-gradient-to-r from-green-900 to-green-600 border-green-900'
+                              : item.name == 'Star Player'
+                              ? 'bg-gradient-to-r from-yellow-900 to-yellow-600 border-yellow-900'
+                              : null
+                          }`}
+                        >
+                          <div>
+                            <span className="text-[#369326] font-bold brightness-200">
+                              {item.name}{' '}
+                              <span
+                                className={`text-white ${
+                                  item.name !== 'Starter' && 'hidden'
+                                }`}
+                              >
+                                (Most Popular)
+                              </span>
                             </span>
-                          </span>
-                          <div className="mt-4 text-3xl font-semibold">
-                            ${item.price}{' '}
-                            <span className="text-xl font-normal">/mo </span>
+                            <div className="mt-4 text-3xl font-semibold">
+                              ${item.price}{' '}
+                              <span className="text-xl font-normal">/mo </span>
+                            </div>
+                          </div>
+                          <ul className="py-8 space-y-3">
+                            {item.features.map((featureItem, idx) => (
+                              <li key={idx} className="flex items-center gap-5">
+                                <div className="w-[20px]">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5 text-[#4DE234]"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                      clipRule="evenodd"
+                                    ></path>
+                                  </svg>
+                                </div>
+                                {featureItem}
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="flex-1 flex items-end justify-center">
+                            <NavLink
+                              to={`/sign-up/${item.id}`}
+                              className="text-center px-3 py-3 rounded-lg w-1/2 sm:w-full font-semibold text-sm duration-150 text-white bg-[#42bc2c] hover:bg-[#379c26] active:bg-green-700"
+                            >
+                              {item.price > 0 ? 'Purchase' : 'Get Started'}
+                            </NavLink>
                           </div>
                         </div>
-                        <ul className="py-8 space-y-3">
-                          {item.features.map((featureItem, idx) => (
-                            <li key={idx} className="flex items-center gap-5">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 text-[#4DE234]"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                ></path>
-                              </svg>
-                              {featureItem}
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex-1 flex items-end justify-center">
-                          <NavLink
-                            to={`/sign-up/${item.id}`}
-                            className="text-center px-3 py-3 rounded-lg w-1/2 sm:w-full font-semibold text-sm duration-150 text-white bg-[#4DE234] hover:bg-[#379c26] active:bg-green-700"
+                      ))}
+                  </div>
+                  <div className="md:px-24 mt-4 md:mt-16 space-y-6 flex items-center justify-center ">
+                    <div className="w-full">
+                      {plans
+                        .filter(plan => (isMobile ? false : plan.price == 0))
+                        .map((item, idx) => (
+                          <div
+                            key={idx}
+                            className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch justify-between px-3 py-4 rounded-xl border-2`}
                           >
-                            Get Started
-                          </NavLink>
-                        </div>
-                      </div>
-                    ))}
-                </div>
+                            <span className="flex items-center text-[#369326] font-bold brightness-200">
+                              {item.name}{' '}
+                            </span>
+                            <div className="flex items-center text-3xl font-semibold">
+                              ${item.price}{' '}
+                              <span className="flex items-center text-xl font-normal">
+                                /mo{' '}
+                              </span>
+                            </div>
+                            <ul className="flex items-center py-4 space-y-3">
+                              {item.features.map((featureItem, idx) => (
+                                <li
+                                  key={idx}
+                                  className="flex items-center gap-5"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5 text-[#4DE234]"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                      clipRule="evenodd"
+                                    ></path>
+                                  </svg>
+                                  {featureItem}
+                                </li>
+                              ))}
+                            </ul>
+                            <div className="flex items-center justify-center">
+                              <NavLink
+                                to={`/sign-up/${item.id}`}
+                                className="text-center px-3 py-3 rounded-lg font-semibold text-sm duration-150 text-white bg-[#4DE234] hover:bg-[#379c26] active:bg-green-700"
+                              >
+                                Get Started
+                              </NavLink>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           </section>

@@ -7,6 +7,7 @@ import LogInButton from './sub-components/LogInButton';
 import { capitalize } from '../utils/helpers';
 import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 import posthog from 'posthog-js';
+import { xSvg } from './sub-components/Icons';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -61,7 +62,8 @@ export default function Header() {
               rel="noreferrer"
               className="text-blue-500 font-bold hover:text-blue-300 flex items-center justify-center"
             >
-              <TwitterLogoIcon className="w-5 h-5" />
+              {/* <TwitterLogoIcon className="w-5 h-5" /> */}
+              {xSvg()}
             </a>
             <a
               href="https://discord.gg/6EE6G9nC"
