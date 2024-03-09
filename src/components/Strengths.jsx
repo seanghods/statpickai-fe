@@ -53,7 +53,7 @@ export default function Strengths({ game, teamHome, teamAway }) {
     <>
       <Dialog.Root onOpenChange={() => {}} open={tooltipOpen}>
         <Dialog.Trigger>
-          <div className="mx-auto max-w-screen-xl text-center font-bold text-lg my-4">
+          <div className="mx-auto max-w-screen-xl text-center font-bold text-lg my-3">
             <Button
               ref={buttonRef}
               onClick={handleButtonClick}

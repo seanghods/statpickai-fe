@@ -333,7 +333,7 @@ export default function GameInfo({ game }) {
       {/* <div className="mt-8 md:mt-10 mx-auto max-w-screen-xl w-full text-center italic font-bold">
         To Analyze a Prop:
       </div> */}
-      <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-4 md:gap-6 lg:gap-10 flex-1 flex lg:px-12 select-none justify-center">
+      <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-4 md:gap-6 lg:gap-16 flex-1 flex lg:px-12 select-none justify-center">
         {isMobile ? (
           <>
             <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
@@ -422,7 +422,7 @@ export default function GameInfo({ game }) {
           </>
         )}
       </div>
-      <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-12 px-1 gap-5 md:gap-12 md:px-8 flex-1 flex flex-col md:flex-row select-none items-center md:items-start">
+      <section className="md:mt-0 md:mx-auto md:max-w-screen-xl pb-2 md:pb-6 px-1 gap-5 md:gap-8 md:px-8 flex-1 flex flex-col md:flex-row select-none items-center md:items-start">
         <div className="flex gap-1 md:gap-3 md:flex-col">
           <Table.Root variant="surface" size={isMobile ? '1' : '2'}>
             <Table.Header>
@@ -552,10 +552,13 @@ export default function GameInfo({ game }) {
             </Table.Body>
           </Table.Root>
         </div>
+        <div className="md:hidden italic rounded-lg mx-auto max-w-screen-xl text-xs md:text-base md:w-[1000px] text-right">
+          *Odds provided are from Draftkings for over the line.
+        </div>
         <Table.Root
           variant="surface"
           size={isMobile ? '1' : '2'}
-          className="w-2/3 md:w-auto"
+          className="w-4/5 md:w-auto"
         >
           <Table.Header>
             <Table.Row style={{ color: 'white' }}>
@@ -619,7 +622,7 @@ export default function GameInfo({ game }) {
                           : null
                       }
                       className="z-10"
-                      width={'260px'}
+                      width={'320px'}
                       onClick={e => handlePlayerClick(e)}
                     >
                       <div className="flex gap-3 items-center">
@@ -637,32 +640,60 @@ export default function GameInfo({ game }) {
                           />
                         )}
                         {player.full_name} ({player.position})
-                        {selectedStat ? (
-                          game.props[
-                            selectedStat == '3pm' ? 'threes' : selectedStat
-                          ] ? (
+                        <div className="flex items-center flex-1 gap-1 text-right">
+                          {selectedStat ? (
                             game.props[
                               selectedStat == '3pm' ? 'threes' : selectedStat
-                            ].find(
-                              obj => obj.participant_name == player.full_name,
-                            ) ? (
-                              <strong
-                                className={`text-xl flex-1 text-right text-gray-200 ${
-                                  customLine ? 'brightness-75' : null
-                                }`}
-                              >{`${
-                                game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                ).handicap
-                              }`}</strong>
+                            ] ? (
+                              game.props[
+                                selectedStat == '3pm' ? 'threes' : selectedStat
+                              ].find(
+                                obj => obj.participant_name == player.full_name,
+                              ) ? (
+                                <strong
+                                  className={`text-lg flex-1 text-right text-gray-200 ${
+                                    customLine ? 'brightness-75' : null
+                                  }`}
+                                >{`${
+                                  game.props[
+                                    selectedStat == '3pm'
+                                      ? 'threes'
+                                      : selectedStat
+                                  ].find(
+                                    obj =>
+                                      obj.participant_name == player.full_name,
+                                  ).handicap
+                                }`}</strong>
+                              ) : null
                             ) : null
-                          ) : null
-                        ) : null}
+                          ) : null}
+                          {selectedStat ? (
+                            game.props[
+                              selectedStat == '3pm' ? 'threes' : selectedStat
+                            ] ? (
+                              game.props[
+                                selectedStat == '3pm' ? 'threes' : selectedStat
+                              ].find(
+                                obj => obj.participant_name == player.full_name,
+                              ) ? (
+                                <strong
+                                  className={`text-sm text-right text-gray-200 ${
+                                    customLine ? 'brightness-75' : null
+                                  }`}
+                                >{`(${
+                                  game.props[
+                                    selectedStat == '3pm'
+                                      ? 'threes'
+                                      : selectedStat
+                                  ].find(
+                                    obj =>
+                                      obj.participant_name == player.full_name,
+                                  ).odds
+                                })`}</strong>
+                              ) : null
+                            ) : null
+                          ) : null}
+                        </div>
                       </div>
                     </Table.Cell>
                   </Table.Row>
@@ -673,7 +704,7 @@ export default function GameInfo({ game }) {
         <Table.Root
           variant="surface"
           size={isMobile ? '1' : '2'}
-          className="w-2/3 md:w-auto mt-4 md:mt-0"
+          className="w-4/5 md:w-auto mt-4 md:mt-0"
         >
           <Table.Header>
             <Table.Row>
@@ -737,7 +768,7 @@ export default function GameInfo({ game }) {
                           : null
                       }
                       onClick={e => handlePlayerClick(e)}
-                      width={'260px'}
+                      width={'320px'}
                     >
                       <div className="flex gap-3 items-center">
                         {player.headshotUrl ? (
@@ -754,32 +785,60 @@ export default function GameInfo({ game }) {
                           />
                         )}
                         {player.full_name} ({player.position})
-                        {selectedStat ? (
-                          game.props[
-                            selectedStat == '3pm' ? 'threes' : selectedStat
-                          ] ? (
+                        <div className="flex items-center flex-1 gap-1 text-right">
+                          {selectedStat ? (
                             game.props[
                               selectedStat == '3pm' ? 'threes' : selectedStat
-                            ].find(
-                              obj => obj.participant_name == player.full_name,
-                            ) ? (
-                              <strong
-                                className={`text-xl flex-1 text-right text-gray-200 ${
-                                  customLine ? 'brightness-75' : null
-                                }`}
-                              >{`${
-                                game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                ).handicap
-                              }`}</strong>
+                            ] ? (
+                              game.props[
+                                selectedStat == '3pm' ? 'threes' : selectedStat
+                              ].find(
+                                obj => obj.participant_name == player.full_name,
+                              ) ? (
+                                <strong
+                                  className={`text-lg flex-1 text-right text-gray-200 ${
+                                    customLine ? 'brightness-75' : null
+                                  }`}
+                                >{`${
+                                  game.props[
+                                    selectedStat == '3pm'
+                                      ? 'threes'
+                                      : selectedStat
+                                  ].find(
+                                    obj =>
+                                      obj.participant_name == player.full_name,
+                                  ).handicap
+                                }`}</strong>
+                              ) : null
                             ) : null
-                          ) : null
-                        ) : null}
+                          ) : null}
+                          {selectedStat ? (
+                            game.props[
+                              selectedStat == '3pm' ? 'threes' : selectedStat
+                            ] ? (
+                              game.props[
+                                selectedStat == '3pm' ? 'threes' : selectedStat
+                              ].find(
+                                obj => obj.participant_name == player.full_name,
+                              ) ? (
+                                <strong
+                                  className={`text-sm text-right text-gray-200 ${
+                                    customLine ? 'brightness-75' : null
+                                  }`}
+                                >{`(${
+                                  game.props[
+                                    selectedStat == '3pm'
+                                      ? 'threes'
+                                      : selectedStat
+                                  ].find(
+                                    obj =>
+                                      obj.participant_name == player.full_name,
+                                  ).odds
+                                })`}</strong>
+                              ) : null
+                            ) : null
+                          ) : null}
+                        </div>
                       </div>
                     </Table.Cell>
                   </Table.Row>
@@ -989,6 +1048,9 @@ export default function GameInfo({ game }) {
         Analysis is paused at the moment due to maintenence, will be resumed
         soon. Thank you for your patience.
       </div> */}
+      <div className="hidden md:block italic rounded-lg mx-auto max-w-screen-xl text-xs md:text-base md:w-[1000px] text-right">
+        *Odds provided are from Draftkings for over the line.
+      </div>
       <div className="my-5 italic rounded-lg mx-auto max-w-screen-xl w-full text-center">
         Then analyze...
       </div>

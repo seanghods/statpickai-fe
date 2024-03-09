@@ -29,11 +29,11 @@ export default function Game() {
           <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl md:pb-12 px-4 items-center gap-12 md:px-8 flex-1">
             <div className="font-bold space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
               <h1
-                className={`${colorClass} uppercase font-bold text-xl flex-wrap md:text-3xl mb-6 text-center flex gap-3 items-center`}
+                className={`${colorClass} uppercase font-bold text-xl flex-wrap md:text-3xl mb-6 text-center flex gap-2 md:gap-3 items-center`}
               >
                 {getNBALogos(game.awayTeam.split(' ').slice(-1)[0], 12, 12)}
                 {game.awayTeam.split(' ').slice(-1)}{' '}
-                <span className="text-[#4DE234]">VS</span>{' '}
+                <span className="text-[#4DE234] text-md md:text-3xl">VS</span>{' '}
                 {game.homeTeam.split(' ').slice(-1)}
                 {getNBALogos(game.homeTeam.split(' ').slice(-1)[0], 12, 12)}
               </h1>
