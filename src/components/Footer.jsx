@@ -1,5 +1,6 @@
-import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import { DiscordLogoIcon } from '@radix-ui/react-icons';
 import { NavLink } from 'react-router-dom';
+import { xSvg } from './sub-components/Icons';
 
 export default function Footer() {
   return (
@@ -34,7 +35,7 @@ export default function Footer() {
             rel="noreferrer"
             className="text-blue-500 font-bold hover:text-blue-300 flex items-center justify-center"
           >
-            <TwitterLogoIcon className="w-5 h-5" />
+            {xSvg(4, 4)}
           </a>
           <a
             href="https://discord.gg/6EE6G9nC"

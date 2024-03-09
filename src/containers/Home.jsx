@@ -5,7 +5,6 @@ import aiPic from '../assets/ai-gpu.jpg';
 import { useState } from 'react';
 import { Button } from '@radix-ui/themes';
 import logo from '../assets/logo.png';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import { DiscordLogoIcon } from '@radix-ui/react-icons';
 import Testimonials from '../components/Testimonials';
 import { backgroundGradient } from '../utils/helperComponents.jsx';

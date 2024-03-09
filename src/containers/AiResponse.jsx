@@ -10,7 +10,7 @@ import { LoadingAiIcon, LoadingIcon } from '../components/sub-components/Icons';
 // import DOMPurify from 'dompurify';
 import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
-import ShareModal from '../components/sub-components/ShareModal';
+// import ShareModal from '../components/sub-components/ShareModal';
 import { getNBALogos } from '../components/sub-components/NBALogos';
 
 export default function AiResponse() {

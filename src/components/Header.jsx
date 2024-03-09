@@ -5,7 +5,7 @@ import MenuButtonX from './sub-components/MenuButton';
 import logo from '../assets/logo.png';
 import LogInButton from './sub-components/LogInButton';
 import { capitalize } from '../utils/helpers';
-import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import { DiscordLogoIcon } from '@radix-ui/react-icons';
 import posthog from 'posthog-js';
 
 export default function Header() {
@@ -61,10 +61,9 @@ export default function Header() {
               rel="noreferrer"
               className="text-blue-500 font-bold hover:text-blue-300 flex items-center justify-center"
             >
-              {/* <TwitterLogoIcon className="w-5 h-5" /> */}
               <svg
                 viewBox="0 0 1200 1227"
-                className={`w-4 h-4`}
+                className={`w-4 h-4 hover:brightness-150`}
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
