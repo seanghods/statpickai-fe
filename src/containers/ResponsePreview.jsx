@@ -5,6 +5,7 @@ import { backgroundGradient } from '../utils/helperComponents';
 import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 import { useEffect } from 'react';
+import { getNBALogos } from '../components/sub-components/NBALogos';
 
 export default function Preview() {
   const navigate = useNavigate();
@@ -80,12 +81,14 @@ export default function Preview() {
                                       LeBron James
                                     </strong>
                                   ) : index == '1' ? (
-                                    <strong className="ticker-one brightness-125 text-lg md:text-xl">
-                                      Los Angeles Lakers
+                                    <strong className="ticker-one brightness-125 text-lg md:text-xl flex items-center gap-2">
+                                      {getNBALogos('Lakers', 8, 5)} Los Angeles
+                                      Lakers
                                     </strong>
                                   ) : (
-                                    <strong className="ticker-two brightness-125 text-lg md:text-xl">
-                                      New York Knicks
+                                    <strong className="ticker-two brightness-125 text-lg md:text-xl flex items-center gap-2">
+                                      {getNBALogos('Knicks', 8, 5)} New York
+                                      Knicks
                                     </strong>
                                   )}
                                 </Table.ColumnHeaderCell>
