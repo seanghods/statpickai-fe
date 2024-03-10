@@ -130,7 +130,7 @@ export default function SignUpPage() {
                           loadingTransition ? 'animate-slide-out-left' : ''
                         } flex w-full md:w-3/4 flex-col px-4 pb-3 md:px-12 md:pb-3 gap-2`}
                       >
-                        <form
+                        <div
                           className="flex flex-col px-4 pb-3 md:px-12 md:pb-3 gap-2"
                           noValidate
                           id="sign-up"
@@ -214,7 +214,7 @@ export default function SignUpPage() {
                               handling of passwords.
                             </div>
                           </div>
-                        </form>
+                        </div>
                         <div className="button text-center font-game flex flex-col gap-3 items-center justify-center">
                           Already Registered?
                           <div className="bg-gray-600 w-[80px] px-4 py-1 rounded-lg ">
