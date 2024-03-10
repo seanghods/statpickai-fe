@@ -59,7 +59,7 @@ export default function Home() {
             <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
               <NavLink
                 to="/games"
-                className="px-7 py-3 w-full bg-gray-700 hover:bg-gray-500 text-gray-200 text-center rounded-md block sm:w-auto"
+                className="px-7 py-3 w-full bg-gray-700 hover:bg-gray-500 text-white font-bold text-center rounded-md block sm:w-auto"
               >
                 See Today&apos;s Games
               </NavLink>
@@ -67,7 +67,7 @@ export default function Home() {
                 to="/sign-up"
                 className="px-7 py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
               >
-                Get Started
+                Register
               </NavLink>
             </div>
           </div>
