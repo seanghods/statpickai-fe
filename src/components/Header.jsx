@@ -51,7 +51,7 @@ export default function Header() {
             <img
               src={logo}
               alt="Stat Pick AI Logo"
-              className="h-[50px] md:w-[130px]"
+              className="h-[50px] md:h-[55px] md:w-[150px]"
             />
           </NavLink>
           <div className="gap-4 h-full hidden md:flex">
