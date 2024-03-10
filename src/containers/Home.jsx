@@ -31,13 +31,13 @@ export default function Home() {
                 curated, relevant statistics and state-of-the-art AI analysis of
                 the line.
               </p>
-              <p className="flex justify-center items-center gap-2 text-gray-300 text-center leading-relaxed md:w-3/5 text-sm md:text-[18px] mt-4">
+              <p className="justify-center items-center gap-2 text-gray-300 text-center leading-relaxed md:w-3/5 text-sm md:text-[18px] mt-4">
                 Follow us on{' '}
                 <a
                   href="https://twitter.com/statpickai"
                   target="_blank"
                   rel="noreferrer"
-                  className="font-bold hover:text-gray-400 flex gap-2"
+                  className="font-bold hover:text-gray-400 inline-block gap-2"
                 >
                   {xSvg(5, 5)}
                 </a>{' '}
@@ -53,7 +53,7 @@ export default function Home() {
                 >
                   Discord <DiscordLogoIcon className="inline-block w-5 h-5" />
                 </a>{' '}
-                community here.
+                community.
               </p>
             </div>
             <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
@@ -65,9 +65,9 @@ export default function Home() {
               </NavLink>
               <NavLink
                 to="/sign-up"
-                className="px-7 py-3 w-full bg-[#31b940] text-white hover:bg-[#51d661] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
+                className="px-7 py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
               >
-                Get started
+                Get Started
               </NavLink>
             </div>
           </div>
@@ -207,9 +207,9 @@ export default function Home() {
             <div className="mt-4 flex w-full justify-center">
               <NavLink
                 to="/sign-up"
-                className="inline-block py-2 px-4 bg-[#31b940] text-white hover:bg-[#51d661] hover:font-bold duration-150 rounded-lg shadow-md hover:shadow-none"
+                className="px-7 py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
               >
-                Get started
+                Get Started
               </NavLink>
             </div>
           </div>

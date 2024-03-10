@@ -113,9 +113,9 @@ export default function Pricing() {
                           <div className="flex-1 flex items-end justify-center">
                             <NavLink
                               to={`/sign-up/${item.id}`}
-                              className="text-center px-3 py-3 rounded-lg w-1/2 sm:w-full font-semibold text-sm duration-150 text-white bg-[#42bc2c] hover:bg-[#379c26] active:bg-green-700"
+                              className="text-center px-3 py-3 rounded-lg w-1/2 sm:w-full font-semibold text-sm duration-150 text-white bg-[#2d9638] hover:bg-[#42ae4f] active:bg-green-700"
                             >
-                              {item.price > 0 ? 'Purchase' : 'Get Started'}
+                              Get Started
                             </NavLink>
                           </div>
                         </div>
@@ -165,7 +165,7 @@ export default function Pricing() {
                             <div className="flex items-center justify-center">
                               <NavLink
                                 to={`/sign-up/${item.id}`}
-                                className="text-center px-3 py-3 rounded-lg font-semibold text-sm duration-150 text-white bg-[#4DE234] hover:bg-[#379c26] active:bg-green-700"
+                                className="text-center px-3 py-3 rounded-lg font-semibold text-sm duration-150 text-white bg-[#2d9638] hover:bg-[#42ae4f] active:bg-green-700"
                               >
                                 Get Started
                               </NavLink>

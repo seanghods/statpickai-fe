@@ -103,9 +103,9 @@ export default function About() {
             <div className="mt-4 flex w-full justify-center">
               <NavLink
                 to="/sign-up"
-                className="inline-block py-2 px-4 w-[175px] text-center bg-[#31b940] text-white hover:bg-[#51d661] hover:font-bold duration-150 rounded-lg shadow-md hover:shadow-none"
+                className="px-7 py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
               >
-                Get started
+                Get Started
               </NavLink>
             </div>
           </section>
