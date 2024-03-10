@@ -599,33 +599,13 @@ export default function GameInfo({ game }) {
                   >
                     <Table.Cell
                       id={slugify(player.full_name, { lower: true })}
-                      data-line={
-                        selectedStat
-                          ? game.props
-                            ? game.props[
-                                selectedStat == '3pm' ? 'threes' : selectedStat
-                              ]
-                              ? game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                )
-                                ? game.props[
-                                    selectedStat == '3pm'
-                                      ? 'threes'
-                                      : selectedStat
-                                  ].find(
-                                    obj =>
-                                      obj.participant_name == player.full_name,
-                                  ).handicap
-                                : null
-                              : null
-                            : null
-                          : null
-                      }
+                      data-line={getHandicap(
+                        selectedStat,
+                        game.props,
+                        player.full_name,
+                        customLine,
+                        false,
+                      )}
                       className="z-10"
                       width={'320px'}
                       onClick={e => handlePlayerClick(e)}
@@ -646,85 +626,19 @@ export default function GameInfo({ game }) {
                         )}
                         {player.full_name} ({player.position})
                         <div className="flex items-center flex-1 gap-1 text-right">
-                          {selectedStat ? (
-                            game.props ? (
-                              game.props[
-                                selectedStat == '3pm' ? 'threes' : selectedStat
-                              ] ? (
-                                game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                ) ? (
-                                  <strong
-                                    className={`text-lg flex-1 text-right text-gray-200 ${
-                                      customLine ? 'brightness-75' : null
-                                    }`}
-                                  >{`${
-                                    game.props[
-                                      selectedStat == '3pm'
-                                        ? 'threes'
-                                        : selectedStat
-                                    ].find(
-                                      obj =>
-                                        obj.participant_name ==
-                                        player.full_name,
-                                    ).handicap
-                                  }`}</strong>
-                                ) : null
-                              ) : null
-                            ) : null
-                          ) : null}
-                          {selectedStat ? (
-                            game.props ? (
-                              game.props[
-                                selectedStat == '3pm' ? 'threes' : selectedStat
-                              ] ? (
-                                game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                ) ? (
-                                  <strong
-                                    className={`text-sm text-right text-gray-200 ${
-                                      customLine ? 'brightness-75' : null
-                                    }`}
-                                  >
-                                    {parseInt(
-                                      game.props[
-                                        selectedStat == '3pm'
-                                          ? 'threes'
-                                          : selectedStat
-                                      ].find(
-                                        obj =>
-                                          obj.participant_name ==
-                                          player.full_name,
-                                      ).odds,
-                                    ) > 0
-                                      ? '(+'
-                                      : '('}
-                                    {`${
-                                      game.props[
-                                        selectedStat == '3pm'
-                                          ? 'threes'
-                                          : selectedStat
-                                      ].find(
-                                        obj =>
-                                          obj.participant_name ==
-                                          player.full_name,
-                                      ).odds
-                                    })`}
-                                  </strong>
-                                ) : null
-                              ) : null
-                            ) : null
-                          ) : null}
+                          {getHandicap(
+                            selectedStat,
+                            game.props,
+                            player.full_name,
+                            customLine,
+                            true,
+                          )}
+                          {getHandicapOdds(
+                            selectedStat,
+                            game.props,
+                            player.full_name,
+                            customLine,
+                          )}
                         </div>
                       </div>
                     </Table.Cell>
@@ -777,33 +691,13 @@ export default function GameInfo({ game }) {
                   >
                     <Table.Cell
                       id={slugify(player.full_name, { lower: true })}
-                      data-line={
-                        selectedStat
-                          ? game.props
-                            ? game.props[
-                                selectedStat == '3pm' ? 'threes' : selectedStat
-                              ]
-                              ? game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                )
-                                ? game.props[
-                                    selectedStat == '3pm'
-                                      ? 'threes'
-                                      : selectedStat
-                                  ].find(
-                                    obj =>
-                                      obj.participant_name == player.full_name,
-                                  ).handicap
-                                : null
-                              : null
-                            : null
-                          : null
-                      }
+                      data-line={getHandicap(
+                        selectedStat,
+                        game.props,
+                        player.full_name,
+                        customLine,
+                        false,
+                      )}
                       onClick={e => handlePlayerClick(e)}
                       width={'320px'}
                     >
@@ -823,85 +717,19 @@ export default function GameInfo({ game }) {
                         )}
                         {player.full_name} ({player.position})
                         <div className="flex items-center flex-1 gap-1 text-right">
-                          {selectedStat ? (
-                            game.props ? (
-                              game.props[
-                                selectedStat == '3pm' ? 'threes' : selectedStat
-                              ] ? (
-                                game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                ) ? (
-                                  <strong
-                                    className={`text-lg flex-1 text-right text-gray-200 ${
-                                      customLine ? 'brightness-75' : null
-                                    }`}
-                                  >{`${
-                                    game.props[
-                                      selectedStat == '3pm'
-                                        ? 'threes'
-                                        : selectedStat
-                                    ].find(
-                                      obj =>
-                                        obj.participant_name ==
-                                        player.full_name,
-                                    ).handicap
-                                  }`}</strong>
-                                ) : null
-                              ) : null
-                            ) : null
-                          ) : null}
-                          {selectedStat ? (
-                            game.props ? (
-                              game.props[
-                                selectedStat == '3pm' ? 'threes' : selectedStat
-                              ] ? (
-                                game.props[
-                                  selectedStat == '3pm'
-                                    ? 'threes'
-                                    : selectedStat
-                                ].find(
-                                  obj =>
-                                    obj.participant_name == player.full_name,
-                                ) ? (
-                                  <strong
-                                    className={`text-sm text-right text-gray-200 ${
-                                      customLine ? 'brightness-75' : null
-                                    }`}
-                                  >
-                                    {parseInt(
-                                      game.props[
-                                        selectedStat == '3pm'
-                                          ? 'threes'
-                                          : selectedStat
-                                      ].find(
-                                        obj =>
-                                          obj.participant_name ==
-                                          player.full_name,
-                                      ).odds,
-                                    ) > 0
-                                      ? '(+'
-                                      : '('}
-                                    {`${
-                                      game.props[
-                                        selectedStat == '3pm'
-                                          ? 'threes'
-                                          : selectedStat
-                                      ].find(
-                                        obj =>
-                                          obj.participant_name ==
-                                          player.full_name,
-                                      ).odds
-                                    })`}
-                                  </strong>
-                                ) : null
-                              ) : null
-                            ) : null
-                          ) : null}
+                          {getHandicap(
+                            selectedStat,
+                            game.props,
+                            player.full_name,
+                            customLine,
+                            true,
+                          )}
+                          {getHandicapOdds(
+                            selectedStat,
+                            game.props,
+                            player.full_name,
+                            customLine,
+                          )}
                         </div>
                       </div>
                     </Table.Cell>
@@ -1152,4 +980,71 @@ export default function GameInfo({ game }) {
       </div>
     </>
   );
+}
+
+function getHandicap(selectedStat, props, playerName, customLine, withHtml) {
+  return withHtml ? (
+    selectedStat ? (
+      props ? (
+        props[selectedStat == '3pm' ? 'threes' : selectedStat] ? (
+          props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
+            obj => obj.participant_name == playerName,
+          ) ? (
+            <strong
+              className={`text-lg flex-1 text-right text-gray-200 ${
+                customLine ? 'brightness-75' : null
+              }`}
+            >{`${
+              props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
+                obj => obj.participant_name == playerName,
+              ).handicap
+            }`}</strong>
+          ) : null
+        ) : null
+      ) : null
+    ) : null
+  ) : selectedStat ? (
+    props ? (
+      props[selectedStat == '3pm' ? 'threes' : selectedStat] ? (
+        props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
+          obj => obj.participant_name == playerName,
+        ) ? (
+          props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
+            obj => obj.participant_name == playerName,
+          ).handicap
+        ) : null
+      ) : null
+    ) : null
+  ) : null;
+}
+
+function getHandicapOdds(selectedStat, props, playerName, customLine) {
+  return selectedStat ? (
+    props ? (
+      props[selectedStat == '3pm' ? 'threes' : selectedStat] ? (
+        props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
+          obj => obj.participant_name == playerName,
+        ) ? (
+          <strong
+            className={`text-sm text-right text-gray-200 ${
+              customLine ? 'brightness-75' : null
+            }`}
+          >
+            {parseInt(
+              props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
+                obj => obj.participant_name == playerName,
+              ).odds,
+            ) > 0
+              ? '(+'
+              : '('}
+            {`${
+              props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
+                obj => obj.participant_name == playerName,
+              ).odds
+            })`}
+          </strong>
+        ) : null
+      ) : null
+    ) : null
+  ) : null;
 }
