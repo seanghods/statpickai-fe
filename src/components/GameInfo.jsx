@@ -601,14 +601,10 @@ export default function GameInfo({ game }) {
                       id={slugify(player.full_name, { lower: true })}
                       data-line={
                         selectedStat
-                          ? game.props[
-                              selectedStat == '3pm' ? 'threes' : selectedStat
-                            ]
+                          ? game.props
                             ? game.props[
                                 selectedStat == '3pm' ? 'threes' : selectedStat
-                              ].find(
-                                obj => obj.participant_name == player.full_name,
-                              )
+                              ]
                               ? game.props[
                                   selectedStat == '3pm'
                                     ? 'threes'
@@ -616,7 +612,16 @@ export default function GameInfo({ game }) {
                                 ].find(
                                   obj =>
                                     obj.participant_name == player.full_name,
-                                ).handicap
+                                )
+                                ? game.props[
+                                    selectedStat == '3pm'
+                                      ? 'threes'
+                                      : selectedStat
+                                  ].find(
+                                    obj =>
+                                      obj.participant_name == player.full_name,
+                                  ).handicap
+                                : null
                               : null
                             : null
                           : null
@@ -642,70 +647,81 @@ export default function GameInfo({ game }) {
                         {player.full_name} ({player.position})
                         <div className="flex items-center flex-1 gap-1 text-right">
                           {selectedStat ? (
-                            game.props[
-                              selectedStat == '3pm' ? 'threes' : selectedStat
-                            ] ? (
+                            game.props ? (
                               game.props[
                                 selectedStat == '3pm' ? 'threes' : selectedStat
-                              ].find(
-                                obj => obj.participant_name == player.full_name,
-                              ) ? (
-                                <strong
-                                  className={`text-lg flex-1 text-right text-gray-200 ${
-                                    customLine ? 'brightness-75' : null
-                                  }`}
-                                >{`${
-                                  game.props[
-                                    selectedStat == '3pm'
-                                      ? 'threes'
-                                      : selectedStat
-                                  ].find(
-                                    obj =>
-                                      obj.participant_name == player.full_name,
-                                  ).handicap
-                                }`}</strong>
+                              ] ? (
+                                game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ) ? (
+                                  <strong
+                                    className={`text-lg flex-1 text-right text-gray-200 ${
+                                      customLine ? 'brightness-75' : null
+                                    }`}
+                                  >{`${
+                                    game.props[
+                                      selectedStat == '3pm'
+                                        ? 'threes'
+                                        : selectedStat
+                                    ].find(
+                                      obj =>
+                                        obj.participant_name ==
+                                        player.full_name,
+                                    ).handicap
+                                  }`}</strong>
+                                ) : null
                               ) : null
                             ) : null
                           ) : null}
                           {selectedStat ? (
-                            game.props[
-                              selectedStat == '3pm' ? 'threes' : selectedStat
-                            ] ? (
+                            game.props ? (
                               game.props[
                                 selectedStat == '3pm' ? 'threes' : selectedStat
-                              ].find(
-                                obj => obj.participant_name == player.full_name,
-                              ) ? (
-                                <strong
-                                  className={`text-sm text-right text-gray-200 ${
-                                    customLine ? 'brightness-75' : null
-                                  }`}
-                                >
-                                  {parseInt(
-                                    game.props[
-                                      selectedStat == '3pm'
-                                        ? 'threes'
-                                        : selectedStat
-                                    ].find(
-                                      obj =>
-                                        obj.participant_name ==
-                                        player.full_name,
-                                    ).odds,
-                                  ) > 0
-                                    ? '(+'
-                                    : '('}
-                                  {`${
-                                    game.props[
-                                      selectedStat == '3pm'
-                                        ? 'threes'
-                                        : selectedStat
-                                    ].find(
-                                      obj =>
-                                        obj.participant_name ==
-                                        player.full_name,
-                                    ).odds
-                                  })`}
-                                </strong>
+                              ] ? (
+                                game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ) ? (
+                                  <strong
+                                    className={`text-sm text-right text-gray-200 ${
+                                      customLine ? 'brightness-75' : null
+                                    }`}
+                                  >
+                                    {parseInt(
+                                      game.props[
+                                        selectedStat == '3pm'
+                                          ? 'threes'
+                                          : selectedStat
+                                      ].find(
+                                        obj =>
+                                          obj.participant_name ==
+                                          player.full_name,
+                                      ).odds,
+                                    ) > 0
+                                      ? '(+'
+                                      : '('}
+                                    {`${
+                                      game.props[
+                                        selectedStat == '3pm'
+                                          ? 'threes'
+                                          : selectedStat
+                                      ].find(
+                                        obj =>
+                                          obj.participant_name ==
+                                          player.full_name,
+                                      ).odds
+                                    })`}
+                                  </strong>
+                                ) : null
                               ) : null
                             ) : null
                           ) : null}
@@ -763,14 +779,10 @@ export default function GameInfo({ game }) {
                       id={slugify(player.full_name, { lower: true })}
                       data-line={
                         selectedStat
-                          ? game.props[
-                              selectedStat == '3pm' ? 'threes' : selectedStat
-                            ]
+                          ? game.props
                             ? game.props[
                                 selectedStat == '3pm' ? 'threes' : selectedStat
-                              ].find(
-                                obj => obj.participant_name == player.full_name,
-                              )
+                              ]
                               ? game.props[
                                   selectedStat == '3pm'
                                     ? 'threes'
@@ -778,7 +790,16 @@ export default function GameInfo({ game }) {
                                 ].find(
                                   obj =>
                                     obj.participant_name == player.full_name,
-                                ).handicap
+                                )
+                                ? game.props[
+                                    selectedStat == '3pm'
+                                      ? 'threes'
+                                      : selectedStat
+                                  ].find(
+                                    obj =>
+                                      obj.participant_name == player.full_name,
+                                  ).handicap
+                                : null
                               : null
                             : null
                           : null
@@ -803,70 +824,81 @@ export default function GameInfo({ game }) {
                         {player.full_name} ({player.position})
                         <div className="flex items-center flex-1 gap-1 text-right">
                           {selectedStat ? (
-                            game.props[
-                              selectedStat == '3pm' ? 'threes' : selectedStat
-                            ] ? (
+                            game.props ? (
                               game.props[
                                 selectedStat == '3pm' ? 'threes' : selectedStat
-                              ].find(
-                                obj => obj.participant_name == player.full_name,
-                              ) ? (
-                                <strong
-                                  className={`text-lg flex-1 text-right text-gray-200 ${
-                                    customLine ? 'brightness-75' : null
-                                  }`}
-                                >{`${
-                                  game.props[
-                                    selectedStat == '3pm'
-                                      ? 'threes'
-                                      : selectedStat
-                                  ].find(
-                                    obj =>
-                                      obj.participant_name == player.full_name,
-                                  ).handicap
-                                }`}</strong>
+                              ] ? (
+                                game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ) ? (
+                                  <strong
+                                    className={`text-lg flex-1 text-right text-gray-200 ${
+                                      customLine ? 'brightness-75' : null
+                                    }`}
+                                  >{`${
+                                    game.props[
+                                      selectedStat == '3pm'
+                                        ? 'threes'
+                                        : selectedStat
+                                    ].find(
+                                      obj =>
+                                        obj.participant_name ==
+                                        player.full_name,
+                                    ).handicap
+                                  }`}</strong>
+                                ) : null
                               ) : null
                             ) : null
                           ) : null}
                           {selectedStat ? (
-                            game.props[
-                              selectedStat == '3pm' ? 'threes' : selectedStat
-                            ] ? (
+                            game.props ? (
                               game.props[
                                 selectedStat == '3pm' ? 'threes' : selectedStat
-                              ].find(
-                                obj => obj.participant_name == player.full_name,
-                              ) ? (
-                                <strong
-                                  className={`text-sm text-right text-gray-200 ${
-                                    customLine ? 'brightness-75' : null
-                                  }`}
-                                >
-                                  {parseInt(
-                                    game.props[
-                                      selectedStat == '3pm'
-                                        ? 'threes'
-                                        : selectedStat
-                                    ].find(
-                                      obj =>
-                                        obj.participant_name ==
-                                        player.full_name,
-                                    ).odds,
-                                  ) > 0
-                                    ? '(+'
-                                    : '('}
-                                  {`${
-                                    game.props[
-                                      selectedStat == '3pm'
-                                        ? 'threes'
-                                        : selectedStat
-                                    ].find(
-                                      obj =>
-                                        obj.participant_name ==
-                                        player.full_name,
-                                    ).odds
-                                  })`}
-                                </strong>
+                              ] ? (
+                                game.props[
+                                  selectedStat == '3pm'
+                                    ? 'threes'
+                                    : selectedStat
+                                ].find(
+                                  obj =>
+                                    obj.participant_name == player.full_name,
+                                ) ? (
+                                  <strong
+                                    className={`text-sm text-right text-gray-200 ${
+                                      customLine ? 'brightness-75' : null
+                                    }`}
+                                  >
+                                    {parseInt(
+                                      game.props[
+                                        selectedStat == '3pm'
+                                          ? 'threes'
+                                          : selectedStat
+                                      ].find(
+                                        obj =>
+                                          obj.participant_name ==
+                                          player.full_name,
+                                      ).odds,
+                                    ) > 0
+                                      ? '(+'
+                                      : '('}
+                                    {`${
+                                      game.props[
+                                        selectedStat == '3pm'
+                                          ? 'threes'
+                                          : selectedStat
+                                      ].find(
+                                        obj =>
+                                          obj.participant_name ==
+                                          player.full_name,
+                                      ).odds
+                                    })`}
+                                  </strong>
+                                ) : null
                               ) : null
                             ) : null
                           ) : null}

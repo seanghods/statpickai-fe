@@ -6,6 +6,7 @@ import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 import { useEffect } from 'react';
 import { getNBALogos } from '../components/sub-components/NBALogos';
+import IsoIcon from '@mui/icons-material/Iso';
 
 export default function Preview() {
   const navigate = useNavigate();
