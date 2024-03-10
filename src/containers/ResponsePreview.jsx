@@ -77,7 +77,12 @@ export default function Preview() {
                                 {/* style={{ fontSize: isMobile && '12px' }} */}
                                 <Table.ColumnHeaderCell>
                                   {index == '0' ? (
-                                    <strong className="ticker-three brightness-125 text-lg md:text-xl">
+                                    <strong className="ticker-three brightness-125 text-lg md:text-xl flex items-center gap-2">
+                                      <img
+                                        src="https://s3-us-west-2.amazonaws.com/static.fantasydata.com/usa-today/headshots/nba/lebron-james-20000571-1a4668f2.png"
+                                        className="w-7 h-7"
+                                        alt="LeBron James Headshot"
+                                      />
                                       LeBron James
                                     </strong>
                                   ) : index == '1' ? (
