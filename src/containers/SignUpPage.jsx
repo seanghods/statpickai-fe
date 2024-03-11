@@ -134,6 +134,7 @@ export default function SignUpPage() {
                           className="flex flex-col px-4 pb-3 md:px-12 md:pb-3 gap-2"
                           noValidate
                           id="sign-up"
+                          method="post"
                           onSubmit={handleSignUp}
                         >
                           <label htmlFor="username">Username*</label>
