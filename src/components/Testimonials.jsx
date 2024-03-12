@@ -90,7 +90,7 @@ export default function Testimonials() {
               />
             </div>
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <div className="flex justify-center items-center h-[175px] md:h-[400px]">
               <img
                 src={T1}
@@ -107,7 +107,7 @@ export default function Testimonials() {
                 className="rounded-lg w-5/6 md:w-[825px] scale-110"
               />
             </div>
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </div>
     </>
