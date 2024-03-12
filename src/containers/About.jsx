@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import { Footer, Header } from '../components';
-import logo from '../assets/logo.png';
 import { useEffect } from 'react';
 import { backgroundGradient } from '../utils/helperComponents.jsx';
 

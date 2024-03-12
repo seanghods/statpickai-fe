@@ -192,7 +192,8 @@ export default function AiResponse() {
               >
                 {response.player ? (
                   <div>
-                    {response.player} +/- <br className="md:hidden" />
+                    {response.player} <span className="text-gray-500">+/-</span>{' '}
+                    <br className="md:hidden" />
                     {response.line}{' '}
                     {statName ||
                       (response.stat ? capitalize(response.stat) : null)}
