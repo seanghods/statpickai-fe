@@ -38,7 +38,7 @@ export default function Home() {
                   to="/games"
                   className="px-3 md:px-7 py-2 md:py-3 w-full bg-gray-700 hover:bg-gray-500 text-white font-bold text-center rounded-md block sm:w-auto"
                 >
-                  See Today&apos;s Games
+                  Create a Pick
                 </NavLink>
                 <NavLink
                   to="/sign-up"
@@ -74,7 +74,7 @@ export default function Home() {
           </div>
           <div className="w-full text-left p-7 mt-7 lg:mt-0 lg:ml-3 text-white shadow-gray-300 shadow-md h-[720px] md:h-[450px]">
             <Typewriter
-              options={{ delay: 10, cursor: '#' }}
+              options={{ delay: 6, cursor: '#' }}
               className="h-full"
               onInit={typewriter => {
                 typewriter
@@ -128,13 +128,13 @@ export default function Home() {
                   How Does It Work?
                 </p>
                 <p className="mt-3">
-                  This state-of-the-art AI processes hand-selected statistics
-                  tailored to each prop, focusing on key player metrics such as
-                  averages from the last 5 and 10 games, season-long
-                  performance, and specific opponent histories. Additionally, a
-                  suite of advanced statistics is incorporated in the analysis,
-                  including team and opponent pace, opponent effective field
-                  goal percentage, assist ratios, and more.
+                  This state-of-the-art AI processes a hand-selected list of
+                  statistics tailored to each prop, focusing on key player
+                  performance stats such as averages from the last 5 and 10
+                  games, season-long performance, and specific opponent history.
+                  Advanced team statistics are incorporated in the analysis as
+                  well, including team and opponent pace, opponent effective
+                  field goal percentage, assist ratios, and more.
                 </p>{' '}
                 <div className="grid grid-cols-2 gap-4 p-4">
                   <div className="col-span-2 text-center text-lg font-bold mb-4">
@@ -168,7 +168,7 @@ export default function Home() {
                   to="/about"
                   className="inline-flex gap-x-1 items-center text-[#b7bded] hover:brightness-125  duration-150 font-medium"
                 >
-                  Learn more
+                  Learn why Stat Pick AI was created
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"

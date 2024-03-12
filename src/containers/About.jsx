@@ -20,51 +20,54 @@ export default function About() {
             </div>
             <div className="flex-1 flex justify-center w-full mb-12">
               <div className="w-5/6 md:w-3/5 flex flex-col gap-5">
-                <h1 className="flex justify-center mb-8 w-full pr-4">
-                  <img
-                    src={logo}
-                    alt="Picture of Logo"
-                    className="w-1/2 md:w-1/4"
-                  />
-                </h1>
                 <p className="text-lg">
-                  When choosing a player prop to analyze, you are given a custom
-                  report with a full stat-table of curated, relevant statistics
-                  and an advanced AI analysis of those statistics in context of
-                  the pick.
+                  When picking NBA Player Props, I would always look up a
+                  player&apos;s recent stats to help evaluate if I wanted to
+                  pursue that pick. But I knew that besides recent performance,
+                  there were a host of other statistics that were just as
+                  important to the pick&apos;s success that I wasn&apos;t
+                  familiar with.{' '}
                 </p>
                 <p className="text-lg">
-                  These statistics are updated daily and delve into vital player
-                  metrics, covering not only their average performances in the
-                  most recent 5 and 10 games but also their overall season
-                  averages, and their historical averages with specific
-                  opponents.{' '}
+                  From opponent&apos;s defense against the player&apos;s
+                  position, to opponent&apos;s defense against that
+                  player&apos;s favorite zone, to team and opponent pace in
+                  possessions, these statistics were there that could further
+                  help me in my decision. And I found that most sports data
+                  providers were great at providing me info only if I already
+                  knew what I was looking for.
                 </p>
                 <p className="text-lg">
-                  Advanced team and opponent statistics are provided as well
-                  into the AI analysis, including assessments of team and
-                  opponent paces, evaluations of opponent effective field goal
-                  percentages, reading of assist ratios, among other nuanced
-                  metrics.{' '}
+                  I created{' '}
+                  <strong>
+                    Stat <span className="text-[#4DE234]"> Pick</span> AI
+                  </strong>{' '}
+                  to help solve that problem. All you have to do is choose the
+                  pick you are interested in and Stat Pick AI will pull together
+                  a curated list of relevant individual and team statistics. The
+                  AI will process these statistics, explain them to you, and
+                  give you a lean on over or under on the likelihood of the line
+                  hitting. This quickly cuts down research to solely you
+                  evaluating data instead of hunting to find it.
+                </p>
+                <p className="text-lg">
+                  Our data is updated daily and we use state-of-the-art AI GPTs
+                  to evaluate the data and identify trends. We provide the AI
+                  all the statistics and allow it to generate a recommendation.
                 </p>
                 <p className="text-lg">
                   Regarding the pricing, every response our AI generates comes
                   with its own cost for us. Besides that, we also maintain a
                   large collection of basic and detailed statistics, which are
-                  crucial for the AI to work effectively.
-                </p>
-                <p className="text-lg">
-                  To cover these ongoing costs, we&apos;ve set up a subscription
-                  model. This model includes various pricing options, so you can
-                  choose what works best for you. We suggest you take a look at
-                  the free example we&apos;ve provided above to get a feel for
-                  the quality of statistics and AI responses we provide. For
-                  more information, please check out the{' '}
+                  crucial for the AI to work effectively. To cover these ongoing
+                  costs, we&apos;ve set up a subscription model. For more
+                  information, please check out the{' '}
                   <NavLink to="../pricing" className="text-blue-500 font-bold">
                     Pricing
                   </NavLink>{' '}
                   section on our website.
                 </p>
+                -Sean Ghods
                 <div className="grid grid-cols-2 gap-4 p-4">
                   <div className="col-span-2 text-center text-xl font-bold mb-4">
                     Statistics We Analyze Include:

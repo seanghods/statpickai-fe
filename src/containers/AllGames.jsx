@@ -20,6 +20,7 @@ export default function Games() {
               >
                 Today&apos;s Games
               </h1>
+              <h2>Choose a game to create your pick.</h2>
             </div>
             <AllGamesComp />
             <div className="w-full text-center mt-6 font-bold text-sm md:text-base text-red-200">
