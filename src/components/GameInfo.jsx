@@ -990,7 +990,8 @@ function getHandicap(selectedStat, props, playerName, customLine, withHtml) {
       props ? (
         props[selectedStat == '3pm' ? 'threes' : selectedStat] ? (
           props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
-            obj => obj.participant_name == playerName,
+            obj =>
+              obj.participant_name.toLowerCase() == playerName.toLowerCase(),
           ) ? (
             <strong
               className={`text-lg flex-1 text-right text-gray-200 ${
@@ -998,7 +999,9 @@ function getHandicap(selectedStat, props, playerName, customLine, withHtml) {
               }`}
             >{`${
               props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
-                obj => obj.participant_name == playerName,
+                obj =>
+                  obj.participant_name.toLowerCase() ==
+                  playerName.toLowerCase(),
               ).handicap
             }`}</strong>
           ) : null
@@ -1009,10 +1012,11 @@ function getHandicap(selectedStat, props, playerName, customLine, withHtml) {
     props ? (
       props[selectedStat == '3pm' ? 'threes' : selectedStat] ? (
         props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
-          obj => obj.participant_name == playerName,
+          obj => obj.participant_name.toLowerCase() == playerName.toLowerCase(),
         ) ? (
           props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
-            obj => obj.participant_name == playerName,
+            obj =>
+              obj.participant_name.toLowerCase() == playerName.toLowerCase(),
           ).handicap
         ) : null
       ) : null
@@ -1025,7 +1029,7 @@ function getHandicapOdds(selectedStat, props, playerName, customLine) {
     props ? (
       props[selectedStat == '3pm' ? 'threes' : selectedStat] ? (
         props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
-          obj => obj.participant_name == playerName,
+          obj => obj.participant_name.toLowerCase() == playerName.toLowerCase(),
         ) ? (
           <strong
             className={`text-sm text-right text-gray-200 ${
@@ -1034,14 +1038,18 @@ function getHandicapOdds(selectedStat, props, playerName, customLine) {
           >
             {parseInt(
               props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
-                obj => obj.participant_name == playerName,
+                obj =>
+                  obj.participant_name.toLowerCase() ==
+                  playerName.toLowerCase(),
               ).odds,
             ) > 0
               ? '(+'
               : '('}
             {`${
               props[selectedStat == '3pm' ? 'threes' : selectedStat].find(
-                obj => obj.participant_name == playerName,
+                obj =>
+                  obj.participant_name.toLowerCase() ==
+                  playerName.toLowerCase(),
               ).odds
             })`}
           </strong>
