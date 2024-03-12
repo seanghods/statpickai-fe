@@ -184,7 +184,7 @@ export default function SignUpPage() {
                           <div className="button text-center mt-5">
                             {' '}
                             <div className="reg-msg font-game text-sm my-6 md:my-8 ">
-                              *By registering I agree to the{' '}
+                              By registering I agree to the{' '}
                               <NavLink
                                 to="/terms-of-service"
                                 className="text-blue-400 w-4/5 md:w-1/2"
@@ -198,7 +198,6 @@ export default function SignUpPage() {
                               >
                                 Privacy Policy
                               </NavLink>
-                              ”
                             </div>
                             <button className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white rounded-lg w-1/2 text-center px-3 py-2">
                               Sign Up

@@ -21,7 +21,7 @@ export default function Testimonials() {
   return (
     <>
       <div className="select-none m-6 rounded-lg">
-        <div className="text-white font-bold text-2xl md:text-4xl text-center">
+        <div className="text-gray-300 font-bold text-2xl md:text-4xl text-center">
           Testimonials
         </div>
         <Swiper

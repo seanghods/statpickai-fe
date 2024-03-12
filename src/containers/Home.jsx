@@ -20,7 +20,7 @@ export default function Home() {
       <div>
         <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex flex-col gap-12 md:px-8">
           <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-            {/* <img src={logo} alt="" className="w-[200px]" /> */}
+            <img src={logo} alt="" className="w-[200px]" />
             <h1 className="text-white font-bold text-2xl md:text-4xl xl:text-[44px] text-center">
               <span className="text-[#4DE234]">Enhance</span> your NBA Prop
               Picks
