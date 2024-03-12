@@ -20,10 +20,10 @@ export default function Home() {
       <div>
         <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex flex-col gap-12 md:px-8">
           <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
-            <img src={logo} alt="" className="w-[200px]" />
+            <img src={logo} alt="" className="hidden md:block w-[200px]" />
             <h1 className="text-white font-bold text-2xl md:text-4xl xl:text-[44px] text-center">
-              <span className="text-[#4DE234]">Enhance</span> your NBA Prop
-              Picks
+              <span className="text-[#4DE234]">Enhance</span> your{' '}
+              <br className="md:hidden" /> NBA Prop Picks
               {/* with Stat
               <span className="text-[#4DE234]"> Pick</span> AI */}
             </h1>
@@ -36,13 +36,13 @@ export default function Home() {
               <div className="items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
                 <NavLink
                   to="/games"
-                  className="px-7 py-3 w-full bg-gray-700 hover:bg-gray-500 text-white font-bold text-center rounded-md block sm:w-auto"
+                  className="px-3 md:px-7 py-2 md:py-3 w-full bg-gray-700 hover:bg-gray-500 text-white font-bold text-center rounded-md block sm:w-auto"
                 >
                   See Today&apos;s Games
                 </NavLink>
                 <NavLink
                   to="/sign-up"
-                  className="px-7 py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
+                  className="px-3 md:px-7 py-2 md:py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
                 >
                   Sign Up
                 </NavLink>

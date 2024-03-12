@@ -90,6 +90,15 @@ select {
   width: 50px; /* Adjust as needed */
   height: 50px; /* Adjust as needed */
 }
+
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 25px; /* Adjusted size for mobile */
+    height: 25px; /* Adjusted size for mobile */
+  }
+}
+
 .swiper-button-next::after,
 .swiper-button-prev::after {
   display: none;

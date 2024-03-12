@@ -41,7 +41,7 @@ export default function Testimonials() {
               <img
                 src={T8}
                 alt="Testimonial 8"
-                className="rounded-lg w-5/6 scale-110 md:w-[825px]"
+                className="rounded-lg w-4/5 scale-110 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
@@ -77,7 +77,7 @@ export default function Testimonials() {
               <img
                 src={T3}
                 alt="Testimonial 3"
-                className="rounded-lg w-5/6 md:w-[825px] scale-110"
+                className="rounded-lg w-4/5 md:w-[825px] scale-110"
               />
             </div>
           </SwiperSlide>
