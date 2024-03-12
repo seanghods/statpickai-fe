@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className=" w-full h-[200px] flex flex-col items-center justify-center gap-5">
       <div className="mx-3 max-w-screen-xl font-inter text-gray-300 text-[8px] md:text-xs">
-        *While we do our best to offer good advice & information we cannot be
+        While we do our best to offer good advice & information we cannot be
         held responsible for any loss that may be be incurred as a result of
         gambling. We do our best to ensure all the information that we provide
         on this site is correct. However from time to time mistakes will be made
@@ -28,7 +28,7 @@ export default function Footer() {
             Contact Us
           </NavLink>
         </div>
-        <div className="flex font-inter text-gray-300 text-sm gap-5 justify-center mt-3">
+        <div className="pt-3 flex font-inter text-gray-300 text-sm gap-5 justify-center mt-3">
           <a
             href="https://twitter.com/statpickai"
             target="_blank"

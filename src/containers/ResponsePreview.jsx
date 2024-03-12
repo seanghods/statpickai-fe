@@ -6,7 +6,7 @@ import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 import { useEffect } from 'react';
 import { getNBALogos } from '../components/sub-components/NBALogos';
-import IsoIcon from '@mui/icons-material/Iso';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function Preview() {
   const navigate = useNavigate();
@@ -257,7 +257,12 @@ export default function Preview() {
                     to go <strong>over the assists line set at 7.5.</strong>
                   </p>
                   <div className="text-center mt-8">
-                    <Button onClick={() => navigate(-1)}>GO BACK</Button>
+                    <Button
+                      className="!cursor-pointer"
+                      onClick={() => navigate(-1)}
+                    >
+                      <ArrowBackIcon /> Back
+                    </Button>
                   </div>
                 </div>
               </div>

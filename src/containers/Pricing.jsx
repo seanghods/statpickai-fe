@@ -66,12 +66,18 @@ export default function Pricing() {
                             item.name == 'Starter'
                               ? 'bg-grn bg-center bg-cover border-green-300'
                               : item.name == 'Star Player'
-                              ? 'bg-gld bg-cover bg-center border-yellow-900'
+                              ? 'bg-gld bg-cover bg-center border-[#FFF410]'
                               : null
                           }`}
                         >
                           <div>
-                            <span className="text-[#369326] font-bold brightness-200">
+                            <span
+                              className={`font-bold brightness-200 ${
+                                item.name == 'Star Player'
+                                  ? 'text-[#FFF410]'
+                                  : 'text-[#369326]'
+                              }`}
+                            >
                               {item.name}{' '}
                               <span
                                 className={`text-white ${
@@ -113,7 +119,11 @@ export default function Pricing() {
                           <div className="flex-1 flex items-end justify-center">
                             <NavLink
                               to={`/sign-up/${item.id}`}
-                              className="text-center px-3 py-3 rounded-lg w-1/2 sm:w-full font-semibold text-sm duration-150 text-white bg-[#2d9638] hover:bg-[#42ae4f] active:bg-green-700"
+                              className={`text-center px-3 py-3 rounded-lg w-1/2 sm:w-full font-semibold text-sm duration-150 text-white ${
+                                item.name == 'Star Player'
+                                  ? 'bg-transparent border-[#FFF410] hover:border-[#fffbaf] border-2'
+                                  : `bg-[#2d9638] hover:bg-[#42ae4f] active:bg-green-700`
+                              }`}
                             >
                               Get Started
                             </NavLink>
@@ -130,7 +140,9 @@ export default function Pricing() {
                             key={idx}
                             className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch justify-between px-5 py-3 rounded-xl border-2`}
                           >
-                            <span className="flex text-xl items-center text-[#369326] font-bold brightness-200">
+                            <span
+                              className={`flex text-xl items-center font-bold brightness-200`}
+                            >
                               {item.name}{' '}
                             </span>
                             <div className="flex items-center gap-3 text-2xl font-semibold">

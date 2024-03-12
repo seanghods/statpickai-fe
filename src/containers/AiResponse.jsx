@@ -12,6 +12,7 @@ import { Button, Table } from '@radix-ui/themes';
 import logo from '../assets/logotransp.png';
 // import ShareModal from '../components/sub-components/ShareModal';
 import { getNBALogos } from '../components/sub-components/NBALogos';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function AiResponse() {
   const [loadingAi, setLoadingAi] = useState(false);
@@ -202,12 +203,12 @@ export default function AiResponse() {
               </h1>
             </div>
             <div className="flex-1 w-full h-full shadow-lg shadow-gray-700 text-gray-200 xl:w-[1216px]">
-              <div className="w-full flex justify-center my-5">
+              <div className="w-full flex justify-center ">
                 <img src={logo} alt="pic of logo" className="w-12 h-12" />
               </div>
-              <div className="w-full flex justify-center my-5">
-                {/* <ShareModal response={response} /> */}
-              </div>
+              {/* <div className="w-full flex justify-center my-5"> */}
+              {/* <ShareModal response={response} /> */}
+              {/* </div> */}
               <div className="flex-1 md:mx-10 flex md:text-lg rounded-lg flex-col justify-center items-center">
                 <div className="flex flex-col gap-4 p-4 md:p-12Z w-full">
                   {loadingAuth ? (
@@ -361,8 +362,10 @@ export default function AiResponse() {
                       Please log in to view this analysis.
                     </div>
                   )}
-                  <div className="text-center mt-8">
-                    <Button onClick={() => navigate(-1)}>GO BACK</Button>
+                  <div className="text-center mt-8 !cursor-pointer">
+                    <Button onClick={() => navigate(-1)}>
+                      <ArrowBackIcon /> Back
+                    </Button>
                   </div>
                 </div>
               </div>

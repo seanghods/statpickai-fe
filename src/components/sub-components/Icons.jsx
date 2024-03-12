@@ -168,7 +168,7 @@ export function xSvg(w, h) {
   return (
     <svg
       viewBox="0 0 1200 1227"
-      className={`w-${w} h-${h} hover:brightness-150`}
+      className={`w-${w} h-${h} hover:brightness-150 inline`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
