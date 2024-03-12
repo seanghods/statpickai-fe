@@ -20,7 +20,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 export default function Testimonials() {
   return (
     <>
-      <div className="select-none">
+      <div className="select-none m-6 rounded-lg">
         <div className="text-white font-bold text-2xl md:text-4xl text-center">
           Testimonials
         </div>
@@ -41,7 +41,7 @@ export default function Testimonials() {
               <img
                 src={T8}
                 alt="Testimonial 8"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 scale-110 md:w-[825px]"
               />
             </div>
           </SwiperSlide>
@@ -77,7 +77,7 @@ export default function Testimonials() {
               <img
                 src={T3}
                 alt="Testimonial 3"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 md:w-[825px] scale-110"
               />
             </div>
           </SwiperSlide>
@@ -95,7 +95,7 @@ export default function Testimonials() {
               <img
                 src={T1}
                 alt="Testimonial 1"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 md:w-[825px] scale-110"
               />
             </div>
           </SwiperSlide>
@@ -104,7 +104,7 @@ export default function Testimonials() {
               <img
                 src={T5}
                 alt="Testimonial 5"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 md:w-[825px] scale-110"
               />
             </div>
           </SwiperSlide>
