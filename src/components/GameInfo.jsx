@@ -901,7 +901,7 @@ export default function GameInfo({ game }) {
                         ref={cellRefs.current[index]}
                         className={`cursor-pointer hover:bg-gray-600 ${
                           line === number ? `bg-gray-600 font-bold` : ''
-                        }`}
+                        } ${customLine ? 'hover:bg-gray-600' : null}`}
                         key={number}
                       >
                         {number}
@@ -914,8 +914,10 @@ export default function GameInfo({ game }) {
                     onClick={() => {
                       if (customLine) setLine(number);
                     }}
-                    className={`cursor-pointer hover:bg-gray-600 ${
+                    className={`${
                       line == number ? `bg-gray-600 font-bold` : ''
+                    } ${
+                      customLine ? 'hover:bg-gray-600 cursor-pointer' : null
                     }`}
                     ref={cellRefs.current[index]}
                     key={number}
