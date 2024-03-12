@@ -27,6 +27,7 @@ import { API_ROUTES } from './utils/constants';
 import Marquee from 'react-fast-marquee';
 import loadingToast from './assets/loadingToast.png';
 import posthog from 'posthog-js';
+import { ScrollToTop } from './utils/helpers';
 
 function App() {
   const {
@@ -164,6 +165,7 @@ function App() {
   }
   return (
     <>
+      <ScrollToTop />
       {/* <div className="flex justify-center">
         <div className="mx-auto max-w-screen-xl !absolute top-20 cursor-default select-none"> */}
       <Marquee
