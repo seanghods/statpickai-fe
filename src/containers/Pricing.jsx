@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Footer, Header } from '../components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../utils/constants';
 import { LoadingIcon } from '../components/sub-components/Icons';
 import { backgroundGradient } from '../utils/helperComponents.jsx';
@@ -10,6 +10,7 @@ export default function Pricing() {
   const { isMobile } = useResponse();
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = 'Pricing';
   }, []);
@@ -56,12 +57,13 @@ export default function Pricing() {
                 </div>
               ) : (
                 <>
-                  <div className="md:px-24 mt-4 md:mt-16 space-y-6 flex flex-col items-center md:items-stretch justify-center sm:grid sm:grid-cols-2 sm:space-y-0 gap-1 md:gap-20 lg:grid-cols-3">
+                  <div className="select-none md:px-24 mt-4 md:mt-16 space-y-6 flex flex-col items-center md:items-stretch justify-center sm:grid sm:grid-cols-2 sm:space-y-0 gap-1 md:gap-20 lg:grid-cols-3">
                     {plans
                       .filter(plan => (isMobile ? true : plan.price > 0))
                       .map((item, idx) => (
                         <div
                           key={idx}
+                          onClick={() => navigate(`/sign-up/${item.id}`)}
                           className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch flex-col px-3 md:px-5 py-5 md:py-8 rounded-xl border-2 ${
                             item.name == 'Starter'
                               ? 'bg-grn bg-center bg-cover border-green-300'
@@ -138,6 +140,7 @@ export default function Pricing() {
                         .map((item, idx) => (
                           <div
                             key={idx}
+                            onClick={() => navigate(`/sign-up/${item.id}`)}
                             className={`transition-transform duration-300 hover:scale-105 hover:shadow-xl relative w-3/4 md:w-auto flex-1 flex items-stretch justify-between px-5 py-3 rounded-xl border-2`}
                           >
                             <span
