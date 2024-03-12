@@ -91,6 +91,11 @@ select {
   height: 50px; /* Adjust as needed */
 }
 
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  filter: brightness(125%);
+}
+
 @media (max-width: 768px) {
   .swiper-button-next,
   .swiper-button-prev {
