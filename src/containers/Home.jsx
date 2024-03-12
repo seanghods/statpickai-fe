@@ -166,7 +166,7 @@ export default function Home() {
                 </div>
                 <NavLink
                   to="/about"
-                  className="inline-flex gap-x-1 items-center text-indigo-600 hover:text-indigo-500 duration-150 font-medium"
+                  className="inline-flex gap-x-1 items-center text-[#b7bded] hover:brightness-125  duration-150 font-medium"
                 >
                   Learn more
                   <svg
@@ -189,12 +189,6 @@ export default function Home() {
         <section className="py-28">
           <div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
             <div className="max-w-xl space-y-3 md:mx-auto">
-              <NavLink
-                to="/sign-up"
-                className="text-indigo-600 font-semibold w-full text-center hidden md:block"
-              >
-                Start now
-              </NavLink>
               <p className="text-gray-300 text-3xl font-semibold sm:text-4xl text-center">
                 Join the Stat Pick AI Squad
               </p>
