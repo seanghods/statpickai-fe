@@ -10,6 +10,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [homeWeakness, setHomeWeakness] = useState([]);
   const [awayWeakness, setAwayWeakness] = useState([]);
+  const [showBottomFive, setShowBottomFive] = useState(false);
   const { isMobile } = useResponse();
   const handleButtonClick = () => {
     setTooltipOpen(!tooltipOpen);
@@ -98,8 +99,17 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
               <div className="mx-auto max-w-screen-xl text-center font-bold">
                 Ranked in Allowed Stat to Opponent Position
               </div>
-              <div className="mx-auto max-w-screen-xl text-center mb-4 text-sm">
+              <div className="mx-auto max-w-screen-xl text-center text-sm">
                 (Bottom Half of the NBA Only) - Look for Overs
+              </div>
+              <div className="flex gap-2 items-center justify-center mb-4 rounded-lg">
+                <div className="font-bold">Show only Bottom 5 in the NBA</div>
+                <input
+                  type="checkbox"
+                  checked={showBottomFive}
+                  onChange={() => setShowBottomFive(!showBottomFive)}
+                  className="w-4 h-4 rounded-lg text-gray-400"
+                />
               </div>
               <div className="flex flex-col md:flex-row mx-auto max-w-screen-xl gap-12 mb-5">
                 {awayWeakness.length > 0 && (
@@ -129,90 +139,242 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                         </Table.Row>
                       </Table.Header>
                       <Table.Body className="text-white">
-                        {awayWeakness.map((weakness, index) => {
-                          return (
-                            <Table.Row key={index} style={{ color: 'white' }}>
-                              <Table.Cell>{weakness.position}</Table.Cell>
-                              <Table.Cell>
-                                <div className="flex flex-col">
-                                  {Object.keys(weakness)[1] && (
-                                    <div>
-                                      {Object.keys(weakness)[1].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[2] && (
-                                    <div>
-                                      {Object.keys(weakness)[2].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[3] && (
-                                    <div>
-                                      {Object.keys(weakness)[3].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[4] && (
-                                    <div>
-                                      {Object.keys(weakness)[4].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[5] && (
-                                    <div>
-                                      {Object.keys(weakness)[5].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[6] && (
-                                    <div>
-                                      {Object.keys(weakness)[6].split('-')[0]}
-                                    </div>
-                                  )}
-                                </div>
-                              </Table.Cell>
-                              <Table.Cell>
-                                <div className="flex flex-col">
-                                  {' '}
-                                  {Object.values(weakness)[1] && (
-                                    <div>{Object.values(weakness)[1]}</div>
-                                  )}
-                                  {Object.values(weakness)[2] && (
-                                    <div>{Object.values(weakness)[2]}</div>
-                                  )}
-                                  {Object.values(weakness)[3] && (
-                                    <div>{Object.values(weakness)[3]}</div>
-                                  )}
-                                  {Object.values(weakness)[4] && (
-                                    <div>{Object.values(weakness)[4]}</div>
-                                  )}
-                                  {Object.values(weakness)[5] && (
-                                    <div>{Object.values(weakness)[5]}</div>
-                                  )}
-                                  {Object.values(weakness)[6] && (
-                                    <div>{Object.values(weakness)[6]}</div>
-                                  )}
-                                </div>
-                              </Table.Cell>
-                              <Table.Cell className="whitespace-nowrap">
-                                <div className="flex flex-col gap-2">
-                                  {teamHome.players.filter(
-                                    player =>
-                                      player.position == weakness.position,
-                                  ).length == 0
-                                    ? 'No Players'
-                                    : teamHome.players
-                                        .filter(
-                                          player =>
-                                            player.position ==
-                                            weakness.position,
-                                        )
-                                        .map((player, index) => (
-                                          <div key={index}>
-                                            {player.full_name}
+                        {awayWeakness
+                          .filter(weakness =>
+                            showBottomFive
+                              ? Object.values(weakness).some(
+                                  value => value > 24,
+                                )
+                              : true,
+                          )
+                          .map((weakness, index) => {
+                            return (
+                              <Table.Row key={index} style={{ color: 'white' }}>
+                                <Table.Cell>{weakness.position}</Table.Cell>
+                                <Table.Cell>
+                                  <div className="flex flex-col">
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[1] &&
+                                        Object.values(weakness)[1] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[1].split(
+                                                '-',
+                                              )[0]
+                                            }
                                           </div>
-                                        ))}
-                                </div>
-                              </Table.Cell>
-                            </Table.Row>
-                          );
-                        })}
+                                        )
+                                      : Object.keys(weakness)[1] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[1].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[2] &&
+                                        Object.values(weakness)[2] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[2].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[2] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[2].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[3] &&
+                                        Object.values(weakness)[3] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[3].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[3] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[3].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[4] &&
+                                        Object.values(weakness)[4] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[4].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[4] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[4].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[5] &&
+                                        Object.values(weakness)[5] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[5].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[5] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[5].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[6] &&
+                                        Object.values(weakness)[6] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[6].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[6] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[6].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                  </div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                  <div className="flex flex-col">
+                                    {' '}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[1] &&
+                                        Object.values(weakness)[1] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[1]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[1] && (
+                                          <div>
+                                            {Object.values(weakness)[1]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[2] &&
+                                        Object.values(weakness)[2] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[2]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[2] && (
+                                          <div>
+                                            {Object.values(weakness)[2]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[3] &&
+                                        Object.values(weakness)[3] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[3]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[3] && (
+                                          <div>
+                                            {Object.values(weakness)[3]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[4] &&
+                                        Object.values(weakness)[4] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[4]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[4] && (
+                                          <div>
+                                            {Object.values(weakness)[4]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[5] &&
+                                        Object.values(weakness)[5] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[5]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[5] && (
+                                          <div>
+                                            {Object.values(weakness)[5]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[6] &&
+                                        Object.values(weakness)[6] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[6]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[6] && (
+                                          <div>
+                                            {Object.values(weakness)[6]}
+                                          </div>
+                                        )}
+                                  </div>
+                                </Table.Cell>
+                                <Table.Cell className="whitespace-nowrap">
+                                  <div className="flex flex-col gap-2">
+                                    {teamHome.players.filter(
+                                      player =>
+                                        player.position == weakness.position,
+                                    ).length == 0
+                                      ? 'No Players'
+                                      : teamHome.players
+                                          .filter(
+                                            player =>
+                                              player.position ==
+                                              weakness.position,
+                                          )
+                                          .map((player, index) => (
+                                            <div key={index}>
+                                              {player.full_name}
+                                            </div>
+                                          ))}
+                                  </div>
+                                </Table.Cell>
+                              </Table.Row>
+                            );
+                          })}
                       </Table.Body>
                     </Table.Root>
                   </div>
@@ -244,90 +406,242 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                         </Table.Row>
                       </Table.Header>
                       <Table.Body className="text-white">
-                        {homeWeakness.map((weakness, index) => {
-                          return (
-                            <Table.Row key={index} style={{ color: 'white' }}>
-                              <Table.Cell>{weakness.position}</Table.Cell>
-                              <Table.Cell>
-                                <div className="flex flex-col">
-                                  {Object.keys(weakness)[1] && (
-                                    <div>
-                                      {Object.keys(weakness)[1].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[2] && (
-                                    <div>
-                                      {Object.keys(weakness)[2].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[3] && (
-                                    <div>
-                                      {Object.keys(weakness)[3].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[4] && (
-                                    <div>
-                                      {Object.keys(weakness)[4].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[5] && (
-                                    <div>
-                                      {Object.keys(weakness)[5].split('-')[0]}
-                                    </div>
-                                  )}
-                                  {Object.keys(weakness)[6] && (
-                                    <div>
-                                      {Object.keys(weakness)[6].split('-')[0]}
-                                    </div>
-                                  )}
-                                </div>
-                              </Table.Cell>
-                              <Table.Cell>
-                                <div className="flex flex-col">
-                                  {' '}
-                                  {Object.values(weakness)[1] && (
-                                    <div>{Object.values(weakness)[1]}</div>
-                                  )}
-                                  {Object.values(weakness)[2] && (
-                                    <div>{Object.values(weakness)[2]}</div>
-                                  )}
-                                  {Object.values(weakness)[3] && (
-                                    <div>{Object.values(weakness)[3]}</div>
-                                  )}
-                                  {Object.values(weakness)[4] && (
-                                    <div>{Object.values(weakness)[4]}</div>
-                                  )}
-                                  {Object.values(weakness)[5] && (
-                                    <div>{Object.values(weakness)[5]}</div>
-                                  )}
-                                  {Object.values(weakness)[6] && (
-                                    <div>{Object.values(weakness)[6]}</div>
-                                  )}
-                                </div>
-                              </Table.Cell>
-                              <Table.Cell className="whitespace-nowrap">
-                                <div className="flex flex-col gap-2">
-                                  {teamAway.players.filter(
-                                    player =>
-                                      player.position == weakness.position,
-                                  ).length == 0
-                                    ? 'No Players'
-                                    : teamAway.players
-                                        .filter(
-                                          player =>
-                                            player.position ==
-                                            weakness.position,
-                                        )
-                                        .map((player, index) => (
-                                          <div key={index}>
-                                            {player.full_name}
+                        {homeWeakness
+                          .filter(weakness =>
+                            showBottomFive
+                              ? Object.values(weakness).some(
+                                  value => value > 24,
+                                )
+                              : true,
+                          )
+                          .map((weakness, index) => {
+                            return (
+                              <Table.Row key={index} style={{ color: 'white' }}>
+                                <Table.Cell>{weakness.position}</Table.Cell>
+                                <Table.Cell>
+                                  <div className="flex flex-col">
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[1] &&
+                                        Object.values(weakness)[1] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[1].split(
+                                                '-',
+                                              )[0]
+                                            }
                                           </div>
-                                        ))}
-                                </div>
-                              </Table.Cell>
-                            </Table.Row>
-                          );
-                        })}
+                                        )
+                                      : Object.keys(weakness)[1] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[1].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[2] &&
+                                        Object.values(weakness)[2] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[2].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[2] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[2].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[3] &&
+                                        Object.values(weakness)[3] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[3].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[3] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[3].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[4] &&
+                                        Object.values(weakness)[4] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[4].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[4] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[4].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[5] &&
+                                        Object.values(weakness)[5] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[5].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[5] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[5].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.keys(weakness)[6] &&
+                                        Object.values(weakness)[6] > 24 && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[6].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )
+                                      : Object.keys(weakness)[6] && (
+                                          <div>
+                                            {
+                                              Object.keys(weakness)[6].split(
+                                                '-',
+                                              )[0]
+                                            }
+                                          </div>
+                                        )}
+                                  </div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                  <div className="flex flex-col">
+                                    {' '}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[1] &&
+                                        Object.values(weakness)[1] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[1]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[1] && (
+                                          <div>
+                                            {Object.values(weakness)[1]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[2] &&
+                                        Object.values(weakness)[2] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[2]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[2] && (
+                                          <div>
+                                            {Object.values(weakness)[2]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[3] &&
+                                        Object.values(weakness)[3] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[3]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[3] && (
+                                          <div>
+                                            {Object.values(weakness)[3]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[4] &&
+                                        Object.values(weakness)[4] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[4]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[4] && (
+                                          <div>
+                                            {Object.values(weakness)[4]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[5] &&
+                                        Object.values(weakness)[5] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[5]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[5] && (
+                                          <div>
+                                            {Object.values(weakness)[5]}
+                                          </div>
+                                        )}
+                                    {showBottomFive
+                                      ? Object.values(weakness)[6] &&
+                                        Object.values(weakness)[6] > 24 && (
+                                          <div>
+                                            {Object.values(weakness)[6]}
+                                          </div>
+                                        )
+                                      : Object.values(weakness)[6] && (
+                                          <div>
+                                            {Object.values(weakness)[6]}
+                                          </div>
+                                        )}
+                                  </div>
+                                </Table.Cell>
+                                <Table.Cell className="whitespace-nowrap">
+                                  <div className="flex flex-col gap-2">
+                                    {teamAway.players.filter(
+                                      player =>
+                                        player.position == weakness.position,
+                                    ).length == 0
+                                      ? 'No Players'
+                                      : teamAway.players
+                                          .filter(
+                                            player =>
+                                              player.position ==
+                                              weakness.position,
+                                          )
+                                          .map((player, index) => (
+                                            <div key={index}>
+                                              {player.full_name}
+                                            </div>
+                                          ))}
+                                  </div>
+                                </Table.Cell>
+                              </Table.Row>
+                            );
+                          })}
                       </Table.Body>
                     </Table.Root>
                   </div>

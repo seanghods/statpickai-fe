@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { xSvg } from './sub-components/Icons';
 
 export default function Footer() {
+  const scrollToSection = (event, sectionId) => {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
   return (
     <div className=" w-full h-[200px] flex flex-col items-center justify-center gap-5">
       <div className="mx-3 max-w-screen-xl font-inter text-gray-300 text-[8px] md:text-xs">
