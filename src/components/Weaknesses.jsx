@@ -103,7 +103,7 @@ export default function Weaknesses({ game, teamHome, teamAway }) {
                 (Bottom Half of the NBA Only) - Look for Overs
               </div>
               <div className="flex gap-2 items-center justify-center mb-4 rounded-lg">
-                <div className="font-bold">Show only Bottom 5 in the NBA</div>
+                <div className="text-sm">Show only Bottom 5 in the NBA</div>
                 <input
                   type="checkbox"
                   checked={showBottomFive}
