@@ -116,3 +116,11 @@ select {
 .swiper-button-prev {
   background-image: url('./assets/arrow2.png');
 }
+
+body {
+  transform: scale(0.9);
+  transform-origin: top left;
+  width: 111.11%; /* Compensate for the scaling to ensure full width */
+  height: auto; /* Adjust height automatically */
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}

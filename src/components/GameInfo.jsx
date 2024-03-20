@@ -552,8 +552,8 @@ export default function GameInfo({ game }) {
             </Table.Body>
           </Table.Root>
         </div>
-        <div className="md:hidden italic rounded-lg mx-auto max-w-screen-xl text-xs md:text-base md:w-[1000px] text-right">
-          *Odds provided are from Draftkings for over the line.
+        <div className="md:hidden italic rounded-lg mx-auto max-w-screen-xl text-xs md:text-base md:w-[1000px] text-right ">
+          Odds provided are from Draftkings for over the line.
         </div>
         <Table.Root
           variant="surface"
@@ -928,6 +928,9 @@ export default function GameInfo({ game }) {
           </Table.Body>
         </Table.Root>
       </section>
+      <div className="mb-5 hidden md:block italic rounded-lg mx-auto max-w-screen-xl text-xs md:text-base md:w-[1000px] text-right">
+        Odds provided are from Draftkings for over the line.
+      </div>
       {!user.username ? (
         <div className="font-inter_bold italic text-red-500 text-sm rounded-lg mx-auto max-w-screen-xl w-full text-center mb-3">
           Please log in to analyze your pick.
@@ -942,9 +945,6 @@ export default function GameInfo({ game }) {
         Analysis is paused at the moment due to maintenence, will be resumed
         soon. Thank you for your patience.
       </div> */}
-      <div className="hidden md:block italic rounded-lg mx-auto max-w-screen-xl text-xs md:text-base md:w-[1000px] text-right">
-        *Odds provided are from Draftkings for over the line.
-      </div>
       <div className="my-5 italic rounded-lg mx-auto max-w-screen-xl w-full text-center">
         Then analyze...
       </div>
