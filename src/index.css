@@ -87,8 +87,8 @@ select {
 .swiper-button-prev {
   background-size: cover;
   background-position: center;
-  width: 50px; /* Adjust as needed */
-  height: 50px; /* Adjust as needed */
+  width: 50px;
+  height: 50px;
 }
 
 .swiper-button-next:hover,
@@ -117,10 +117,23 @@ select {
   background-image: url('./assets/arrow2.png');
 }
 
-body {
+.wrapper {
   transform: scale(0.9);
   transform-origin: top left;
-  width: 111.11%; /* Compensate for the scaling to ensure full width */
-  height: auto; /* Adjust height automatically */
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  width: 111.11%;
+  height: auto;
+  overflow-x: hidden;
+}
+
+.fade-in {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

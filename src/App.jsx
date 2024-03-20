@@ -45,15 +45,18 @@ function App() {
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(true);
   const [popularPicks, setPopularPicks] = useState([]);
+  const Zoom = () => {
+    useEffect(() => {
+      document.body.style.zoom = '90%';
+    }, []);
+    return <></>;
+  };
+  Zoom();
   useEffect(() => {
     function handleIsMobile() {
       setIsMobile(window.innerWidth <= 768);
     }
-
-    // Add event listener
     window.addEventListener('resize', handleIsMobile);
-
-    // Remove event listener on cleanup
     return () => window.removeEventListener('resize', handleIsMobile);
   }, []);
 
@@ -166,14 +169,16 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      {/* <div className="flex justify-center">
-        <div className="mx-auto max-w-screen-xl !absolute top-20 cursor-default select-none"> */}
       <Marquee
         className="!absolute top-20 cursor-default select-none"
         speed="100"
         gradient={false}
       >
-        <div className="flex gap-72 text-base md:text-lg brightness-150">
+        <div
+          className={`flex gap-72 text-base md:text-lg brightness-150 ${
+            popularPicks.length > 0 ? 'fade-in' : ''
+          }`}
+        >
           {popularPicks.map((pick, index) => (
             <p key={index} className={getRandomClassName()}>
               {pick}
@@ -182,8 +187,6 @@ function App() {
           <p></p>
         </div>
       </Marquee>
-      {/* </div>
-      </div> */}
       <Toaster position="top-center" reverseOrder={false} />
       {fullLoadingPage && <FullLoadingPage />}
       <Routes>

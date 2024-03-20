@@ -45,7 +45,6 @@ Sentry.init({
 (async () => {
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
   ReactDOM.createRoot(document.getElementById('root')).render(
-    // <React.StrictMode>
     <Router>
       <ResponseProvider>
         <Elements stripe={stripePromise}>
@@ -56,6 +55,5 @@ Sentry.init({
         </Elements>
       </ResponseProvider>
     </Router>,
-    // </React.StrictMode>,
   );
 })();
