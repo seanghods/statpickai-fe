@@ -41,7 +41,7 @@ export default function Testimonials() {
               <img
                 src={T8}
                 alt="Testimonial 8"
-                className="rounded-lg w-4/5 scale-110 md:w-[825px]"
+                className="rounded-lg w-4/5 scale-110 md:w-[875px]"
               />
             </div>
           </SwiperSlide>
