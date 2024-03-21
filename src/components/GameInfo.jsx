@@ -309,7 +309,7 @@ export default function GameInfo({ game }) {
         View matchups / potential picks:
       </div>
       <div className="flex justify-center">
-        <div className="w-3/5 flex md:flex-row md:gap-12 justify-center">
+        <div className="w-3/5 flex md:flex-row gap-6 md:gap-0 justify-center">
           <Strengths game={game} teamHome={teamHome} teamAway={teamAway} />
           <div className="hidden md:flex items-center">
             <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />

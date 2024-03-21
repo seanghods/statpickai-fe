@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import useResponse from '../../context/useResponse';
 import { DropdownMenu, Button } from '@radix-ui/themes';
-import { CaretDownIcon, CaretLeftIcon } from '@radix-ui/react-icons';
+import { CaretDownIcon, CaretRightIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import LogInButton from './LogInButton';
 
@@ -34,7 +34,7 @@ export default function MenuButtonX({ handleLogOut }) {
               </>
             ) : (
               <>
-                Menu <CaretLeftIcon />
+                Menu <CaretRightIcon />
               </>
             )}
           </Button>
