@@ -47,7 +47,7 @@ function App() {
   const [popularPicks, setPopularPicks] = useState([]);
   const Zoom = () => {
     useEffect(() => {
-      document.body.style.zoom = '90%';
+      document.body.style.zoom = '80%';
     }, []);
     return <></>;
   };
