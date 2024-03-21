@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { API_ROUTES } from '../utils/constants';
 import LoadingAiModal from './sub-components/LoadingAiModal';
 import slugify from 'slugify';
@@ -54,15 +54,6 @@ export default function GameInfo({ game }) {
     (_, index) => index * 0.5,
   );
   const chunkedNumbers = chunkArray(numbers, 5);
-  const cellRefs = useRef(Array.from({ length: 50 }, () => React.createRef()));
-  useEffect(() => {
-    if (line !== null && cellRefs.current[line]) {
-      cellRefs.current[line].current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-      });
-    }
-  }, [line]);
   const statButtons = [
     { id: 'points', acronym: 'P', name: 'Points', disabled: false },
     { id: 'rebounds', acronym: 'R', name: 'Rebounds', disabled: false },
@@ -900,7 +891,6 @@ export default function GameInfo({ game }) {
                         onClick={() => {
                           if (customLine) setLine(number);
                         }}
-                        ref={cellRefs.current[index]}
                         className={`cursor-pointer hover:bg-gray-600 ${
                           line === number ? `bg-gray-600 font-bold` : ''
                         } ${customLine ? 'hover:bg-gray-600' : null}`}
@@ -921,7 +911,6 @@ export default function GameInfo({ game }) {
                     } ${
                       customLine ? 'hover:bg-gray-600 cursor-pointer' : null
                     }`}
-                    ref={cellRefs.current[index]}
                     key={number}
                   >
                     <Table.Cell>{number}</Table.Cell>
