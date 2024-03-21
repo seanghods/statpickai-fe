@@ -21,14 +21,14 @@ export default function Home() {
         <section className="mt-8 md:mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex flex-col gap-12 md:px-8">
           <div className="space-y-4 flex-1 sm:text-center lg:text-left flex flex-col items-center">
             <img src={logo} alt="" className="hidden md:block w-[200px]" />
-            <h1 className="text-white font-bold text-2xl md:text-4xl xl:text-[44px] text-center">
+            <h1 className="text-white font-bold text-2xl md:text-4xl text-center">
               <span className="text-[#4DE234]">Enhance</span> your{' '}
               <br className="md:hidden" /> NBA Prop Picks
               {/* with Stat
               <span className="text-[#4DE234]"> Pick</span> AI */}
             </h1>
             <div className="w-full flex flex-col items-center">
-              <p className="pt-4 pb-8 text-gray-300 text-center leading-relaxed md:w-3/5 text-sm md:text-[22px]">
+              <p className="pt-4 pb-8 text-gray-300 text-center leading-relaxed md:w-3/5 text-sm md:text-[18px]">
                 Get a custom report on any NBA Prop Pick with a full table of
                 curated, relevant statistics and state-of-the-art AI analysis of
                 the line.
@@ -36,13 +36,13 @@ export default function Home() {
               <div className="items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
                 <NavLink
                   to="/games"
-                  className="px-3 md:px-7 py-2 md:py-3 w-full bg-gray-700 hover:bg-gray-500 text-white font-bold text-center rounded-md block sm:w-auto"
+                  className="px-3 md:px-6 py-2 w-full bg-gray-700 hover:bg-gray-500 text-white font-bold text-center rounded-md block sm:w-auto"
                 >
                   Create a Pick
                 </NavLink>
                 <NavLink
                   to="/sign-up"
-                  className="px-3 md:px-7 py-2 md:py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
+                  className="px-3 md:px-6 py-2 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
                 >
                   Sign Up
                 </NavLink>
@@ -202,7 +202,7 @@ export default function Home() {
             <div className="mt-4 flex w-full justify-center">
               <NavLink
                 to="/sign-up"
-                className="px-7 py-3 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
+                className="px-6 py-2 w-full bg-[#2d9638] font-bold text-white hover:bg-[#42ae4f] hover:font-bold text-center rounded-md shadow-md block sm:w-auto"
               >
                 Sign Up
               </NavLink>

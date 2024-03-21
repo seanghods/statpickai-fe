@@ -25,7 +25,7 @@ export default function AllGamesComp() {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center w-full">
+        <div className="flex justify-center items-center w-full">
           <LoadingIcon />
         </div>
       ) : (
@@ -86,7 +86,7 @@ export default function AllGamesComp() {
                   >
                     <Table.Cell
                       className={`${isMobile && 'w-[40px]'}`}
-                      style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      style={{ fontSize: isMobile ? '12px' : '14px' }}
                     >
                       <div className="h-full flex items-center">
                         {showTime(game.startTime)}
@@ -94,7 +94,7 @@ export default function AllGamesComp() {
                     </Table.Cell>
                     <Table.Cell
                       style={{
-                        fontSize: isMobile ? '12px' : '16px',
+                        fontSize: isMobile ? '12px' : '14px',
                         fontWeight: 500,
                         color: game.awayBackToBack ? 'pink' : null,
                       }}
@@ -142,7 +142,7 @@ export default function AllGamesComp() {
                     </Table.Cell>
                     <Table.Cell
                       style={{
-                        fontSize: isMobile ? '12px' : '16px',
+                        fontSize: isMobile ? '12px' : '14px',
                         // padding: '0px',
                         fontWeight: 500,
                         color: game.homeBackToBack ? 'pink' : null,
@@ -189,17 +189,8 @@ export default function AllGamesComp() {
                         : game.homeTeamSpreadOdds}
                       )
                     </Table.Cell>
-                    {/* <Table.Cell
-                      className="md:hidden"
-                      style={{
-                        fontSize: isMobile ? '12px' : '16px',
-                        // paddingLeft: isMobile ? '20px' : null,
-                      }}
-                    >
-                      +/- {Math.abs(game.teamSpread)}
-                    </Table.Cell> */}
                     <Table.Cell
-                      style={{ fontSize: isMobile ? '12px' : '16px' }}
+                      style={{ fontSize: isMobile ? '12px' : '14px' }}
                     >
                       <div className="h-full flex items-center">
                         {game.overUnder.toFixed(1)}

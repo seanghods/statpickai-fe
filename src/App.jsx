@@ -45,13 +45,6 @@ function App() {
   } = useResponse();
   const [fullLoadingPage, setFullLoadingPage] = useState(true);
   const [popularPicks, setPopularPicks] = useState([]);
-  const Zoom = () => {
-    useEffect(() => {
-      document.body.style.zoom = '80%';
-    }, []);
-    return <></>;
-  };
-  Zoom();
   useEffect(() => {
     function handleIsMobile() {
       setIsMobile(window.innerWidth <= 768);

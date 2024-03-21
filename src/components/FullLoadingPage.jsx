@@ -7,7 +7,7 @@ export default function FullLoadingPage() {
     <>
       <div className="bg-gray-900 z-50 h-full min-w-screen w-full flex flex-col absolute">
         {backgroundGradient()}
-        <div className="w-screen h-screen z-50 flex flex-col justify-center items-center">
+        <div className="w-full h-screen z-50 flex flex-col justify-center items-center">
           <img src={logo} alt="Stat Pick AI Logo" className="w-[200px] pr-5" />
           <LoadingIcon width="70" height="70" />
         </div>

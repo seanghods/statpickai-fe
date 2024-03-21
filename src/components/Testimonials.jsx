@@ -1,8 +1,8 @@
-import T1 from '../assets/Testimonials/T1.png';
+// import T1 from '../assets/Testimonials/T1.png';
 import T2 from '../assets/Testimonials/T2.png';
 import T3 from '../assets/Testimonials/T3.png';
 import T4 from '../assets/Testimonials/T4.png';
-import T5 from '../assets/Testimonials/T5.png';
+// import T5 from '../assets/Testimonials/T5.png';
 import T6 from '../assets/Testimonials/T6.png';
 import T7 from '../assets/Testimonials/T7.png';
 import T8 from '../assets/Testimonials/T8.png';
@@ -34,80 +34,62 @@ export default function Testimonials() {
             clickable: true,
           }}
           modules={[Pagination, Navigation]}
-          className="mySwiper mb-12 md:mb-24"
+          className="mySwiper mb-12 md:mb-24 md:h-[300px]"
         >
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[300px]">
               <img
                 src={T8}
                 alt="Testimonial 8"
-                className="rounded-lg w-4/5 scale-110 md:w-[875px]"
+                className="rounded-lg w-4/5 scale-110 md:w-[750px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[300px]">
               <img
                 src={T7}
                 alt="Testimonial 7"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 md:w-[700px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[300px]">
               <img
                 src={T6}
                 alt="Testimonial 6"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 md:w-[700px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[300px]">
               <img
                 src={T2}
                 alt="Testimonial 2"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 md:w-[700px]"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[300px]">
               <img
                 src={T3}
                 alt="Testimonial 3"
-                className="rounded-lg w-4/5 md:w-[825px] scale-110"
+                className="rounded-lg w-4/5 md:w-[700px] scale-110"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
+            <div className="flex justify-center items-center h-[175px] md:h-[300px]">
               <img
                 src={T4}
                 alt="Testimonial 4"
-                className="rounded-lg w-5/6 md:w-[825px]"
+                className="rounded-lg w-5/6 md:w-[700px]"
               />
             </div>
           </SwiperSlide>
-          {/* <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
-              <img
-                src={T1}
-                alt="Testimonial 1"
-                className="rounded-lg w-5/6 md:w-[825px] scale-110"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center items-center h-[175px] md:h-[400px]">
-              <img
-                src={T5}
-                alt="Testimonial 5"
-                className="rounded-lg w-5/6 md:w-[825px] scale-110"
-              />
-            </div>
-          </SwiperSlide> */}
         </Swiper>
       </div>
     </>

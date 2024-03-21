@@ -569,75 +569,85 @@ export default function GameInfo({ game }) {
           </Table.Header>
 
           <Table.Body className="text-white">
-            {teamAway.players
-              .sort((a, b) => a.full_name.localeCompare(b.full_name))
-              .map((player, index) => {
-                return (
-                  <Table.Row
-                    key={index}
-                    to={`/game/${game._id}`}
-                    state={{ game }}
-                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
-                      selectedPlayer &&
-                      selectedPlayer !==
-                        slugify(player.full_name, { lower: true }) &&
-                      'brightness-90'
-                    } ${
-                      selectedPlayer ==
-                      slugify(player.full_name, { lower: true })
-                        ? `bg-gray-600 font-bold`
-                        : ''
-                    }`}
-                    style={{ color: 'white' }}
-                  >
-                    <Table.Cell
-                      id={slugify(player.full_name, { lower: true })}
-                      data-line={getHandicap(
-                        selectedStat,
-                        game.props,
-                        player.full_name,
-                        customLine,
-                        false,
-                      )}
-                      className="z-10"
-                      width={'320px'}
-                      onClick={e => handlePlayerClick(e)}
-                    >
-                      <div className="flex gap-3 items-center">
-                        {player.headshotUrl ? (
-                          <img
-                            src={player.headshotUrl}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        ) : (
-                          <img
-                            src={silhouette}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        )}
-                        {player.full_name} ({player.position})
-                        <div className="flex items-center flex-1 gap-1 text-right">
-                          {getHandicap(
-                            selectedStat,
-                            game.props,
-                            player.full_name,
-                            customLine,
-                            true,
-                          )}
-                          {getHandicapOdds(
-                            selectedStat,
-                            game.props,
-                            player.full_name,
-                            customLine,
-                          )}
-                        </div>
-                      </div>
-                    </Table.Cell>
+            {teamAway.players.length == 0 ? (
+              <>
+                {Array.from({ length: 15 }, (_, index) => (
+                  <Table.Row key={index}>
+                    <Table.Cell width={'320px'}></Table.Cell>
                   </Table.Row>
-                );
-              })}
+                ))}
+              </>
+            ) : (
+              teamAway.players
+                .sort((a, b) => a.full_name.localeCompare(b.full_name))
+                .map((player, index) => {
+                  return (
+                    <Table.Row
+                      key={index}
+                      to={`/game/${game._id}`}
+                      state={{ game }}
+                      className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
+                        selectedPlayer &&
+                        selectedPlayer !==
+                          slugify(player.full_name, { lower: true }) &&
+                        'brightness-90'
+                      } ${
+                        selectedPlayer ==
+                        slugify(player.full_name, { lower: true })
+                          ? `bg-gray-600 font-bold`
+                          : ''
+                      }`}
+                      style={{ color: 'white' }}
+                    >
+                      <Table.Cell
+                        id={slugify(player.full_name, { lower: true })}
+                        data-line={getHandicap(
+                          selectedStat,
+                          game.props,
+                          player.full_name,
+                          customLine,
+                          false,
+                        )}
+                        className="z-10"
+                        width={'320px'}
+                        onClick={e => handlePlayerClick(e)}
+                      >
+                        <div className="flex gap-3 items-center">
+                          {player.headshotUrl ? (
+                            <img
+                              src={player.headshotUrl}
+                              className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                              alt="headshot"
+                            />
+                          ) : (
+                            <img
+                              src={silhouette}
+                              className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                              alt="headshot"
+                            />
+                          )}
+                          {player.full_name} ({player.position})
+                          <div className="flex items-center flex-1 gap-1 text-right">
+                            {getHandicap(
+                              selectedStat,
+                              game.props,
+                              player.full_name,
+                              customLine,
+                              true,
+                            )}
+                            {getHandicapOdds(
+                              selectedStat,
+                              game.props,
+                              player.full_name,
+                              customLine,
+                            )}
+                          </div>
+                        </div>
+                      </Table.Cell>
+                    </Table.Row>
+                  );
+                })
+            )}
           </Table.Body>
         </Table.Root>
         <Table.Root
@@ -661,74 +671,84 @@ export default function GameInfo({ game }) {
           </Table.Header>
 
           <Table.Body className="text-white">
-            {teamHome.players
-              .sort((a, b) => a.full_name.localeCompare(b.full_name))
-              .map((player, index) => {
-                return (
-                  <Table.Row
-                    key={index}
-                    to={`/game/${game._id}`}
-                    state={{ game }}
-                    className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
-                      selectedPlayer &&
-                      selectedPlayer !==
-                        slugify(player.full_name, { lower: true }) &&
-                      'brightness-90'
-                    } ${
-                      selectedPlayer ==
-                      slugify(player.full_name, { lower: true })
-                        ? `bg-gray-600 font-bold`
-                        : ''
-                    }`}
-                    style={{ color: 'white' }}
-                  >
-                    <Table.Cell
-                      id={slugify(player.full_name, { lower: true })}
-                      data-line={getHandicap(
-                        selectedStat,
-                        game.props,
-                        player.full_name,
-                        customLine,
-                        false,
-                      )}
-                      onClick={e => handlePlayerClick(e)}
-                      width={'320px'}
-                    >
-                      <div className="flex gap-3 items-center">
-                        {player.headshotUrl ? (
-                          <img
-                            src={player.headshotUrl}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        ) : (
-                          <img
-                            src={silhouette}
-                            className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
-                            alt="headshot"
-                          />
-                        )}
-                        {player.full_name} ({player.position})
-                        <div className="flex items-center flex-1 gap-1 text-right">
-                          {getHandicap(
-                            selectedStat,
-                            game.props,
-                            player.full_name,
-                            customLine,
-                            true,
-                          )}
-                          {getHandicapOdds(
-                            selectedStat,
-                            game.props,
-                            player.full_name,
-                            customLine,
-                          )}
-                        </div>
-                      </div>
-                    </Table.Cell>
+            {teamHome.players.length == 0 ? (
+              <>
+                {Array.from({ length: 15 }, (_, index) => (
+                  <Table.Row key={index}>
+                    <Table.Cell width={'320px'}></Table.Cell>
                   </Table.Row>
-                );
-              })}
+                ))}
+              </>
+            ) : (
+              teamHome.players
+                .sort((a, b) => a.full_name.localeCompare(b.full_name))
+                .map((player, index) => {
+                  return (
+                    <Table.Row
+                      key={index}
+                      to={`/game/${game._id}`}
+                      state={{ game }}
+                      className={`cursor-pointer hover:bg-gray-600 hover:brightness-100 ${
+                        selectedPlayer &&
+                        selectedPlayer !==
+                          slugify(player.full_name, { lower: true }) &&
+                        'brightness-90'
+                      } ${
+                        selectedPlayer ==
+                        slugify(player.full_name, { lower: true })
+                          ? `bg-gray-600 font-bold`
+                          : ''
+                      }`}
+                      style={{ color: 'white' }}
+                    >
+                      <Table.Cell
+                        id={slugify(player.full_name, { lower: true })}
+                        data-line={getHandicap(
+                          selectedStat,
+                          game.props,
+                          player.full_name,
+                          customLine,
+                          false,
+                        )}
+                        onClick={e => handlePlayerClick(e)}
+                        width={'320px'}
+                      >
+                        <div className="flex gap-3 items-center">
+                          {player.headshotUrl ? (
+                            <img
+                              src={player.headshotUrl}
+                              className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                              alt="headshot"
+                            />
+                          ) : (
+                            <img
+                              src={silhouette}
+                              className="w-8 h-8 bg-[#c0c5cf12] rounded-sm"
+                              alt="headshot"
+                            />
+                          )}
+                          {player.full_name} ({player.position})
+                          <div className="flex items-center flex-1 gap-1 text-right">
+                            {getHandicap(
+                              selectedStat,
+                              game.props,
+                              player.full_name,
+                              customLine,
+                              true,
+                            )}
+                            {getHandicapOdds(
+                              selectedStat,
+                              game.props,
+                              player.full_name,
+                              customLine,
+                            )}
+                          </div>
+                        </div>
+                      </Table.Cell>
+                    </Table.Row>
+                  );
+                })
+            )}
           </Table.Body>
         </Table.Root>
         <div className="hidden gap-1 md:gap-3 md:flex-col">
@@ -901,7 +921,7 @@ export default function GameInfo({ game }) {
                     ))}
                   </Table.Row>
                 ))
-              : numbers.map((number, index) => (
+              : numbers.map(number => (
                   <Table.Row
                     onClick={() => {
                       if (customLine) setLine(number);
