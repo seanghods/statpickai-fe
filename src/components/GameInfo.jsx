@@ -308,12 +308,14 @@ export default function GameInfo({ game }) {
       <div className="mx-auto max-w-screen-xl w-full text-center italic mt-3">
         View matchups / potential picks:
       </div>
-      <div className="mx-auto max-w-screen-xl flex md:flex-row gap-6 md:gap-12 justify-center">
-        <Strengths game={game} teamHome={teamHome} teamAway={teamAway} />
-        <div className="hidden md:flex items-center">
-          <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
+      <div className="flex justify-center">
+        <div className="w-3/5 flex md:flex-row md:gap-12 justify-center">
+          <Strengths game={game} teamHome={teamHome} teamAway={teamAway} />
+          <div className="hidden md:flex items-center">
+            <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
+          </div>
+          <Weaknesses game={game} teamHome={teamHome} teamAway={teamAway} />
         </div>
-        <Weaknesses game={game} teamHome={teamHome} teamAway={teamAway} />
       </div>
       <div className="injuries mx-auto max-w-screen-xl md:hidden">
         <Injuries game={game} teamHome={teamHome} teamAway={teamAway} />
@@ -336,7 +338,7 @@ export default function GameInfo({ game }) {
       <div className="mt-5 md:mx-auto md:max-w-screen-xl pb-3 px-1 gap-4 md:gap-6 lg:gap-16 flex-1 flex lg:px-12 select-none justify-center">
         {isMobile ? (
           <>
-            <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[228px] md:w-[568px]">
+            <div className="ml-6 md:ml-0 lg:ml-6 text-sm md:text-base text-center italic w-[360px] md:w-[568px]">
               <div>Select one stat to analyze</div>
               <div>Select one player from either team</div>
               <div>Select a custom line to analyze</div>
